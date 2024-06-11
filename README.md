@@ -11,3 +11,14 @@ If wish to use this project for your team, please contact us at hello@networg.co
 
 ## Goal
 The primary objective of this NuGet package is to help Power Platform developers scaffold Power Platform components using a code-first approach.
+
+## Guide
+Install the template package to your machine:
+```console
+dotnet new install TALXIS.DevKit.Templates.Dataverse
+```
+
+Initialize a new empty solution:
+```console
+dotnet new pp-solution --SolutionDisplayName "Solutions.Presentation" --PublisherName "tomas" --PublisherPrefix "tom" --allow-scripts yes
+```
