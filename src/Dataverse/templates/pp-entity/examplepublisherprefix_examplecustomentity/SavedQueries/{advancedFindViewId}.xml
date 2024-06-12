@@ -8,15 +8,34 @@
     <isdefault>1</isdefault>
     <savedqueryid>{advancedFindViewId}</savedqueryid>
     <layoutxml>
+      <!--#if (EntityType == "Activity") -->
+      <grid name="resultset" jump="subject" select="1" icon="1" preview="1">
+        <row name="result" id="activityid">
+          <cell name="subject" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+      <!--#else -->
       <grid name="resultset" jump="examplepublisherprefix_name" select="1" icon="1" preview="1">
         <row name="result" id="examplepublisherprefix_examplecustomentityid">
           <cell name="examplepublisherprefix_name" width="300" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
+      <!--#endif -->
     </layoutxml>
     <querytype>1</querytype>
     <fetchxml>
+      <!--#if (EntityType == "Activity") -->
+      <fetch version="1.0" mapping="logical">
+        <entity name="examplepublisherprefix_examplecustomentity">
+          <attribute name="activityid" />
+          <attribute name="subject" />
+          <attribute name="createdon" />
+          <order attribute="subject" descending="false" />
+        </entity>
+      </fetch>
+      <!--#else -->
       <fetch version="1.0" mapping="logical">
         <entity name="examplepublisherprefix_examplecustomentity">
           <attribute name="examplepublisherprefix_examplecustomentityid" />
@@ -25,6 +44,7 @@
           <order attribute="examplepublisherprefix_name" descending="false" />
         </entity>
       </fetch>
+      <!--#endif -->
     </fetchxml>
     <IntroducedVersion>1.0</IntroducedVersion>
     <LocalizedNames>

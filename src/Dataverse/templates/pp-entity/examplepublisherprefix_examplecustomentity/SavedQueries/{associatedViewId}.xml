@@ -8,15 +8,40 @@
     <isdefault>1</isdefault>
     <savedqueryid>{associatedViewId}</savedqueryid>
     <layoutxml>
+      <!--#if (EntityType == "Activity") -->
+      <grid name="resultset" jump="subject" select="1" icon="1" preview="1">
+        <row name="result" id="activityid">
+          <cell name="subject" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+      <!--#else -->
       <grid name="examplepublisherprefix_examplecustomentitys" jump="examplepublisherprefix_name" select="1" icon="1" preview="1">
         <row name="examplepublisherprefix_examplecustomentity" id="examplepublisherprefix_examplecustomentityid">
           <cell name="examplepublisherprefix_name" width="300" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
+      <!--#endif -->
     </layoutxml>
     <querytype>2</querytype>
     <fetchxml>
+      <!--#if (EntityType == "Activity") -->
+      <fetch version="1.0" mapping="logical">
+        <entity name="examplepublisherprefix_examplecustomentity">
+          <attribute name="activityid" />
+          <attribute name="subject" />
+          <attribute name="createdon" />
+          <order attribute="subject" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="in">
+              <value>0</value>
+              <value>3</value>
+            </condition>
+          </filter>
+        </entity>
+      </fetch>
+      <!--#else -->
       <fetch version="1.0" mapping="logical">
         <entity name="examplepublisherprefix_examplecustomentity">
           <attribute name="examplepublisherprefix_examplecustomentityid" />
@@ -28,6 +53,7 @@
           </filter>
         </entity>
       </fetch>
+      <!--#endif -->
     </fetchxml>
     <IntroducedVersion>1.0</IntroducedVersion>
     <LocalizedNames>

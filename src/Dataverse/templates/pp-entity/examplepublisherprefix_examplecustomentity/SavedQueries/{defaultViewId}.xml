@@ -17,6 +17,27 @@
     </layoutxml>
     <querytype>0</querytype>
     <fetchxml>
+      <!--#if (EntityType == "Activity") -->
+      <fetch version="1.0" mapping="logical" distinct="true">
+        <entity name="examplepublisherprefix_examplecustomentity">
+          <attribute name="activityid" />
+          <attribute name="subject" />
+          <attribute name="createdon" />
+          <order attribute="subject" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="in">
+              <value>0</value>
+              <value>3</value>
+            </condition>
+          </filter>
+          <link-entity name="activityparty" from="activityid" to="activityid" alias="aa">
+            <filter type="and">
+              <condition attribute="partyid" operator="eq-userid" />
+            </filter>
+          </link-entity>
+        </entity>
+      </fetch>
+      <!--#else -->
       <fetch version="1.0" mapping="logical">
         <entity name="examplepublisherprefix_examplecustomentity">
           <attribute name="examplepublisherprefix_examplecustomentityid" />
@@ -28,10 +49,15 @@
           </filter>
         </entity>
       </fetch>
+      <!--#endif -->
     </fetchxml>
     <IntroducedVersion>1.0</IntroducedVersion>
     <LocalizedNames>
+      <!--#if (EntityType == "Activity") -->
+      <LocalizedName description="My Open ExampleEntityPluralDisplayName" languagecode="1033" />
+      <!--#else -->
       <LocalizedName description="Active ExampleEntityPluralDisplayName" languagecode="1033" />
+      <!--#endif -->
     </LocalizedNames>
   </savedquery>
 </savedqueries>

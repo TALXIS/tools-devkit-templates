@@ -1,6 +1,5 @@
 # Power Platform .NET Templates
-
-> [!CAUTION]
+> [!WARNING]
 > This project is currently in a development phase and not ready for production use.
 > While we actively use these tools internally, our aim is to share and collaborate with the broader community to refine and enhance their capabilities.
 > We are in the process of gradually open-sourcing the code, removing internal dependencies to make it universally applicable.
@@ -8,6 +7,11 @@
 > We welcome feedback, suggestions, and contributions through pull requests.
 
 If wish to use this project for your team, please contact us at hello@networg.com for a personalized onboarding experience and customization to meet your specific needs.
+
+> [!CAUTION]
+> Only use this if you understand the standard platform customization capabilities.
+> Using these templates with parameter combinations other than those documented here might generate invalid source code, which could still be importable to Dataverse.
+> In some situations, this could cause your environment to become irreversibly corrupted.
 
 ## Goal
 The primary objective of this NuGet package is to help Power Platform developers scaffold Power Platform components using a code-first approach.
@@ -39,6 +43,9 @@ Add an existing *system table* to a solution:
 ```console
 dotnet new pp-entity --Behavior Existing --IsSystemEntity true  --LogicalName "account" --DisplayName "Account" --allow-scripts yes
 ```
+
+> [!TIP]  
+> You can add component schema validation to your build process using [Power Platform MSBuild targets](https://github.com/TALXIS/tools-devkit-build).
 
 ## Collaboration
 

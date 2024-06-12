@@ -17,6 +17,21 @@
     </layoutxml>
     <querytype>64</querytype>
     <fetchxml>
+      <!--#if (EntityType == "Activity") -->
+      <fetch version="1.0" mapping="logical">
+        <entity name="examplepublisherprefix_examplecustomentity">
+          <attribute name="activityid" />
+          <attribute name="subject" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="in">
+              <value>0</value>
+              <value>3</value>
+            </condition>
+          </filter>
+        </entity>
+      </fetch>
+      <!--#else -->
       <fetch version="1.0" mapping="logical">
         <entity name="examplepublisherprefix_examplecustomentity">
           <attribute name="examplepublisherprefix_examplecustomentityid" />
@@ -27,6 +42,7 @@
           </filter>
         </entity>
       </fetch>
+      <!--#endif -->
     </fetchxml>
     <IntroducedVersion>1.0</IntroducedVersion>
     <LocalizedNames>
