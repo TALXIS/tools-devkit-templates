@@ -67,7 +67,7 @@
 		"IsSystemEntity": {
 			"type": "parameter",
 			"datatype": "bool",
-			"defaultValue": "false"
+			"defaultValue": false
 		},
 		"Behavior": {
 			"type": "parameter",
@@ -110,10 +110,19 @@
 		},
 		"SystemPublisherPrefix": {
 			"type": "generated",
-			"isEnabled": "(IsSystemEntity)",
-			"generator": "constant",
+			"isEnabled": "(IsSystemEntity == true)",
+			"generator": "switch", // for some reason constant doesn't respect isEnabled
 			"parameters": {
-			  "value":""
+				"cases": [
+					{
+						"condition": "(IsSystemEntity)",
+						"value": ""
+					},
+					{
+						"condition": "(!IsSystemEntity)",
+						"value": "examplepublisherprefix_"
+					}
+				]
 			},
 			"replaces":"examplepublisherprefix_",
 			"fileRename": "examplepublisherprefix_"
@@ -123,8 +132,8 @@
 			"datatype": "text",
 			"replaces": "examplepublisherprefix",
 			"fileRename": "examplepublisherprefix",
-			"isRequired": "(!IsSystemEntity)",
-			"isEnabled": "(!IsSystemEntity)"
+			"isRequired": "(IsSystemEntity == false)",
+			"isEnabled": "(IsSystemEntity == false)"
 		},
 		"LogicalName": {
 			"displayName": "Logical name (without publisher prefix)",
