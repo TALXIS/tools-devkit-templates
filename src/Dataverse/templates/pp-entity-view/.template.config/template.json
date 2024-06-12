@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.View",
+  "name": "Power Platform: View",
+  "shortName": "pp-entity-view",
+  "tags": {
+    "language": "XML",
+    "type": "item"
+  },
+  "sourceName": "customentity",
+  "preferNameDirectory": false,
+  "symbols": {
+    "Prefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "ntg",
+      "replaces": "ntg",
+      "fileRename": "ntg"
+    },
+    "QueryType": {
+      "type": "parameter",
+      "description": "Select query type.",
+      "datatype": "choice",
+      "replaces": "queryType",
+      "choices": [
+        {
+          "choice": "0",
+          "displayName": "Standard",
+          "description": "Standard public view (query type = 0)"
+        },
+        {
+          "choice": "2",
+          "displayName": "Subgrid",
+          "description": "Subgrid view (query type = 2)"
+        }
+      ],
+      "defaultValue": "0"
+    },
+    //views
+    "1viewId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "1viewId",
+      "fileRename": "1viewId",
+      "parameters": {
+        "defaultFormat": "d"
+      }
+    }
+  }
+}

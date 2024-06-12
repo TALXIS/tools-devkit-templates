@@ -1,0 +1,382 @@
+{
+	"$schema": "http://json.schemastore.org/template",
+	"author": "NETWORG",
+	"identity": "TALXIS.DevKit.Templates.Dataverse.Form",
+	"name": "Power Platform: Form",
+	"shortName": "pp-entity-form",
+	"tags": {
+		"language": "XML",
+		"type": "item"
+	},
+	"sourceName": "examplecustomentity",
+	"sources": [
+		{
+			"modifiers": [
+				{
+					"condition": "(!AddMainForm)",
+					"exclude": ["main/*"]
+				},
+				{
+					"condition": "(!AddQuickCreateForm)",
+					"exclude": ["quickCreate/*"]
+				}
+			]
+		}
+	],
+	"preferNameDirectory": false,
+	"symbols": {
+		"FormType": {
+			"type": "parameter",
+			"datatype": "choice",
+			"isRequired": true,
+			"choices": [
+				{
+					"choice": "main",
+					"description": "Main Form"
+				},
+				{
+					"choice": "quickCreate",
+					"description": "Quick Create Form"
+				}
+			]
+		},
+		"AddMainForm": {
+			"type": "computed",
+			"value": "(FormType == \"main\")"
+		},
+		"AddQuickCreateForm": {
+			"type": "computed",
+			"value": "(FormType == \"quickCreate\")"
+		},
+		//forms
+		"mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "mainFormId",
+			"fileRename": "mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "quickCreateFormId",
+			"fileRename": "quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		//Main Form IDs
+		"1mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "1mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"2mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "2mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"3mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "3mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"4mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "4mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"5mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "5mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"6mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "6mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"7mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "7mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"8mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "8mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"9mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "9mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"10mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "10mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"11mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "11mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"12mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "12mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"13mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "13mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"14mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "14mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"15mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "15mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"16mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "16mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"17mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "17mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"18mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "18mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"19mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "19mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"20mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "20mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		//Quick Create Form IDs
+		"1quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "1quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"2quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "2quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"3quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "3quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"4quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "4quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"5quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "5quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"6quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "6quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"7quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "7quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"8quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "8quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"9quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "9quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"10quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "10quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"11quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "11quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"12quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "12quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"13quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "13quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"14quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "14quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		}
+	},
+	"postActions": [
+		{
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"condition": "(AddQuickCreateForm)",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddQCFormToSolutionXml.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Adding form to solution.xml" }],
+			"continueOnError": false,
+			"description": "Adding form to solution.xml"
+		},
+		{
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"condition": "(AddMainForm)",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddFormToSolutionXml.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Adding form to solution.xml" }],
+			"continueOnError": false,
+			"description": "Adding form to solution.xml"
+		},
+		{
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Removing Scripts" }],
+			"continueOnError": false,
+			"description": "Removing Scripts"
+		}
+	]
+}

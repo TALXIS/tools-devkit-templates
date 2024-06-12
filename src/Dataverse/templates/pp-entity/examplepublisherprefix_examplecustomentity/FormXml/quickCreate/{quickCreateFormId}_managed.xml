@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{quickCreateFormId}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form showImage="false">
+      <tabs>
+        <tab id="{1quickCreateFormId}" name="generaltab" showlabel="false" labelid="{2quickCreateFormId}">
+          <labels>
+            <label description="GENERAL" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="34%">
+              <sections>
+                <section id="{3quickCreateFormId}" name="generalsection" columns="1" showlabel="false" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{4quickCreateFormId}">
+                  <labels>
+                    <label description="GENERAL" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{5quickCreateFormId}" locklevel="0" colspan="1" rowspan="1" labelid="{6quickCreateFormId}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="examplepublisherprefix_name" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="examplepublisherprefix_name" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section id="{7quickCreateFormId}" name="generalsection2" columns="1" showlabel="false" showbar="false" IsUserDefined="0" labelwidth="130" visible="false" labelid="{8quickCreateFormId}">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{9quickCreateFormId}" labelid="{10quickCreateFormId}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section id="{11quickCreateFormId}" name="generalsection3" columns="1" showlabel="false" showbar="false" IsUserDefined="0" labelwidth="130" visible="false" labelid="{12quickCreateFormId}">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{13quickCreateFormId}" labelid="{14quickCreateFormId}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions Order="1" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="ExampleEntityDisplayName Quick Create Form" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>

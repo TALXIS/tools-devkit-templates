@@ -22,3 +22,8 @@ Initialize a new empty solution:
 ```console
 dotnet new pp-solution --SolutionDisplayName "Solutions.Presentation" --PublisherName "tomas" --PublisherPrefix "tom" --allow-scripts yes
 ```
+
+Create a new table:
+```console
+dotnet new pp-entity --PublisherPrefix "tom" --LogicalName "shiftevent" --DisplayName "Shift Event" --allow-scripts yes
+```
