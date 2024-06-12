@@ -25,7 +25,11 @@ dotnet new install TALXIS.DevKit.Templates.Dataverse
 ### Solutions
 Initialize a new empty solution:
 ```console
-dotnet new pp-solution --SolutionDisplayName "Solutions.Presentation" --PublisherName "tomas" --PublisherPrefix "tom" --allow-scripts yes
+dotnet new pp-solution `
+--output "src/Solutions.Model" `
+--PublisherName "tomas" `
+--PublisherPrefix "tom" `
+--allow-scripts yes
 ```
 
 ### Tables
@@ -38,39 +42,43 @@ dotnet new pp-entity `
 --LogicalNamePlural "locations" `
 --DisplayName "Location" `
 --DisplayNamePlural "Locations" `
+--SolutionRootPath "Declarations" `
 --allow-scripts yes
 ```
 
 Create a new *activity* table:
 ```console
 dotnet new pp-entity `
---EntityType Activity `
---Behavior New `
+--EntityType "Activity" `
+--Behavior "New" `
 --PublisherPrefix "tom" `
 --LogicalName "shiftevent" `
 --LogicalNamePlural "shiftevents" `
 --DisplayName "Shift Event" `
 --DisplayNamePlural "Shift Events" `
+--SolutionRootPath "Declarations" `
 --allow-scripts yes
 ```
 
 Add an existing *custom table* to a solution:
 ```console
 dotnet new pp-entity `
---Behavior Existing `
+--Behavior "Existing" `
 --PublisherPrefix "tom" `
 --LogicalName "shiftevent" `
 --DisplayName "Shift Event" `
+--SolutionRootPath "Declarations" `
 --allow-scripts yes
 ```
 
 Add an existing *system table* to a solution:
 ```console
 dotnet new pp-entity `
---Behavior Existing `
---IsSystemEntity true  `
+--Behavior "Existing" `
+--IsSystemEntity "true"  `
 --LogicalName "account" `
 --DisplayName "Account" `
+--SolutionRootPath "Declarations" `
 --allow-scripts yes
 ```
 

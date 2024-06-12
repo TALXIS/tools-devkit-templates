@@ -15,48 +15,48 @@
 				{
 					"condition": "(Behavior == \"New\")",
 					"exclude": [
-						"examplepublisherprefix_examplecustomentity/SavedQueries/{customViewId}.xml"
+						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{customViewId}.xml"
 					]
 				},
 				{
 					"condition": "(Behavior == \"Existing\")",
 					"exclude": [
-						"examplepublisherprefix_examplecustomentity/SavedQueries/{defaultViewId}.xml",
-						"examplepublisherprefix_examplecustomentity/SavedQueries/{quickFindViewId}.xml",
-						"examplepublisherprefix_examplecustomentity/SavedQueries/{myRecordsViewId}.xml",
-						"examplepublisherprefix_examplecustomentity/SavedQueries/{lookupViewId}.xml",
-						"examplepublisherprefix_examplecustomentity/SavedQueries/{advancedFindViewId}.xml",
-						"examplepublisherprefix_examplecustomentity/SavedQueries/{associatedViewId}.xml"
+						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{defaultViewId}.xml",
+						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{quickFindViewId}.xml",
+						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{myRecordsViewId}.xml",
+						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{lookupViewId}.xml",
+						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{advancedFindViewId}.xml",
+						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{associatedViewId}.xml"
 					]
 				},
 				{
 					"condition": "(!AddMainForm)",
 					"exclude": [
-						"examplepublisherprefix_examplecustomentity/FormXml/main/*"
+						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/FormXml/main/*"
 					]
 				},
 				{
 					"condition": "(!AddQuickForm)",
 					"exclude": [
-						"examplepublisherprefix_examplecustomentity/FormXml/quick/*"
+						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/FormXml/quick/*"
 					]
 				},
 				{
 					"condition": "(!AddCardForm)",
 					"exclude": [
-						"examplepublisherprefix_examplecustomentity/FormXml/card/*"
+						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/FormXml/card/*"
 					]
 				},
 				{
 					"condition": "(!AddQuickCreateForm)",
 					"exclude": [
-						"examplepublisherprefix_examplecustomentity/FormXml/quickCreate/*"
+						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/FormXml/quickCreate/*"
 					]
 				},
 				{
 					"condition": "(!AddCustomView)",
 					"exclude": [
-						"examplepublisherprefix_examplecustomentity/SavedQueries/{customViewId}.xml"
+						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{customViewId}.xml"
 					]
 				}
 			]
@@ -64,6 +64,14 @@
 	],
 	"preferNameDirectory": false,
 	"symbols": {
+		//this was supposed to be done using msbuild props binding but it didn't work for some reason
+		"SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot"
+		},
 		"IsSystemEntity": {
 			"type": "parameter",
 			"datatype": "bool",
@@ -138,9 +146,9 @@
 					}
 				]
 			},
-			"replaces":"examplepublisherprefix_",
+			"replaces": "examplepublisherprefix_",
 			"fileRename": "examplepublisherprefix_"
-		  },
+		},
 		"PublisherPrefix": {
 			"type": "parameter",
 			"datatype": "text",

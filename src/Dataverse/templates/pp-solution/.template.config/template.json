@@ -8,7 +8,7 @@
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "Solutions.Example",
+  "sourceName": "SolutionLogicalNameExample",
   "sources": [
     {
       "exclude": [
@@ -22,17 +22,8 @@
       ]
     }
   ],
-  "preferNameDirectory": false,
+  "preferNameDirectory": true,
   "symbols": {
-    "SolutionDisplayName": {
-      "type": "parameter",
-      "datatype": "text",
-      "displayName": "Solution Display Name",
-      "description": "Specify a solution name",
-      "replaces": "Solutions.Example",
-      "fileRename": "Solutions.Example",
-      "isRequired": true
-    },
     "PublisherName": {
       "type": "parameter",
       "datatype": "text",
@@ -47,7 +38,7 @@
   },
   "primaryOutputs": [
     {
-      "path": "Solutions.Example/Solutions.Example.cdsproj"
+      "path": "SolutionLogicalNameExample.cdsproj"
     }
   ],
   "postActions": [

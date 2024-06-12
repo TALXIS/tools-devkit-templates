@@ -1,0 +1,1 @@
+* Implement exception handling in template scripts - currently it doesn't even tell you that it couldn't find solution.xml file

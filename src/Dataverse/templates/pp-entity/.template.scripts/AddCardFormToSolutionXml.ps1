@@ -1,5 +1,5 @@
 ﻿# Resolve the relative path to an absolute path (to support other OSes)
-$solutionPath = Resolve-Path -Path '../Other/Solution.xml'
+$solutionPath = Resolve-Path -Path 'SolutionDeclarationsRoot/Other/Solution.xml'
 
 # Load the XML file
 [XML]$File = Get-Content -Path $solutionPath -Raw
