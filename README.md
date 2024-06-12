@@ -18,11 +18,13 @@ Install the template package to your machine:
 dotnet new install TALXIS.DevKit.Templates.Dataverse
 ```
 
+### Solutions
 Initialize a new empty solution:
 ```console
 dotnet new pp-solution --SolutionDisplayName "Solutions.Presentation" --PublisherName "tomas" --PublisherPrefix "tom" --allow-scripts yes
 ```
 
+### Tables
 Create a new table:
 ```console
 dotnet new pp-entity --Behavior New --PublisherPrefix "tom" --LogicalName "shiftevent" --LogicalNamePlural "shiftevents" --DisplayName "Shift Event" --DisplayNamePlural "Shift Events" --allow-scripts yes

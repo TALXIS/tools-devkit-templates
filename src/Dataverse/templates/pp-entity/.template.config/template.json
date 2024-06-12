@@ -69,6 +69,20 @@
 			"datatype": "bool",
 			"defaultValue": false
 		},
+		"EntityType": {
+			"type": "parameter",
+			"description": "Select entity type",
+			"datatype": "choice",
+			"choices": [
+				{
+					"choice": "Standard"
+				},
+				{
+					"choice": "Activity"
+				}
+			],
+			"defaultValue": "Standard"
+		},
 		"Behavior": {
 			"type": "parameter",
 			"description": "Select how the entity will be added to the solution",
@@ -174,7 +188,7 @@
 			"type": "computed",
 			"value": "(Behavior == \"New\")",
 			"displayName": "Add Main Form",
-			"datatype": "bool",
+			"datatype": "bool"
 		},
 		"AddQuickCreateForm": {
 			"type": "parameter",
