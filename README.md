@@ -36,6 +36,7 @@ dotnet new pp-solution `
 Create a new *standard* table:
 ```console
 dotnet new pp-entity `
+--output "src/Solutions.Model" `
 --Behavior New `
 --PublisherPrefix "tom" `
 --LogicalName "location" `
@@ -49,6 +50,7 @@ dotnet new pp-entity `
 Create a new *activity* table:
 ```console
 dotnet new pp-entity `
+--output "src/Solutions.Model" `
 --EntityType "Activity" `
 --Behavior "New" `
 --PublisherPrefix "tom" `
@@ -63,6 +65,7 @@ dotnet new pp-entity `
 Add an existing *custom table* to a solution:
 ```console
 dotnet new pp-entity `
+--output "src/Solutions.Presentation" `
 --Behavior "Existing" `
 --PublisherPrefix "tom" `
 --LogicalName "shiftevent" `
@@ -74,6 +77,7 @@ dotnet new pp-entity `
 Add an existing *system table* to a solution:
 ```console
 dotnet new pp-entity `
+--output "src/Solutions.Presentation" `
 --Behavior "Existing" `
 --IsSystemEntity "true"  `
 --LogicalName "account" `
