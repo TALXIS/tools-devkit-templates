@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{myRecordsViewId}</savedqueryid>
+    <querytype>8192</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical" output-format="xml-platform">
+        <entity name="examplepublisherprefix_examplecustomentity">
+          <attribute name="examplepublisherprefix_examplecustomentityid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+            <!--#if (IsOrganizationTypeEntity) -->
+            <!--#else -->
+            <condition attribute="ownerid" operator="eq-userid" />
+            <!--#endif -->
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="My ExampleEntityPluralDisplayName" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <!--#if (IsOrganizationTypeEntity) -->
+      <Description description="All Active ExampleEntityPluralDisplayName" languagecode="1033" />
+      <!--#else -->
+      <Description description="Active ExampleEntityPluralDisplayName owned by me" languagecode="1033" />
+      <!--#endif -->
+    </Descriptions>
+  </savedquery>
+</savedqueries>

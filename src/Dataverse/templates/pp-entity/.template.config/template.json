@@ -1,436 +1,786 @@
 {
-  "$schema": "http://json.schemastore.org/template",
-  "author": "NETWORG",
-  "identity": "TALXIS.DevKit.Templates.Dataverse.Entity",
-  "name": "Power Platform: Entity",
-  "shortName": "pp-entity",
-  "tags": {
-    "language": "XML",
-    "type": "item"
-  },
-  "sourceName": "examplecustomentity",
-  "sources": [
-    {
-      "modifiers": [
-        {
-          "condition": "(!AddMainForm)",
-          "exclude": [
-            "examplepublisherprefix_examplecustomentity/FormXml/main/*"
-          ]
-        },
-        {
-          "condition": "(!AddQuickCreateForm)",
-          "exclude": [
-            "examplepublisherprefix_examplecustomentity/FormXml/quickCreate/*"
-          ]
-        },
-        {
-          "condition": "(!AddView)",
-          "exclude": [
-            "examplepublisherprefix_examplecustomentity/SavedQueries/**/*"
-          ]
-        }
-      ]
-    }
-  ],
-  "preferNameDirectory": false,
-  "symbols": {
-    "PublisherPrefix": {
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "examplepublisherprefix",
-      "fileRename": "examplepublisherprefix",
-      "isRequired": true
-    },
-    "LogicalName": {
-      "displayName": "Logical name (without publisher prefix)",
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "examplecustomentity",
-      "fileRename": "examplecustomentity",
-      "isRequired": true
-    },
-    "DisplayName": {
-      "type": "parameter",
-      "datatype": "text",
-      "defaultValue": "ExampleEntityDisplayName",
-      "replaces": "ExampleEntityDisplayName",
-      "isRequired": true
-    },
-    "AddMainForm": {
-      "type": "parameter",
-      "displayName": "Add Main Form",
-      "datatype": "bool",
-      "description": "Do you want to generate main form?",
-      "defaultValue": "true"
-    },
-    "AddQuickCreateForm": {
-      "type": "parameter",
-      "displayName": "Add Quick Create Form",
-      "datatype": "bool",
-      "description": "Do you want to generate quick create form?",
-      "defaultValue": "false"
-    },
-    "AddView": {
-      "type": "parameter",
-      "displayName": "Add View",
-      "datatype": "bool",
-      "description": "Do you want to add view?",
-      "defaultValue": "true"
-    },
-    //forms
-    "mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "mainFormId",
-      "fileRename": "mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "quickCreateFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "quickCreateFormId",
-      "fileRename": "quickCreateFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    //views
-    "1viewId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "1viewId",
-      "fileRename": "1viewId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    //Main Form IDs
-    "1mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "1mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "2mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "2mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "3mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "3mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "4mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "4mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "5mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "5mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "6mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "6mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "7mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "7mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "8mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "8mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "9mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "9mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "10mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "10mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "11mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "11mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "12mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "12mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "13mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "13mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "14mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "14mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "15mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "15mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "16mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "16mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "17mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "17mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "18mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "18mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "19mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "19mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "20mainFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "20mainFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    //Quick Create Form IDs
-    "1quickCreateFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "1quickCreateFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "2quickCreateFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "2quickCreateFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "3quickCreateFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "3quickCreateFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "4quickCreateFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "4quickCreateFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "5quickCreateFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "5quickCreateFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "6quickCreateFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "6quickCreateFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "7quickCreateFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "7quickCreateFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "8quickCreateFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "8quickCreateFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "9quickCreateFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "9quickCreateFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "10quickCreateFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "10quickCreateFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "11quickCreateFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "11quickCreateFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "12quickCreateFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "12quickCreateFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "13quickCreateFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "13quickCreateFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    "14quickCreateFormId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "14quickCreateFormId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    }
-  },
-  "postActions": [
-    {
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "args": {
-        "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddEntityToSolutionXml.ps1\"",
-        "redirectStandardOutput": "false"
-      },
-      "manualInstructions": [
-        {
-          "text": "Adding entity to solution.xml"
-        }
-      ],
-      "continueOnError": false,
-      "description": "Adding entity to solution.xml"
-    },
-    {
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "condition": "(AddQuickCreateForm)",
-      "args": {
-        "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddQCFormToSolutionXml.ps1\"",
-        "redirectStandardOutput": "false"
-      },
-      "manualInstructions": [
-        {
-          "text": "Adding form to solution.xml"
-        }
-      ],
-      "continueOnError": false,
-      "description": "Adding form to solution.xml"
-    },
-    {
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "condition": "(AddMainForm)",
-      "args": {
-        "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddFormToSolutionXml.ps1\"",
-        "redirectStandardOutput": "false"
-      },
-      "manualInstructions": [
-        {
-          "text": "Adding form to solution.xml"
-        }
-      ],
-      "continueOnError": false,
-      "description": "Adding form to solution.xml"
-    },
-    {
+	"$schema": "http://json.schemastore.org/template",
+	"author": "NETWORG",
+	"identity": "TALXIS.DevKit.Templates.Dataverse.Entity",
+	"name": "Power Platform: Entity",
+	"shortName": "pp-entity",
+	"tags": {
+		"language": "XML",
+		"type": "item"
+	},
+	"sourceName": "examplecustomentity",
+	"sources": [
+		{
+			"modifiers": [
+				{
+					"condition": "(Behavior == \"New\")",
+					"exclude": [
+						"examplepublisherprefix_examplecustomentity/SavedQueries/{customViewId}.xml"
+					]
+				},
+				{
+					"condition": "(Behavior == \"Existing\")",
+					"exclude": [
+						"examplepublisherprefix_examplecustomentity/SavedQueries/{defaultViewId}.xml",
+						"examplepublisherprefix_examplecustomentity/SavedQueries/{quickFindViewId}.xml",
+						"examplepublisherprefix_examplecustomentity/SavedQueries/{myRecordsViewId}.xml",
+						"examplepublisherprefix_examplecustomentity/SavedQueries/{lookupViewId}.xml",
+						"examplepublisherprefix_examplecustomentity/SavedQueries/{advancedFindViewId}.xml",
+						"examplepublisherprefix_examplecustomentity/SavedQueries/{associatedViewId}.xml"
+					]
+				},
+				{
+					"condition": "(!AddMainForm)",
+					"exclude": [
+						"examplepublisherprefix_examplecustomentity/FormXml/main/*"
+					]
+				},
+				{
+					"condition": "(!AddQuickForm)",
+					"exclude": [
+						"examplepublisherprefix_examplecustomentity/FormXml/quick/*"
+					]
+				},
+				{
+					"condition": "(!AddCardForm)",
+					"exclude": [
+						"examplepublisherprefix_examplecustomentity/FormXml/card/*"
+					]
+				},
+				{
+					"condition": "(!AddQuickCreateForm)",
+					"exclude": [
+						"examplepublisherprefix_examplecustomentity/FormXml/quickCreate/*"
+					]
+				},
+				{
+					"condition": "(!AddCustomView)",
+					"exclude": [
+						"examplepublisherprefix_examplecustomentity/SavedQueries/{customViewId}.xml"
+					]
+				}
+			]
+		}
+	],
+	"preferNameDirectory": false,
+	"symbols": {
+		"IsSystemEntity": {
+			"type": "parameter",
+			"datatype": "bool",
+			"defaultValue": "false"
+		},
+		"Behavior": {
+			"type": "parameter",
+			"description": "Select how the entity will be added to the solution",
+			"datatype": "choice",
+			"choices": [
+				{
+					"choice": "New",
+					"displayName": "Include metadata",
+					"description": "When creating a new entity the default attributes, forms and views must be generated"
+				},
+				{
+					"choice": "Existing",
+					"displayName": "Existing entity reference",
+					"description": "Use if you want to add new attributes, forms or views to an existing entity from a different solution"
+				}
+			],
+			"isRequired": true
+		},
+		"BehaviorType": {
+			"type": "generated",
+			"generator": "switch",
+			"datatype": "int",
+			"replaces": "behaviorType",
+			"parameters": {
+				"cases": [
+					{
+						"condition": "(Behavior == 'New' && !IsSystemEntity)",
+						"value": 0
+					},
+					{
+						"condition": "(Behavior == 'Existing')",
+						"value": 2
+					},
+					{
+						"value": 2 // default
+					}
+				]
+			}
+		},
+		"SystemPublisherPrefix": {
+			"type": "generated",
+			"isEnabled": "(IsSystemEntity)",
+			"generator": "constant",
+			"parameters": {
+			  "value":""
+			},
+			"replaces":"examplepublisherprefix_",
+			"fileRename": "examplepublisherprefix_"
+		  },
+		"PublisherPrefix": {
+			"type": "parameter",
+			"datatype": "text",
+			"replaces": "examplepublisherprefix",
+			"fileRename": "examplepublisherprefix",
+			"isRequired": "(!IsSystemEntity)",
+			"isEnabled": "(!IsSystemEntity)"
+		},
+		"LogicalName": {
+			"displayName": "Logical name (without publisher prefix)",
+			"type": "parameter",
+			"datatype": "text",
+			"replaces": "examplecustomentity",
+			"fileRename": "examplecustomentity",
+			"isRequired": true
+		},
+		"LogicalNamePlural": {
+			"displayName": "Logical name in the plural form (entity set name)",
+			"type": "parameter",
+			"datatype": "text",
+			"replaces": "examplecustomentities",
+			"isRequired": "Behavior == \"New\""
+		},
+		"DisplayName": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": "ExampleEntityDisplayName",
+			"replaces": "ExampleEntityDisplayName",
+			"isRequired": true
+		},
+		"DisplayNamePlural": {
+			"type": "parameter",
+			"datatype": "text",
+			"replaces": "ExampleEntityPluralDisplayName",
+			"isRequired": "(Behavior == \"New\")"
+		},
+		"IsOrganizationTypeEntity": {
+			"type": "parameter",
+			"displayName": "Is Organization Value Entity?",
+			"datatype": "bool",
+			"description": "Enter true if records are owned by organisation. (False = Owned by User/Team/User(Default) & True = Owned by Organisation)",
+			"defaultValue": "false"
+		},
+		"AddMainForm": {
+			"type": "computed",
+			"value": "(Behavior == \"New\")",
+			"displayName": "Add Main Form",
+			"datatype": "bool",
+		},
+		"AddQuickCreateForm": {
+			"type": "parameter",
+			"displayName": "Add Quick Create Form",
+			"datatype": "bool",
+			"description": "Do you want to generate a quick create form?",
+			"defaultValue": "false"
+		},
+		"AddQuickForm": {
+			"type": "computed",
+			"value": "(Behavior == \"New\")",
+			"displayName": "Add Quick View Form",
+			"datatype": "bool"
+		},
+		"AddCardForm": {
+			"type": "computed",
+			"value": "(Behavior == \"New\")",
+			"displayName": "Add Card Form",
+			"datatype": "bool"
+		},
+		"AddCustomView": {
+			"type": "computed",
+			"value": "(Behavior == \"New\")",
+			"displayName": "Add Custom View",
+			"datatype": "bool"
+		},
+		//forms
+		"cardFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "cardFormId",
+			"fileRename": "cardFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "mainFormId",
+			"fileRename": "mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"quickFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "quickFormId",
+			"fileRename": "quickFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "quickCreateFormId",
+			"fileRename": "quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		//views
+		"customViewId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "customViewId",
+			"fileRename": "customViewId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"defaultViewId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "defaultViewId",
+			"fileRename": "defaultViewId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"quickFindViewId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "quickFindViewId",
+			"fileRename": "quickFindViewId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"myRecordsViewId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "myRecordsViewId",
+			"fileRename": "myRecordsViewId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"lookupViewId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "lookupViewId",
+			"fileRename": "lookupViewId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"advancedFindViewId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "advancedFindViewId",
+			"fileRename": "advancedFindViewId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"associatedViewId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "associatedViewId",
+			"fileRename": "associatedViewId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		//Card Form IDs
+		"1cardFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "1cardFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"2cardFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "2cardFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"3cardFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "3cardFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"4cardFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "4cardFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"5cardFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "5cardFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"6cardFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "6cardFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"7cardFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "7cardFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"8cardFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "8cardFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"9cardFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "9cardFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"10cardFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "10cardFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"11cardFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "11cardFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"12cardFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "12cardFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"13cardFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "13cardFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		//Main Form IDs
+		"1mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "1mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"2mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "2mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"3mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "3mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"4mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "4mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"5mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "5mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"6mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "6mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"7mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "7mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"8mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "8mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"9mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "9mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"10mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "10mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"11mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "11mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"12mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "12mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"13mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "13mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"14mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "14mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"15mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "15mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"16mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "16mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"17mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "17mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"18mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "18mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"19mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "19mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"20mainFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "20mainFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		//Quick Form IDs
+		"1quickFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "1quickFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"2quickFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "2quickFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"3quickFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "3quickFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"4quickFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "4quickFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		//Quick Create Form IDs
+		"1quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "1quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"2quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "2quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"3quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "3quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"4quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "4quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"5quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "5quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"6quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "6quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"7quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "7quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"8quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "8quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"9quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "9quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"10quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "10quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"11quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "11quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"12quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "12quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"13quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "13quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
+		"14quickCreateFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "14quickCreateFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		}
+	},
+	"postActions": [
+		{
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddEntityToSolutionXml.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [
+				{
+					"text": "Adding entity to solution.xml"
+				}
+			],
+			"continueOnError": false,
+			"description": "Adding entity to solution.xml"
+		},
+		{
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"condition": "(AddQuickCreateForm)",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddQCFormToSolutionXml.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [
+				{
+					"text": "Adding form to solution.xml"
+				}
+			],
+			"continueOnError": false,
+			"description": "Adding form to solution.xml"
+		},
+		{
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"condition": "(AddMainForm)",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddFormToSolutionXml.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [
+				{
+					"text": "Adding form to solution.xml"
+				}
+			],
+			"continueOnError": false,
+			"description": "Adding form to solution.xml"
+		},
+		{
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"condition": "(AddCardForm)",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddCardFormToSolutionXml.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [
+				{ "text": "Adding the card form to solution.xml" }
+			],
+			"continueOnError": false,
+			"description": "Adding the card form to solution.xml"
+		},
+		{
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"condition": "(AddQuickForm)",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddQuickFormToSolutionXml.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Adding a quick form to solution.xml" }],
+			"continueOnError": false,
+			"description": "Adding form to solution.xml"
+		},
+		{
 			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
 			"args": {
 				"executable": "pwsh",
@@ -441,5 +791,5 @@
 			"continueOnError": false,
 			"description": "Removing Scripts"
 		}
-  ]
+	]
 }

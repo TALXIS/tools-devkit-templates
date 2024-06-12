@@ -38,11 +38,11 @@
       "defaultValue": "0"
     },
     //views
-    "1viewId": {
+    "customViewId": {
       "type": "generated",
       "generator": "guid",
-      "replaces": "1viewId",
-      "fileRename": "1viewId",
+      "replaces": "customViewId",
+      "fileRename": "customViewId",
       "parameters": {
         "defaultFormat": "d"
       }

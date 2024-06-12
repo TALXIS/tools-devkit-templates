@@ -83,10 +83,18 @@
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
     <LocalizedNames>
-      <LocalizedName description="ExampleEntityDisplayName Form" languagecode="1033" />
+      <!--#if (Behavior == "New") -->
+      <LocalizedName description="Default ExampleEntityDisplayName Form" languagecode="1033" />
+      <!--#else -->
+      <LocalizedName description="Custom ExampleEntityDisplayName Form" languagecode="1033" />
+      <!--#endif -->
     </LocalizedNames>
     <Descriptions>
-      <Description description="Main form" languagecode="1033" />
+      <!--#if (Behavior == "New") -->
+      <Description description="Default main form" languagecode="1033" />
+      <!--#else -->
+      <Description description="Custom main form" languagecode="1033" />
+      <!--#endif -->
     </Descriptions>
   </systemform>
 </forms>

@@ -25,5 +25,33 @@ dotnet new pp-solution --SolutionDisplayName "Solutions.Presentation" --Publishe
 
 Create a new table:
 ```console
-dotnet new pp-entity --PublisherPrefix "tom" --LogicalName "shiftevent" --DisplayName "Shift Event" --allow-scripts yes
+dotnet new pp-entity --Behavior New --PublisherPrefix "tom" --LogicalName "shiftevent" --LogicalNamePlural "shiftevents" --DisplayName "Shift Event" --DisplayNamePlural "Shift Events" --allow-scripts yes
 ```
+
+Add an existing *custom table* to a solution:
+```console
+dotnet new pp-entity --Behavior Existing --PublisherPrefix "tom" --LogicalName "shiftevent" --DisplayName "Shift Event" --allow-scripts yes
+```
+
+Add an existing *system table* to a solution:
+```console
+dotnet new pp-entity --Behavior Existing --IsSystemEntity true  --LogicalName "account" --DisplayName "Account" --allow-scripts yes
+```
+
+## Collaboration
+
+We are happy to collaborate with developers and contributors interested in enhancing Power Platform development processes. If you have feedback, suggestions, or would like to contribute, please feel free to submit issues or pull requests.
+
+### Local building and debugging
+
+#### Using your local version of templates
+
+Run the following terminal command in the folder `src/Dataverse/templates`:
+
+```
+dotnet new install "." --force
+```
+
+## Contact us
+
+For further information or to discuss potential use cases for your team, please reach out to us at hello@networg.com.
