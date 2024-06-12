@@ -421,6 +421,14 @@
 				"defaultFormat": "d"
 			}
 		},
+		"14cardFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "14cardFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
 		//Main Form IDs
 		"1mainFormId": {
 			"type": "generated",

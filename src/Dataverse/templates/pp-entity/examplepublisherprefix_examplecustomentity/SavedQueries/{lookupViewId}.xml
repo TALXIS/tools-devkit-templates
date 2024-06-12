@@ -8,12 +8,21 @@
     <isdefault>1</isdefault>
     <savedqueryid>{lookupViewId}</savedqueryid>
     <layoutxml>
-      <grid name="examplepublisherprefix_examplecustomentitys" jump="examplepublisherprefix_name" select="1" icon="1" preview="0">
+      <!--#if (EntityType == "Activity") -->
+      <grid name="examplepublisherprefix_examplecustomentities" jump="subject" select="1" icon="1" preview="0">
+        <row name="examplepublisherprefix_examplecustomentity" id="activityid">
+          <cell name="subject" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+      <!--#else -->
+      <grid name="examplepublisherprefix_examplecustomentities" jump="examplepublisherprefix_name" select="1" icon="1" preview="0">
         <row name="examplepublisherprefix_examplecustomentity" id="examplepublisherprefix_examplecustomentityid">
           <cell name="examplepublisherprefix_name" width="300" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
+      <!--#endif -->
     </layoutxml>
     <querytype>64</querytype>
     <fetchxml>

@@ -19,6 +19,16 @@
                     <label description="GENERAL" languagecode="1033" />
                   </labels>
                   <rows>
+                    <!--#if (EntityType == "Activity") -->
+                    <row>
+                      <cell id="{3quickFormId}">
+                        <labels>
+                          <label description="Subject" languagecode="1033" />
+                        </labels>
+                        <control id="subject" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="subject" />
+                      </cell>
+                    </row>
+                    <!--#else -->
                     <row>
                       <cell id="{3quickFormId}">
                         <labels>
@@ -27,7 +37,8 @@
                         <control id="examplepublisherprefix_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="examplepublisherprefix_name" />
                       </cell>
                     </row>
-                    <!--#if (IsOrganizationTypeEntity) -->
+                    <!--#endif -->
+                    <!--#if (!IsOrganizationTypeEntity) -->
                     <row>
                       <cell id="{4quickFormId}">
                         <labels>
@@ -45,13 +56,24 @@
         </tab>
       </tabs>
     </form>
+    <!--#if (Behavior == "New") -->
     <IsCustomizable>0</IsCustomizable>
     <CanBeDeleted>0</CanBeDeleted>
     <LocalizedNames>
-      <LocalizedName description="MODEL_Information" languagecode="1033" />
+      <LocalizedName description="Default ExampleEntityDisplayName Quick View Form" languagecode="1033" />
     </LocalizedNames>
     <Descriptions>
-      <Description description="A form for this entity." languagecode="1033" />
+      <Description description="A default quick view form" languagecode="1033" />
     </Descriptions>
+    <!--#else -->
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Custom ExampleEntityDisplayName Quick View Form" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A custom quick view form" languagecode="1033" />
+    </Descriptions>
+    <!--#endif -->
   </systemform>
 </forms>

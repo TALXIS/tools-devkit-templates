@@ -66,7 +66,12 @@ dotnet new pp-entity `
 
 Add an existing *system table* to a solution:
 ```console
-dotnet new pp-entity --Behavior Existing --IsSystemEntity true  --LogicalName "account" --DisplayName "Account" --allow-scripts yes
+dotnet new pp-entity `
+--Behavior Existing `
+--IsSystemEntity true  `
+--LogicalName "account" `
+--DisplayName "Account" `
+--allow-scripts yes
 ```
 
 > [!TIP]  

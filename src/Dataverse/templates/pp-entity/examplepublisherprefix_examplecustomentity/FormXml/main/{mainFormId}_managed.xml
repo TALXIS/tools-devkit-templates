@@ -14,11 +14,21 @@
           <columns>
             <column width="100%">
               <sections>
-                <section showlabel="true" showbar="false" IsUserDefined="0" id="{3mainFormId}" labelid="{4mainFormId}" name="generalsection">
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{3mainFormId}" labelid="{4mainFormId}" name="generalsection">
                   <labels>
                     <label description="GENERAL" languagecode="1033" />
                   </labels>
                   <rows>
+                    <!--#if (EntityType == "Activity") -->
+                    <row>
+                      <cell id="{5mainFormId}" labelid="{6mainFormId}">
+                        <labels>
+                          <label description="Subject" languagecode="1033" />
+                        </labels>
+                        <control id="subject" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="subject" />
+                      </cell>
+                    </row>
+                    <!--#else -->
                     <row>
                       <cell id="{5mainFormId}" labelid="{6mainFormId}">
                         <labels>
@@ -26,6 +36,7 @@
                         </labels>
                         <control id="examplepublisherprefix_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="examplepublisherprefix_name" />
                       </cell>
+                      <!--#endif -->
                     </row>
                   </rows>
                 </section>
@@ -80,21 +91,24 @@
         <Everyone />
       </DisplayConditions>
     </form>
+    <!--#if (Behavior == "New") -->
+    <IsCustomizable>0</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Default ExampleEntityDisplayName Main Form" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A default main form" languagecode="1033" />
+    </Descriptions>
+    <!--#else -->
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
     <LocalizedNames>
-      <!--#if (Behavior == "New") -->
-      <LocalizedName description="Default ExampleEntityDisplayName Form" languagecode="1033" />
-      <!--#else -->
-      <LocalizedName description="Custom ExampleEntityDisplayName Form" languagecode="1033" />
-      <!--#endif -->
+      <LocalizedName description="Custom ExampleEntityDisplayName Main Form" languagecode="1033" />
     </LocalizedNames>
     <Descriptions>
-      <!--#if (Behavior == "New") -->
-      <Description description="Default main form" languagecode="1033" />
-      <!--#else -->
-      <Description description="Custom main form" languagecode="1033" />
-      <!--#endif -->
+      <Description description="A custom main form" languagecode="1033" />
     </Descriptions>
+    <!--#endif -->
   </systemform>
 </forms>

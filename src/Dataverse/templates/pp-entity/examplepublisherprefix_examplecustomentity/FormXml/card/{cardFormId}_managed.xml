@@ -30,15 +30,29 @@
                   <rows>
                     <row>
                       <cell id="{4cardFormId}" showlabel="true" locklevel="0">
+                        <!--#if (EntityType == "Activity") -->
+                        <labels>
+                          <label description="Priority" languagecode="1033" />
+                        </labels>
+                        <control id="prioritycode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="prioritycode" disabled="false" />
+                        <!--#else -->
                         <labels>
                           <label description="Status Reason" languagecode="1033" />
                         </labels>
                         <control id="statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="false" />
+                        <!--#endif -->
                       </cell>
                       <cell id="{5cardFormId}" showlabel="true" locklevel="0">
+                        <!--#if (EntityType == "Activity") -->
+                        <labels>
+                          <label description="Due Date" languagecode="1033" />
+                        </labels>
+                        <control id="scheduledend" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="scheduledend" disabled="false" />
+                        <!--#else -->
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
+                        <!--#endif -->
                       </cell>
                       <cell id="{6cardFormId}" showlabel="true" locklevel="0">
                         <labels>
@@ -53,6 +67,24 @@
                     <label description="Details" languagecode="1033" />
                   </labels>
                   <rows>
+                    <!--#if (EntityType == "Activity") -->
+                    <row>
+                      <cell id="{8cardFormId}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Subject" languagecode="1033" />
+                        </labels>
+                        <control id="subject" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="subject" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9cardFormId}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Regarding" languagecode="1033" />
+                        </labels>
+                        <control id="regardingobjectid" classid="{F3015350-44A2-4aa0-97B5-00166532B5E9}" datafieldname="regardingobjectid" disabled="false" />
+                      </cell>
+                    </row>
+                    <!--#else -->
                     <row>
                       <cell id="{8cardFormId}" showlabel="true" locklevel="0">
                         <labels>
@@ -61,34 +93,35 @@
                         <control id="examplepublisherprefix_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="examplepublisherprefix_name" disabled="false" />
                       </cell>
                     </row>
+                    <!--#endif -->
                   </rows>
                 </section>
-                <section name="CardFooter" showlabel="false" columns="1111" showbar="false" id="{9cardFormId}" IsUserDefined="0">
+                <section name="CardFooter" showlabel="false" columns="1111" showbar="false" id="{10cardFormId}" IsUserDefined="0">
                   <labels>
                     <label description="Footer" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <!--#if (IsOrganizationTypeEntity) -->
-                      <cell id="{10cardFormId}" showlabel="true" locklevel="0">
+                      <!--#if (!IsOrganizationTypeEntity) -->
+                      <cell id="{12cardFormId}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Owner" languagecode="1033" />
                         </labels>
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
                       </cell>
                       <!--#endif -->
-                      <cell id="{11cardFormId}" showlabel="true" locklevel="0">
+                      <cell id="{12cardFormId}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Created On" languagecode="1033" />
                         </labels>
                         <control id="createdon" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="createdon" disabled="false" />
                       </cell>
-                      <cell id="{12cardFormId}" showlabel="true" locklevel="0">
+                      <cell id="{13cardFormId}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
-                      <cell id="{13cardFormId}" showlabel="true" locklevel="0">
+                      <cell id="{14cardFormId}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -102,13 +135,24 @@
         </tab>
       </tabs>
     </form>
+    <!--#if (Behavior == "New") -->
     <IsCustomizable>0</IsCustomizable>
     <CanBeDeleted>0</CanBeDeleted>
     <LocalizedNames>
-      <LocalizedName description="MODEL_Information" languagecode="1033" />
+      <LocalizedName description="Default ExampleEntityDisplayName Card Form" languagecode="1033" />
     </LocalizedNames>
     <Descriptions>
-      <Description description="A form for this entity." languagecode="1033" />
+      <Description description="A default card form" languagecode="1033" />
     </Descriptions>
+    <!--#else -->
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Custom ExampleEntityDisplayName Card Form" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A custom card form" languagecode="1033" />
+    </Descriptions>
+    <!--#endif -->
   </systemform>
 </forms>

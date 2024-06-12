@@ -16,7 +16,7 @@
         </row>
       </grid>
       <!--#else -->
-      <grid name="examplepublisherprefix_examplecustomentitys" jump="examplepublisherprefix_name" select="1" icon="1" preview="1">
+      <grid name="examplepublisherprefix_examplecustomentities" jump="examplepublisherprefix_name" select="1" icon="1" preview="1">
         <row name="examplepublisherprefix_examplecustomentity" id="examplepublisherprefix_examplecustomentityid">
           <cell name="examplepublisherprefix_name" width="300" />
           <cell name="createdon" width="125" />
