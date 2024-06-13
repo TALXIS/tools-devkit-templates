@@ -17,6 +17,8 @@ If wish to use this project for your team, please contact us at hello@networg.co
 The primary objective of this NuGet package is to help Power Platform developers scaffold Power Platform components using a code-first approach.
 
 ## Guide
+You can refer to a [VS Code snippets file](https://gist.github.com/TomProkop/607a9de00d811a5ae68327e90f6a81cf) used by [@TomProkop](https://github.com/TomProkop) for conference demos.
+
 ### Dev machine setup
 ```powershell
 # If you're using .NET CLI for the first time, you might need to set up nuget.org as a package source
