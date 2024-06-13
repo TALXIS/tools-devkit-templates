@@ -17,12 +17,25 @@ If wish to use this project for your team, please contact us at hello@networg.co
 The primary objective of this NuGet package is to help Power Platform developers scaffold Power Platform components using a code-first approach.
 
 ## Guide
-Install the template package to your machine:
-```console
+### Dev machine setup
+```powershell
+# If you're using .NET CLI for the first time, you might need to set up nuget.org as a package source
+dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
+
+# Install PowerShell 7+ to have "pwsh" executable present in your terminal
+# To support running the templates cross-platform "pwsh" is used instead of "powershell.exe"
+# You can use other installation methods
+dotnet tool install --global PowerShell
+
+# Install the template package to your machine
 dotnet new install TALXIS.DevKit.Templates.Dataverse
 ```
 
 ### Solutions
+> [!NOTE]
+> Template commands are designed to be run in the folder where *.*proj is located.
+> Use --output parameter if your working directory is different.
+
 Initialize a new empty solution:
 ```console
 dotnet new pp-solution `
