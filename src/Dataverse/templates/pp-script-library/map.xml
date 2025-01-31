@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping>
+	<FileToFile map="WebResources\examplepublisherprefix_ExampleModuleName.js"
+				to="..\..\..\TS\bin\examplepublisherprefix_ExampleModuleName.js" />
+</Mapping>
