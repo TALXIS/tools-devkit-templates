@@ -1,0 +1,102 @@
+{
+	"$schema": "http://json.schemastore.org/template",
+	"author": "NETWORG",
+	"identity": "TALXIS.DevKit.Templates.Dataverse.Entity.Attribute",
+	"name": "Power Platform: Entity Attribute",
+	"shortName": "pp-entity-attribute",
+	"tags": {
+		"language": "XML",
+		"type": "item"
+	},
+	"sourceName": "examplecustomentityattribute",
+	"preferNameDirectory": false,
+	"symbols": {
+		"SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot"
+		},
+		"EntitySchemaName": {
+			"displayName": "Schema name of the entity including publisher prefix (might be different from logical name)",
+			"type": "parameter",
+			"datatype": "text",
+			"replaces": "exampleexistingentity",
+			"isRequired": true
+		},
+		"AttributeType": {
+			"type": "parameter",
+			"description": "Select attribute type",
+			"datatype": "choice",
+			"isRequired": true,
+			"choices": [
+				{
+					"choice": "Text"
+				},
+				{
+					"choice": "WholeNumber"
+				},
+				{
+					"choice": "Decimal"
+				},
+				{
+					"choice": "DateTime"
+				},
+				{
+					"choice": "Lookup"
+				},
+				{
+					"choice": "Choice"
+				},
+				{
+					"choice": "Boolean"
+				},
+			]
+		},
+		"PublisherPrefix": {
+			"type": "parameter",
+			"datatype": "text",
+			"replaces": "examplepublisherprefix",
+			"fileRename": "examplepublisherprefix",
+			"isRequired": true
+		},
+		"LogicalName": {
+			"displayName": "Logical name (without publisher prefix)",
+			"type": "parameter",
+			"datatype": "text",
+			"replaces": "examplecustomentityattribute",
+			"isRequired": true
+		},
+		"DisplayName": {
+			"type": "parameter",
+			"datatype": "text",
+			"replaces": "ExampleEntityAttributeDisplayName",
+			"isRequired": true
+		}
+	},
+	"postActions": [
+		{
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddAttributeToEntityXml.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Adding attribute to entity.xml" }],
+			"continueOnError": false,
+			"description": "Adding attribute to entity.xml"
+		},
+		{
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Removing Scripts" }],
+			"continueOnError": false,
+			"description": "Removing Scripts"
+		}
+	]
+}

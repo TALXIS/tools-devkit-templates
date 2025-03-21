@@ -41,7 +41,7 @@ dotnet new install TALXIS.DevKit.Templates.Dataverse
 Initialize a new empty solution:
 ```console
 dotnet new pp-solution `
---output "src/Solutions.Model" `
+--output "src/Solutions.DataModel" `
 --PublisherName "tomas" `
 --PublisherPrefix "tom" `
 --allow-scripts yes
@@ -51,7 +51,7 @@ dotnet new pp-solution `
 Create a new *standard* table:
 ```console
 dotnet new pp-entity `
---output "src/Solutions.Model" `
+--output "src/Solutions.DataModel" `
 --Behavior New `
 --PublisherPrefix "tom" `
 --LogicalName "location" `
@@ -65,7 +65,7 @@ dotnet new pp-entity `
 Create a new *activity* table:
 ```console
 dotnet new pp-entity `
---output "src/Solutions.Model" `
+--output "src/Solutions.DataModel" `
 --EntityType "Activity" `
 --Behavior "New" `
 --PublisherPrefix "tom" `
@@ -80,7 +80,7 @@ dotnet new pp-entity `
 Add an existing *custom table* to a solution:
 ```console
 dotnet new pp-entity `
---output "src/Solutions.Presentation" `
+--output "src/Solutions.UI" `
 --Behavior "Existing" `
 --PublisherPrefix "tom" `
 --LogicalName "shiftevent" `
@@ -92,11 +92,25 @@ dotnet new pp-entity `
 Add an existing *system table* to a solution:
 ```console
 dotnet new pp-entity `
---output "src/Solutions.Presentation" `
+--output "src/Solutions.UI" `
 --Behavior "Existing" `
 --IsSystemEntity "true"  `
 --LogicalName "account" `
 --DisplayName "Account" `
+--SolutionRootPath "Declarations" `
+--allow-scripts yes
+```
+
+### Columns
+Add a column to table:
+```console
+dotnet new pp-entity-attribute `
+--output "src/Solutions.DataModel" `
+--EntitySchemaName "tom_warehouseitem" `
+--AttributeType "WholeNumber" `
+--PublisherPrefix "tom" `
+--LogicalName "quantity" `
+--DisplayName "Quantity" `
 --SolutionRootPath "Declarations" `
 --allow-scripts yes
 ```
