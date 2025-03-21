@@ -1,1 +1,0 @@
-dotnet user-secrets init --project .\pp-ui-testing\

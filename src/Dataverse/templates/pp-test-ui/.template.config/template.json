@@ -17,6 +17,18 @@
         "exclude": [
           "pp-test-ui/appsettings.json"
         ]
+      },
+      {
+        "condition": "(!enableCucumberSupport)",
+        "exclude": [
+          ".vscode/settings.json"
+        ]
+      },
+      {
+        "condition": "(!enableCucumberSupport)",
+        "exclude": [
+          "pp-test-ui/scripts/generate-mock-bindings.csx"
+        ]
       }
     ],
       "exclude": [
@@ -48,6 +60,12 @@
         "datatype": "bool",
         "defaultValue": "false",
         "description": "Enable User Secrets"
+    },
+    "enableCucumberSupport": {
+        "type": "parameter",
+        "datatype": "bool",
+        "defaultValue": "false",
+        "description": "Enable Cucumber Support"
     },
       "testExecutionFramework": {
           "type": "parameter",
@@ -171,6 +189,19 @@
       "manualInstructions": [
         {
           "text": "If the script does not start automatically, run the command: dotnet user-secrets init"
+        }
+      ]
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "condition": "enableCucumberSupport == true",
+      "args": {
+        "executable": "powershell",
+        "args": "-NoProfile -ExecutionPolicy Bypass -File \".template.scripts\\EnableCucumberSupport.ps1\""
+    },
+      "manualInstructions": [
+        {
+          "text": "Generating mock step bindings"
         }
       ]
     },
