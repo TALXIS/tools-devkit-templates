@@ -1,1 +1,1 @@
-dotnet user-secrets init --project .\pp-ui-testing\
+dotnet user-secrets init --project .\
