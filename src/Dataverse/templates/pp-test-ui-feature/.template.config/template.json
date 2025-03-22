@@ -1,13 +1,12 @@
 {
   "$schema": "http://json.schemastore.org/template",
-  "author": "NETWORG",
-  "identity": "NETWORG.Template.pp-test-ui-feature",
-  "name": "TALXIS TestKit Template",
+	"author": "NETWORG",
+	"identity": "TALXIS.DevKit.Templates.Dataverse.Test.UI.Feature",
+	"name": "Power Platform: UI Test Feature",
   "shortName": "pp-test-ui-feature",
   "tags": {
     "language": "C#",
     "type": "item"
   },
-  "sourceName": "TALXISTestingFeature"
-  
+  "sourceName": "ui-test-feature"
 }
