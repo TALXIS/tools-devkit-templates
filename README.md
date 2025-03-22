@@ -102,15 +102,31 @@ dotnet new pp-entity `
 ```
 
 ### Columns
-Add a column to table:
+Add a whole number column to table:
 ```console
 dotnet new pp-entity-attribute `
 --output "src/Solutions.DataModel" `
 --EntitySchemaName "tom_warehouseitem" `
 --AttributeType "WholeNumber" `
+--RequiredLevel "required" `
 --PublisherPrefix "tom" `
---LogicalName "quantity" `
---DisplayName "Quantity" `
+--LogicalName "availablequantity" `
+--DisplayName "Available Quantity" `
+--SolutionRootPath "Declarations" `
+--allow-scripts yes
+```
+
+Add a lookup column to table:
+```console
+dotnet new pp-entity-attribute `
+--output "src/Solutions.DataModel" `
+--EntitySchemaName "tom_warehousetransaction" `
+--AttributeType "Lookup" `
+--RequiredLevel "required" `
+--PublisherPrefix "tom" `
+--LogicalName "itemid" `
+--DisplayName "Item" `
+--ReferencedEntityName "tom_warehouseitem" `
 --SolutionRootPath "Declarations" `
 --allow-scripts yes
 ```

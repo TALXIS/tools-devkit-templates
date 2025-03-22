@@ -1,8 +1,12 @@
 <attribute PhysicalName="examplepublisherprefix_examplecustomentityattribute">
+    <!--#if (AttributeType == "WholeNumber") -->
     <Type>int</Type>
+    <!--#elseif (AttributeType == "Lookup") -->
+    <Type>lookup</Type>
+    <!--#endif -->
     <Name>examplepublisherprefix_examplecustomentityattribute</Name>
     <LogicalName>examplepublisherprefix_examplecustomentityattribute</LogicalName>
-    <RequiredLevel>none</RequiredLevel>
+    <RequiredLevel>attributerequiredlevel</RequiredLevel>
     <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
     <ImeMode>disabled</ImeMode>
     <ValidForUpdateApi>1</ValidForUpdateApi>
@@ -23,14 +27,23 @@
     <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
     <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
     <IsDataSourceSecret>0</IsDataSourceSecret>
-    <AutoNumberFormat />
+    <AutoNumberFormat></AutoNumberFormat>
+    <!--#if (AttributeType == "Lookup") -->
+    <IsSearchable>0</IsSearchable>
+    <!--#else -->
     <IsSearchable>1</IsSearchable>
+    <!--#endif -->
     <IsFilterable>0</IsFilterable>
     <IsRetrievable>0</IsRetrievable>
     <IsLocalizable>0</IsLocalizable>
+    <!--#if (AttributeType == "WholeNumber") -->
     <Format>none</Format>
     <MinValue>0</MinValue>
     <MaxValue>1000000000</MaxValue>
+    <!--#elseif (AttributeType == "Lookup") -->
+    <LookupStyle>single</LookupStyle>
+    <LookupTypes />
+    <!--#endif -->
     <displaynames>
         <displayname description="ExampleEntityAttributeDisplayName" languagecode="1033" />
     </displaynames>

@@ -51,8 +51,23 @@
 				},
 				{
 					"choice": "Boolean"
-				},
+				}
 			]
+		},
+		"RequiredLevel": {
+			"type": "parameter",
+			"description": "Select required level",
+			"datatype": "choice",
+			"replaces": "attributerequiredlevel",
+			"choices": [
+				{
+					"choice": "none"
+				},
+				{
+					"choice": "required"
+				}
+			],
+			"defaultValue": "required"
 		},
 		"PublisherPrefix": {
 			"type": "parameter",
@@ -73,6 +88,52 @@
 			"datatype": "text",
 			"replaces": "ExampleEntityAttributeDisplayName",
 			"isRequired": true
+		},
+		"ReferencedEntityName": {
+			"type": "parameter",
+			"datatype": "text",
+			"replaces": "examplereferencedentityname",
+			"isRequired": "AttributeType == \"Lookup\""
+		},
+		"AddLookupRelationship": {
+			"type": "computed",
+			"value": "(AttributeType == \"Lookup\")",
+			"datatype": "bool"
+		},
+		"LookupRelationshipNameUnsanitized": {
+			"type": "generated",
+			"generator": "join",
+			"parameters": {
+				"symbols": [
+					{
+						"type": "ref",
+						"value": "PublisherPrefix"
+					},
+					{
+						"type": "ref",
+						"value": "ReferencedEntityName"
+					},
+					{
+						"type": "ref",
+						"value": "EntitySchemaName"
+					},
+					{
+						"type": "ref",
+						"value": "LogicalName"
+					}
+				],
+				"separator": "_",
+				"removeEmptyValues": true
+			}
+		},
+		"LookupRelationshipName": {
+			"type": "generated",
+			"generator": "casing",
+			"parameters": {
+				"source": "LookupRelationshipNameUnsanitized",
+				"toLower": true
+			},
+			"replaces": "examplelookuprelationshipname"
 		}
 	},
 	"postActions": [
@@ -86,6 +147,18 @@
 			"manualInstructions": [{ "text": "Adding attribute to entity.xml" }],
 			"continueOnError": false,
 			"description": "Adding attribute to entity.xml"
+		},
+		{
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"condition": "(AddLookupRelationship)",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddLookupRelationship.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Adding lookup relationship xml" }],
+			"continueOnError": false,
+			"description": "Adding lookup relationship xml"
 		},
 		{
 			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
