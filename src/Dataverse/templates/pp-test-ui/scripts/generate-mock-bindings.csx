@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text.Json;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 //  CONFIG 
 var dllPath = Args.Count > 0 ? Args[0] : throw new Exception(" DLL path not provided");
@@ -51,7 +52,13 @@ foreach (var type in assembly.GetTypes())
     }
 }
 
-// GENERATE FAKE .cs FILE 
+// GENERATE FAKE .cs FILE
+
+public string ReplaceRegexGroups(string input)
+{
+    return Regex.Replace(input, @"\(\.\*\)", "{string}");
+
+}
 var sb = new StringBuilder();
 sb.AppendLine("using Reqnroll;");
 sb.AppendLine("namespace FakeBindingsForEditor");
@@ -61,7 +68,8 @@ sb.AppendLine("    {");
 
 foreach (var step in steps)
 {
-    sb.AppendLine($"        [{step.StepType}(\"{step.Text.Replace("\"", "\\\"")}\")]");
+    var simplifiedText = ReplaceRegexGroups(step.Text).Replace("\"", "\\\"");
+    sb.AppendLine($"        [{step.StepType}(\"{simplifiedText}\")] ");
     sb.AppendLine($"        public void {step.Method}() {{ }}");
     sb.AppendLine();
 }
