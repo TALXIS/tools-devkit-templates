@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+	"author": "NETWORG",
+	"identity": "TALXIS.DevKit.Templates.Dataverse.Test.UI.Feature",
+	"name": "Power Platform: UI Test Feature",
+  "shortName": "pp-test-ui-feature",
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  },
+  "sourceName": "ui-test-feature"
+}

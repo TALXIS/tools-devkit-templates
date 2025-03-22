@@ -1,0 +1,12 @@
+{
+	"$schema": "http://json.schemastore.org/template",
+	"author": "NETWORG",
+	"identity": "TALXIS.DevKit.Templates.Dataverse.Test.UI.Step",
+	"name": "Power Platform: UI Test Step",
+  "shortName": "pp-test-ui-step",
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  },
+  "sourceName": "ui-test-step" 
+}
