@@ -41,7 +41,7 @@ dotnet new install TALXIS.DevKit.Templates.Dataverse
 Initialize a new empty solution:
 ```console
 dotnet new pp-solution `
---output "src/Solutions.DataModel" `
+--output "src\Solutions.DataModel" `
 --PublisherName "tomas" `
 --PublisherPrefix "tom" `
 --allow-scripts yes
@@ -51,7 +51,7 @@ dotnet new pp-solution `
 Create a new *standard* table:
 ```console
 dotnet new pp-entity `
---output "src/Solutions.DataModel" `
+--output "src\Solutions.DataModel" `
 --Behavior New `
 --PublisherPrefix "tom" `
 --LogicalName "location" `
@@ -65,7 +65,7 @@ dotnet new pp-entity `
 Create a new *activity* table:
 ```console
 dotnet new pp-entity `
---output "src/Solutions.DataModel" `
+--output "src\Solutions.DataModel" `
 --EntityType "Activity" `
 --Behavior "New" `
 --PublisherPrefix "tom" `
@@ -80,7 +80,7 @@ dotnet new pp-entity `
 Add an existing *custom table* to a solution:
 ```console
 dotnet new pp-entity `
---output "src/Solutions.UI" `
+--output "src\Solutions.UI" `
 --Behavior "Existing" `
 --PublisherPrefix "tom" `
 --LogicalName "shiftevent" `
@@ -92,7 +92,7 @@ dotnet new pp-entity `
 Add an existing *system table* to a solution:
 ```console
 dotnet new pp-entity `
---output "src/Solutions.UI" `
+--output "src\Solutions.UI" `
 --Behavior "Existing" `
 --IsSystemEntity "true"  `
 --LogicalName "account" `
@@ -105,7 +105,7 @@ dotnet new pp-entity `
 Add a whole number column to table:
 ```console
 dotnet new pp-entity-attribute `
---output "src/Solutions.DataModel" `
+--output "src\Solutions.DataModel" `
 --EntitySchemaName "tom_warehouseitem" `
 --AttributeType "WholeNumber" `
 --RequiredLevel "required" `
@@ -119,7 +119,7 @@ dotnet new pp-entity-attribute `
 Add a lookup column to table:
 ```console
 dotnet new pp-entity-attribute `
---output "src/Solutions.DataModel" `
+--output "src\Solutions.DataModel" `
 --EntitySchemaName "tom_warehousetransaction" `
 --AttributeType "Lookup" `
 --RequiredLevel "required" `
@@ -142,7 +142,7 @@ We are happy to collaborate with developers and contributors interested in enhan
 
 #### Using your local version of templates
 
-Run the following terminal command in the folder `src/Dataverse/templates`:
+Run the following terminal command in the folder `src\Dataverse/templates`:
 
 ```
 dotnet new install "." --force
