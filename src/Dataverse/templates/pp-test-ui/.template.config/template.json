@@ -47,6 +47,11 @@
       ]
     }
   ],
+  "primaryOutputs": [
+    {
+      "path": "TestProjectName.csproj"
+    }
+  ],
   "preferNameDirectory": true,
   "symbols": {
     "createAppsetingsFile": {
@@ -197,7 +202,7 @@
       "condition": "enableCucumberSupport == true",
       "args": {
         "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/EnableCucumberSupport.ps1\""
+        "args": "-noprofile -nologo -executionpolicy bypass -File \"./.template.scripts/EnableCucumberSupport.ps1\""
       },
       "manualInstructions": [
         {
@@ -209,14 +214,14 @@
       "description": "Add generated project to .sln file",
       "manualInstructions": [
         {
-          "text": "Add generated project to .sln file"
+          "text": "Add generated project to .sln file manually if necessary."
         }
       ],
       "args": {
         "inRoot": true
       },
       "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
-      "continueOnError": false
+      "continueOnError": true
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
