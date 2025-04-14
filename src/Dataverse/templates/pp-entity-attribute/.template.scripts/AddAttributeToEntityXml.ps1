@@ -1,6 +1,6 @@
-﻿# Resolve the relative path to an absolute path (to support other OSes)
-$entityXmlPath = Resolve-Path -Path 'SolutionDeclarationsRoot/Entities/exampleexistingentity/Entity.xml'
-$attributeXmlPath = Resolve-Path -Path '.template.temp/Attribute.xml'
+﻿﻿# Resolve the relative path to an absolute path (to support other OSes)
+$entityXmlPath = (Resolve-Path 'SolutionDeclarationsRoot/Entities/exampleexistingentity/Entity.xml').Path
+$attributeXmlPath = (Resolve-Path '.template.temp/attribute.xml').Path
 
 [XML]$entityXmlFile = Get-Content -Path $entityXmlPath -Raw
 [XML]$attributeXmlFile = Get-Content -Path $attributeXmlPath -Raw
@@ -18,4 +18,5 @@ $settings.OmitXmlDeclaration = $false
 # Save
 $writer = [System.Xml.XmlWriter]::Create($entityXmlPath, $settings)
 $entityXmlFile.Save($writer)
+
 $writer.Close()
