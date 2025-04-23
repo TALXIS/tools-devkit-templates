@@ -1,0 +1,8 @@
+<row>
+  <cell id="{IDEXEMPLE}" labelid="{LABLEIDEXEMPLE}">
+    <labels>
+      <label description="ExampleRowDisplayName" languagecode="1033" />
+    </labels>
+    <control id="examplepublisherprefix_examplecustomerow" classid="{EXAMPLECLASSID}" datafieldname="examplepublisherprefix_examplecustomerow" />
+  </cell>
+</row>
