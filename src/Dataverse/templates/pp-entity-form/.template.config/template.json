@@ -14,11 +14,11 @@
 			"modifiers": [
 				{
 					"condition": "(!AddMainForm)",
-					"exclude": ["main/*"]
+					"exclude": ["SolutionDeclarationsRoot/Entities/ItemFolderName/FormXml/main/*"]
 				},
 				{
 					"condition": "(!AddQuickCreateForm)",
-					"exclude": ["quickCreate/*"]
+					"exclude": ["SolutionDeclarationsRoot/Entities/ItemFolderName/FormXml/quick/*"]
 				}
 			]
 		}
@@ -39,6 +39,20 @@
 					"description": "Quick Create Form"
 				}
 			]
+		},
+		"SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot"
+		},
+		"ItemFolderName": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "ItemFolderName",
+			"fileRename": "ItemFolderName"
 		},
 		"AddMainForm": {
 			"type": "computed",

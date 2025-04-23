@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModule>
+<UniqueName>$USERPREFIXEXAMPLE$_$APPNAMEEXAMPLE$</UniqueName>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <WebResourceId>953b9fac-1e5e-e611-80d6-00155ded156f</WebResourceId>
+  <OptimizedFor></OptimizedFor>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <FormFactor>1</FormFactor>
+  <ClientType>4</ClientType>
+  <NavigationType>0</NavigationType>
+  <AppModuleComponents>
+    <AppModuleComponent type="1" schemaName="$USERPREFIXEXAMPLE$_$ENTITYEXAMALENAME$" />
+    <AppModuleComponent type="62" schemaName="$USERPREFIXEXAMPLE$_$APPNAMEEXAMPLE$" />
+  </AppModuleComponents>
+  <AppModuleRoleMaps>
+    <Everyone/>
+  </AppModuleRoleMaps>
+  <LocalizedNames>
+    <LocalizedName description="$APPNAMEEXAMPLE$" languagecode="1033" />
+  </LocalizedNames>
+  <appsettings>
+    <appsetting settingdefinitionid.uniquename="AppChannel">
+      <iscustomizable>1</iscustomizable>
+      <value>1</value>
+    </appsetting>
+  </appsettings>
+</AppModule>

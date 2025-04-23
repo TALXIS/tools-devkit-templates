@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.ModelDrivenApp",
+  "name": "Power Platform: ModelDriven App",
+  "shortName": "pp-app-model",
+  "classifications": ["Dataverse", "Power Platform"],
+  "sourceName": "App-ModelDriven",
+  "tags": {
+		"language": "XML"
+	},
+  "preferNameDirectory": true,
+  "symbols": {
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Prefix for the user",
+      "replaces": "$USERPREFIXEXAMPLE$",
+      "fileRename": "USERPREFIXEXAMPLE"
+    },
+    "LogicalName": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Name of the app",
+      "replaces": "$APPNAMEEXAMPLE$",
+      "fileRename": "APPNAMEEXAMPLE"
+    },
+    "EntityLogicalName": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Name of the entity",
+      "replaces": "$ENTITYEXAMALENAME$"
+    },
+    "SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot"
+		}
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "include": ["**/*.xml"]
+        }
+      ]
+    }
+  ],
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddModelDrivenAppToSolutionXml.ps1\""
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding Model Driven App to solution xml"
+        }
+      ]
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/GenerateIdForAppModuleSiteMap.ps1\" "
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding Model Driven App to solution xml"
+        }
+      ]
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddSiteMapToSolutionXml.ps1\""
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding sitemapp  to solution xml"
+        }
+      ]
+    },{
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddSiteMapToCustomizationsXml.ps1\""
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding SiteMap to Customizations xml"
+        }
+      ]
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddModelDrivenAppToCustomizationsXml.ps1\""
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding Model Driven App to Customizations xml"
+        }
+      ]
+    },
+    {
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Removing Scripts" }],
+			"continueOnError": false,
+			"description": "Removing Scripts"
+		}
+  ]
+}

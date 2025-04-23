@@ -1,175 +1,179 @@
 {
-	"$schema": "http://json.schemastore.org/template",
-	"author": "NETWORG",
-	"identity": "TALXIS.DevKit.Templates.Dataverse.Entity.Attribute",
-	"name": "Power Platform: Entity Attribute",
-	"shortName": "pp-entity-attribute",
-	"tags": {
-		"language": "XML",
-		"type": "item"
-	},
-	"sourceName": "examplecustomentityattribute",
-	"preferNameDirectory": false,
-	"symbols": {
-		"SolutionRootPath": {
-			"type": "parameter",
-			"datatype": "text",
-			"defaultValue": ".",
-			"replaces": "SolutionDeclarationsRoot",
-			"fileRename": "SolutionDeclarationsRoot"
-		},
-		"EntitySchemaName": {
-			"displayName": "Schema name of the entity including publisher prefix (might be different from logical name)",
-			"type": "parameter",
-			"datatype": "text",
-			"replaces": "exampleexistingentity",
-			"isRequired": true
-		},
-		"AttributeType": {
-			"type": "parameter",
-			"description": "Select attribute type",
-			"datatype": "choice",
-			"isRequired": true,
-			"choices": [
-				{
-					"choice": "Text"
-				},
-				{
-					"choice": "WholeNumber"
-				},
-				{
-					"choice": "Decimal"
-				},
-				{
-					"choice": "DateTime"
-				},
-				{
-					"choice": "Lookup"
-				},
-				{
-					"choice": "Choice"
-				},
-				{
-					"choice": "Boolean"
-				}
-			]
-		},
-		"RequiredLevel": {
-			"type": "parameter",
-			"description": "Select required level",
-			"datatype": "choice",
-			"replaces": "attributerequiredlevel",
-			"choices": [
-				{
-					"choice": "none"
-				},
-				{
-					"choice": "required"
-				}
-			],
-			"defaultValue": "required"
-		},
-		"PublisherPrefix": {
-			"type": "parameter",
-			"datatype": "text",
-			"replaces": "examplepublisherprefix",
-			"fileRename": "examplepublisherprefix",
-			"isRequired": true
-		},
-		"LogicalName": {
-			"displayName": "Logical name (without publisher prefix)",
-			"type": "parameter",
-			"datatype": "text",
-			"replaces": "examplecustomentityattribute",
-			"isRequired": true
-		},
-		"DisplayName": {
-			"type": "parameter",
-			"datatype": "text",
-			"replaces": "ExampleEntityAttributeDisplayName",
-			"isRequired": true
-		},
-		"ReferencedEntityName": {
-			"type": "parameter",
-			"datatype": "text",
-			"replaces": "examplereferencedentityname",
-			"isRequired": "AttributeType == \"Lookup\""
-		},
-		"AddLookupRelationship": {
-			"type": "computed",
-			"value": "(AttributeType == \"Lookup\")",
-			"datatype": "bool"
-		},
-		"LookupRelationshipNameUnsanitized": {
-			"type": "generated",
-			"generator": "join",
-			"parameters": {
-				"symbols": [
-					{
-						"type": "ref",
-						"value": "PublisherPrefix"
-					},
-					{
-						"type": "ref",
-						"value": "ReferencedEntityName"
-					},
-					{
-						"type": "ref",
-						"value": "EntitySchemaName"
-					},
-					{
-						"type": "ref",
-						"value": "LogicalName"
-					}
-				],
-				"separator": "_",
-				"removeEmptyValues": true
-			}
-		},
-		"LookupRelationshipName": {
-			"type": "generated",
-			"generator": "casing",
-			"parameters": {
-				"source": "LookupRelationshipNameUnsanitized",
-				"toLower": true
-			},
-			"replaces": "examplelookuprelationshipname"
-		}
-	},
-	"postActions": [
-		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddAttributeToEntityXml.ps1\"",
-				"redirectStandardOutput": "false"
-			},
-			"manualInstructions": [{ "text": "Adding attribute to entity.xml" }],
-			"continueOnError": false,
-			"description": "Adding attribute to entity.xml"
-		},
-		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-			"condition": "(AddLookupRelationship)",
-			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddLookupRelationship.ps1\"",
-				"redirectStandardOutput": "false"
-			},
-			"manualInstructions": [{ "text": "Adding lookup relationship xml" }],
-			"continueOnError": false,
-			"description": "Adding lookup relationship xml"
-		},
-		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
-				"redirectStandardOutput": "false"
-			},
-			"manualInstructions": [{ "text": "Removing Scripts" }],
-			"continueOnError": false,
-			"description": "Removing Scripts"
-		}
-	]
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.Entity.Attribute",
+  "name": "Power Platform: Entity Attribute",
+  "shortName": "pp-entity-attribute",
+  "tags": {
+    "language": "XML",
+    "type": "item"
+  },
+  "sourceName": "examplecustomentityattribute",
+  "preferNameDirectory": false,
+  "symbols": {
+    "SolutionRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "SolutionDeclarationsRoot",
+      "fileRename": "SolutionDeclarationsRoot"
+    },
+    "EntitySchemaName": {
+      "displayName": "Schema name of the entity including publisher prefix (might be different from logical name)",
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exampleexistingentity",
+      "isRequired": true
+    },
+    "AttributeType": {
+      "type": "parameter",
+      "description": "Select attribute type",
+      "datatype": "choice",
+      "isRequired": true,
+      "choices": [
+        { "choice": "Text" },
+        { "choice": "MultilineText" },
+        { "choice": "WholeNumber" },
+        { "choice": "Decimal" },
+        { "choice": "Float" },
+        { "choice": "Money" },
+        { "choice": "DateTime" },
+        { "choice": "Lookup" },
+        { "choice": "Boolean" }
+      ]
+    },
+    "RequiredLevel": {
+      "type": "parameter",
+      "description": "Select required level",
+      "datatype": "choice",
+      "replaces": "attributerequiredlevel",
+      "choices": [
+        { "choice": "none" },
+        { "choice": "required" }
+      ],
+      "defaultValue": "required"
+    },
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplepublisherprefix",
+      "fileRename": "examplepublisherprefix",
+      "isRequired": true
+    },
+    "LogicalName": {
+      "displayName": "Logical name (without publisher prefix)",
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplecustomentityattribute",
+      "isRequired": true
+    },
+    "DisplayName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "ExampleEntityAttributeDisplayName",
+      "isRequired": true
+    },
+    "Description": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "Example description",
+      "defaultValue": ""
+    },
+    "MaxLength": {
+      "type": "parameter",
+      "datatype": "int",
+      "defaultValue": 100
+    },
+    "Precision": {
+      "type": "parameter",
+      "datatype": "int",
+      "defaultValue": 2
+    },
+    "MinValue": {
+      "type": "parameter",
+      "datatype": "decimal",
+      "defaultValue": 0.0
+    },
+    "MaxValue": {
+      "type": "parameter",
+      "datatype": "decimal",
+      "defaultValue": 1000000000.0
+    },
+    "ReferencedEntityName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplereferencedentityname",
+      "isRequired": "AttributeType == \"Lookup\""
+    },
+    "AddLookupRelationship": {
+      "type": "computed",
+      "value": "(AttributeType == \"Lookup\")",
+      "datatype": "bool"
+    },
+    "LookupRelationshipNameUnsanitized": {
+      "type": "generated",
+      "generator": "join",
+      "parameters": {
+        "symbols": [
+          { "type": "ref", "value": "PublisherPrefix" },
+          { "type": "ref", "value": "ReferencedEntityName" },
+          { "type": "ref", "value": "EntitySchemaName" },
+          { "type": "ref", "value": "LogicalName" }
+        ],
+        "separator": "_",
+        "removeEmptyValues": true
+      }
+    },
+    "LookupRelationshipName": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source": "LookupRelationshipNameUnsanitized",
+        "toLower": true
+      },
+      "replaces": "examplelookuprelationshipname"
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddAttributeToEntityXml.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Adding attribute to entity.xml" }
+      ],
+      "continueOnError": false,
+      "description": "Adding attribute to entity.xml"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "condition": "(AddLookupRelationship)",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddLookupRelationship.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Adding lookup relationship xml" }
+      ],
+      "continueOnError": false,
+      "description": "Adding lookup relationship xml"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Removing Scripts" }
+      ],
+      "continueOnError": false,
+      "description": "Removing Scripts"
+    }
+  ]
 }
