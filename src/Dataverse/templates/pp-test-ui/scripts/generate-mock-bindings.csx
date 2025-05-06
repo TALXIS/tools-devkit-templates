@@ -1,5 +1,5 @@
-#r "nuget: System.Text.Json"
-#r "nuget: System.Reflection.MetadataLoadContext"
+#r "nuget: System.Text.Json, 8.0.2"
+#r "nuget: System.Reflection.MetadataLoadContext, 8.0.0"
 
 using System;
 using System.IO;
@@ -53,12 +53,6 @@ foreach (var type in assembly.GetTypes())
 }
 
 // GENERATE FAKE .cs FILE
-
-public string ReplaceRegexGroups(string input)
-{
-    return Regex.Replace(input, @"\(\.\*\)", "{string}");
-
-}
 var sb = new StringBuilder();
 sb.AppendLine("using Reqnroll;");
 sb.AppendLine("namespace FakeBindingsForEditor");
@@ -68,7 +62,7 @@ sb.AppendLine("    {");
 
 foreach (var step in steps)
 {
-    var simplifiedText = ReplaceRegexGroups(step.Text).Replace("\"", "\\\"");
+    var simplifiedText = step.Text.Replace("\"", "\\\"");
     sb.AppendLine($"        [{step.StepType}(\"{simplifiedText}\")] ");
     sb.AppendLine($"        public void {step.Method}() {{ }}");
     sb.AppendLine();
