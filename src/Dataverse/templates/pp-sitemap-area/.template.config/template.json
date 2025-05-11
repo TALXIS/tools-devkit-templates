@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.Sitemap,Area",
+  "name": "Power Platform: Site Map Area",
+  "shortName": "pp-sitemap-area",
+  "classifications": ["Dataverse", "Power Platform"],
+  "sourceName": "Sitemap-Area",
+  "tags": {
+		"language": "XML"
+	},
+  "preferNameDirectory": true,
+  "symbols": {
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Prefix for the user",
+      "replaces": "userprefixexample",
+      "fileRename": "userprefixexample"
+    },
+    "EntityLogicalName": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Name of the entity",
+      "replaces": "entityexemplename"
+    },
+    "SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot"
+		},
+    "AreaTitle": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": "Area",
+			"replaces": "areatitleexemple"
+		}
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "include": ["**/*.xml"]
+        }
+      ]
+    }
+  ],
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/GenerateIdForAppModuleSiteMap.ps1\" "
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding Model Driven App to solution xml"
+        }
+      ]
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddAreaToSitemap.ps1\""
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding area to the sitemapp "
+        }
+      ]
+    },
+    {
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Removing Scripts" }],
+			"continueOnError": false,
+			"description": "Removing Scripts"
+		}
+  ]
+}

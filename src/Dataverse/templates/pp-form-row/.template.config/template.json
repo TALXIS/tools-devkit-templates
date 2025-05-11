@@ -1,0 +1,164 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.UI.Rows",
+  "name": "Power Platform: Entity Columns",
+  "shortName": "pp-form-row",
+  "tags": {
+    "language": "XML",
+    "type": "item"
+  },
+  "sourceName": "examplecustomentityattribute",
+  "preferNameDirectory": false,
+  "symbols": {
+    "EntityName": {
+			"type": "parameter",
+			"datatype": "text",
+      "replaces": "exampleentityname",
+      "isRequired": true
+		},
+    "SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"replaces": "SolutionDeclarationsRoot",
+      "isRequired": true
+		},
+    "AttributeType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "description": "Select attribute type",
+      "choices": [
+        { "choice": "Text" },
+        { "choice": "MultilineText" },
+        { "choice": "WholeNumber"},
+        { "choice": "Decimal"},
+        { "choice": "Float" },
+        { "choice": "Currency"},
+        { "choice": "DateTime" },
+        { "choice": "Lookup"}
+      ]
+    },
+    "FormGUIDId": { 
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": true, 
+      "defaultValue": "",
+      "replaces": "formguididexemple",
+      "description": "Enter form Id" 
+    },
+    "FormType": { 
+      "type": "parameter",
+      "datatype": "choice",
+      "isRequired": true, 
+      "replaces": "formtypeexemple",
+      "choices": [
+        { "choice": "main" },
+        { "choice": "quick" }
+      ],
+      "description": "Select a form type" 
+    },
+    "classid": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "exampleclassid",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(AttributeType == 'Text')",
+            "value": "4273EDBD-AC1D-40d3-9FB2-095C621B552D"
+          },
+          {
+            "condition": "(AttributeType == 'MultilineText')",
+            "value": "E0DECE4B-6FC8-4a8f-A065-082708572369"
+          },
+          {
+            "condition": "(AttributeType == 'WholeNumber')",
+            "value": "C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E"
+          },
+          {
+            "condition": "(AttributeType == 'Decimal')",
+            "value": "C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E"
+          },
+          {
+            "condition": "(AttributeType == 'Float')",
+            "value": "0D2C745A-E5A8-4c8f-BA63-C6D3BB604660"
+          },
+          {
+            "condition": "(AttributeType == 'Currency')",
+            "value": "533B9E00-756B-4312-95A0-DC888637AC78"
+          },
+          {
+            "condition": "(AttributeType == 'DateTime')",
+            "value": "5B773807-9FB2-42db-97C3-7A91EFF8ADFF"
+          },
+          {
+            "condition": "(AttributeType == 'Lookup')",
+            "value": "270BD3DB-D9AF-4782-9025-509E298DEC0A"
+          }
+        ]
+      }
+    },
+    "RowId": {
+      "type": "generated",
+      "generator": "guid",
+      "dataType": "string",
+      "replaces": "idexemple"
+    },
+    "LabelId": {
+      "type": "generated",
+      "generator": "guid",
+      "dataType": "string",
+      "replaces": "labelidexemple"
+    },
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplepublisherprefix",
+      "fileRename": "examplepublisherprefix",
+      "isRequired": true
+    },
+    "LogicalName": {
+      "displayName": "Logical name (without publisher prefix)",
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplecustomerow",
+      "isRequired": true
+    },
+    "DisplayName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exemplerowdisplayname",
+      "isRequired": true
+    }
+  },
+  
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Add.ps1\" ",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Adding new row to form" }
+      ],
+      "continueOnError": false,
+      "description": "Adding new row to form"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Removing Scripts" }
+      ],
+      "continueOnError": false,
+      "description": "Removing Scripts"
+    }
+  ]
+}

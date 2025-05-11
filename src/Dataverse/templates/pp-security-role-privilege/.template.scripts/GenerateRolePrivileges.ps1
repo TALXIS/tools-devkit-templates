@@ -1,0 +1,3 @@
+Start-Process dotnet -ArgumentList "tool install -g dotnet-script" -NoNewWindow -Wait -RedirectStandardOutput ".template.scripts/tool_output.txt" -RedirectStandardError ".template.scripts/tool_error.txt"
+Start-Sleep -Seconds 5
+Start-Process dotnet-script -ArgumentList ".template.scripts/GenerateRolePrivileges.csx" -NoNewWindow -Wait -RedirectStandardOutput ".template.scripts/script_output.txt" -RedirectStandardError ".template.scripts/script_error.txt"

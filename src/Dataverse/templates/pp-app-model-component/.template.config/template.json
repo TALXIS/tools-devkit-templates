@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.ModelDrivenApp.Component",
+  "name": "Power Platform: ModelDriven App Component",
+  "shortName": "pp-app-model-component",
+  "classifications": ["Dataverse", "Power Platform"],
+  "sourceName": "App-ModelDriven-component",
+  "tags": {
+		"language": "XML"
+	},
+  "preferNameDirectory": true,
+  "symbols": {
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Prefix for the user",
+      "replaces": "userprefixexample",
+      "fileRename": "userprefixexample"
+    },
+    "EntityType": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "EntityTyper",
+      "defaultValue": "1",
+      "replaces": "entitytypeexemple"
+    },
+    "EntityLogicalName": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Name of the entity",
+      "replaces": "entityexemplename"
+    },
+    "SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot"
+		}
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "include": ["**/*.xml"]
+        }
+      ]
+    }
+  ],
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddComponentToModelDrivenApp.ps1\""
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding Model Driven App to solution xml"
+        }
+      ]
+    },
+    {
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Removing Scripts" }],
+			"continueOnError": false,
+			"description": "Removing Scripts"
+		}
+  ]
+}
