@@ -22,13 +22,13 @@
       "type": "parameter",
 			"datatype": "text",
 			"defaultValue": ".",
-      "replaces": "entityexemplename"
+      "replaces": "entityexamplename"
     },
     "rolename": {
       "type": "parameter",
 			"datatype": "text",
 			"defaultValue": "eqweqweqwe",
-      "replaces": "securityrolenameexemple"
+      "replaces": "securityrolenameexample"
     },
     "PrivilegeTypeAndLevel": {
       "type": "parameter",

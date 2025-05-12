@@ -1,4 +1,4 @@
-$entityXmlPath = (Resolve-Path 'SolutionDeclarationsRoot\AppModuleSiteMaps\userprefixexample_appexemplename\AppModuleSiteMap.xml').Path
+$entityXmlPath = (Resolve-Path 'SolutionDeclarationsRoot\AppModuleSiteMaps\userprefixexample_appexamplename\AppModuleSiteMap.xml').Path
 $areasPath = (Resolve-Path '.template.scripts/area.xml').Path
 
 [xml]$entityXml = Get-Content -Path $entityXmlPath -Raw

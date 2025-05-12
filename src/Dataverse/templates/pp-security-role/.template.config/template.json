@@ -22,14 +22,14 @@
 			"type": "parameter",
       "generator": "guid",
       "defaultValue": ".",
-      "replaces": "roleidexemple"
+      "replaces": "roleidexample"
     },
     "rolename": {
       "type": "parameter",
 			"datatype": "text",
 			"defaultValue": ".",
-      "replaces": "rolenameexemple",
-      "fileRename": "ExempleSecurityRole"
+      "replaces": "rolenameexample",
+      "fileRename": "ExampleSecurityRole"
     }
   },
   "sources": [

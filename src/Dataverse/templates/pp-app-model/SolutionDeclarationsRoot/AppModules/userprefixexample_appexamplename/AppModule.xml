@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <AppModule>
-<UniqueName>userprefixexample_appexemplename</UniqueName>
+<UniqueName>userprefixexample_appexamplename</UniqueName>
   <IntroducedVersion>1.0</IntroducedVersion>
   <WebResourceId>953b9fac-1e5e-e611-80d6-00155ded156f</WebResourceId>
   <OptimizedFor></OptimizedFor>
@@ -10,13 +10,13 @@
   <ClientType>4</ClientType>
   <NavigationType>0</NavigationType>
   <AppModuleComponents>
-    <AppModuleComponent type="62" schemaName="userprefixexample_appexemplename" />
+    <AppModuleComponent type="62" schemaName="userprefixexample_appexamplename" />
   </AppModuleComponents>
   <AppModuleRoleMaps>
     <Everyone/>
   </AppModuleRoleMaps>
   <LocalizedNames>
-    <LocalizedName description="appexemplename" languagecode="1033" />
+    <LocalizedName description="appexamplename" languagecode="1033" />
   </LocalizedNames>
   <appsettings>
     <appsetting settingdefinitionid.uniquename="AppChannel">

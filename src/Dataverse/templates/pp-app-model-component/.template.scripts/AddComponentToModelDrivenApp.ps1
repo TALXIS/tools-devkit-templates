@@ -1,13 +1,13 @@
 ﻿# Resolve the relative path to an absolute path (to support other OSes)
-$solutionPath = Resolve-Path -Path 'SolutionDeclarationsRoot\AppModuleSiteMaps\userprefixexample_appexemplename/AppModule.xml'
+$solutionPath = Resolve-Path -Path 'SolutionDeclarationsRoot\AppModuleSiteMaps\userprefixexample_appexamplename/AppModule.xml'
 
 # Load the XML file
 [XML]$File = Get-Content -Path $solutionPath -Raw
 $rootComponents = $File.SelectSingleNode("//AppModuleComponents")
 
 $newComponent = $File.CreateElement("AppModuleComponent")
-$newComponent.SetAttribute("type", 'entitytypeexemple')
-$newComponent.SetAttribute("schemaName", 'userprefixexample_appexemplename')
+$newComponent.SetAttribute("type", 'entitytypeexample')
+$newComponent.SetAttribute("schemaName", 'userprefixexample_appexamplename')
 
 # Append the new component to the root components without writing output to console
 $null = $rootComponents.AppendChild($newComponent)

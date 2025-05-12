@@ -18,18 +18,25 @@
       "replaces": "userprefixexample",
       "fileRename": "userprefixexample"
     },
+    "AppName": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Prefix for the user",
+      "replaces": "appexamplename",
+      "fileRename": "appexamplename"
+    },
     "EntityType": {
       "type": "parameter",
       "datatype": "text",
       "description": "EntityTyper",
       "defaultValue": "1",
-      "replaces": "entitytypeexemple"
+      "replaces": "entitytypeexample"
     },
     "EntityLogicalName": {
       "type": "parameter",
       "datatype": "text",
       "description": "Name of the entity",
-      "replaces": "entityexemplename"
+      "replaces": "entityexamplename"
     },
     "SolutionRootPath": {
 			"type": "parameter",

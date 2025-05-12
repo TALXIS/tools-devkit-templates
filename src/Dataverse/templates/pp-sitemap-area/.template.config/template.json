@@ -22,7 +22,7 @@
       "type": "parameter",
       "datatype": "text",
       "description": "Name of the entity",
-      "replaces": "entityexemplename"
+      "replaces": "entityexamplename"
     },
     "SolutionRootPath": {
 			"type": "parameter",
@@ -35,7 +35,7 @@
 			"type": "parameter",
 			"datatype": "text",
 			"defaultValue": "Area",
-			"replaces": "areatitleexemple"
+			"replaces": "areatitleexample"
 		}
   },
   "sources": [

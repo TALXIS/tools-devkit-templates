@@ -7,7 +7,7 @@ $rootComponents = $File.SelectSingleNode("//RootComponents")
 
 $newComponent = $File.CreateElement("RootComponent")
 $newComponent.SetAttribute("type", '20')
-$newComponent.SetAttribute("id", '{roleidexemple}')
+$newComponent.SetAttribute("id", '{roleidexample}')
 $newComponent.SetAttribute("behavior", '0')
 
 # Append the new component to the root components without writing output to console

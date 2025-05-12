@@ -9,9 +9,9 @@ $siteMapPath = $file.FullName
 [XML]$File = Get-Content -Path $siteMapPath -Raw
 
 $XmlText = $File.OuterXml
-$modifiedXmlText = $XmlText -replace [Regex]::Escape("areaidexemple"), ([guid]::NewGuid().ToString() -split '-')[0]
-$modifiedXmlText = $modifiedXmlText -replace [Regex]::Escape("groupidexemple"), ([guid]::NewGuid().ToString() -split '-')[0]
-$modifiedXmlText = $modifiedXmlText -replace [Regex]::Escape("subareaidexemple"), ([guid]::NewGuid().ToString() -split '-')[0]
+$modifiedXmlText = $XmlText -replace [Regex]::Escape("areaidexample"), ([guid]::NewGuid().ToString() -split '-')[0]
+$modifiedXmlText = $modifiedXmlText -replace [Regex]::Escape("groupidexample"), ([guid]::NewGuid().ToString() -split '-')[0]
+$modifiedXmlText = $modifiedXmlText -replace [Regex]::Escape("subareaidexample"), ([guid]::NewGuid().ToString() -split '-')[0]
 
 [XML]$File = $ModifiedXmlText
 

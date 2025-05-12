@@ -43,14 +43,14 @@
       "datatype": "string",
       "isRequired": true, 
       "defaultValue": "",
-      "replaces": "formguididexemple",
+      "replaces": "formguididexample",
       "description": "Enter form Id" 
     },
     "FormType": { 
       "type": "parameter",
       "datatype": "choice",
       "isRequired": true, 
-      "replaces": "formtypeexemple",
+      "replaces": "formtypeexample",
       "choices": [
         { "choice": "main" },
         { "choice": "quick" }
@@ -103,13 +103,13 @@
       "type": "generated",
       "generator": "guid",
       "dataType": "string",
-      "replaces": "idexemple"
+      "replaces": "idexample"
     },
     "LabelId": {
       "type": "generated",
       "generator": "guid",
       "dataType": "string",
-      "replaces": "labelidexemple"
+      "replaces": "labelidexample"
     },
     "PublisherPrefix": {
       "type": "parameter",
@@ -128,7 +128,7 @@
     "DisplayName": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "exemplerowdisplayname",
+      "replaces": "examplerowdisplayname",
       "isRequired": true
     }
   },

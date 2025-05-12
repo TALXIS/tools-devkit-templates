@@ -1,7 +1,7 @@
 <row>
-  <cell id="{idexemple}" labelid="{labelidexemple}">
+  <cell id="{idexample}" labelid="{labelidexample}">
     <labels>
-      <label description="exemplerowdisplayname" languagecode="1033" />
+      <label description="examplerowdisplayname" languagecode="1033" />
     </labels>
     <control id="examplepublisherprefix_examplecustomerow" classid="{exampleclassid}" datafieldname="examplepublisherprefix_examplecustomerow" />
   </cell>

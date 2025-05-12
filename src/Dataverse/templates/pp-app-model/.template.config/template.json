@@ -22,8 +22,8 @@
       "type": "parameter",
       "datatype": "text",
       "description": "Name of the app",
-      "replaces": "appexemplename",
-      "fileRename": "appexemplename"
+      "replaces": "appexamplename",
+      "fileRename": "appexamplename"
     },
     "SolutionRootPath": {
 			"type": "parameter",

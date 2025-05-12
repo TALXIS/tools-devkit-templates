@@ -1,8 +1,8 @@
-<Area Id="area_areaidexemple" ResourceId="SitemapDesigner.NewTitle" DescriptionResourceId="SitemapDesigner.NewTitle" ShowGroups="true" IntroducedVersion="7.0.0.0">
+<Area Id="area_areaidexample" ResourceId="SitemapDesigner.NewTitle" DescriptionResourceId="SitemapDesigner.NewTitle" ShowGroups="true" IntroducedVersion="7.0.0.0">
       <Titles>
-        <Title LCID="1033" Title="areatitleexemple" />
+        <Title LCID="1033" Title="areatitleexample" />
       </Titles>
-      <Group Id="group_groupidexemple" ResourceId="SitemapDesigner.NewGroup" DescriptionResourceId="SitemapDesigner.NewGroup" IntroducedVersion="7.0.0.0" IsProfile="false" ToolTipResourseId="SitemapDesigner.Unknown">
-        <SubArea Id="subarea_subareaidexemple" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="userprefixexample_entityexemplename" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
+      <Group Id="group_groupidexample" ResourceId="SitemapDesigner.NewGroup" DescriptionResourceId="SitemapDesigner.NewGroup" IntroducedVersion="7.0.0.0" IsProfile="false" ToolTipResourseId="SitemapDesigner.Unknown">
+        <SubArea Id="subarea_subareaidexample" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="userprefixexample_entityexamplename" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
       </Group>
 </Area>

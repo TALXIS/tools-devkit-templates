@@ -27,6 +27,6 @@ using (var writer = new StreamWriter(filePath))
 {
     foreach (var permission in permissions)
     {
-        writer.WriteLine($"<RolePrivilege name=\"prv{permission.PrivilegeType}entityexemplename\" level=\"{permission.Level}\" />");
+        writer.WriteLine($"<RolePrivilege name=\"prv{permission.PrivilegeType}entityexamplename\" level=\"{permission.Level}\" />");
     }
 }
