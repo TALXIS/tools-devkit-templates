@@ -1,23 +1,16 @@
-$entityXmlPath = (Resolve-Path 'SolutionDeclarationsRoot\AppModuleSiteMaps\userprefixexample_appexamplename\AppModuleSiteMap.xml').Path
-$areasPath = (Resolve-Path '.template.scripts/area.xml').Path
+$entityXmlPath = (Resolve-Path 'Declarations\AppModuleSiteMaps\tom_WarehouseApp\AppModuleSiteMap.xml').Path
+$areaPath  = (Resolve-Path '.template.temp/area.xml').Path
 
 [xml]$entityXml = Get-Content -Path $entityXmlPath -Raw
+[xml]$areaXml = Get-Content -Path $areaPath -Raw
 
-$roleareasNode = $entityXml.SelectSingleNode('//SiteMap')
-if (-not $roleareasNode) {
+$siteMapNode = $entityXml.SelectSingleNode('//SiteMap')
+if (-not $siteMapNode) {
     exit 1
 }
 
-$roleareasNode.RemoveAll()
-
-$areasRaw = Get-Content -Path $areasPath -Raw
-$wrapped = "<Area>$areasRaw</Area>"
-[xml]$newareasXml = $wrapped
-
-foreach ($area in $newareasXml.SiteMap.ChildNodes) {
-    $imported = $entityXml.ImportNode($area, $true)
-    $roleareasNode.AppendChild($imported) | Out-Null
-}
+$imported = $entityXml.ImportNode($areaXml.DocumentElement, $true)
+$siteMapNode.AppendChild($imported) | Out-Null
 
 $settings = New-Object System.Xml.XmlWriterSettings
 $settings.Indent = $true
@@ -27,4 +20,3 @@ $settings.OmitXmlDeclaration = $false
 $writer = [System.Xml.XmlWriter]::Create($entityXmlPath, $settings)
 $entityXml.Save($writer)
 $writer.Close()
-

@@ -1,11 +1,11 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "NETWORG",
-  "identity": "TALXIS.DevKit.Templates.Dataverse.Sitemap.Area",
-  "name": "Power Platform: Site Map Area",
-  "shortName": "pp-sitemap-area",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.Sitemap,Area",
+  "name": "Power Platform: Site Map Area Group ",
+  "shortName": "pp-sitemap-group",
   "classifications": ["Dataverse", "Power Platform"],
-  "sourceName": "Sitemap-Area",
+  "sourceName": "Sitemap-Area-Group",
   "tags": {
 		"language": "XML"
 	},
@@ -59,7 +59,7 @@
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
         "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddAreaToSitemap.ps1\""
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddGroupToArea.ps1\""
       },
       "manualInstructions": [
         {
