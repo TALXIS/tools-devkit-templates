@@ -1,5 +1,5 @@
 $entityXmlPath = (Resolve-Path 'SolutionDeclarationsRoot/Roles/securityrolenameexample.xml').Path
-$privilegesPath = (Resolve-Path '.template.temp/privileges.xml').Path
+$privilegesPath = (Resolve-Path '.template.scripts/privileges.xml').Path
 
 [xml]$entityXml = Get-Content -Path $entityXmlPath -Raw
 
@@ -7,8 +7,6 @@ $rolePrivilegesNode = $entityXml.SelectSingleNode('//Role/RolePrivileges')
 if (-not $rolePrivilegesNode) {
     exit 1
 }
-
-$rolePrivilegesNode.RemoveAll()
 
 $privilegesRaw = Get-Content -Path $privilegesPath -Raw
 $wrapped = "<RolePrivileges>$privilegesRaw</RolePrivileges>"
