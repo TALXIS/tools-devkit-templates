@@ -27,10 +27,61 @@
     },
     "EntityType": {
       "type": "parameter",
-      "datatype": "text",
-      "description": "EntityTyper",
-      "defaultValue": "1",
-      "replaces": "entitytypeexample"
+      "datatype": "choice",
+      "description": "Select attribute type",
+      "defaultValue": "Entities",
+      "choices": [
+        { "choice": "Entities" },
+        { "choice": "Views" },
+        { "choice": "Business Process Flows"},
+        { "choice": "Command for Forms"},
+        { "choice": "Grids, sub grids" },
+        { "choice": "Charts"},
+        { "choice": "Forms" },
+        { "choice": "Sitemap"}
+      ]
+    },
+    "EntityTypeId": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "entitytypeexample",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(EntityType == 'Entities')",
+            "value": "1"
+          },
+          {
+            "condition": "(EntityType == 'Views')",
+            "value": "26"
+          },
+          {
+            "condition": "(EntityType == 'Business Process Flows')",
+            "value": "29"
+          },
+          {
+            "condition": "(EntityType == 'Command for Forms')",
+            "value": "48"
+          },
+          {
+            "condition": "(EntityType == 'Grids, sub grids')",
+            "value": "48"
+          },
+          {
+            "condition": "(EntityType == 'Charts')",
+            "value": "59"
+          },
+          {
+            "condition": "(EntityType == 'Forms')",
+            "value": "60"
+          },
+          {
+            "condition": "(EntityType == 'Sitemap')",
+            "value": "62"
+          }
+        ]
+      }
     },
     "EntityLogicalName": {
       "type": "parameter",
