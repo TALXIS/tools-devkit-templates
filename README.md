@@ -142,7 +142,7 @@ dotnet new pp-app-model `
 --allow-scripts yes
 ```
 
-Add a table to a model-driven app module:
+Add a table to a model-driven app component:
 ```console
 dotnet new pp-app-model-component `
 --output "src/Solutions.UI" `
@@ -174,7 +174,7 @@ dotnet new pp-entity-form `
 --allow-scripts yes
 ```
 
-Create a main form for a table:
+Create a row in the main form:
 ```console
 dotnet new pp-form-row `
 --output "src/Solutions.UI" `
@@ -209,6 +209,17 @@ dotnet new pp-security-role-privilege `
 --entityname "tom_warehouseitem" `
 --rolename "Warehouse Manager" `
 --PrivilegeTypeAndLevel "[{ PrivilegeType: Read, Level: Global }, { PrivilegeType: Write, Level: Global }]" `
+--allow-scripts yes
+```
+
+### Plugins
+Initialize a new plugin:
+```console
+dotnet new pp-solution `
+--output "src/Plugins.Warehouse" `
+--PublisherName "tomas" `
+--SigningKeyFilePath "PluginKey.snk" `
+--Company "NETWORG" `
 --allow-scripts yes
 ```
 
