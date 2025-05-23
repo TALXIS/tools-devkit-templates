@@ -41,7 +41,7 @@ dotnet new install TALXIS.DevKit.Templates.Dataverse
 Initialize a new empty solution:
 ```console
 dotnet new pp-solution `
---output "src\Solutions.DataModel" `
+--output "src/Solutions.DataModel" `
 --PublisherName "tomas" `
 --PublisherPrefix "tom" `
 --allow-scripts yes
@@ -51,7 +51,7 @@ dotnet new pp-solution `
 Create a new *standard* table:
 ```console
 dotnet new pp-entity `
---output "src\Solutions.DataModel" `
+--output "src/Solutions.DataModel" `
 --Behavior New `
 --PublisherPrefix "tom" `
 --LogicalName "location" `
@@ -65,7 +65,7 @@ dotnet new pp-entity `
 Create a new *activity* table:
 ```console
 dotnet new pp-entity `
---output "src\Solutions.DataModel" `
+--output "src/Solutions.DataModel" `
 --EntityType "Activity" `
 --Behavior "New" `
 --PublisherPrefix "tom" `
@@ -80,7 +80,7 @@ dotnet new pp-entity `
 Add an existing *custom table* to a solution:
 ```console
 dotnet new pp-entity `
---output "src\Solutions.UI" `
+--output "src/Solutions.UI" `
 --Behavior "Existing" `
 --PublisherPrefix "tom" `
 --LogicalName "shiftevent" `
@@ -92,7 +92,7 @@ dotnet new pp-entity `
 Add an existing *system table* to a solution:
 ```console
 dotnet new pp-entity `
---output "src\Solutions.UI" `
+--output "src/Solutions.UI" `
 --Behavior "Existing" `
 --IsSystemEntity "true"  `
 --LogicalName "account" `
@@ -105,7 +105,7 @@ dotnet new pp-entity `
 Add a whole number column to table:
 ```console
 dotnet new pp-entity-attribute `
---output "src\Solutions.DataModel" `
+--output "src/Solutions.DataModel" `
 --EntitySchemaName "tom_warehouseitem" `
 --AttributeType "WholeNumber" `
 --RequiredLevel "required" `
@@ -119,7 +119,7 @@ dotnet new pp-entity-attribute `
 Add a lookup column to table:
 ```console
 dotnet new pp-entity-attribute `
---output "src\Solutions.DataModel" `
+--output "src/Solutions.DataModel" `
 --EntitySchemaName "tom_warehousetransaction" `
 --AttributeType "Lookup" `
 --RequiredLevel "required" `
@@ -128,6 +128,87 @@ dotnet new pp-entity-attribute `
 --DisplayName "Item" `
 --ReferencedEntityName "tom_warehouseitem" `
 --SolutionRootPath "Declarations" `
+--allow-scripts yes
+```
+
+### UI
+Create a model-driven app:
+```console
+dotnet new pp-app-model `
+--output "src/Solutions.UI" `
+--PublisherPrefix "tom" `
+--LogicalName "WarehouseApp" `
+--SolutionRootPath "Declarations" `
+--allow-scripts yes
+```
+
+Add a table to a model-driven app module:
+```console
+dotnet new pp-app-model-component `
+--output "src/Solutions.UI" `
+--PublisherPrefix "tom" `
+--EntityLogicalName "warehouseitem" `
+--SolutionRootPath "Declarations" `
+--allow-scripts yes
+```
+
+Add an area to the sitemap:
+```console
+dotnet new pp-sitemap-area `
+--output "src/Solutions.UI" `
+--PublisherPrefix "tom" `
+--EntityLogicalName "warehouseitem" `
+--AreaTitle "Warehouse Item" `
+--SolutionRootPath "Declarations" `
+--allow-scripts yes
+```
+
+Create a main form for a table:
+```console
+dotnet new pp-entity-form `
+--output "src/Solutions.UI" `
+--FormType "main" `
+--SolutionRootPath "Declarations" `
+--ItemFolderName "tom_warehouseitem" `
+--MainFormId 00000000-0000-0000-0000-000000000000 `
+--allow-scripts yes
+```
+
+Create a main form for a table:
+```console
+dotnet new pp-form-row `
+--output "src/Solutions.UI" `
+--AttributeType "WholeNumber" `
+--PublisherPrefix "tom" `
+--LogicalName "availablequantity" `
+--FormType "main" `
+--DisplayName "Available Quantity" `
+--FormGUIDId 00000000-0000-0000-0000-000000000000 `
+--EntityName "tom_warehouseitem" `
+--SolutionRootPath "Declarations" `
+--allow-scripts yes
+```
+
+### Security roles
+
+Create a security role:
+```console
+dotnet new pp-security-role `
+--output "src/Solutions.Security" `
+--SolutionRootPath "Declarations" `
+--roleid "00000000-0000-0000-0000-000000000001" `
+--rolename "Warehouse Manager" `
+--allow-scripts yes
+```
+
+Add privileges to a security role:
+```console
+dotnet new pp-security-role-privilege `
+--output "src/Solutions.Security" `
+--SolutionRootPath "Declarations" `
+--entityname "tom_warehouseitem" `
+--rolename "Warehouse Manager" `
+--PrivilegeTypeAndLevel "[{ PrivilegeType: Read, Level: Global }, { PrivilegeType: Write, Level: Global }]" `
 --allow-scripts yes
 ```
 
@@ -142,7 +223,7 @@ We are happy to collaborate with developers and contributors interested in enhan
 
 #### Using your local version of templates
 
-Run the following terminal command in the folder `src\Dataverse/templates`:
+Run the following terminal command in the folder `src/Dataverse/templates`:
 
 ```
 dotnet new install "." --force

@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.Plugin",
+  "name": "Power Platform: Plugin",
+  "shortName": "pp-plugin",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "SolutionLogicalNameExample",
+  "sources": [
+    {
+      "exclude": [
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        "*/**/[Bb]in/**",
+        "*/**/[Oo]bj/**",
+        "**/**/[Bb]in/**",
+        "**/**/[Oo]bj/**",
+        ".template.config/**/*"
+      ]
+    }
+  ],
+  "preferNameDirectory": true,
+  "symbols": {
+    "PublisherName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplepublisher",
+      "isRequired": true
+    },
+    "Company": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exampleсompany",
+      "isRequired": true
+    },
+    "SigningKeyFilePath": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "signingkeyfilepathexample"
+    }
+  },
+  "primaryOutputs": [
+    {
+      "path": "SolutionLogicalNameExample.cdsproj"
+    }
+  ],
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/InitializePlugin.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Initialize a plugin using PAC CLI"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Initialize a plugin using PAC CLI - pac plugin init"
+    },
+    {
+      "description": "Add generated project to .sln file",
+      "manualInstructions": [
+        {
+          "text": "Add generated project to .sln file"
+        }
+      ],
+      "args": {
+        "inRoot": true
+      },
+      "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
+      "continueOnError": false,
+      "primaryOutputIndexes": "0"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Removing template files"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Removing template files"
+    }
+  ]
+}
