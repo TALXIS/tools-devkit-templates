@@ -68,7 +68,8 @@
         "inRoot": true
       },
       "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
-      "continueOnError": false
+      "continueOnError": false,
+      "primaryOutputIndexes": "0"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
