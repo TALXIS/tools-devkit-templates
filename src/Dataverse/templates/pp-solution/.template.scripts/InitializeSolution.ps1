@@ -7,7 +7,7 @@ cd "SolutionLogicalNameExample"
 Rename-Item -Path .\src -NewName Declarations && Remove-Item .gitignore -Force
 
 # Find the .cdsproj file and read it as XML
-$csproj = Get-ChildItem -Path . -Filter *.cdsproj | Select-Object -First 1
+$csproj = Get-ChildItem -Path . -Filter *.cdsproj | Select-Object -First 1https://github.com/TALXIS/tools-devkit-templates/tree/master
 [xml]$xml = Get-Content $csproj.FullName -Raw
 
 # Rename the solution component folder in .cdsproj and 
@@ -18,6 +18,9 @@ $propertyGroup.SolutionRootPath = 'Declarations'
 $newElement = $xml.CreateElement('DefaultProjectTypeGuid', $xml.Project.NamespaceURI)
 $newElement.InnerText = 'FAE04EC0-301F-11D3-BF4B-00C04F79EFBC'
 $propertyGroup.AppendChild($newElement) > $null
+$newElement2 = $xml.CreateElement('ProjectTypeGuids', $xml.Project.NamespaceURI)
+$newElement2.InnerText = 'FAE04EC0-301F-11D3-BF4B-00C04F79EFBC'
+$propertyGroup.AppendChild($newElement2) > $null
 
 # Override the default Publish target to prevent errors when running publish on .sln file
 $targetElement = $xml.CreateElement('Target', $xml.Project.NamespaceURI)
