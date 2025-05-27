@@ -1,0 +1,251 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.Plugin.Steps",
+  "name": "Power Platform: Plugin Steps",
+  "shortName": "pp-plugin-assembly-steps",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "symbols": {
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplepublisher",
+      "isRequired": true
+    },
+    "EntityName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exampleentity",
+      "isRequired": true
+    },
+    "AssemblyGuidId": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "pluginguididexample",
+      "isRequired": true
+    },
+    "PluginProjectName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplepluginprojectname"
+    },
+    "PluginName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplepluginname"
+    },
+    "PluginStepId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "pluginstepexampleid",
+      "fileRename": "pluginstepexampleid",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+    },
+    "Stage": {
+      "type": "parameter",
+      "datatype": "choice",
+      "description": "Stage type",
+      "defaultValue": "Pre-validation",
+      "choices": [
+        {
+          "choice": "Pre-validation"
+        },
+        {
+          "choice": "Pre-operation"
+        },
+        {
+          "choice": "Post-operation"
+        }
+      ]
+    },
+    "StageTypeId": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "stagetypeexample",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(Stage == 'Pre-validation')",
+            "value": "10"
+          },
+          {
+            "condition": "(Stage == 'Pre-operation')",
+            "value": "20"
+          },
+          {
+            "condition": "(Stage == 'Post-operation')",
+            "value": "40"
+          }
+        ]
+      }
+    },
+    "InvocationSource": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "invocationsourceeexample",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(Stage == 'Pre-validation')",
+            "value": "0"
+          },
+          {
+            "condition": "(Stage == 'Pre-operation')",
+            "value": "1"
+          },
+          {
+            "condition": "(Stage == 'Post-operation')",
+            "value": "1"
+          }
+        ]
+      }
+    },
+    "SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot"
+		},
+    "SdkMessage": {
+      "type": "parameter",
+      "datatype": "choice",
+      "description": "Message type",
+      "defaultValue": "Create",
+      "replaces": "sdkmessageidexampletext",
+      "choices": [
+        {
+          "choice": "Create"
+        },
+        {
+          "choice": "Update"
+        },
+        {
+          "choice": "Delete"
+        },
+        {
+          "choice": "SetState"
+        },
+        {
+          "choice": "Assign"
+        },
+        {
+          "choice": "Retrieve"
+        },
+        {
+          "choice": "RetrieveMultiple"
+        }
+      ]
+    },
+    "SdkMessageId": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "sdkmessageidexample",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(SdkMessage == 'Create')",
+            "value": "9ebdbb1b-ea3e-db11-86a7-000a3a5473e8"
+          },
+          {
+            "condition": "(SdkMessage == 'Update')",
+            "value": "29eabb1b-ea3e-db11-86a7-000a3a5473e8"
+          },
+          {
+            "condition": "(SdkMessage == 'Delete')",
+            "value": "2ebabb1b-ea3e-db11-86a7-000a3a5473e8"
+          },
+          {
+            "condition": "(SdkMessage == 'SetState')",
+            "value": "daeabb1b-ea3e-db11-86a7-000a3a5473e8"
+          },
+          {
+            "condition": "(SdkMessage == 'Assign')",
+            "value": "44e5bb1b-ea3e-db11-86a7-000a3a5473e8"
+          },
+          {
+            "condition": "(SdkMessage == 'Retrieve')",
+            "value": "e0e5bb1b-ea3e-db11-86a7-000a3a5473e8"
+          },
+          {
+            "condition": "(SdkMessage == 'RetrieveMultiple')",
+            "value": "72e5bb1b-ea3e-db11-86a7-000a3a5473e8"
+          }
+        ]
+      }
+    },
+    "FilteringAttributes": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "jsonarraystringwhithentitiesList",
+      "description": "String in format: {entity1, entity2, entity3}"
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddFilteringAttributes.ps1\" "
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddPluginSolutionXml.ps1\" "
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddPublicKey.ps1\" "
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetPluginTypeId.ps1\" "
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/CopyStep.ps1\" "
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddPluginStepCustomizationsXml.ps1\" "
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Removing template files"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Removing template files"
+    }
+  ]
+}
