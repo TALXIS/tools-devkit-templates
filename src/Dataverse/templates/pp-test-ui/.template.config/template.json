@@ -54,25 +54,25 @@
   ],
   "preferNameDirectory": true,
   "symbols": {
-    "createAppsetingsFile": {
+    "CreateAppsetingsFile": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Create appsetings.json"
     },
-    "enableUserSecrets": {
+    "EnableUserSecrets": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Enable User Secrets"
     },
-    "enableCucumberSupport": {
+    "EnableCucumberSupport": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Enable Cucumber Support"
     },
-    "testExecutionFramework": {
+    "TestExecutionFramework": {
       "type": "parameter",
       "description": "Test Execution Framework",
       "datatype": "choice",
@@ -92,7 +92,7 @@
         }
       ]
     },
-    "includeFluentAssertions": {
+    "IncludeFluentAssertions": {
       "type": "parameter",
       "datatype": "bool",
       "description": "Add FluentAssertions library",

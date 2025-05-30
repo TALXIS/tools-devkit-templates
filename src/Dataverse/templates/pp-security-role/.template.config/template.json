@@ -18,13 +18,16 @@
 			"replaces": "SolutionDeclarationsRoot",
 			"fileRename": "SolutionDeclarationsRoot"
 		},
-    "roleid": {
+    "RoleId": {
 			"type": "parameter",
       "generator": "guid",
       "defaultValue": ".",
-      "replaces": "roleidexample"
+      "replaces": "roleidexample",
+			"parameters": {
+				"defaultFormat": "d"
+			}
     },
-    "rolename": {
+    "RoleName": {
       "type": "parameter",
 			"datatype": "text",
 			"defaultValue": ".",

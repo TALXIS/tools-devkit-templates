@@ -10,7 +10,7 @@ string pluginAssemblyId = "pluginguididexample";
 
 
 string csprojPath = Directory.GetFiles(pluginRootPath, "*.csproj").FirstOrDefault();
-if (csprojPath == null) throw new Exception("csproj не найден");
+if (csprojPath == null) throw new Exception("csproj not found");
 string projectDirectory = Path.GetDirectoryName(csprojPath);
 string sdkPath = @$"{projectDirectory}\bin\Debug\net462\Microsoft.Xrm.Sdk.dll"; 
 Assembly.LoadFrom(sdkPath);
@@ -23,11 +23,11 @@ string fileVersion = csprojDoc.SelectSingleNode("//Project/PropertyGroup/FileVer
 string xmlPath = Path.Combine(Directory.GetCurrentDirectory(), $"SolutionDeclarationsRoot//PluginAssemblies//{assemblyName}-{pluginAssemblyId.ToUpper()}//{assemblyName}.dll.data.xml");
 
 string dllPath = Path.Combine(pluginRootPath, "bin", "Debug", "net462", "publish", $"{assemblyName}.dll");
-if (!File.Exists(dllPath)) throw new FileNotFoundException("Сборка не найдена", dllPath);
+if (!File.Exists(dllPath)) throw new FileNotFoundException("Build not found", dllPath);
 
 Assembly pluginAssembly = Assembly.LoadFrom(dllPath);
 byte[] token = pluginAssembly.GetName().GetPublicKeyToken();
-if (token == null || token.Length == 0) throw new Exception("Сборка не подписана");
+if (token == null || token.Length == 0) throw new Exception("Build not signed");
 string publicKeyToken = BitConverter.ToString(token).Replace("-", "").ToLower();
 
 var classList = pluginAssembly.GetTypes()
@@ -36,7 +36,7 @@ var classList = pluginAssembly.GetTypes()
     .Select(t => t.FullName)
     .ToList();
 
-if (!classList.Any()) throw new Exception("Плагины не найдены");
+if (!classList.Any()) throw new Exception("Plugins not found");
 
 Directory.CreateDirectory(Path.GetDirectoryName(xmlPath));
 

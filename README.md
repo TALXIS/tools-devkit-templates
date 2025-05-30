@@ -137,7 +137,7 @@ Create a model-driven app:
 dotnet new pp-app-model `
 --output "src/Solutions.UI" `
 --PublisherPrefix "tom" `
---LogicalName "WarehouseApp" `
+--LogicalName "warehouseapp" `
 --SolutionRootPath "Declarations" `
 --allow-scripts yes
 ```
@@ -149,6 +149,7 @@ dotnet new pp-app-model-component `
 --PublisherPrefix "tom" `
 --EntityLogicalName "warehouseitem" `
 --SolutionRootPath "Declarations" `
+--AppName "warehouseapp" `,
 --allow-scripts yes
 ```
 
@@ -157,9 +158,9 @@ Add an area to the sitemap:
 dotnet new pp-sitemap-area `
 --output "src/Solutions.UI" `
 --PublisherPrefix "tom" `
---EntityLogicalName "warehouseitem" `
 --AreaTitle "Warehouse Item" `
 --SolutionRootPath "Declarations" `
+--AppName "warehouseapp" `,
 --allow-scripts yes
 ```
 
@@ -169,8 +170,7 @@ dotnet new pp-entity-form `
 --output "src/Solutions.UI" `
 --FormType "main" `
 --SolutionRootPath "Declarations" `
---ItemFolderName "tom_warehouseitem" `
---MainFormId 00000000-0000-0000-0000-000000000000 `
+--EntitySchemaName "tom_warehouseitem" `
 --allow-scripts yes
 ```
 
@@ -183,7 +183,6 @@ dotnet new pp-form-row `
 --LogicalName "availablequantity" `
 --FormType "main" `
 --DisplayName "Available Quantity" `
---FormGUIDId 00000000-0000-0000-0000-000000000000 `
 --EntityName "tom_warehouseitem" `
 --SolutionRootPath "Declarations" `
 --allow-scripts yes
@@ -196,7 +195,6 @@ Create a security role:
 dotnet new pp-security-role `
 --output "src/Solutions.Security" `
 --SolutionRootPath "Declarations" `
---roleid "00000000-0000-0000-0000-000000000001" `
 --rolename "Warehouse Manager" `
 --allow-scripts yes
 ```
@@ -206,7 +204,7 @@ Add privileges to a security role:
 dotnet new pp-security-role-privilege `
 --output "src/Solutions.Security" `
 --SolutionRootPath "Declarations" `
---entityname "tom_warehouseitem" `
+--EntitySchemaName "tom_warehouseitem" `
 --rolename "Warehouse Manager" `
 --PrivilegeTypeAndLevel "[{ PrivilegeType: Read, Level: Global }, { PrivilegeType: Write, Level: Global }]" `
 --allow-scripts yes
@@ -215,7 +213,7 @@ dotnet new pp-security-role-privilege `
 ### Plugins
 Initialize a new plugin:
 ```console
-dotnet new pp-solution `
+dotnet new pp-plugin `
 --output "src/Plugins.Warehouse" `
 --PublisherName "tomas" `
 --SigningKeyFilePath "PluginKey.snk" `

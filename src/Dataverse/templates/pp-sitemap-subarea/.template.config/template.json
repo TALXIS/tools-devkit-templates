@@ -3,7 +3,7 @@
   "author": "NETWORG",
   "identity": "TALXIS.DevKit.Templates.Dataverse.Sitemap.Area.Group.SubArea",
   "name": "Power Platform: Site Map Area Group SubArea",
-  "shortName": "pp-sitemapp-subarea",
+  "shortName": "pp-sitemap-subarea",
   "classifications": ["Dataverse", "Power Platform"],
   "sourceName": "Sitemap-Area-Group-SubArea",
   "tags": {
