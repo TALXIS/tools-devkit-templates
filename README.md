@@ -157,10 +157,27 @@ Add an area to the sitemap:
 ```console
 dotnet new pp-sitemap-area `
 --output "src/Solutions.UI" `
---PublisherPrefix "tom" `
---AreaTitle "Warehouse Item" `
 --SolutionRootPath "Declarations" `
---AppName "warehouseapp" `,
+--AppName "tom_warehouseapp" `,
+--allow-scripts yes
+```
+
+Add an group to the area:
+```console
+dotnet new pp-sitemap-area `
+--output "src/Solutions.UI" `
+--SolutionRootPath "Declarations" `
+--AppName "tom_warehouseapp" `,
+--allow-scripts yes
+```
+
+Add an subarea into the group:
+```console
+dotnet new pp-sitemap-area `
+--output "src/Solutions.UI" `
+--SolutionRootPath "Declarations" `
+--EntityLogicalName "tom_warehouseitem" `
+--AppName "tom_warehouseapp" `,
 --allow-scripts yes
 ```
 
@@ -214,13 +231,36 @@ dotnet new pp-security-role-privilege `
 Initialize a new plugin:
 ```console
 dotnet new pp-plugin `
---output "src/Plugins.Warehouse" `
+--output "src/Solutions.Logic" `
 --PublisherName "tomas" `
 --SigningKeyFilePath "PluginKey.snk" `
 --Company "NETWORG" `
 --allow-scripts yes
 ```
 
+Add new assembly:
+```console
+dotnet new pp-plugin-assembly-steps `
+--output "src/Solutions.Logic" `
+--PluginProjectRootPath "..\\Plugins.Warehouse" `
+--SolutionRootPath "Declarations" `
+--allow-scripts yes
+```
+
+Add new step to the assembly:
+```console
+dotnet new pp-plugin-assembly-steps `
+--output "src/Solutions.Logic" `
+--PrimaryEntity "tom_warehousetransaction" `
+--PluginProjectName "Plugins.Warehouse" `
+--PluginName "ValidateWarehouseTransactionPlugin" `
+--Stage "Pre-validation" `
+--SdkMessage "Create" `
+--SolutionRootPath "Declarations" `
+--FilteringAttributes "{tom_itemid, tom_quantity}" `
+--AssemblyId "GUID to identifying your assembly" `
+--allow-scripts yes
+```
 > [!TIP]  
 > You can add component schema validation to your build process using [Power Platform MSBuild targets](https://github.com/TALXIS/tools-devkit-build).
 

@@ -9,7 +9,7 @@
     "type": "project"
   },
   "symbols": {
-    "AssemblyGuidId": {
+    "AssemblyId": {
       "type": "parameter",
       "datatype": "text",
       "replaces": "pluginguididexample",

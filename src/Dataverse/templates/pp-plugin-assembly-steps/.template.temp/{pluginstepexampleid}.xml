@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SdkMessageProcessingStep Name="examplepluginprojectname.examplepluginname: sdkmessageidexampletext of examplepublisher_exampleentity" SdkMessageProcessingStepId="{pluginstepexampleid}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<SdkMessageProcessingStep Name="examplepluginprojectname.examplepluginname: sdkmessageidexampletext of exampleentity" SdkMessageProcessingStepId="{pluginstepexampleid}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SdkMessageId>sdkmessageidexample</SdkMessageId>
   <PluginTypeName>examplepluginprojectname.examplepluginname, buildnameexample, Version=1.0.0.0, Culture=neutral, PublicKeyToken=publickeytokenexample</PluginTypeName>
-  <PrimaryEntity>examplepublisher_exampleentity</PrimaryEntity>
+  <PrimaryEntity>exampleentity</PrimaryEntity>
   <PluginTypeId></PluginTypeId>
   <AsyncAutoDelete>0</AsyncAutoDelete>
   <FilteringAttributes></FilteringAttributes>

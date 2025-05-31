@@ -11,13 +11,6 @@
 	},
   "preferNameDirectory": true,
   "symbols": {
-    "PublisherPrefix": {
-      "type": "parameter",
-      "datatype": "text",
-      "description": "Prefix for the user",
-      "replaces": "userprefixexample",
-      "fileRename": "userprefixexample"
-    },
     "EntityLogicalName": {
       "type": "parameter",
       "datatype": "text",

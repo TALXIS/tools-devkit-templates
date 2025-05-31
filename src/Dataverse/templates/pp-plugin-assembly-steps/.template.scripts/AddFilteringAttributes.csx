@@ -7,7 +7,6 @@ using System.IO;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
-string examplePublisher = "examplepublisher";
 var json = "jsonarraystringwhithentitiesList";
 string xmlPath = ".template.temp/{pluginstepexampleid}.xml";
 string PluginProjectName = "examplepluginprojectname"; 
@@ -29,7 +28,7 @@ dynamic entityData = JsonConvert.DeserializeObject(entitiesList);
 var attributes = new List<string>();
 foreach (string entity in entityData.entities)
 {
-    attributes.Add($"{examplePublisher}_{entity.Trim()}");
+    attributes.Add($"{entity.Trim()}");
 }
 
 XmlDocument doc = new XmlDocument();

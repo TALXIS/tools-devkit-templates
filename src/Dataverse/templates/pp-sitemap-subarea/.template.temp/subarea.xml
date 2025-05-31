@@ -1,1 +1,1 @@
-<SubArea Id="subarea_subareaidexample" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="userprefixexample_entityexamplename" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
+<SubArea Id="subarea_subareaidexample" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="entityexamplename" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />

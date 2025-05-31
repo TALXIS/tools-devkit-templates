@@ -9,19 +9,13 @@
     "type": "project"
   },
   "symbols": {
-    "PublisherPrefix": {
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "examplepublisher",
-      "isRequired": true
-    },
-    "EntityName": {
+    "PrimaryEntity": {
       "type": "parameter",
       "datatype": "text",
       "replaces": "exampleentity",
       "isRequired": true
     },
-    "AssemblyGuidId": {
+    "AssemblyId": {
       "type": "parameter",
       "datatype": "text",
       "replaces": "pluginguididexample",
