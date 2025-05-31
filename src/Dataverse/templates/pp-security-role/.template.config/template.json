@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.SecurityRole",
+  "name": "Power Platform: Security Role",
+  "shortName": "pp-security-role",
+  "classifications": ["Dataverse", "Power Platform"],
+  "sourceName": "Security-Role",
+  "tags": {
+		"language": "XML"
+	},
+  "preferNameDirectory": true,
+  "symbols": {
+    "SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot"
+		},
+    "RoleId": {
+			"type": "parameter",
+      "generator": "guid",
+      "defaultValue": ".",
+      "replaces": "roleidexample",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+    },
+    "RoleName": {
+      "type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+      "replaces": "rolenameexample",
+      "fileRename": "ExampleSecurityRole"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "include": ["**/*.xml"]
+        }
+      ]
+    }
+  ],
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddSecurityRoleToSolution.ps1\""
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding Security Role to solution xml"
+        }
+      ]
+    },
+    {
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Removing Scripts" }],
+			"continueOnError": false,
+			"description": "Removing Scripts"
+		}
+  ]
+}
