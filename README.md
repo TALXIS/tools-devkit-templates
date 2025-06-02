@@ -146,10 +146,9 @@ Add a table to a model-driven app component:
 ```console
 dotnet new pp-app-model-component `
 --output "src/Solutions.UI" `
---PublisherPrefix "tom" `
---EntityLogicalName "warehouseitem" `
+--EntityLogicalName "tom_warehouseitem" `
 --SolutionRootPath "Declarations" `
---AppName "warehouseapp" `,
+--AppName "tom_warehouseapp" `,
 --allow-scripts yes
 ```
 
@@ -164,7 +163,7 @@ dotnet new pp-sitemap-area `
 
 Add an group to the area:
 ```console
-dotnet new pp-sitemap-area `
+dotnet new pp-sitemap-group `
 --output "src/Solutions.UI" `
 --SolutionRootPath "Declarations" `
 --AppName "tom_warehouseapp" `,
@@ -173,7 +172,7 @@ dotnet new pp-sitemap-area `
 
 Add an subarea into the group:
 ```console
-dotnet new pp-sitemap-area `
+dotnet new pp-sitemap-subarea `
 --output "src/Solutions.UI" `
 --SolutionRootPath "Declarations" `
 --EntityLogicalName "tom_warehouseitem" `

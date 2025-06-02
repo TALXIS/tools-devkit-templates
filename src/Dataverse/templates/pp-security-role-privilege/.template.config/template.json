@@ -18,13 +18,13 @@
 			"replaces": "SolutionDeclarationsRoot",
 			"fileRename": "SolutionDeclarationsRoot"
 		},
-    "Entityname": {
+    "EntityLogicalName": {
       "type": "parameter",
 			"datatype": "text",
 			"defaultValue": ".",
       "replaces": "entityexamplename"
     },
-    "Rolename": {
+    "RoleName": {
       "type": "parameter",
 			"datatype": "text",
 			"defaultValue": "eqweqweqwe",
