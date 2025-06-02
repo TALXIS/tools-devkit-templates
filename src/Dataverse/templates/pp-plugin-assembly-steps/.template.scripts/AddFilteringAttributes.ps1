@@ -1,0 +1,1 @@
+Start-Process dotnet-script -ArgumentList ".template.scripts/AddFilteringAttributes.csx" -NoNewWindow -Wait -RedirectStandardOutput ".template.scripts/script_output.txt" -RedirectStandardError ".template.scripts/script_error.txt"

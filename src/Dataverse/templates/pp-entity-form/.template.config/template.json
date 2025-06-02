@@ -14,11 +14,11 @@
 			"modifiers": [
 				{
 					"condition": "(!AddMainForm)",
-					"exclude": ["main/*"]
+					"exclude": ["SolutionDeclarationsRoot/Entities/ItemFolderName/FormXml/main/*"]
 				},
 				{
 					"condition": "(!AddQuickCreateForm)",
-					"exclude": ["quickCreate/*"]
+					"exclude": ["SolutionDeclarationsRoot/Entities/ItemFolderName/FormXml/quick/*"]
 				}
 			]
 		}
@@ -40,6 +40,20 @@
 				}
 			]
 		},
+		"SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot"
+		},
+		"EntitySchemaName": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "ItemFolderName",
+			"fileRename": "ItemFolderName"
+		},
 		"AddMainForm": {
 			"type": "computed",
 			"value": "(FormType == \"main\")"
@@ -49,8 +63,8 @@
 			"value": "(FormType == \"quickCreate\")"
 		},
 		//forms
-		"mainFormId": {
-			"type": "generated",
+		"MainFormId": {
+			"type": "parameter",
 			"generator": "guid",
 			"replaces": "mainFormId",
 			"fileRename": "mainFormId",
@@ -58,8 +72,8 @@
 				"defaultFormat": "d"
 			}
 		},
-		"quickCreateFormId": {
-			"type": "generated",
+		"QuickCreateFormId": {
+			"type": "parameter",
 			"generator": "guid",
 			"replaces": "quickCreateFormId",
 			"fileRename": "quickCreateFormId",
