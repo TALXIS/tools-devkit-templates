@@ -123,8 +123,7 @@ dotnet new pp-entity-attribute `
 --EntitySchemaName "tom_warehousetransaction" `
 --AttributeType "Lookup" `
 --RequiredLevel "required" `
---PublisherPrefix "tom" `
---LogicalName "itemid" `
+--LogicalName "tom_itemid" `
 --DisplayName "Item" `
 --ReferencedEntityName "tom_warehouseitem" `
 --SolutionRootPath "Declarations" `
@@ -195,11 +194,22 @@ Create a row in the main form:
 dotnet new pp-form-row `
 --output "src/Solutions.UI" `
 --AttributeType "WholeNumber" `
---PublisherPrefix "tom" `
---LogicalName "availablequantity" `
+--EntitySchemaName "tom_availablequantity" `
 --FormType "main" `
 --DisplayName "Available Quantity" `
 --EntityName "tom_warehouseitem" `
+--SolutionRootPath "Declarations" `
+--allow-scripts yes
+```
+
+Create a subgrid in the main form:
+```console
+dotnet new pp-form-row `
+--output "src/Solutions.UI" `
+--SubgridLabel "Items list" `
+--EntityLogicalName "tom_warehousetransactions" `
+--FormType "main" `
+--TargetEntityLogicalName "tom_warehouseitem" `
 --SolutionRootPath "Declarations" `
 --allow-scripts yes
 ```

@@ -3,6 +3,6 @@
     <labels>
       <label description="examplerowdisplayname" languagecode="1033" />
     </labels>
-    <control id="examplepublisherprefix_examplecustomerow" classid="{exampleclassid}" datafieldname="examplepublisherprefix_examplecustomerow" />
+    <control id="examplecustomerow" classid="{exampleclassid}" datafieldname="examplecustomerow" />
   </cell>
 </row>

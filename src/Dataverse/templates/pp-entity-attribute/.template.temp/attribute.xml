@@ -1,4 +1,4 @@
-<attribute PhysicalName="examplepublisherprefix_examplecustomentityattribute">
+<attribute PhysicalName="examplecustomentityattribute">
     <!--#if (AttributeType == "SingleLineText") -->
         <Type>string</Type>
     <!--#elseif (AttributeType == "MultipleLinesOfText") -->
@@ -27,8 +27,8 @@
         <Type>image</Type>
     <!--#endif -->
 
-    <Name>examplepublisherprefix_examplecustomentityattribute</Name>
-    <LogicalName>examplepublisherprefix_examplecustomentityattribute</LogicalName>
+    <Name>examplecustomentityattribute</Name>
+    <LogicalName>examplecustomentityattribute</LogicalName>
     <RequiredLevel>attributerequiredlevel</RequiredLevel>
     <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
     <ImeMode>disabled</ImeMode>

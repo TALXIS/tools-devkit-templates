@@ -53,15 +53,8 @@
       ],
       "defaultValue": "required"
     },
-    "PublisherPrefix": {
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "examplepublisherprefix",
-      "fileRename": "examplepublisherprefix",
-      "isRequired": true
-    },
     "LogicalName": {
-      "displayName": "Logical name (without publisher prefix)",
+      "displayName": "Logical name",
       "type": "parameter",
       "datatype": "text",
       "replaces": "examplecustomentityattribute",
