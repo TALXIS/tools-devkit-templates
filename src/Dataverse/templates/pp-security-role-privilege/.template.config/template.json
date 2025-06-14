@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.SecurityRole.RolePrivilege",
+  "name": "Power Platform: RolePrivilege",
+  "shortName": "pp-security-role-privilege",
+  "classifications": ["Dataverse", "Power Platform"],
+  "sourceName": "Role-Privilege",
+  "tags": {
+		"language": "XML"
+	},
+  "preferNameDirectory": true,
+  "symbols": {
+    "SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot"
+		},
+    "EntityLogicalName": {
+      "type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+      "replaces": "entityexamplename"
+    },
+    "RoleName": {
+      "type": "parameter",
+			"datatype": "text",
+			"defaultValue": "eqweqweqwe",
+      "replaces": "securityrolenameexample"
+    },
+    "PrivilegeTypeAndLevel": {
+      "type": "parameter",
+			"datatype": "text",
+      "replaces": "jsonarraystringwhithPrivilegeTypeandandLevel",
+      "description": "String in format: [{ PrivilegeType: ReadAccount, Level: Global }, { PrivilegeType: WriteContact, Level: User }]"
+    }
+  },
+  "sources": [
+  ],
+  "customFileMetadata": [
+    {
+      "condition": "true",
+      "items": {
+        "isTemplate": "true"
+      }
+    }
+  ],
+  "postActions": [
+    {
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/GenerateRolePrivileges.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+      "manualInstructions": [{ "text": "Manually generate role privileges if the script fails" }],
+			"continueOnError": false,
+      "description": "Generate security role privileges"
+		},
+    {
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddPrivilegesToSecurityRole.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+      "manualInstructions": [{ "text": "Manually add privileges to the security role if the script fails" }],
+			"continueOnError": false,
+      "description": "Add privileges to security role"
+		},
+    {
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Removing Scripts" }],
+			"continueOnError": false,
+			"description": "Removing Scripts"
+		}
+  ]
+}

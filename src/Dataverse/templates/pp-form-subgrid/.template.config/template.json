@@ -1,0 +1,124 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "NETWORG",
+    "identity": "TALXIS.DevKit.Templates.Dataverse.UI.Subgrid",
+    "name": "Power Platform: Form Subgrid",
+    "shortName": "pp-form-subgrid",
+    "tags": {
+        "language": "XML",
+        "type": "item"
+    },
+    "sourceName": "subgridconfig",
+    "preferNameDirectory": false,
+    "symbols": {
+        "SolutionRootPath": {
+            "type": "parameter",
+            "datatype": "text",
+            "replaces": "SolutionDeclarationsRoot",
+            "isRequired": true
+        },
+        "CellId": {
+            "type": "generated",
+            "generator": "guid",
+            "replaces": "cellidexample",
+            "parameters": {
+                "defaultFormat": "d"
+            }
+        },
+        "SubgridLabel": {
+            "type": "parameter",
+            "datatype": "text",
+            "replaces": "subgridlabelexample",
+            "isRequired": true,
+            "displayName": "Subgrid Label Text",
+            "description": "Enter the descriptive label for the subgrid."
+        },
+        "ControlId": {
+            "type": "generated",
+            "generator": "guid",
+            "replaces": "controlidexample",
+            "parameters": {
+                "defaultFormat": "d"
+            }
+        },
+        "FormType": {
+            "type": "parameter",
+            "datatype": "choice",
+            "isRequired": true,
+            "replaces": "formtypeexample",
+            "choices": [
+                {
+                    "choice": "main"
+                },
+                {
+                    "choice": "quick"
+                }
+            ],
+            "description": "Select a form type"
+        },
+        "FormId": {
+            "type": "parameter",
+            "datatype": "string",
+            "isRequired": true,
+            "defaultValue": "",
+            "replaces": "formguididexample",
+            "description": "Enter form Id"
+        },
+        "TargetEntityLogicalName": {
+            "type": "parameter",
+            "datatype": "text",
+            "replaces": "targetentitytypeexample",
+            "isRequired": true,
+            "displayName": "Target Entity Logical Name",
+            "description": "Enter the logical name of the entity whose records will be displayed in the subgrid."
+        },
+        "EntityLogicalName": {
+            "type": "parameter",
+            "datatype": "text",
+            "replaces": "entitytypeexample",
+            "isRequired": true,
+            "displayName": "Entity Logical Name",
+            "description": "Enter the logical name of the entity where the subgrid should be created"
+        },
+        "ViewId": {
+            "type": "generated",
+            "generator": "guid",
+            "replaces": "viewidexample",
+            "parameters": {
+                "defaultFormat": "d"
+            }
+        }
+    },
+    "postActions": [
+        {
+            "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+            "args": {
+                "executable": "pwsh",
+                "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/add.ps1\" ",
+                "redirectStandardOutput": "false"
+            },
+            "manualInstructions": [
+                {
+                    "text": "Adding new row to form"
+                }
+            ],
+            "continueOnError": false,
+            "description": "Adding new row to form"
+        },
+        {
+            "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+            "args": {
+                "executable": "pwsh",
+                "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+                "redirectStandardOutput": "false"
+            },
+            "manualInstructions": [
+                {
+                    "text": "Removing Scripts"
+                }
+            ],
+            "continueOnError": false,
+            "description": "Removing Scripts"
+        }
+    ]
+}

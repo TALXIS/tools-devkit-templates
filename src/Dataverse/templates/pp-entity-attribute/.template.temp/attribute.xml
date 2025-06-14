@@ -1,11 +1,34 @@
-<attribute PhysicalName="examplepublisherprefix_examplecustomentityattribute">
-    <!--#if (AttributeType == "WholeNumber") -->
-    <Type>int</Type>
+<attribute PhysicalName="examplecustomentityattribute">
+    <!--#if (AttributeType == "SingleLineText") -->
+        <Type>string</Type>
+    <!--#elseif (AttributeType == "MultipleLinesOfText") -->
+        <Type>memo</Type>
+    <!--#elseif (AttributeType == "TwoOptions") -->
+        <Type>boolean</Type>
+    <!--#elseif (AttributeType == "WholeNumber") -->
+        <Type>int</Type>
+    <!--#elseif (AttributeType == "FloatingPoint") -->
+        <Type>double</Type>
+    <!--#elseif (AttributeType == "Decimal") -->
+        <Type>decimal</Type>
+    <!--#elseif (AttributeType == "Currency") -->
+        <Type>money</Type>
+    <!--#elseif (AttributeType == "DateTime") -->
+        <Type>datetime</Type>
     <!--#elseif (AttributeType == "Lookup") -->
-    <Type>lookup</Type>
+        <Type>lookup</Type>
+    <!--#elseif (AttributeType == "Customer") -->
+        <Type>customer</Type>
+    <!--#elseif (AttributeType == "Owner") -->
+        <Type>owner</Type>
+    <!--#elseif (AttributeType == "File") -->
+        <Type>file</Type>
+    <!--#elseif (AttributeType == "Image") -->
+        <Type>image</Type>
     <!--#endif -->
-    <Name>examplepublisherprefix_examplecustomentityattribute</Name>
-    <LogicalName>examplepublisherprefix_examplecustomentityattribute</LogicalName>
+
+    <Name>examplecustomentityattribute</Name>
+    <LogicalName>examplecustomentityattribute</LogicalName>
     <RequiredLevel>attributerequiredlevel</RequiredLevel>
     <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
     <ImeMode>disabled</ImeMode>
@@ -28,22 +51,57 @@
     <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
     <IsDataSourceSecret>0</IsDataSourceSecret>
     <AutoNumberFormat></AutoNumberFormat>
-    <!--#if (AttributeType == "Lookup") -->
-    <IsSearchable>0</IsSearchable>
+
+    <!--#if (AttributeType == "Lookup" or AttributeType == "Customer" or AttributeType == "Owner") -->
+        <IsSearchable>0</IsSearchable>
     <!--#else -->
-    <IsSearchable>1</IsSearchable>
+        <IsSearchable>1</IsSearchable>
     <!--#endif -->
+
     <IsFilterable>0</IsFilterable>
     <IsRetrievable>0</IsRetrievable>
     <IsLocalizable>0</IsLocalizable>
-    <!--#if (AttributeType == "WholeNumber") -->
-    <Format>none</Format>
-    <MinValue>0</MinValue>
-    <MaxValue>1000000000</MaxValue>
+
+    <!--#if (AttributeType == "SingleLineText") -->
+        <MaxLength>100</MaxLength>
+    <!--#elseif (AttributeType == "MultipleLinesOfText") -->
+        <MaxLength>2000</MaxLength>
+    <!--#elseif (AttributeType == "TwoOptions") -->
+        <DefaultValue>false</DefaultValue>
+    <!--#elseif (AttributeType == "WholeNumber") -->
+        <Format>none</Format>
+        <MinValue>0</MinValue>
+        <MaxValue>1000000000</MaxValue>
+    <!--#elseif (AttributeType == "FloatingPoint") -->
+        <MinValue>0</MinValue>
+        <MaxValue>1000000</MaxValue>
+    <!--#elseif (AttributeType == "Decimal") -->
+        <MinValue>0.0</MinValue>
+        <MaxValue>1000000.0</MaxValue>
+        <Precision>2</Precision>
+    <!--#elseif (AttributeType == "Currency") -->
+        <MinValue>0</MinValue>
+        <MaxValue>1000000</MaxValue>
+        <Precision>2</Precision>
+    <!--#elseif (AttributeType == "DateTime") -->
+        <DateTimeFormat>dateonly</DateTimeFormat>
     <!--#elseif (AttributeType == "Lookup") -->
-    <LookupStyle>single</LookupStyle>
-    <LookupTypes />
+        <LookupStyle>single</LookupStyle>
+        <LookupTypes />
+    <!--#elseif (AttributeType == "Customer") -->
+        <LookupStyle>single</LookupStyle>
+        <LookupTypes>Account,Contact</LookupTypes>
+    <!--#elseif (AttributeType == "Owner") -->
+        <LookupStyle>single</LookupStyle>
+        <LookupTypes>User,Team</LookupTypes>
+    <!--#elseif (AttributeType == "File") -->
+        <MaxFileSize>10485760</MaxFileSize>
+        <AllowedFileTypes>pdf,doc,docx</AllowedFileTypes>
+    <!--#elseif (AttributeType == "Image") -->
+        <MaxImageSize>1048576</MaxImageSize>
+        <AllowedImageFormats>jpg,png</AllowedImageFormats>
     <!--#endif -->
+
     <displaynames>
         <displayname description="ExampleEntityAttributeDisplayName" languagecode="1033" />
     </displaynames>

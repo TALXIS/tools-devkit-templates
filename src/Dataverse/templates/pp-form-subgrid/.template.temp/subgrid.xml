@@ -1,0 +1,22 @@
+<row>
+    <cell locklevel="0" id="cellidexample" rowspan="4" colspan="1"
+        auto="false">
+        <labels>
+            <label description="subgridlabelexample" languagecode="1033" />
+        </labels>
+        <control indicationOfSubgrid="true" id="controlidexample"
+            classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+            <parameters>
+                <RecordsPerPage>4</RecordsPerPage>
+                <AutoExpand>Fixed</AutoExpand>
+                <EnableQuickFind>false</EnableQuickFind>
+                <EnableViewPicker>false</EnableViewPicker>
+                <EnableChartPicker>true</EnableChartPicker>
+                <ChartGridMode>All</ChartGridMode>
+                <TargetEntityType>targetentitytypeexample</TargetEntityType>
+                <ViewId>viewidexample</ViewId>
+                <ViewIds>viewidexample</ViewIds>
+            </parameters>
+        </control>
+    </cell>
+</row>
