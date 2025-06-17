@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.ModelDrivenApp.Component",
+  "name": "Power Platform: ModelDriven App Component",
+  "shortName": "pp-app-model-component",
+  "classifications": ["Dataverse", "Power Platform"],
+  "sourceName": "App-ModelDriven-component",
+  "tags": {
+		"language": "XML"
+	},
+  "preferNameDirectory": true,
+  "symbols": {
+    "AppName": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Prefix for the user",
+      "replaces": "appexamplename",
+      "fileRename": "appexamplename"
+    },
+    "EntityType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "description": "Select attribute type",
+      "defaultValue": "Entities",
+      "choices": [
+        { "choice": "Entity" },
+        { "choice": "View" },
+        { "choice": "Business Process Flow"},
+        { "choice": "Command for Form"},
+        { "choice": "Grid, subgrid" },
+        { "choice": "Chart"},
+        { "choice": "Form" },
+        { "choice": "Sitemap"}
+      ]
+    },
+    "EntityTypeId": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "entitytypeexample",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(EntityType == 'Entities')",
+            "value": "1"
+          },
+          {
+            "condition": "(EntityType == 'Views')",
+            "value": "26"
+          },
+          {
+            "condition": "(EntityType == 'Business Process Flows')",
+            "value": "29"
+          },
+          {
+            "condition": "(EntityType == 'Command for Forms')",
+            "value": "48"
+          },
+          {
+            "condition": "(EntityType == 'Grids, sub grids')",
+            "value": "48"
+          },
+          {
+            "condition": "(EntityType == 'Charts')",
+            "value": "59"
+          },
+          {
+            "condition": "(EntityType == 'Forms')",
+            "value": "60"
+          },
+          {
+            "condition": "(EntityType == 'Sitemap')",
+            "value": "62"
+          }
+        ]
+      }
+    },
+    "EntityLogicalName": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Name of the entity",
+      "replaces": "entityexamplename"
+    },
+    "SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot"
+		}
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "include": ["**/*.xml"]
+        }
+      ]
+    }
+  ],
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddComponentToModelDrivenApp.ps1\""
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding Model Driven App to solution xml"
+        }
+      ]
+    },
+    {
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Removing Scripts" }],
+			"continueOnError": false,
+			"description": "Removing Scripts"
+		}
+  ]
+}

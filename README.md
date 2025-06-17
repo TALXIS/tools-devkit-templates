@@ -41,7 +41,7 @@ dotnet new install TALXIS.DevKit.Templates.Dataverse
 Initialize a new empty solution:
 ```console
 dotnet new pp-solution `
---output "src\Solutions.DataModel" `
+--output "src/Solutions.DataModel" `
 --PublisherName "tomas" `
 --PublisherPrefix "tom" `
 --allow-scripts yes
@@ -51,7 +51,7 @@ dotnet new pp-solution `
 Create a new *standard* table:
 ```console
 dotnet new pp-entity `
---output "src\Solutions.DataModel" `
+--output "src/Solutions.DataModel" `
 --Behavior New `
 --PublisherPrefix "tom" `
 --LogicalName "location" `
@@ -65,7 +65,7 @@ dotnet new pp-entity `
 Create a new *activity* table:
 ```console
 dotnet new pp-entity `
---output "src\Solutions.DataModel" `
+--output "src/Solutions.DataModel" `
 --EntityType "Activity" `
 --Behavior "New" `
 --PublisherPrefix "tom" `
@@ -80,7 +80,7 @@ dotnet new pp-entity `
 Add an existing *custom table* to a solution:
 ```console
 dotnet new pp-entity `
---output "src\Solutions.UI" `
+--output "src/Solutions.UI" `
 --Behavior "Existing" `
 --PublisherPrefix "tom" `
 --LogicalName "shiftevent" `
@@ -92,7 +92,7 @@ dotnet new pp-entity `
 Add an existing *system table* to a solution:
 ```console
 dotnet new pp-entity `
---output "src\Solutions.UI" `
+--output "src/Solutions.UI" `
 --Behavior "Existing" `
 --IsSystemEntity "true"  `
 --LogicalName "account" `
@@ -105,7 +105,7 @@ dotnet new pp-entity `
 Add a whole number column to table:
 ```console
 dotnet new pp-entity-attribute `
---output "src\Solutions.DataModel" `
+--output "src/Solutions.DataModel" `
 --EntitySchemaName "tom_warehouseitem" `
 --AttributeType "WholeNumber" `
 --RequiredLevel "required" `
@@ -119,18 +119,167 @@ dotnet new pp-entity-attribute `
 Add a lookup column to table:
 ```console
 dotnet new pp-entity-attribute `
---output "src\Solutions.DataModel" `
+--output "src/Solutions.DataModel" `
 --EntitySchemaName "tom_warehousetransaction" `
 --AttributeType "Lookup" `
 --RequiredLevel "required" `
---PublisherPrefix "tom" `
---LogicalName "itemid" `
+--LogicalName "tom_itemid" `
 --DisplayName "Item" `
 --ReferencedEntityName "tom_warehouseitem" `
 --SolutionRootPath "Declarations" `
 --allow-scripts yes
 ```
 
+### UI
+Create a model-driven app:
+```console
+dotnet new pp-app-model `
+--output "src/Solutions.UI" `
+--PublisherPrefix "tom" `
+--LogicalName "warehouseapp" `
+--SolutionRootPath "Declarations" `
+--allow-scripts yes
+```
+
+Add a table to a model-driven app component:
+```console
+dotnet new pp-app-model-component `
+--output "src/Solutions.UI" `
+--EntityLogicalName "tom_warehouseitem" `
+--SolutionRootPath "Declarations" `
+--AppName "tom_warehouseapp" `,
+--allow-scripts yes
+```
+
+Add an area to the sitemap:
+```console
+dotnet new pp-sitemap-area `
+--output "src/Solutions.UI" `
+--SolutionRootPath "Declarations" `
+--AppName "tom_warehouseapp" `,
+--allow-scripts yes
+```
+
+Add an group to the area:
+```console
+dotnet new pp-sitemap-group `
+--output "src/Solutions.UI" `
+--SolutionRootPath "Declarations" `
+--AppName "tom_warehouseapp" `,
+--allow-scripts yes
+```
+
+Add an subarea into the group:
+```console
+dotnet new pp-sitemap-subarea `
+--output "src/Solutions.UI" `
+--SolutionRootPath "Declarations" `
+--EntityLogicalName "tom_warehouseitem" `
+--AppName "tom_warehouseapp" `,
+--allow-scripts yes
+```
+
+Create a main form for a table:
+```console
+dotnet new pp-entity-form `
+--output "src/Solutions.UI" `
+--FormType "main" `
+--SolutionRootPath "Declarations" `
+--EntitySchemaName "tom_warehouseitem" `
+--allow-scripts yes
+```
+
+Create a row in the main form:
+```console
+dotnet new pp-form-row `
+--output "src/Solutions.UI" `
+--AttributeType "WholeNumber" `
+--EntitySchemaName "tom_availablequantity" `
+--FormType "main" `
+--DisplayName "Available Quantity" `
+--EntityName "tom_warehouseitem" `
+--SolutionRootPath "Declarations" `
+--allow-scripts yes
+```
+
+Create a subgrid in the main form:
+```console
+dotnet new pp-form-row `
+--output "src/Solutions.UI" `
+--SubgridLabel "Items list" `
+--EntityLogicalName "tom_warehousetransactions" `
+--FormType "main" `
+--TargetEntityLogicalName "tom_warehouseitem" `
+--SolutionRootPath "Declarations" `
+--allow-scripts yes
+```
+
+### Security roles
+
+Create a security role:
+```console
+dotnet new pp-security-role `
+--output "src/Solutions.Security" `
+--SolutionRootPath "Declarations" `
+--rolename "Warehouse Manager" `
+--allow-scripts yes
+```
+
+Add privileges to a security role:
+```console
+dotnet new pp-security-role-privilege `
+--output "src/Solutions.Security" `
+--SolutionRootPath "Declarations" `
+--EntitySchemaName "tom_warehouseitem" `
+--rolename "Warehouse Manager" `
+--PrivilegeTypeAndLevel "[{ PrivilegeType: Read, Level: Global }, { PrivilegeType: Write, Level: Global }]" `
+--allow-scripts yes
+```
+
+Give specific security roles access to the App:
+```console
+dotnet new pp-security-role-app `
+--output "src/Solutions.UI" `
+ --SolutionRootPath "Declarations" `
+ --SecurityRolesIds "[$securityRoleId,$securityRoleId]"  `
+ --AppLogicalName "tom_warehouseapp" `
+ --allow-scripts yes
+```
+
+### Plugins
+Initialize a new plugin:
+```console
+dotnet new pp-plugin `
+--output "src/Plugins.Warehouse" `
+--PublisherName "tomas" `
+--SigningKeyFilePath "PluginKey.snk" `
+--Company "NETWORG" `
+--allow-scripts yes
+```
+
+Add new assembly:
+```console
+dotnet new pp-plugin-assembly-steps `
+--output "src/Solutions.Logic" `
+--PluginProjectRootPath "..\\Plugins.Warehouse" `
+--SolutionRootPath "Declarations" `
+--allow-scripts yes
+```
+
+Add new step to the assembly:
+```console
+dotnet new pp-plugin-assembly-steps `
+--output "src/Solutions.Logic" `
+--PrimaryEntity "tom_warehousetransaction" `
+--PluginProjectName "Plugins.Warehouse" `
+--PluginName "ValidateWarehouseTransactionPlugin" `
+--Stage "Pre-validation" `
+--SdkMessage "Create" `
+--SolutionRootPath "Declarations" `
+--FilteringAttributes "{tom_itemid, tom_quantity}" `
+--AssemblyId "GUID to identifying your assembly" `
+--allow-scripts yes
+```
 > [!TIP]  
 > You can add component schema validation to your build process using [Power Platform MSBuild targets](https://github.com/TALXIS/tools-devkit-build).
 
@@ -142,7 +291,7 @@ We are happy to collaborate with developers and contributors interested in enhan
 
 #### Using your local version of templates
 
-Run the following terminal command in the folder `src\Dataverse/templates`:
+Run the following terminal command in the folder `src/Dataverse/templates`:
 
 ```
 dotnet new install "." --force

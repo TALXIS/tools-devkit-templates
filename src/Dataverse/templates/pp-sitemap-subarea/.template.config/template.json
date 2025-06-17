@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.Sitemap.Area.Group.SubArea",
+  "name": "Power Platform: Site Map Area Group SubArea",
+  "shortName": "pp-sitemap-subarea",
+  "classifications": ["Dataverse", "Power Platform"],
+  "sourceName": "Sitemap-Area-Group-SubArea",
+  "tags": {
+		"language": "XML"
+	},
+  "preferNameDirectory": true,
+  "symbols": {
+    "EntityLogicalName": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Name of the entity",
+      "replaces": "entityexamplename"
+    },
+    "SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot"
+		},
+    "GroupTitle": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Group Title",
+      "defaultValue": "NewTitle",
+      "replaces": "grouptitleexample",
+      "fileRename": "grouptitleexample"
+    },
+    "AreaTitle": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Area Title",
+      "defaultValue": "NewTitle",
+      "replaces": "areatitleexample",
+      "fileRename": "areatitleexample"
+    },
+    "AppName": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Prefix for the user",
+      "replaces": "appexamplename",
+      "fileRename": "appexamplename"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "include": ["**/*.xml"]
+        }
+      ]
+    }
+  ],
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/GenerateIdForAppModuleSiteMap.ps1\" "
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding Model Driven App to solution xml"
+        }
+      ]
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddSubAreaToGroup.ps1\""
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding area to the sitemapp "
+        }
+      ]
+    },
+    {
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Removing Scripts" }],
+			"continueOnError": false,
+			"description": "Removing Scripts"
+		}
+  ]
+}

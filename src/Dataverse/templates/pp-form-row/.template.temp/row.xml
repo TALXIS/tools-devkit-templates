@@ -1,0 +1,8 @@
+<row>
+  <cell id="{idexample}" labelid="{labelidexample}">
+    <labels>
+      <label description="examplerowdisplayname" languagecode="1033" />
+    </labels>
+    <control id="examplecustomerow" classid="{exampleclassid}" datafieldname="examplecustomerow" />
+  </cell>
+</row>
