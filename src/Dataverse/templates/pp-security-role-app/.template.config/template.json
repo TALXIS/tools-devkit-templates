@@ -24,7 +24,7 @@
 			"defaultValue": ".",
       "replaces": "appexamplename"
     },
-    "PrivilegeTypeAndLevel": {
+    "SecurityRolesIds": {
       "type": "parameter",
 			"datatype": "text",
       "replaces": "jsonarraystringwhithrolesids",
