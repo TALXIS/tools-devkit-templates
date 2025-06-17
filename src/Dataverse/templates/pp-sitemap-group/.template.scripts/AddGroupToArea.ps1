@@ -5,7 +5,8 @@ $groupPath = (Resolve-Path '.template.temp/group.xml').Path
 [xml]$entityXml = Get-Content -Path $entityXmlPath -Raw
 [xml]$groupXml = Get-Content -Path $groupPath -Raw
 
-$areaNode = $entityXml.SelectSingleNode("//SiteMap/Area")
+$areaNode = $entityXml.SelectSingleNode("//SiteMap/Area[@ResourceId='SitemapDesigner.areatitleexample']")
+
 if (-not $areaNode) {
     exit 1
 }

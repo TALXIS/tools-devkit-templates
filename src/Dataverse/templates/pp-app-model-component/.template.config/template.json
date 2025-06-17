@@ -24,13 +24,13 @@
       "description": "Select attribute type",
       "defaultValue": "Entities",
       "choices": [
-        { "choice": "Entities" },
-        { "choice": "Views" },
-        { "choice": "Business Process Flows"},
-        { "choice": "Command for Forms"},
-        { "choice": "Grids, sub grids" },
-        { "choice": "Charts"},
-        { "choice": "Forms" },
+        { "choice": "Entity" },
+        { "choice": "View" },
+        { "choice": "Business Process Flow"},
+        { "choice": "Command for Form"},
+        { "choice": "Grid, subgrid" },
+        { "choice": "Chart"},
+        { "choice": "Form" },
         { "choice": "Sitemap"}
       ]
     },

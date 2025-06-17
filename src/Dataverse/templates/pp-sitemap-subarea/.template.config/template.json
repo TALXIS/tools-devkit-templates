@@ -24,6 +24,22 @@
 			"replaces": "SolutionDeclarationsRoot",
 			"fileRename": "SolutionDeclarationsRoot"
 		},
+    "GroupTitle": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Group Title",
+      "defaultValue": "NewTitle",
+      "replaces": "grouptitleexample",
+      "fileRename": "grouptitleexample"
+    },
+    "AreaTitle": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Area Title",
+      "defaultValue": "NewTitle",
+      "replaces": "areatitleexample",
+      "fileRename": "areatitleexample"
+    },
     "AppName": {
       "type": "parameter",
       "datatype": "text",

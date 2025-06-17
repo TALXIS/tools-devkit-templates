@@ -24,6 +24,14 @@
       "description": "Prefix for the user",
       "replaces": "appexamplename",
       "fileRename": "appexamplename"
+    },
+    "AreaTitle": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Area Title",
+      "defaultValue": "NewTitle",
+      "replaces": "areatitleexample",
+      "fileRename": "areatitleexample"
     }
   },
   "sources": [
