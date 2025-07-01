@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <PowerAppsComponentType>ScriptLibrary</PowerAppsComponentType>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <Target Name="npmInstall" BeforeTargets="BeforeBuild" Condition="Exists('$(ProjectDir)package.json') AND !Exists('$(ProjectDir)node_modules')">
+    <Exec Command="npm install" WorkingDirectory="$(ProjectDir)" ConsoleToMsBuild="true" />
+  </Target>
+  <Target Name="buildTypescript" BeforeTargets="BeforeBuild" Condition="Exists('$(ProjectDir)package.json')">
+    <Exec Command="npm run build" WorkingDirectory="$(ProjectDir)" ConsoleToMsBuild="true" />
+  </Target>
+</Project>

@@ -236,16 +236,6 @@ dotnet new pp-security-role-privilege `
 --allow-scripts yes
 ```
 
-Give specific security roles access to the App:
-```console
-dotnet new pp-security-role-app `
---output "src/Solutions.UI" `
- --SolutionRootPath "Declarations" `
- --SecurityRolesIds "[$securityRoleId,$securityRoleId]"  `
- --AppLogicalName "tom_warehouseapp" `
- --allow-scripts yes
-```
-
 ### Plugins
 Initialize a new plugin:
 ```console

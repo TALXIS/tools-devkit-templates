@@ -1,0 +1,223 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.UI.FormEventHandler",
+  "name": "Power Platform: Form Event Handler",
+  "shortName": "pp-form-event-handler",
+  "tags": {
+    "language": "XML",
+    "type": "item"
+  },
+  "sourceName": "formeventexample",
+  "sources": [
+    {
+      "exclude": [
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        "*/**/[Bb]in/**",
+        "*/**/[Oo]bj/**",
+        "**/**/[Bb]in/**",
+        "**/**/[Oo]bj/**",
+        ".template.config/**/*"
+      ]
+    }
+  ],
+  "preferNameDirectory": true,
+  "symbols": {
+    "EntityName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exampleentityname",
+      "isRequired": true
+    },
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplepublisherprefix",
+      "isRequired": true
+    },
+    "SolutionRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot",
+      "isRequired": true
+    },
+    "FormType": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exampleformtype",
+      "isRequired": true
+    },
+    "FormGUIDId": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": true,
+      "defaultValue": "",
+      "replaces": "formguididexample",
+      "description": "Enter form Id"
+    },
+    "LibraryProjectRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "libraryprojectrootpathexample",
+      "defaultValue": "LibraryProjectRootPathDefaultValue"
+    },
+    "HandlerUniqueId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "examplehandleruniqueid",
+      "parameters": {
+        "defaultFormat": "d"
+      }
+    },
+    "WebResourceId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "examplewebresourceid",
+      "parameters": {
+        "defaultFormat": "d"
+      }
+    },
+    "LibraryUniqueId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "examplelibraryuniqueid",
+      "parameters": {
+        "defaultFormat": "d"
+      }
+    },
+    "EventType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "isRequired": true,
+      "replaces": "exampleeventname",
+      "description": "Select event type",
+      "choices": [
+        {
+          "choice": "onload"
+        },
+        {
+          "choice": "onsave"
+        },
+        {
+          "choice": "onchange"
+        }
+      ]
+    },
+    "FunctionName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplefunctionname",
+      "isRequired": true,
+      "description": "Enter function name"
+    },
+    "PassExecutionContext": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "replaces": "examplepassexecutioncontext",
+      "isRequired": false,
+      "description": "Pass execution context to function (default: true)"
+    },
+    "AttributeName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exampleattributename",
+      "isRequired": false,
+      "description": "Enter attribute name (required for AttributeOnChange event type)"
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/CopyJSFile.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Copy JS File"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Copy JS File"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddLibrary.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Add library to fetchxml"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Add library to fetchxml"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddLibraryToSolutionXml.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Add Library To Solution Xml"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Add Library To Solution Xml"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddEvent.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Add handler to fetchxml"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Add handler to fetchxml"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddSolutionPackageMapFileToCdsProj.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Add Solution Package Map File To CdsProj"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Add Solution Package Map File To CdsProj"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Removing template files"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Removing template files"
+    }
+  ]
+}

@@ -22,7 +22,7 @@
       "type": "parameter",
       "datatype": "choice",
       "description": "Select attribute type",
-      "defaultValue": "Entities",
+      "defaultValue": "Entity",
       "choices": [
         { "choice": "Entity" },
         { "choice": "View" },
@@ -42,31 +42,31 @@
         "datatype": "string",
         "cases": [
           {
-            "condition": "(EntityType == 'Entities')",
+            "condition": "(EntityType == 'Entity')",
             "value": "1"
           },
           {
-            "condition": "(EntityType == 'Views')",
+            "condition": "(EntityType == 'View')",
             "value": "26"
           },
           {
-            "condition": "(EntityType == 'Business Process Flows')",
+            "condition": "(EntityType == 'Business Process Flow')",
             "value": "29"
           },
           {
-            "condition": "(EntityType == 'Command for Forms')",
+            "condition": "(EntityType == 'Command for Form')",
             "value": "48"
           },
           {
-            "condition": "(EntityType == 'Grids, sub grids')",
+            "condition": "(EntityType == 'Grid, subgrid')",
             "value": "48"
           },
           {
-            "condition": "(EntityType == 'Charts')",
+            "condition": "(EntityType == 'Chart')",
             "value": "59"
           },
           {
-            "condition": "(EntityType == 'Forms')",
+            "condition": "(EntityType == 'Form')",
             "value": "60"
           },
           {

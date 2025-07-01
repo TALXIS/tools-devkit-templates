@@ -1,135 +1,58 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "NETWORG",
-  "identity": "TALXIS.DevKit.Templates.Dataverse.Script.Library",
-  "name": "Power Platform: Script Library",
+  "classifications": [ "TALXIS", "Dataverse", "Script Library" ],
+  "identity": "TALXIS.DevKit.Templates.Dataverse.ScriptLibrary",
+  "name": "TALXIS Script Library",
   "shortName": "pp-script-library",
   "tags": {
-    "language": "Typescript",
-    "type": "item"
+    "language": "C#",
+    "type": "project"
   },
-  "sourceName": "examplemodulename",
+  "sourceName": "examplesourcename",
+  "preferNameDirectory": true,
+  "symbols": {
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "string",
+      "replaces": "examplepublisherprefix",
+      "FileRename": "examplepublisherprefix",
+      "defaultValue": "talxis",
+      "description": "Publisher prefix for your solution"
+    },
+    "ModuleName": {
+      "type": "parameter",
+      "datatype": "string",
+      "replaces": "ExampleModuleName",
+      "defaultValue": "MyModule",
+      "description": "Name of your script module"
+    },
+    "EntityName": {
+      "type": "parameter",
+      "datatype": "string",
+      "replaces": "exampleentityname",
+      "FileRename": "exampleentityname",
+      "defaultValue": "account",
+      "description": "Logical name of entity"
+    }
+  },
   "sources": [
     {
       "modifiers": [
+        {
+          "exclude": [
+            ".vs/**/*",
+            ".vscode/**/*",
+            "bin/**/*",
+            "obj/**/*",
+            "node_modules/**/*",
+            "dist/**/*"
+          ]
+        }
       ]
     }
   ],
-  "preferNameDirectory": false,
-  "symbols": {
-    "webresourceid": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "webresourceid",
-      "fileRename": "webresourceid",
-      "parameters": {
-        "defaultFormat": "d"
-      }
-    },
-    //this was supposed to be done using msbuild props binding but it didn't work for some reason
-    "SolutionRootPath": {
-      "type": "parameter",
-      "datatype": "text",
-      "defaultValue": ".",
-      "replaces": "SolutionDeclarationsRoot",
-      "fileRename": "SolutionDeclarationsRoot"
-    },
-    "PublisherPrefix": {
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "examplepublisherprefix",
-      "fileRename": "examplepublisherprefix",
-      "isRequired": true,
-      "isEnabled": true
-    },
-    "EntityName": {
-      "displayName": "Logical name (without publisher prefix)",
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "exampleentityname",
-      "fileRename": "exampleentityname",
-      "isRequired": true
-    },
-    "ModuleName": {
-      "displayName": "Name of the TS module to be created",
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "ExampleModuleName",
-      "fileRename": "ExampleModuleName",
-      "isRequired": false
-    }
-  },
   "postActions": [
-    {
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "args": {
-        "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddWebresourceToSolution.ps1\"",
-        "redirectStandardOutput": "false"
-      },
-      "manualInstructions": [
-        {
-          "text": "Add Webresource To Solution"
-        }
-      ],
-      "continueOnError": false,
-      "description": "Add Webresource To Solution"
-    },
-    {
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "args": {
-        "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddTypescriptBuildTargets.ps1\"",
-        "redirectStandardOutput": "false"
-      },
-      "manualInstructions": [
-        {
-          "text": "Add Typescript Build Targets"
-        }
-      ],
-      "continueOnError": false,
-      "description": "Add Typescript Build Targets"
-    },
-    {
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "args": {
-        "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddSolutionPackageMapFileToCdsProj.ps1\"",
-        "redirectStandardOutput": "false"
-      },
-      "manualInstructions": [
-        {
-          "text": "Add Solution Package Map File To CdsProj"
-        }
-      ],
-      "continueOnError": false,
-      "description": "Add Solution Package Map File To CdsProj"
-    },
-    {
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "args": {
-        "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddWebresourcesToCustomizations.ps1\"",
-        "redirectStandardOutput": "false"
-      },
-      "manualInstructions": [
-        {
-          "text": "Add Webresource To Customizations"
-        }
-      ],
-      "continueOnError": false,
-      "description": "Add Webresource To Customizations"
-    },
-    {
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "args": {
-        "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
-        "redirectStandardOutput": "false"
-      },
-      "manualInstructions": [ { "text": "Removing Scripts" } ],
-      "continueOnError": false,
-      "description": "Removing Scripts"
-    }
+    
   ]
 }

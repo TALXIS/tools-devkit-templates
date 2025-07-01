@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "esModuleInterop": true,
+      "moduleResolution": "Node",
+      "module": "CommonJS",
+      "target": "ESNext",
+      "noImplicitAny": true,
+      "removeComments": true,
+      "preserveConstEnums": true,
+      "sourceMap": true,
+      "outDir": "build"
+    }
+}

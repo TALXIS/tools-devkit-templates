@@ -4,7 +4,7 @@ $csproj = Get-ChildItem -Path . -Filter *.cdsproj | Select-Object -First 1
 
 
 $solutionPackageMapFilePathComponent = $xml.CreateElement("SolutionPackageMapFilePath",  $xml.Project.NamespaceURI)
-$solutionPackageMapFilePathComponent.InnerText = "`$(ProjectDir)map.xml"
+$solutionPackageMapFilePathComponent.InnerText = "libraryprojectrootpathexamplemap.xml"
 
 $xml.Project.PropertyGroup.AppendChild($solutionPackageMapFilePathComponent)
 

@@ -1,0 +1,28 @@
+{
+  "name": "{{name}}",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc -p ."
+  },
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "MIT",
+  "description": "Dynamics 365 TypeScript web resource project template.",
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/sinon": "^17.0.3",
+    "@types/xrm": "^9.0.87",
+    "jest": "^29.7.0",
+    "sinon": "^10.0.1",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.7.3",
+    "xrm-mock": "^3.6.1"
+  },
+  "dependencies": {
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}
