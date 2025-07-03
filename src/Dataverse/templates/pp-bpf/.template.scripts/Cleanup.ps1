@@ -1,0 +1,1 @@
+Remove-Item .template.scripts -Recurse -Force

@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.BusinessProcessFlows.Stage",
+  "name": "Power Platform: BPF Stage",
+  "shortName": "pp-bpf-stage",
+  "tags": {
+    "language": "XML",
+    "type": "item"
+  },
+  "sourceName": "SolutionLogicalNameExample",
+  "sources": [
+    {
+      "exclude": [
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        "*/**/[Bb]in/**",
+        "*/**/[Oo]bj/**",
+        "**/**/[Bb]in/**",
+        "**/**/[Oo]bj/**",
+        ".template.config/**/*"
+      ]
+    }
+  ],
+  "preferNameDirectory": true,
+  "symbols": {
+    "SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot"
+		},
+    "FormId": {
+      "type": "parameter",
+      "generator": "text",
+      "replaces": "mainFormIdexample",
+      "fileRename": "mainFormIdexample"
+    },
+    "BPFLogicalName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplebpfname",
+      "fileRename": "examplebpfname",
+      "isRequired": true
+    },
+    "PrimaryEntity": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "primaryentityexample",
+      "fileRename": "primaryentityexample"
+    },
+    "StageName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "stageexamplename",
+      "fileRename": "stageexamplename"
+    },
+    "StageExampleId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "stageexampleid",
+      "fileRename": "stageexampleid",
+      "parameters": {
+        "defaultFormat": "d"
+      }
+    },
+    "isThisaLastStage": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "ture"
+    }
+  },
+  "primaryOutputs": [
+    {
+      "path": "SolutionLogicalNameExample.cdsproj"
+    }
+  ],
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/NextStage.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddToXaml.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddToForm.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/steplabels.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Removing template files"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Removing template files"
+    }
+  ]
+}

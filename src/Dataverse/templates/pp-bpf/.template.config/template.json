@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.BusinessProcessFlows",
+  "name": "Power Platform: Business Process Flow",
+  "shortName": "pp-bpf",
+  "tags": {
+    "language": "XML",
+    "type": "item"
+  },
+  "sourceName": "SolutionLogicalNameExample",
+  "sources": [
+    {
+      "exclude": [
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        "*/**/[Bb]in/**",
+        "*/**/[Oo]bj/**",
+        "**/**/[Bb]in/**",
+        "**/**/[Oo]bj/**",
+        ".template.config/**/*"
+      ]
+    }
+  ],
+  "preferNameDirectory": true,
+  "symbols": {
+    "SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot"
+		},
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplepublisher",
+      "fileRename": "examplepublisher",
+      "isRequired": true
+    },
+    "FormId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "mainFormIdexample",
+      "fileRename": "mainFormIdexample",
+      "parameters": {
+        "defaultFormat": "d"
+      }
+    },
+    "BPFName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplebpfname",
+      "fileRename": "examplebpfname",
+      "isRequired": true
+    },
+    "PrimaryEntity": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "primaryentityexample",
+      "fileRename": "primaryentityexample"
+    }
+  },
+  "primaryOutputs": [
+    {
+      "path": "SolutionLogicalNameExample.cdsproj"
+    }
+  ],
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/GenerateWorkflowId.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddFormToSolutionXml.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Removing template files"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Removing template files"
+    }
+  ]
+}

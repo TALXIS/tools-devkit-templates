@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{exampleworkflowuniqueid}" Name="examplebpfname" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/examplebpfname-exampleworkflowuniqueidcapital.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>4</Category>
+  <Mode>0</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>1</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <processorder>100</processorder>
+  <RunAs>1</RunAs>
+  <UniqueName>examplepublisher_examplebpfname</UniqueName>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <IsCusexamplepublisherizable>1</IsCusexamplepublisherizable>
+  <BusinessProcessType>0</BusinessProcessType>
+  <IsCusexamplepublisherProcessingStepAllowedForOtherPublishers>1</IsCusexamplepublisherProcessingStepAllowedForOtherPublishers>
+  <ProcessTriggerScope>1</ProcessTriggerScope>
+  <ModernFlowType>0</ModernFlowType>
+  <PrimaryEntity>primaryentityexample</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="examplebpfname" />
+  </LocalizedNames>
+  <labels>
+   
+  </labels>
+</Workflow>
