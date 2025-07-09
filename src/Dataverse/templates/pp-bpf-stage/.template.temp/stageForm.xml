@@ -1,19 +1,23 @@
-<tab verticallayout="true" id="{stageexampleid}" name="StageStep3" locklevel="0" expanded="true" visible="false" labelid="{8f5d3229-da55-4098-8708-58dce226c97c}">
+<tabs>
+  <tab verticallayout="true" id="{stageexampleid}" name="StageStep3" locklevel="0" expanded="true"
+    visible="false" labelid="{1mainId}">
     <labels>
       <label description="stageexamplename" languagecode="1033" />
     </labels>
     <columns>
       <column width="100%">
         <sections>
-          <section showbar="false" columns="1" id="{045e99fc-49dd-bac0-f8ad-ba091711b5a3}" name="StageStep3_section1" labelid="{bc66bb51-360c-4186-b3e6-c4ee057a278a}">
+          <section showbar="false" columns="1" id="{2mainId}" name="StageStep3_section1"
+            labelid="{3mainId}">
             <labels>
               <label description="stageexamplename" languagecode="1033" />
             </labels>
             <rows>
-              
+
             </rows>
           </section>
         </sections>
       </column>
     </columns>
-</tab>
+  </tab>
+</tabs>

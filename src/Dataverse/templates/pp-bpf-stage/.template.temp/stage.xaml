@@ -13,7 +13,7 @@
               </sco:Collection>
               <x:String x:Key="StageId">stageexampleid</x:String>
               <x:String x:Key="StageCategory">-1</x:String>
-              <x:String x:Key="NextStageId">nextstageidexample</x:String>
+              <x:Null x:Key="NextStageId" />
             </mxswa:ActivityReference.Properties>
           </mxswa:ActivityReference>
         </sco:Collection>

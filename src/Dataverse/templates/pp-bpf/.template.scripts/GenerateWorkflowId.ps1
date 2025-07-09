@@ -28,3 +28,8 @@ foreach ($file in $filesToRename) {
     $newPath = Join-Path $file.DirectoryName $newName
     Rename-Item -Path $file.FullName -NewName $newName
 }
+
+
+$filePath = ".template.scripts\WorkflowsID.txt"
+
+Set-Content -Path $filePath -Value $guid

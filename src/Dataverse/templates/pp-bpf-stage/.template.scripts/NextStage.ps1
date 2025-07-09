@@ -1,11 +1,21 @@
-$xamlPath = ".template.temp\stage.xaml"
+$guidValue = "stageexampleid"
 
-$isThisaLastStage = isThisaLastStage
+$targetXamlFolderPath = (Resolve-Path 'SolutionDeclarationsRoot\Workflows').Path
 
-if ($isThisaLastStage) {
-    $content = Get-Content $xamlPath -Raw
+$targetXamlFile = Get-ChildItem -Path $targetXamlFolderPath -Recurse -Filter *.xaml | Select-Object -First 1
 
-    $content = $content -replace 'nextstageidexample', 'null'
+[xml]$xml = Get-Content $targetXamlFile -Raw
 
-    Set-Content -Path $xamlPath -Value $content
-} 
+$nsMgr = New-Object System.Xml.XmlNamespaceManager($xml.NameTable)
+$nsMgr.AddNamespace("x", "http://schemas.microsoft.com/winfx/2006/xaml")
+
+$nextStageNode = $xml.SelectSingleNode('//x:Null[@x:Key="NextStageId"]', $nsMgr)
+
+if ($nextStageNode) {
+    if ([string]::IsNullOrWhiteSpace($nextStageNode.InnerText)) {
+        $nextStageNode.InnerText = $guidValue
+        $xml.Save($targetXamlFile)
+    }
+} else {
+    Write-Host "Node <x:String x:Key='NextStageId'> was not found."
+}

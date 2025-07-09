@@ -25,12 +25,12 @@
   "preferNameDirectory": true,
   "symbols": {
     "SolutionRootPath": {
-			"type": "parameter",
-			"datatype": "text",
-			"defaultValue": ".",
-			"replaces": "SolutionDeclarationsRoot",
-			"fileRename": "SolutionDeclarationsRoot"
-		},
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "SolutionDeclarationsRoot",
+      "fileRename": "SolutionDeclarationsRoot"
+    },
     "PublisherPrefix": {
       "type": "parameter",
       "datatype": "text",
@@ -79,7 +79,15 @@
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
         "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddFormToSolutionXml.ps1\"",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddRelationshipsl.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddToSolutionXml.ps1\"",
         "redirectStandardOutput": "false"
       }
     },

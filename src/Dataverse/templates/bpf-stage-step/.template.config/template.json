@@ -1,9 +1,9 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "NETWORG",
-  "identity": "TALXIS.DevKit.Templates.Dataverse.BusinessProcessFlows.Stage",
-  "name": "Power Platform: BPF Stage",
-  "shortName": "pp-bpf-stage",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.BusinessProcessFlows.Stage.Step",
+  "name": "Power Platform: BPF Stage Step",
+  "shortName": "bpf-stage-step",
   "tags": {
     "language": "XML",
     "type": "item"
@@ -25,17 +25,17 @@
   "preferNameDirectory": true,
   "symbols": {
     "SolutionRootPath": {
-			"type": "parameter",
-			"datatype": "text",
-			"defaultValue": ".",
-			"replaces": "SolutionDeclarationsRoot",
-			"fileRename": "SolutionDeclarationsRoot"
-		},
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "SolutionDeclarationsRoot",
+      "fileRename": "SolutionDeclarationsRoot"
+    },
     "FormId": {
       "type": "parameter",
       "generator": "text",
-      "replaces": "mainFormIdexample",
-      "fileRename": "mainFormIdexample"
+      "replaces": "formguididexample",
+      "fileRename": "formguididexample"
     },
     "BPFLogicalName": {
       "type": "parameter",
@@ -65,10 +65,114 @@
         "defaultFormat": "d"
       }
     },
-    "isThisaLastStage": {
+    "rowid2": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "rowid2",
+      "fileRename": "rowid2",
+      "parameters": {
+        "defaultFormat": "d"
+      }
+    },
+    "DataField": {
       "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "ture"
+      "datatype": "choice",
+      "description": "Select attribute type",
+      "replaces": "controldisplayexamplename",
+      "choices": [
+        { "choice": "Created By" },
+        { "choice": "Created On" },
+        { "choice": "Modified On"},
+        { "choice": "Owner"},
+        { "choice": "Owning Business Unit" },
+        { "choice": "Status"},
+        { "choice": "Status Reason" }
+      ]
+    },
+    "classid": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "classexampleid",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(DataField == 'Created By')",
+            "value": "270bd3db-d9af-4782-9025-509e298dec0a"
+          },
+          {
+            "condition": "(DataField == 'Created On')",
+            "value": "5b773807-9fb2-42db-97c3-7a91eff8adff"
+          },
+          {
+            "condition": "(DataField == 'Modified On')",
+            "value": "5b773807-9fb2-42db-97c3-7a91eff8adff"
+          },
+          {
+            "condition": "(DataField == 'Owner')",
+            "value": "270bd3db-d9af-4782-9025-509e298dec0a"
+          },
+          {
+            "condition": "(DataField == 'Owning Business Unit')",
+            "value": "270bd3db-d9af-4782-9025-509e298dec0a"
+          },
+          {
+            "condition": "(DataField == 'Status')",
+            "value": "3ef39988-22bb-4f0b-bbbe-64b5a3748aee"
+          },
+          {
+            "condition": "(DataField == 'Status Reason')",
+            "value": "5d68b988-0661-4db2-bc3e-17598ad3be6c"
+          }
+        ]
+      }
+    },
+    "ControlId": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "controlexampleid",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(DataField == 'Created By')",
+            "value": "createdby"
+          },
+          {
+            "condition": "(DataField == 'Created On')",
+            "value": "createdon"
+          },
+          {
+            "condition": "(DataField == 'Modified On')",
+            "value": "modifiedon"
+          },
+          {
+            "condition": "(DataField == 'Owner')",
+            "value": "ownerid"
+          },
+          {
+            "condition": "(DataField == 'Owning Business Unit')",
+            "value": "owningbusinessunit"
+          },
+          {
+            "condition": "(DataField == 'Status')",
+            "value": "statecode"
+          },
+          {
+            "condition": "(DataField == 'Status Reason')",
+            "value": "statuscode"
+          }
+        ]
+      }
+    },
+    "ProcessStepId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "processstepexampleid",
+      "fileRename": "processstepexampleid",
+      "parameters": {
+        "defaultFormat": "d"
+      }
     }
   },
   "primaryOutputs": [
@@ -81,14 +185,6 @@
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
         "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/NextStage.ps1\"",
-        "redirectStandardOutput": "false"
-      }
-    },
-    {
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "args": {
-        "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddToXaml.ps1\"",
         "redirectStandardOutput": "false"
       }
@@ -97,7 +193,7 @@
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
         "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddToForm.ps1\"",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddStepToForm.ps1\"",
         "redirectStandardOutput": "false"
       }
     },
@@ -106,6 +202,14 @@
       "args": {
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/steplabels.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/RestoreXaml.ps1\"",
         "redirectStandardOutput": "false"
       }
     },

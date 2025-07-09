@@ -25,12 +25,12 @@
   "preferNameDirectory": true,
   "symbols": {
     "SolutionRootPath": {
-			"type": "parameter",
-			"datatype": "text",
-			"defaultValue": ".",
-			"replaces": "SolutionDeclarationsRoot",
-			"fileRename": "SolutionDeclarationsRoot"
-		},
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "SolutionDeclarationsRoot",
+      "fileRename": "SolutionDeclarationsRoot"
+    },
     "FormId": {
       "type": "parameter",
       "generator": "text",
@@ -56,7 +56,7 @@
       "replaces": "stageexamplename",
       "fileRename": "stageexamplename"
     },
-    "StageExampleId": {
+    "StageId": {
       "type": "generated",
       "generator": "guid",
       "replaces": "stageexampleid",
@@ -65,10 +65,37 @@
         "defaultFormat": "d"
       }
     },
+    "1mainId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "1mainId",
+      "fileRename": "1mainId",
+      "parameters": {
+        "defaultFormat": "d"
+      }
+    },
+    "2mainId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "2mainId",
+      "fileRename": "2mainId",
+      "parameters": {
+        "defaultFormat": "d"
+      }
+    },
+    "3mainId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "3mainId",
+      "fileRename": "3mainId",
+      "parameters": {
+        "defaultFormat": "d"
+      }
+    },
     "isThisaLastStage": {
       "type": "parameter",
       "datatype": "bool",
-      "defaultValue": "ture"
+      "defaultValue": "true"
     }
   },
   "primaryOutputs": [
