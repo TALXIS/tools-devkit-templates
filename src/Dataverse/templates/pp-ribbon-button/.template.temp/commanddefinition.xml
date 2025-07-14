@@ -1,0 +1,7 @@
+<CommandDefinition Id="examplepublisher.exampleentityname.Command.comandnameexample">
+    <EnableRules />
+    <DisplayRules />
+    <Actions>
+      <JavaScriptFunction FunctionName="functioexamplenname" Library="$webresource:libraryexamplelogicalname" />
+    </Actions>
+</CommandDefinition>

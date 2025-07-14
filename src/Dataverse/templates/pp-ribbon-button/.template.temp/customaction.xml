@@ -1,0 +1,4 @@
+<CustomAction Id="tom.examplepublisher.exampleentityname.Button.examplebuttonlogicalname.CustomAction" Location="Mscrm.buttonlocationexample.exampleentityname.MainTab.Save.Controls._children" Sequence="15">
+    <CommandUIDefinition>
+      <Button Alt="$LocLabels:examplepublisher.exampleentityname.Button.examplebuttonlogicalname.Alt" Command="examplepublisher.exampleentityname.Command.comandnameexample" Id="examplepublisher.exampleentityname.Button.examplebuttonlogicalname" exampleicon16 exampleicon32 LabelText="$LocLabels:examplepublisher.exampleentityname.Button.examplebuttonlable.LabelText" Sequence="15" TemplateAlias="o1" ToolTipTitle="$LocLabels:examplepublisher.exampleentityname.Button.examplebuttonlogicalname.ToolTipTitle" ToolTipDescription="$LocLabels:examplepublisher.exampleentityname.Button.examplebuttonlogicalname.ToolTipDescription" />
+</CommandUIDefinition>

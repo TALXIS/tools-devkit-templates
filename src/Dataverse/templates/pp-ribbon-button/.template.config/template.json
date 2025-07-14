@@ -1,0 +1,153 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.RibbonButton",
+  "name": "Power Platform: Ribbon Button",
+  "shortName": "pp-ribbon-button",
+  "tags": {
+    "language": "XML",
+    "type": "item"
+  },
+  "sourceName": "examplebuttonname",
+  "sources": [
+    {
+      "exclude": [
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        "*/**/[Bb]in/**",
+        "*/**/[Oo]bj/**",
+        "**/**/[Bb]in/**",
+        "**/**/[Oo]bj/**",
+        ".template.config/**/*"
+      ]
+    }
+  ],
+  "preferNameDirectory": true,
+  "symbols": {
+    "SolutionRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "SolutionDeclarationsRoot",
+      "fileRename": "SolutionDeclarationsRoot"
+    },
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplepublisher",
+      "fileRename": "examplepublisher",
+      "isRequired": true
+    },
+    "ButtonLable": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplebuttonlable",
+      "fileRename": "examplebuttonlable",
+      "isRequired": true
+    },
+    "EntityLogicalName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exampleentityname",
+      "fileRename": "exampleentityname",
+      "isRequired": true
+    },
+    "Image32by32": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "icon32pathdefault",
+      "replaces": "icon32pathexample",
+      "fileRename": "icon32pathexample"
+    },
+    "Image16by16": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "icon16pathdefault",
+      "replaces": "icon16pathexample",
+      "fileRename": "icon16pathexample"
+    },
+    "Location": {
+      "type": "parameter",
+      "datatype": "choice",
+      "description": "Select location of the button",
+      "choices": [
+        {
+          "choice": "Home"
+        },
+        {
+          "choice": "SubGrid"
+        },
+        {
+          "choice": "Form"
+        },
+        {
+          "choice": "Manual"
+        }
+      ]
+    },
+    "LocationPath": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "buttonlocationexample",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(Location == 'Home')",
+            "value": "HomepageGrid"
+          },
+          {
+            "condition": "(Location == 'SubGrid')",
+            "value": "SubGrid"
+          },
+          {
+            "condition": "(Location == 'Form')",
+            "value": "Form"
+          },
+          {
+            "condition": "(Location == 'Manual')",
+            "value": "ManualLocation"
+          }
+        ]
+      }
+    },
+    "ManualLocation": {
+      "type": "parameter",
+      "datatype": "text"
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetIcon.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetButtonLogicalName.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/RibbonDiff.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    }
+  ]
+}
