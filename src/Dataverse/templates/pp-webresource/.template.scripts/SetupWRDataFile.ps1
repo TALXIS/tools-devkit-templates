@@ -1,8 +1,10 @@
 $filePath = "webresourcefilepathexample"
 $dataXmlFilePath = "SolutionDeclarationsRoot\WebResources\examplepublisher_fileexamplename.data.xml"
 $destinationFolder = "SolutionDeclarationsRoot\WebResources"
-$fileDisplayName = [System.IO.Path]::GetFileNameWithoutExtension($filePath)
-$fileName = $fileDisplayName -replace '[\p{P}\p{Zs}]', ''
+#$fileDisplayName = [System.IO.Path]::GetFileName($filePath)
+#$fileName = $fileDisplayName -replace '[\p{P}\p{Zs}]', ''
+$fileName = [System.IO.Path]::GetFileName($filePath)
+$fileDisplayName = $fileName 
 $newDataXmlFilePath = "SolutionDeclarationsRoot\WebResources\examplepublisher_$fileName.data.xml"
 
 $guid = [guid]::NewGuid().ToString()

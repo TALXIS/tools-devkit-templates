@@ -2,6 +2,9 @@
 $solutionPath = Resolve-Path -Path 'SolutionDeclarationsRoot/Other/Solution.xml'
 $filePath = "webresourcefilepathexample"
 
+#$fileDisplayName = [System.IO.Path]::GetFileNameWithoutExtension($filePath)
+#$fileName = $fileDisplayName -replace '[\p{P}\p{Zs}]', ''
+
 $fileName = [System.IO.Path]::GetFileName($filePath)
 
 # Load the XML file
