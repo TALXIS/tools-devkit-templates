@@ -33,7 +33,8 @@
     "PublisherPrefix": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "examplepublisherprefix"
+      "replaces": "examplepublisherprefix",
+      "isRequired": true
     }
   },
   "primaryOutputs": [
