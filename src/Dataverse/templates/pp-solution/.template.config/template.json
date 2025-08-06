@@ -26,6 +26,7 @@
   "symbols": {
     "PublisherName": {
       "type": "parameter",
+      "description": "Publisher name (company, product or team). Keep it short. Only letters and numbers are allowed",
       "datatype": "text",
       "replaces": "examplepublisher",
       "isRequired": true
