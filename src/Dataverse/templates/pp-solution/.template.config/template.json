@@ -26,7 +26,7 @@
   "symbols": {
     "PublisherName": {
       "type": "parameter",
-      "description": "Publisher name (company, product or team). Keep it short. Only letters and numbers are allowed",
+      "description": "Publisher name (company, product or team). Keep it short. Only characters within the ranges [A - Z], [a - z], [0 - 9], or _ are allowed. The first character may only be in the ranges [A - Z], [a - z], or _.",
       "datatype": "text",
       "replaces": "examplepublisher",
       "isRequired": true
