@@ -1,5 +1,5 @@
 # Initialize a Dataverse solution project using PAC CLI
-pac solution init --publisher-name examplepublisher --publisher-prefix examplepublisherprefix --outputDirectory "SolutionLogicalNameExample"
+pac solution init --publisher-name "examplepublisher" --publisher-prefix "examplepublisherprefix" --outputDirectory "SolutionLogicalNameExample"
 cd "SolutionLogicalNameExample"
 
 # Rename the src folder (produced by PAC CLI to remove the double src folder)
