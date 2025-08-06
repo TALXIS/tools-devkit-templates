@@ -4,7 +4,7 @@
 		<!-- The package metadata. Fill in the properties marked as TODO below -->
 		<!-- Follow the instructions on https://learn.microsoft.com/en-us/nuget/create-packages/package-authoring-best-practices -->
 		<PackageId>TALXIS.DevKit.Templates.Dataverse</PackageId>
-		<PackageVersion>1.8</PackageVersion>
+		<PackageVersion>1.9</PackageVersion>
 		<Title>TALXIS.DevKit.Templates.Dataverse</Title>
 		<Authors>NETWORG</Authors>
 		<Description>A collection of .NET templates for creating Power Platform components using a code-first approach. These templates will allow you to quickly scaffold projects with pre-configured settings and structure.</Description>
@@ -40,5 +40,6 @@
 	</ItemGroup>
 
 </Project>
+
 
 
