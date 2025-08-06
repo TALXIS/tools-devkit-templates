@@ -7,7 +7,7 @@ cd "SolutionLogicalNameExample"
 Rename-Item -Path .\src -NewName Declarations && Remove-Item .gitignore -Force
 
 # Find the .cdsproj file and read it as XML
-$csproj = Get-ChildItem -Path . -Filter *.cdsproj | Select-Object -First 1https://github.com/TALXIS/tools-devkit-templates/tree/master
+$csproj = Get-ChildItem -Path . -Filter *.cdsproj | Select-Object -First 1
 [xml]$xml = Get-Content $csproj.FullName -Raw
 
 # Rename the solution component folder in .cdsproj and 
