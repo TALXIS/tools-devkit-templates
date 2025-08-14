@@ -71,16 +71,18 @@
 			"datatype": "text",
 			"defaultValue": ".",
 			"replaces": "SolutionDeclarationsRoot",
-			"fileRename": "SolutionDeclarationsRoot"
+			"fileRename": "SolutionDeclarationsRoot",
+			"description": "Folder under the project folder where solution components will be placed. Use the folder name only, not the full path. Use '.' if you want to place components directly in the project folder."
 		},
 		"IsSystemEntity": {
 			"type": "parameter",
+			"description": "Enter true if the entity is a system entity. System entities are predefined entities that are deployed on all environments out of box. You can only modify system entities and you can't introduce new one.",
 			"datatype": "bool",
 			"defaultValue": false
 		},
 		"EntityType": {
 			"type": "parameter",
-			"description": "Select entity type",
+			"description": "There are two types of entities: Standard and Activity. Standard entities are used to store data, while Activity entities are used to track events such as emails, appointments and tasks.",
 			"datatype": "choice",
 			"choices": [
 				{
@@ -94,13 +96,13 @@
 		},
 		"Behavior": {
 			"type": "parameter",
-			"description": "Select how the entity will be added to the solution",
+			"description": "Select how the entity will be added to the solution. New entities will have all their metadata included, while existing entities will be just referenced.",
 			"datatype": "choice",
 			"choices": [
 				{
 					"choice": "New",
 					"displayName": "Include metadata",
-					"description": "When creating a new entity the default attributes, forms and views must be generated"
+					"description": "When creating a new entity the default attributes, forms and views must be generated. You can't create a new system entity"
 				},
 				{
 					"choice": "Existing",
@@ -152,6 +154,7 @@
 		},
 		"PublisherPrefix": {
 			"type": "parameter",
+			"description": "Use the same publisher prefix as defined in Other/Solution.xml of the solution where this entity is first introduced to the system.",
 			"datatype": "text",
 			"replaces": "examplepublisherprefix",
 			"fileRename": "examplepublisherprefix",
@@ -160,6 +163,7 @@
 		},
 		"LogicalName": {
 			"displayName": "Logical name (without publisher prefix)",
+			"description": "All lower-case version of the schema name. For example, salesorder",
 			"type": "parameter",
 			"datatype": "text",
 			"replaces": "examplecustomentity",
@@ -167,7 +171,8 @@
 			"isRequired": true
 		},
 		"LogicalNamePlural": {
-			"displayName": "Logical name in the plural form (entity set name)",
+			"displayName": "Logical name in the plural form (entity set name) (without publisher prefix)",
+			"description": "All lower-case version of the collection schema name. For example, salesorders",
 			"type": "parameter",
 			"datatype": "text",
 			"replaces": "examplecustomentities",
@@ -175,6 +180,7 @@
 		},
 		"DisplayName": {
 			"type": "parameter",
+			"description": "Human-readable name. For example, Sales Order",
 			"datatype": "text",
 			"defaultValue": "ExampleEntityDisplayName",
 			"replaces": "ExampleEntityDisplayName",
@@ -182,6 +188,7 @@
 		},
 		"DisplayNamePlural": {
 			"type": "parameter",
+			"description": "Human-readable name in the plural form. For example, Sales Orders",
 			"datatype": "text",
 			"replaces": "ExampleEntityPluralDisplayName",
 			"isRequired": "(Behavior == \"New\")"
@@ -189,6 +196,7 @@
 		"IsOrganizationTypeEntity": {
 			"type": "parameter",
 			"displayName": "Is Organization Value Entity?",
+			"description": "If true, the entity is considered an organization value entity which means row level access control will not be configurable.",
 			"datatype": "bool",
 			"description": "Enter true if records are owned by organisation. (False = Owned by User/Team/User(Default) & True = Owned by Organisation)",
 			"defaultValue": "false"

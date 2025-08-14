@@ -32,10 +32,12 @@
       "datatype": "text",
       "defaultValue": ".",
       "replaces": "SolutionDeclarationsRoot",
-      "fileRename": "SolutionDeclarationsRoot"
+      "fileRename": "SolutionDeclarationsRoot",
+      "description": "Folder under the project folder where solution components will be placed. Use the folder name only, not the full path. Use '.' if you want to place components directly in the project folder."
     },
     "PublisherPrefix": {
       "type": "parameter",
+      "description": "Use the same publisher prefix as defined in Other/Solution.xml of the solution where this library is introduced to the system.",
       "datatype": "text",
       "replaces": "examplepublisherprefix",
       "fileRename": "examplepublisherprefix",

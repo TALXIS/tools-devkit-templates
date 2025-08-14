@@ -33,6 +33,7 @@
     },
     "PublisherPrefix": {
       "type": "parameter",
+      "description": "Keep it under 5 characters. Only characters within the ranges [a - z] and [0 - 9] are allowed. It is used by majority components in their unique system name.",
       "datatype": "text",
       "replaces": "examplepublisherprefix",
       "isRequired": true

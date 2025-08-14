@@ -16,10 +16,12 @@
 			"datatype": "text",
 			"defaultValue": ".",
 			"replaces": "SolutionDeclarationsRoot",
-			"fileRename": "SolutionDeclarationsRoot"
+			"fileRename": "SolutionDeclarationsRoot",
+			"description": "Folder under the project folder where solution components will be placed. Use the folder name only, not the full path. Use '.' if you want to place components directly in the project folder."
 		},
 		"EntitySchemaName": {
 			"displayName": "Schema name of the entity including publisher prefix (might be different from logical name)",
+			"description": "Typically, a Pascal cased version of the logical name. For example, Account",
 			"type": "parameter",
 			"datatype": "text",
 			"replaces": "exampleexistingentity",
@@ -71,6 +73,7 @@
 		},
 		"PublisherPrefix": {
 			"type": "parameter",
+			"description": "Use the same publisher prefix as defined in Other/Solution.xml of the solution where this attribute is introduced to the system.",
 			"datatype": "text",
 			"replaces": "examplepublisherprefix",
 			"fileRename": "examplepublisherprefix",
@@ -78,6 +81,7 @@
 		},
 		"LogicalName": {
 			"displayName": "Logical name (without publisher prefix)",
+			"description": "All lower-case version of the schema name. For example, account",
 			"type": "parameter",
 			"datatype": "text",
 			"replaces": "examplecustomentityattribute",
