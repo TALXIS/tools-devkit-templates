@@ -3,7 +3,7 @@
   "author": "NETWORG",
   "classifications": [ "TALXIS", "Dataverse", "Script Library" ],
   "identity": "TALXIS.DevKit.Templates.Dataverse.ScriptLibrary",
-  "name": "TALXIS Script Library",
+  "name": "Power Platform: Script Library",
   "shortName": "pp-script-library",
   "description": "Creates a TypeScript web resource library: .csproj (ProjectType=ScriptLibrary) + TS/tsconfig.json (outFile=single AMD .js, es6, @types/xrm) + TS/package.json (@types/xrm, typescript). Individual TS files in TS/scripts/ compile to one JS file. That output is picked up by pp-webresource build target. After generating, add it as a reference to the solution that uses it (e.g. if you generated 'solution.script' and want to use it in 'solution.ui', run 'dotnet add reference ../solution.script/solution.script.csproj' from the solution.ui directory).",
   "tags": {
