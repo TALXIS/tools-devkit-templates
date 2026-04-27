@@ -1,0 +1,79 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "NETWORG",
+    "identity": "TALXIS.DevKit.Templates.Dataverse.WebResource",
+    "name": "Power Platform: Web Resource",
+    "shortName": "pp-webresource",
+  "description": "Registers a web resource in a Dataverse solution: JsBuildTarget.xml (MSBuild target: builds the script library project -> validates JS output -> copies to WebResources/ with publisher prefix) + {publisher}_{name}.data.xml (WebResourceId, Name, DisplayName, WebResourceType, Version). Works with pp-script-library: compiled JS gets deployed as {publisher}_{name}.js.",
+    "tags": {
+        "language": "XML",
+        "type": "item"
+    },
+    "sourceName": "examplesourcename",
+    "preferNameDirectory": true,
+    "symbols": {
+        "SolutionRootPath": {
+            "type": "parameter",
+            "datatype": "text",
+            "defaultValue": ".",
+            "replaces": "SolutionDeclarationsRoot",
+            "fileRename": "SolutionDeclarationsRoot"
+        },
+        "PublisherPrefix": {
+            "type": "parameter",
+            "datatype": "text",
+            "replaces": "examplepublisher",
+            "fileRename": "examplepublisher",
+            "isRequired": true
+        },
+        "WebResourceItemPath": {
+            "type": "parameter",
+            "datatype": "text",
+            "replaces": "webresourcefilepathexample",
+            "fileRename": "webresourcefilepathexample",
+            "isRequired": true
+        }
+    },
+    "postActions": [
+        {
+            "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+            "args": {
+                "executable": "pwsh",
+                "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetWebresourceType.ps1\"",
+                "redirectStandardOutput": "false"
+            }
+        },
+        {
+            "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+            "args": {
+                "executable": "pwsh",
+                "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddToSolution.ps1\"",
+                "redirectStandardOutput": "false"
+            }
+        },
+        {
+            "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+            "args": {
+                "executable": "pwsh",
+                "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddToCustomizationsXml.ps1\"",
+                "redirectStandardOutput": "false"
+            }
+        },
+        {
+            "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+            "args": {
+                "executable": "pwsh",
+                "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetupWRDataFile.ps1\"",
+                "redirectStandardOutput": "false"
+            }
+        },
+        {
+            "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+            "args": {
+                "executable": "pwsh",
+                "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+                "redirectStandardOutput": "false"
+            }
+        }
+    ]
+}

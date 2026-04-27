@@ -1,0 +1,673 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.UI.Controls.Parameters",
+  "name": "Power Platform: Control Parameters",
+  "shortName": "pp-control-parameter",
+  "description": "Adds XML parameter definitions to a form control. Supports type-specific params: Lookup (filters, views, MRU), OptionSet, SubGrid (records per page, pickers), TextBox, Number, Label, QuickFormCollection. Run inside an existing entity form.",
+  "tags": {
+    "language": "XML",
+    "type": "item"
+  },
+  "sourceName": "examplecustomentityattribute",
+  "preferNameDirectory": false,
+  "symbols": {
+    "SolutionRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "SolutionDeclarationsRoot",
+      "defaultValue": ".",
+      "isRequired": false,
+      "description": "Path to the solution root directory"
+    },
+    "EntitySchemaName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exampleentityname",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "description": "Logical name of the entity for which the control will be created"
+    },
+    "FormType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "isRequired": true,
+      "replaces": "formtypeexample",
+      "defaultValue": "unknown",
+      "choices": [
+        {
+          "choice": "main"
+        },
+        {
+          "choice": "quick"
+        },
+        {
+          "choice": "dialog"
+        }
+      ],
+      "description": "Type of form: main (main form), quick (quick create), dialog (dialog form), or unknown (auto-detect)"
+    },
+    "FormId": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknownFormId",
+      "replaces": "formguididexample",
+      "description": "GUID of the specific form where the parameters will be added"
+    },
+    "TabId": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "replaces": "tabexampleid",
+      "description": "GUID of the specific tab where the parameters will be added"
+    },
+    "TabIndex": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "replaces": "tabnumberexample",
+      "description": "Index number of the tab (1-based) where the parameters will be added"
+    },
+    "LookupType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "isRequired": false,
+      "defaultValue": "bound",
+      "replaces": "lookuptypechoice",
+      "choices": [
+        {
+          "choice": "bound"
+        },
+        {
+          "choice": "unbound"
+        }
+      ],
+      "description": "Type of lookup: bound (bound lookup) or unbound (unbound lookup)"
+    },
+    "TabFooterId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "tabfooterexampleid",
+      "parameters": {
+        "defaultFormat": "d"
+      },
+      "description": "Unique identifier for the tab footer (automatically generated GUID)"
+    },
+    "SetToTabFooter": {
+      "type": "parameter",
+      "datatype": "choice",
+      "isRequired": false,
+      "defaultValue": "False",
+      "replaces": "settotabfooterchoice",
+      "choices": [
+        {
+          "choice": "True"
+        },
+        {
+          "choice": "False"
+        }
+      ],
+      "description": "Whether to add the parameters to the tab footer (True) or to the main tab content (False)"
+    },
+    "ParameterType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "isRequired": true,
+      "replaces": "parametertypechoice",
+      "choices": [
+        {
+          "choice": "OptionSet"
+        },
+        {
+          "choice": "Lookup"
+        },
+        {
+          "choice": "SubGrid"
+        },
+        {
+          "choice": "Label"
+        },
+        {
+          "choice": "TextBox"
+        },
+        {
+          "choice": "Number"
+        },
+        {
+          "choice": "QuickFormCollection"
+        }
+      ],
+      "description": "Type of parameters to add: OptionSet(for option set controls), Lookup (for lookup controls), SubGrid (for subgrid controls), Label (for label controls), TextBox (for text box controls), Number (for number controls), or QuickFormCollection (for quick form collection controls)"
+    },
+    "ColumnIndex": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "replaces": "columnnumberexample",
+      "description": "Index number of the column (1-based) within the tab where the parameters will be added"
+    },
+    "SectionIndex": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "replaces": "sectionnumberexample",
+      "description": "Index number of the section (1-based) within the column where the parameters will be added"
+    },
+    "SectionId": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "replaces": "sectionidexample",
+      "description": "GUID of the specific section where the parameters will be added"
+    },
+    "RowIndex": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "replaces": "rownumberexample",
+      "description": "Index number of the row (1-based) within the section where the parameters will be added"
+    },
+    "EntityLogicalName": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "entitylogicalnameexampletypestring",
+      "description": "Logical name of the entity that the lookup refers to. (This parameter is applicable in bound and unbound lookups)"
+    },
+    "DefaultViewId": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "defaultviewidexampletypeformguidtype",
+      "description": "Default view ID for the lookup control. (This parameter is applicable in bound and unbound lookups)"
+    },
+    "IsDeDupLookup": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "isdeduplookupexampletypeboolean",
+      "description": "Enable duplicate detection for lookup. (This parameter is applicable in unbound lookups)"
+    },
+    "UnboundLookupStyle": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "unboundlookupstyleexampletypestring",
+      "description": "Style for unbound lookup control. (This parameter is applicable in unbound lookups)"
+    },
+    "IsInlineNewEnabled": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "isinlinenewenabledexampletypeboolean",
+      "description": "Enable inline new record creation. (This parameter is applicable in bound and unbound lookups)"
+    },
+    "FilterRelationshipName": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "filterrelationshipnameexampletypestring",
+      "description": "Relationship name for filtering lookup results. (This parameter is applicable in bound lookups)"
+    },
+    "DependentAttributeName": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "dependentattributenameexampletypestring",
+      "description": "Name of the dependent attribute for lookup filtering. (This parameter is applicable in bound lookups)"
+    },
+    "DependentAttributeType": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "dependentattributetypeexampletypestring",
+      "description": "Type of the dependent attribute for lookup filtering. (This parameter is applicable in bound lookups)"
+    },
+    "AutoResolve": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "autoresolveexampletypeboolean",
+      "description": "Enable automatic resolution for lookup values. (This parameter is applicable in bound lookups)"
+    },
+    "ResolveEmailAddress": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "resolveemailaddressexampletypeboolean",
+      "description": "Enable email address resolution for lookup. (This parameter is applicable in bound lookups)"
+    },
+    "DefaultViewReadOnly": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "defaultviewreadonlyexampletypeboolean",
+      "description": "Make default view read-only. (This parameter is applicable in bound lookups)"
+    },
+    "ViewPickerReadOnly": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "viewpickerreadonlyexampletypeboolean",
+      "description": "Make view picker read-only. (This parameter is applicable in bound lookups)"
+    },
+    "AllowFilterOff": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "allowfilteroffexampletypeboolean",
+      "description": "Allow turning off filters in lookup. (This parameter is applicable in bound lookups)"
+    },
+    "DisableMru": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "disablemruexampletypeboolean",
+      "description": "Disable most recently used items in lookup. (This parameter is applicable in bound lookups)"
+    },
+    "DisableQuickFind": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "disablequickfindexampletypeboolean",
+      "description": "Disable quick find functionality in lookup. (This parameter is applicable in bound lookups)"
+    },
+    "DisableViewPicker": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "disableViewpickerexampletypeboolean",
+      "description": "Disable view picker in lookup. (This parameter is applicable in bound lookups)"
+    },
+    "AvailableViewIds": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "availableviewidsexampletypestring",
+      "description": "Available view IDs for lookup. (This parameter is applicable in bound lookups)"
+    },
+    "InlineViewIds": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "inlineviewidsexampletypestring",
+      "description": "Inline view IDs for lookup. (This parameter is applicable in bound lookups)"
+    },
+    "UnboundLookupTypes": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "unboundlookuptypesexampletypestring",
+      "description": "Types for unbound lookup. (This parameter is applicable in bound lookups)"
+    },
+    "UnboundLookupBrowse": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "unboundlookupbrowseexampletypeboolean",
+      "description": "Enable browse functionality for unbound lookup. (This parameter is applicable in bound lookups)"
+    },
+    "UnboundLookupControlType": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "unboundlookupcontroltypeexampletypestring",
+      "description": "Control type for unbound lookup. (This parameter is applicable in bound lookups)"
+    },
+    "ShowAsBreadcrumbControl": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "showasbreadcrumbcontrolexampletypeboolean",
+      "description": "Show as breadcrumb control. (This parameter is applicable in bound lookups)"
+    },
+    "DefaultValue": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "defaultvalueexampletypestring",
+      "description": "Default value for the control. (This parameter is applicable in OptionSet controls)"
+    },
+    "OptionSetName": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "optionsetnameexampletypestring",
+      "description": "Name of the option set. (This parameter is applicable in OptionSet controls)"
+    },
+    "OptionSetId": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "optionsetidexampletypeformguidtype",
+      "description": "ID of the option set. (This parameter is applicable in OptionSet controls)"
+    },
+    "RecordsPerPage": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "recordsperpageexampletypeinteger",
+      "description": "Number of records per page. (This parameter is applicable in SubGrid controls)"
+    },
+    "AutoExpand": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "autoexpandeexampletypegridresizetype",
+      "description": "Auto expand behavior for the grid. (This parameter is applicable in SubGrid controls)"
+    },
+    "EnableQuickFind": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "enablequickfindexampletypeboolean",
+      "description": "Enable quick find functionality. (This parameter is applicable in SubGrid controls)"
+    },
+    "EnableViewPicker": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "enableViewpickerexampletypeboolean",
+      "description": "Enable view picker functionality. (This parameter is applicable in SubGrid controls)"
+    },
+    "EnableChartPicker": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "enablechartpickerexampletypeboolean",
+      "description": "Enable chart picker functionality. (This parameter is applicable in SubGrid controls)"
+    },
+    "ChartGridMode": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "chartgridmodeexampletypestring",
+      "description": "Chart grid mode setting. (This parameter is applicable in SubGrid controls)"
+    },
+    "TargetEntityType": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "targetentitytypeexampletypestring",
+      "description": "Target entity type for the control. (This parameter is applicable in SubGrid controls)"
+    },
+    "ViewId": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "viewidexampletypeformguidtype",
+      "description": "View ID for the control. (This parameter is applicable in SubGrid controls)"
+    },
+    "ViewIds": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "viewidexampletypeformguidtype",
+      "description": "View IDs for the control. (This parameter is applicable in SubGrid controls)"
+    },
+    "IsUserView": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "isuserviewexampletypeboolean",
+      "description": "Enable user view functionality. (This parameter is applicable in SubGrid controls)"
+    },
+    "IsUserChart": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "isuserchartexampletypeboolean",
+      "description": "Enable user chart functionality. (This parameter is applicable in SubGrid controls)"
+    },
+    "RelationshipName": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "relationshipnameexampletypestring",
+      "description": "Relationship name for the control. (This parameter is applicable in SubGrid controls)"
+    },
+    "RelationshipRoleOrdinal": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "relationshiproleordinalexampletyperelationshiproleordinaltype",
+      "description": "Relationship role ordinal for the control. (This parameter is applicable in SubGrid controls)"
+    },
+    "MaxRowsBeforeScroll": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "maxrowsbeforescrollexampletypeinteger",
+      "description": "Maximum rows before scroll is enabled. (This parameter is applicable in SubGrid controls)"
+    },
+    "EnableJumpBar": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "enablejumpbarexampletypeboolean",
+      "description": "Enable jump bar functionality. (This parameter is applicable in SubGrid controls)"
+    },
+    "VisualizationId": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "visualizationidexampletypestring",
+      "description": "Visualization ID for the control. (This parameter is applicable in SubGrid controls)"
+    },
+    "EnableContextualActions": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "enablecontextualactionsexampletypeboolean",
+      "description": "Enable contextual actions. (This parameter is applicable in SubGrid controls)"
+    },
+    "TeamTemplateId": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "teamtemplateidexampletypeformguidtype",
+      "description": "Team template ID for the control. (This parameter is applicable in SubGrid controls)"
+    },
+    "GridUIMode": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "griduimodeexampletypestring",
+      "description": "Grid UI mode setting. (This parameter is applicable in SubGrid controls)"
+    },
+    "ReferencePanelSubgridIconUrl": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "referencepanelsubgridiconurlexampletypestring",
+      "description": "Reference panel subgrid icon URL. (This parameter is applicable in SubGrid controls)"
+    },
+    "HeaderColorCode": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "headercolorcodeexampletypestring",
+      "description": "Header color code for the control. (This parameter is applicable in SubGrid controls)"
+    },
+    "IsTitle": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "istitleexampletypeboolean",
+      "description": "Display as title. (This parameter is applicable in Label controls)"
+    },
+    "MaxLength": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "maxlengthexampletypeinteger",
+      "description": "Maximum length for text input. (This parameter is applicable in TextBox controls)"
+    },
+    "Format": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "formatexampletypeformattype",
+      "description": "Format for text input. (This parameter is applicable in TextBox controls)"
+    },
+    "MinValue": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "minvalueexampletypedouble",
+      "description": "Minimum value for number input. (This parameter is applicable in Number controls)"
+    },
+    "MaxValue": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "maxvalueexampletypedouble",
+      "description": "Maximum value for number input. (This parameter is applicable in Number controls)"
+    },
+    "Precision": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "precisionexampletypeinteger",
+      "description": "Precision for number input. (This parameter is applicable in Number controls)"
+    },
+    "QuickForms": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "quickformsexampletypestring",
+      "description": "Quick forms configuration. (This parameter is applicable in QuickFormCollection controls)"
+    },
+    "ControlMode": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "controlmodeexampletypestring",
+      "description": "Control mode setting. (This parameter is applicable in QuickFormCollection controls)"
+    },
+    "ReferencePanelQuickFormCollectionIconUrl": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "referencepanelquickformcollectioniconurlexampletypestring",
+      "description": "Reference panel quick form collection icon URL. (This parameter is applicable in QuickFormCollection controls)"
+    },
+    "DisplayAsCustomer360Tile": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "defaultеtemplateexample",
+      "replaces": "displayascustomer360tileexampletypeboolean",
+      "description": "Display as customer 360 tile. (This parameter is applicable in QuickFormCollection controls)"
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/RemoveunusedNodes.ps1\" ",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Removing unused nodes"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Removing unused nodes"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddControlParameters.ps1\" ",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding new parameters to form"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Adding new parameters to form"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Removing Scripts"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Removing Scripts"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+<CustomActions>
+  <CustomAction
+    Id="tom.examplepublisher.exampleentityname.Button.examplebuttonlogicalname.CustomAction"
+    Location="Mscrm.HomepageGrid.udpp_warehousetransaction.MainTab.Management.Controls._children"
+    Sequence="10">
+    <CommandUIDefinition>
+      <Button
+        Alt="$LocLabels:examplepublisher.exampleentityname.Button.examplebuttonlogicalname.Alt"
+        Command="examplepublisher.exampleentityname.Command.functioexamplennamelibraryexamplelogicalname"
+        Id="examplepublisher.exampleentityname.Button.examplebuttonlogicalname" exampleicon16 exampleicon32
+        LabelText="$LocLabels:examplepublisher.exampleentityname.Button.examplebuttonlogicalname.LabelText"
+        Sequence="10" TemplateAlias="o1"
+        ToolTipTitle="$LocLabels:examplepublisher.exampleentityname.Button.examplebuttonlogicalname.ToolTipTitle"
+        ToolTipDescription="$LocLabels:examplepublisher.exampleentityname.Button.examplebuttonlogicalname.ToolTipDescription" />
+    </CommandUIDefinition>
+  </CustomAction>
+</CustomActions>

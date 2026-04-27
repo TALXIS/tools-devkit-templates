@@ -1,0 +1,6 @@
+<tab verticallayout="true" id="{tabexampleid}" IsUserDefined="1" name="exampletabname" labelid="{labelexampleid}">
+  <labels>
+    <label description="exampletabdisplayname" languagecode="1033" />
+  </labels>
+  <columns></columns>
+</tab>

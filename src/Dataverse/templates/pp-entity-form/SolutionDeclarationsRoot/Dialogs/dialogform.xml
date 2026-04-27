@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <LocalizedNames>
+    <LocalizedName description="formexamplename" languagecode="1033" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description description="formexamplename" languagecode="1033" />
+  </Descriptions>
+  <FormId></FormId>
+  <UniqueName></UniqueName>
+  <IsCustomizable>1</IsCustomizable>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <IsTabletEnabled>1</IsTabletEnabled>
+  <CanBeDeleted>1</CanBeDeleted>
+  <FormXml>
+    <forms type="dialog">
+      <form>
+        <formparameters />
+        <header id="{1formexampleId}">
+          <rows>
+            <row>
+              <cell id="{2formexampleId}">
+                <labels>
+                  <label description="formexamplename" languagecode="1033" />
+                </labels>
+                <control id="FormHeader" classid="{39354E4A-5015-4D74-8031-EA9EB73A1322}" isunbound="true">
+                  <parameters>
+                    <IsTitle>true</IsTitle>
+                  </parameters>
+                </control>
+              </cell>
+            </row>
+          </rows>
+        </header>
+        <tabs>
+          
+        </tabs>
+        <controlDescriptions />
+
+      </form>
+    </forms>
+  </FormXml>
+</Dialog>

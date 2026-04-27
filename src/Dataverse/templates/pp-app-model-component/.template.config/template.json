@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.ModelDrivenApp.Component",
+  "name": "Power Platform: ModelDriven App Component",
+  "shortName": "pp-app-model-component",
+  "description": "Adds a component to an existing Model-Driven App manifest. Supported types: Entity(1), View(26), BPF(29), CommandForm(48), Chart(59), Form(60), Sitemap(62). Use when linking an existing solution component to an app.",
+  "classifications": ["Dataverse", "Power Platform"],
+  "sourceName": "App-ModelDriven-component",
+  "tags": {
+		"language": "XML"
+	},
+  "preferNameDirectory": true,
+  "symbols": {
+    "AppName": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Name of the model-driven app where the component will be added",
+      "replaces": "appexamplename",
+      "fileRename": "appexamplename"
+    },
+    "EntityType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "description": "Type of component to add to the model-driven app: Entity, View, Business Process Flow, Command for Form, Grid/subgrid, Chart, Form, or Sitemap",
+      "defaultValue": "Entity",
+      "choices": [
+        { "choice": "Entity" },
+        { "choice": "View" },
+        { "choice": "Business Process Flow"},
+        { "choice": "Command for Form"},
+        { "choice": "Grid, subgrid" },
+        { "choice": "Chart"},
+        { "choice": "Form" },
+        { "choice": "Sitemap"}
+      ]
+    },
+    "EntityTypeId": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "entitytypeexample",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(EntityType == 'Entity')",
+            "value": "1"
+          },
+          {
+            "condition": "(EntityType == 'View')",
+            "value": "26"
+          },
+          {
+            "condition": "(EntityType == 'Business Process Flow')",
+            "value": "29"
+          },
+          {
+            "condition": "(EntityType == 'Command for Form')",
+            "value": "48"
+          },
+          {
+            "condition": "(EntityType == 'Grid, subgrid')",
+            "value": "48"
+          },
+          {
+            "condition": "(EntityType == 'Chart')",
+            "value": "59"
+          },
+          {
+            "condition": "(EntityType == 'Form')",
+            "value": "60"
+          },
+          {
+            "condition": "(EntityType == 'Sitemap')",
+            "value": "62"
+          }
+        ]
+      },
+      "description": "Component type ID automatically selected based on EntityType (determines component behavior in app)"
+    },
+    "EntityLogicalName": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Logical name of the entity for the component (Example: account, contact, custom_entity)",
+      "replaces": "entityexamplename"
+    },
+    "ComponentId": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "GUID of the specific component to add to the app (Example: form ID, view ID, chart ID)",
+      "replaces": "appmodelcomponentidexample"
+    },
+    "SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot",
+			"description": "Path to the solution root directory",
+      "isRequired": false
+		}
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "include": ["**/*.xml"]
+        }
+      ]
+    }
+  ],
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddComponentToModelDrivenApp.ps1\""
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding Model Driven App to solution xml"
+        }
+      ]
+    },
+    {
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Removing Scripts" }],
+			"continueOnError": false,
+			"description": "Removing Scripts"
+		}
+  ]
+}

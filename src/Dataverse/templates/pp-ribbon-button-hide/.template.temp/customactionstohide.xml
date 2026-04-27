@@ -1,0 +1,5 @@
+<CustomActionsToHide>
+    <!--#if (ButtonToHide == "New Record") -->
+    <HideCustomAction HideActionId="examplepublisher.Mscrm.HomepageGrid.exampleentityname.NewRecord.Hide" Location="Mscrm.HomepageGrid.exampleentityname.NewRecord" />
+    <!--#endif -->
+</CustomActionsToHide>

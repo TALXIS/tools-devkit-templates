@@ -1,0 +1,5 @@
+<Group Id="group_groupidexample" ResourceId="SitemapDesigner.grouptitleexample" DescriptionResourceId="SitemapDesigner.grouptitleexample" IntroducedVersion="7.0.0.0" IsProfile="false" ToolTipResourseId="SitemapDesigner.Unknown">
+    <Titles>
+        <Title LCID="1033" Title="groupdisplaynameexample" />
+      </Titles>
+</Group>

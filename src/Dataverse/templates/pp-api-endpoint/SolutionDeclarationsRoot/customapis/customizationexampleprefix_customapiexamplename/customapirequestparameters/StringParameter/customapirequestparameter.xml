@@ -1,0 +1,13 @@
+<customapirequestparameter uniquename="StringParameter">
+  <description default="The StringParameter request parameter for customapiexampledisplayname">
+    <label description="The StringParameter request parameter for customapiexampledisplayname" languagecode="1033" />
+  </description>
+  <displayname default="StringParameter">
+    <label description="StringParameter" languagecode="1033" />
+  </displayname>
+  <iscustomizable>0</iscustomizable>
+  <isoptional>0</isoptional>
+  <logicalentityname />
+  <name>customizationexampleprefix_customapiexamplename.StringParameter</name>
+  <type>10</type>
+</customapirequestparameter>

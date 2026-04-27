@@ -1,0 +1,5 @@
+<cell id="{idexample}" showlabel="true">
+  <labels>
+    <label description="examplerowdisplayname" languagecode="1033" />
+  </labels>
+</cell>

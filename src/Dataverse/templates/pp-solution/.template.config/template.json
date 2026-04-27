@@ -4,6 +4,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.Solution",
   "name": "Power Platform: Solution",
   "shortName": "pp-solution",
+  "description": "Creates a Dataverse solution project: .csproj (TALXIS.DevKit.Build.Sdk, ProjectType=Solution, PublisherName, PublisherPrefix, Version=1.0.0.0). PAC CLI runs solution init as post-action. A repo typically has multiple solution projects with separate concerns (data model, logic, security, UI).",
   "tags": {
     "language": "C#",
     "type": "project"
@@ -37,11 +38,34 @@
       "datatype": "text",
       "replaces": "examplepublisherprefix",
       "isRequired": true
+    },
+    "SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot",
+			"description": "Folder under the project folder where solution components will be placed. Use the folder name only, not the full path. Use '.' if you want to place components directly in the project folder."
+		},
+    "GeneratePluginAssembly": {
+      "type": "parameter",
+      "datatype": "choice",
+      "isRequired": false,
+      "replaces": "generateexamplepluginassembly",
+      "defaultValue": "true",
+      "choices": [
+        {
+          "choice": "true"
+        },
+        {
+          "choice": "false"
+        }
+      ]
     }
   },
   "primaryOutputs": [
     {
-      "path": "SolutionLogicalNameExample.cdsproj"
+      "path": "SolutionLogicalNameExample.csproj"
     }
   ],
   "postActions": [
@@ -49,7 +73,22 @@
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
         "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/InitializeSolution.ps1\"",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/FlattenSolutionRootIfInplace.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Flatten SolutionDeclarationsRoot if SolutionRootPath is '.'"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Flatten SolutionDeclarationsRoot into project root when SolutionRootPath is '.'"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/EnsureSolutionInitialized.ps1\"",
         "redirectStandardOutput": "false"
       },
       "manualInstructions": [
@@ -73,6 +112,21 @@
       "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
       "continueOnError": false,
       "primaryOutputIndexes": "0"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/RemoveGeneratePluginAssemblyIfTrue.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Remove <GeneratePluginAssembly> from .csproj when value is true"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Remove <GeneratePluginAssembly> from .csproj when GeneratePluginAssembly is true"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",

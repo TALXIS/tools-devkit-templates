@@ -1,9 +1,34 @@
 <attribute PhysicalName="examplepublisherprefix_examplecustomentityattribute">
-    <!--#if (AttributeType == "WholeNumber") -->
-    <Type>int</Type>
+    <!--#if (AttributeType == "Text") -->
+        <Type>ntext</Type>
+    <!--#elseif (AttributeType == "MultilineText") -->
+        <Type>nvarchar</Type>
+    <!--#elseif (AttributeType == "TwoOptions") -->
+        <Type>bit</Type>
+    <!--#elseif (AttributeType == "WholeNumber") -->
+        <Type>int</Type>
+    <!--#elseif (AttributeType == "FloatingPoint") -->
+        <Type>double</Type>
+    <!--#elseif (AttributeType == "Decimal") -->
+        <Type>decimal</Type>
+    <!--#elseif (AttributeType == "Currency") -->
+        <Type>money</Type>
+    <!--#elseif (AttributeType == "DateTime") -->
+        <Type>datetime</Type>
     <!--#elseif (AttributeType == "Lookup") -->
-    <Type>lookup</Type>
+        <Type>lookup</Type>
+    <!--#elseif (AttributeType == "Customer") -->
+        <Type>customer</Type>
+    <!--#elseif (AttributeType == "Owner") -->
+        <Type>owner</Type>
+    <!--#elseif (AttributeType == "File") -->
+        <Type>file</Type>
+    <!--#elseif (AttributeType == "Image") -->
+        <Type>image</Type>
+    <!--#elseif (AttributeType == "OptionSet(Local)" || AttributeType == "OptionSet(Global)") -->
+        <Type>picklist</Type>
     <!--#endif -->
+
     <Name>examplepublisherprefix_examplecustomentityattribute</Name>
     <LogicalName>examplepublisherprefix_examplecustomentityattribute</LogicalName>
     <RequiredLevel>attributerequiredlevel</RequiredLevel>
@@ -28,22 +53,82 @@
     <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
     <IsDataSourceSecret>0</IsDataSourceSecret>
     <AutoNumberFormat></AutoNumberFormat>
-    <!--#if (AttributeType == "Lookup") -->
-    <IsSearchable>0</IsSearchable>
+
+    <!--#if (AttributeType == "Lookup" or AttributeType == "Customer" or AttributeType == "Owner" or AttributeType == "OptionSet(Local)" or AttributeType == "OptionSet(Global)") -->
+        <IsSearchable>0</IsSearchable>
     <!--#else -->
-    <IsSearchable>1</IsSearchable>
+        <IsSearchable>1</IsSearchable>
     <!--#endif -->
+
     <IsFilterable>0</IsFilterable>
     <IsRetrievable>0</IsRetrievable>
     <IsLocalizable>0</IsLocalizable>
-    <!--#if (AttributeType == "WholeNumber") -->
-    <Format>none</Format>
-    <MinValue>0</MinValue>
-    <MaxValue>1000000000</MaxValue>
-    <!--#elseif (AttributeType == "Lookup") -->
-    <LookupStyle>single</LookupStyle>
-    <LookupTypes />
+    <!--#if (AttributeType == "OptionSet(Local)") -->
+    <AppDefaultValue>-1</AppDefaultValue>
+    <optionset Name="exampleexistingentity_examplepublisherprefix_examplecustomentityattribute">
+      <OptionSetType>picklist</OptionSetType>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <ExternalTypeName></ExternalTypeName>
+      <displaynames>
+        <displayname description="ExampleEntityAttributeDisplayName" languagecode="1033" />
+      </displaynames>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+      <options>
+        
+      </options>
+    </optionset>
     <!--#endif -->
+
+    <!--#if (AttributeType == "OptionSet(Global)") -->
+    <AppDefaultValue>-1</AppDefaultValue>
+    <OptionSetName>examplepublisherprefix_examplecustomentityattribute</OptionSetName>
+    <!--#endif -->
+
+    <!--#if (AttributeType == "Text") -->
+        <Format>text</Format>
+        <MaxLength>1000</MaxLength>
+        <Length>2000</Length>
+    <!--#elseif (AttributeType == "MultilineText") -->
+        <MaxLength>2000</MaxLength>
+    <!--#elseif (AttributeType == "TwoOptions") -->
+        <DefaultValue>false</DefaultValue>
+    <!--#elseif (AttributeType == "WholeNumber") -->
+        <Format>none</Format>
+        <MinValue>0</MinValue>
+        <MaxValue>1000000000</MaxValue>
+    <!--#elseif (AttributeType == "FloatingPoint") -->
+        <MinValue>0</MinValue>
+        <MaxValue>1000000</MaxValue>
+    <!--#elseif (AttributeType == "Decimal") -->
+        <MinValue>0.0</MinValue>
+        <MaxValue>1000000.0</MaxValue>
+        <Precision>2</Precision>
+    <!--#elseif (AttributeType == "Currency") -->
+        <MinValue>0</MinValue>
+        <MaxValue>1000000</MaxValue>
+        <Precision>2</Precision>
+    <!--#elseif (AttributeType == "DateTime") -->
+        <DateTimeFormat>dateonly</DateTimeFormat>
+    <!--#elseif (AttributeType == "Lookup") -->
+        <LookupStyle>single</LookupStyle>
+        <LookupTypes />
+    <!--#elseif (AttributeType == "Customer") -->
+        <LookupStyle>single</LookupStyle>
+        <LookupTypes>Account,Contact</LookupTypes>
+    <!--#elseif (AttributeType == "Owner") -->
+        <LookupStyle>single</LookupStyle>
+        <LookupTypes>User,Team</LookupTypes>
+    <!--#elseif (AttributeType == "File") -->
+        <MaxFileSize>10485760</MaxFileSize>
+        <AllowedFileTypes>pdf,doc,docx</AllowedFileTypes>
+    <!--#elseif (AttributeType == "Image") -->
+        <MaxImageSize>1048576</MaxImageSize>
+        <AllowedImageFormats>jpg,png</AllowedImageFormats>
+    <!--#endif -->
+
     <displaynames>
         <displayname description="ExampleEntityAttributeDisplayName" languagecode="1033" />
     </displaynames>

@@ -1,0 +1,177 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.RibbonButton",
+  "name": "Power Platform: Ribbon Button",
+  "shortName": "pp-ribbon-button",
+  "description": "Adds a ribbon button: commanddefinition.xml (JavaScriptFunction + $webresource ref) + customaction.xml (location, icons 16x32, sequence, TemplateAlias) + loclbels.xml (Alt, LabelText, ToolTipTitle, ToolTipDescription, LCID 1033). Injected into entity RibbonDiff.xml.",
+  "tags": {
+    "language": "XML",
+    "type": "item"
+  },
+  "sourceName": "examplebuttonname",
+  "sources": [
+    {
+      "exclude": [
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        "*/**/[Bb]in/**",
+        "*/**/[Oo]bj/**",
+        "**/**/[Bb]in/**",
+        "**/**/[Oo]bj/**",
+        ".template.config/**/*"
+      ]
+    }
+  ],
+  "preferNameDirectory": true,
+  "symbols": {
+    "SolutionRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "SolutionDeclarationsRoot",
+      "fileRename": "SolutionDeclarationsRoot",
+      "description": "Path to the solution root directory"
+    },
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplepublisher",
+      "fileRename": "examplepublisher",
+      "isRequired": true,
+      "description": "Publisher prefix for the ribbon button (Example: new, talxis)"
+    },
+    "ButtonLable": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplebuttonlable",
+      "fileRename": "examplebuttonlable",
+      "isRequired": true,
+      "description": "Display label text for the ribbon button"
+    },
+    "EntityLogicalName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exampleentityname",
+      "fileRename": "exampleentityname",
+      "isRequired": true,
+      "description": "Logical name of the entity where the ribbon button will be added"
+    },
+    "Image32by32": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "icon32pathdefault",
+      "replaces": "icon32pathexample",
+      "fileRename": "icon32pathexample",
+      "description": "Path to the 32x32 pixel icon image for the ribbon button"
+    },
+    "Image16by16": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "icon16pathdefault",
+      "replaces": "icon16pathexample",
+      "fileRename": "icon16pathexample",
+      "description": "Path to the 16x16 pixel icon image for the ribbon button"
+    },
+    "Location": {
+      "type": "parameter",
+      "datatype": "choice",
+      "description": "Select location of the button",
+      "choices": [
+        {
+          "choice": "Home"
+        },
+        {
+          "choice": "SubGrid"
+        },
+        {
+          "choice": "Form"
+        },
+        {
+          "choice": "Manual"
+        }
+      ]
+    },
+    "LocationPath": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "buttonlocationexample",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(Location == 'Home')",
+            "value": "HomepageGrid"
+          },
+          {
+            "condition": "(Location == 'SubGrid')",
+            "value": "SubGrid"
+          },
+          {
+            "condition": "(Location == 'Form')",
+            "value": "Form"
+          },
+          {
+            "condition": "(Location == 'Manual')",
+            "value": "ManualLocation"
+          }
+        ]
+      }
+    },
+    "ManualLocation": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Custom location path for the ribbon button (used when Location is set to Manual)"
+    },
+    "LibraryLogicalName": {
+      "isRequired": true,
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "libraryexamplelogicalname",
+      "fileRename": "libraryexamplelogicalname",
+      "description": "Logical name of the library where the ribbon button will be added"
+    },
+    "FunctionName": {
+      "isRequired": true,
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "functioexamplenname",
+      "fileRename": "functioexamplenname",
+      "description": "Logical name of the function where the ribbon button will be added"
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetIcon.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetButtonLogicalName.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/RibbonDiff.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    }
+  ]
+}

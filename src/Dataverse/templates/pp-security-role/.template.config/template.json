@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.SecurityRole",
+  "name": "Power Platform: Security Role",
+  "shortName": "pp-security-role",
+  "description": "Creates a security role XML: <Role id, name, IsCustomizable=1, IsAutoAssigned=0, empty RolePrivileges>. Add privileges with pp-security-role-privilege. Assign to app with pp-app-security-role. Create one role file per user persona.",
+  "classifications": ["Dataverse", "Power Platform"],
+  "sourceName": "Security-Role",
+  "tags": {
+		"language": "XML"
+	},
+  "preferNameDirectory": true,
+  "symbols": {
+    "SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot",
+			"description": "Path to the solution root directory"
+		},
+    "RoleId": {
+			"type": "parameter",
+      "generator": "guid",
+      "defaultValue": ".",
+      "replaces": "roleidexample",
+			"parameters": {
+				"defaultFormat": "d"
+			},
+			"description": "Unique identifier for the security role (automatically generated GUID)"
+    },
+    "RoleName": {
+      "type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+      "replaces": "rolenameexample",
+      "fileRename": "ExampleSecurityRole",
+			"description": "Name of the security role that will be displayed to users"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "include": ["**/*.xml"]
+        }
+      ]
+    }
+  ],
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddSecurityRoleToSolution.ps1\""
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding Security Role to solution xml"
+        }
+      ]
+    },
+    {
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Removing Scripts" }],
+			"continueOnError": false,
+			"description": "Removing Scripts"
+		}
+  ]
+}

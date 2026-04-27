@@ -1,0 +1,12 @@
+<customapiresponseproperty uniquename="StringProperty">
+  <description default="The StringProperty response property for customapiexampledisplayname">
+    <label description="The StringProperty response property for customapiexampledisplayname" languagecode="1033" />
+  </description>
+  <displayname default="StringProperty">
+    <label description="StringProperty" languagecode="1033" />
+  </displayname>
+  <iscustomizable>0</iscustomizable>
+  <logicalentityname />
+  <name>customizationexampleprefix_customapiexamplename.StringProperty</name>
+  <type>10</type>
+</customapiresponseproperty>

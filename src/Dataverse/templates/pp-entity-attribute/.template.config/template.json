@@ -1,179 +1,249 @@
 {
-	"$schema": "http://json.schemastore.org/template",
-	"author": "NETWORG",
-	"identity": "TALXIS.DevKit.Templates.Dataverse.Entity.Attribute",
-	"name": "Power Platform: Entity Attribute",
-	"shortName": "pp-entity-attribute",
-	"tags": {
-		"language": "XML",
-		"type": "item"
-	},
-	"sourceName": "examplecustomentityattribute",
-	"preferNameDirectory": false,
-	"symbols": {
-		"SolutionRootPath": {
-			"type": "parameter",
-			"datatype": "text",
-			"defaultValue": ".",
-			"replaces": "SolutionDeclarationsRoot",
-			"fileRename": "SolutionDeclarationsRoot",
-			"description": "Folder under the project folder where solution components will be placed. Use the folder name only, not the full path. Use '.' if you want to place components directly in the project folder."
-		},
-		"EntitySchemaName": {
-			"displayName": "Schema name of the entity including publisher prefix (might be different from logical name)",
-			"description": "Typically, a Pascal cased version of the logical name. For example, Account",
-			"type": "parameter",
-			"datatype": "text",
-			"replaces": "exampleexistingentity",
-			"isRequired": true
-		},
-		"AttributeType": {
-			"type": "parameter",
-			"description": "Select attribute type",
-			"datatype": "choice",
-			"isRequired": true,
-			"choices": [
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.Entity.Attribute",
+  "name": "Power Platform: Entity Attribute",
+  "shortName": "pp-entity-attribute",
+  "description": "Adds a column to an existing entity. Types: Text, MultilineText, WholeNumber, Decimal, Float, Money, DateTime, Boolean, Lookup, OptionSet(Local/Global). Generates attribute.xml + LookupRelationship.xml (for Lookup) + optionset XML (for new Global OptionSet). Required: EntitySchemaName, PublisherPrefix, LogicalName, DisplayName.",
+  "tags": {
+    "language": "XML",
+    "type": "item"
+  },
+  "sourceName": "examplecustomentityattribute",
+  "preferNameDirectory": false,
+  "sources": [
+		{
+			"modifiers": [
 				{
-					"choice": "Text"
-				},
-				{
-					"choice": "WholeNumber"
-				},
-				{
-					"choice": "Decimal"
-				},
-				{
-					"choice": "DateTime"
-				},
-				{
-					"choice": "Lookup"
-				},
-				{
-					"choice": "Choice"
-				},
-				{
-					"choice": "Boolean"
+					"condition": "(!CreateGlobalOptionSet)",
+					"exclude": ["SolutionDeclarationsRoot/OptionSets/*"]
 				}
 			]
-		},
-		"RequiredLevel": {
-			"type": "parameter",
-			"description": "Select required level",
-			"datatype": "choice",
-			"replaces": "attributerequiredlevel",
-			"choices": [
-				{
-					"choice": "none"
-				},
-				{
-					"choice": "required"
-				}
-			],
-			"defaultValue": "required"
-		},
-		"PublisherPrefix": {
-			"type": "parameter",
-			"description": "Use the same publisher prefix as defined in Other/Solution.xml of the solution where this attribute is introduced to the system.",
-			"datatype": "text",
-			"replaces": "examplepublisherprefix",
-			"fileRename": "examplepublisherprefix",
-			"isRequired": true
-		},
-		"LogicalName": {
-			"displayName": "Logical name (without publisher prefix)",
-			"description": "All lower-case version of the schema name. For example, account",
-			"type": "parameter",
-			"datatype": "text",
-			"replaces": "examplecustomentityattribute",
-			"isRequired": true
-		},
-		"DisplayName": {
-			"type": "parameter",
-			"datatype": "text",
-			"replaces": "ExampleEntityAttributeDisplayName",
-			"isRequired": true
-		},
-		"ReferencedEntityName": {
-			"type": "parameter",
-			"datatype": "text",
-			"replaces": "examplereferencedentityname",
-			"isRequired": "AttributeType == \"Lookup\""
-		},
-		"AddLookupRelationship": {
-			"type": "computed",
-			"value": "(AttributeType == \"Lookup\")",
-			"datatype": "bool"
-		},
-		"LookupRelationshipNameUnsanitized": {
-			"type": "generated",
-			"generator": "join",
-			"parameters": {
-				"symbols": [
-					{
-						"type": "ref",
-						"value": "PublisherPrefix"
-					},
-					{
-						"type": "ref",
-						"value": "ReferencedEntityName"
-					},
-					{
-						"type": "ref",
-						"value": "EntitySchemaName"
-					},
-					{
-						"type": "ref",
-						"value": "LogicalName"
-					}
-				],
-				"separator": "_",
-				"removeEmptyValues": true
-			}
-		},
-		"LookupRelationshipName": {
-			"type": "generated",
-			"generator": "casing",
-			"parameters": {
-				"source": "LookupRelationshipNameUnsanitized",
-				"toLower": true
-			},
-			"replaces": "examplelookuprelationshipname"
 		}
-	},
-	"postActions": [
-		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddAttributeToEntityXml.ps1\"",
-				"redirectStandardOutput": "false"
-			},
-			"manualInstructions": [{ "text": "Adding attribute to entity.xml" }],
-			"continueOnError": false,
-			"description": "Adding attribute to entity.xml"
-		},
-		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-			"condition": "(AddLookupRelationship)",
-			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddLookupRelationship.ps1\"",
-				"redirectStandardOutput": "false"
-			},
-			"manualInstructions": [{ "text": "Adding lookup relationship xml" }],
-			"continueOnError": false,
-			"description": "Adding lookup relationship xml"
-		},
-		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
-				"redirectStandardOutput": "false"
-			},
-			"manualInstructions": [{ "text": "Removing Scripts" }],
-			"continueOnError": false,
-			"description": "Removing Scripts"
-		}
-	]
+	],
+  "symbols": {
+    "SolutionRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "SolutionDeclarationsRoot",
+      "fileRename": "SolutionDeclarationsRoot",
+      "description": "Folder under the project folder where solution components will be placed. Use the folder name only, not the full path. Use '.' if you want to place components directly in the project folder."
+    },
+    "CreateGlobalOptionSet": {
+      "type": "computed",
+			"value": "(AttributeType == \"OptionSet(Global)\") && (GlobalOptionSetType == \"New\")",
+      "description": "Automatically computed: True when AttributeType is New OptionSet(Global), False otherwise"
+    },
+    "EntitySchemaName": {
+      "displayName": "Schema name of the entity including publisher prefix (might be different from logical name)",
+      "type": "parameter",
+      "datatype": "text",
+      "fileRename": "exampleexistingentity",
+      "replaces": "exampleexistingentity",
+      "isRequired": true,
+      "description": "Typically, a Pascal cased version of the logical name. For example, Account"
+    },
+    "AttributeType": {
+      "type": "parameter",
+      "description": "Data type of the attribute: Text, MultilineText, WholeNumber, Decimal, Float, Money, DateTime, Lookup, OptionSet(Local), OptionSet(Global), or Boolean",
+      "datatype": "choice",
+      "isRequired": true,
+      "choices": [
+        { "choice": "Text" },
+        { "choice": "MultilineText" },
+        { "choice": "WholeNumber" },
+        { "choice": "Decimal" },
+        { "choice": "Float" },
+        { "choice": "Money" },
+        { "choice": "DateTime" },
+        { "choice": "Lookup" },
+        { "choice": "OptionSet(Local)" },
+        { "choice": "OptionSet(Global)" },
+        { "choice": "Boolean" }
+      ]
+    },
+    "GlobalOptionSetType": {
+      "type": "parameter",
+      "description": "Type of the option set: You can choose Existing if the option set already exists in the solution and you want to add attribute to it or New if you want to create a new option set",
+      "datatype": "choice",
+      "isRequired": "AttributeType == \"OptionSet(Global)\"",
+      "choices": [
+        { "choice": "Existing" },
+        { "choice": "New" }
+      ]
+    },
+    "RequiredLevel": {
+      "type": "parameter",
+      "description": "Select required level",
+      "datatype": "choice",
+      "replaces": "attributerequiredlevel",
+      "choices": [
+        { "choice": "none" },
+        { "choice": "required" }
+      ],
+      "defaultValue": "required"
+    },
+    "PublisherPrefix": {
+      "type": "parameter",
+      "description": "Use the same publisher prefix as defined in Other/Solution.xml of the solution where this attribute is introduced to the system.",
+      "datatype": "text",
+      "replaces": "examplepublisherprefix",
+      "fileRename": "examplepublisherprefix",
+      "isRequired": true
+    },
+    "LogicalName": {
+      "displayName": "Logical name (without publisher prefix)",
+      "description": "All lower-case version of the schema name. For example, account",
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplecustomentityattribute",
+      "fileRename": "examplecustomentityattribute",
+      "isRequired": true
+    },
+    "DisplayName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "ExampleEntityAttributeDisplayName",
+      "isRequired": true,
+      "description": "Display name for the attribute that will be shown to users"
+    },
+    "OptionSetOptions": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "optinsforoptionsetexample",
+      "description": "Comma-separated list of options for the option set (Example: Option1,Option2,Option3)",
+      "isRequired": "(AttributeType == \"OptionSet(Local)\" || (AttributeType == \"OptionSet(Global)\" && GlobalOptionSetType == \"New\"))"
+    },
+    "Description": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "Example description",
+      "defaultValue": "",
+      "description": "Description of the attribute that explains its purpose"
+    },
+    "MaxLength": {
+      "type": "parameter",
+      "datatype": "int",
+      "defaultValue": 100,
+      "isRequired": "false",
+      "description": "Maximum length for text attributes (default: 100 characters)"
+    },
+    "Precision": {
+      "type": "parameter",
+      "datatype": "int",
+      "defaultValue": 2,
+      "isRequired": "false",
+      "description": "Number of decimal places for decimal/money attributes (default: 2)"
+    },
+    "MinValue": {
+      "type": "parameter",
+      "datatype": "decimal",
+      "defaultValue": 0.0,
+      "isRequired": "false",
+      "description": "Minimum allowed value for numeric attributes (default: 0.0)"
+    },
+    "MaxValue": {
+      "type": "parameter",
+      "datatype": "decimal",
+      "defaultValue": 1000000000.0,
+      "isRequired": "false",
+      "description": "Maximum allowed value for numeric attributes (default: 1000000000.0)"
+    },
+    "ReferencedEntityName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplereferencedentityname",
+      "isRequired": "AttributeType == \"Lookup\"",
+      "description": "Logical name of the entity that the lookup attribute will reference (required for Lookup type)"
+    },
+    "AddLookupRelationship": {
+      "type": "computed",
+      "value": "(AttributeType == \"Lookup\")",
+      "datatype": "bool",
+      "description": "Automatically computed: True when AttributeType is Lookup, False otherwise"
+    },
+    "LookupRelationshipNameUnsanitized": {
+      "type": "generated",
+      "generator": "join",
+      "parameters": {
+        "symbols": [
+          { "type": "ref", "value": "PublisherPrefix" },
+          { "type": "ref", "value": "ReferencedEntityName" },
+          { "type": "ref", "value": "EntitySchemaName" },
+          { "type": "ref", "value": "LogicalName" }
+        ],
+        "separator": "_",
+        "removeEmptyValues": true
+      },
+      "description": "Generated relationship name combining publisher prefix, referenced entity, entity schema, and attribute logical name"
+    },
+    "LookupRelationshipName": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source": "LookupRelationshipNameUnsanitized",
+        "toLower": true
+      },
+      "replaces": "examplelookuprelationshipname",
+      "description": "Final lookup relationship name converted to lowercase (automatically generated)"
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "condition": "(AttributeType == \"OptionSet(Local)\" || (AttributeType == \"OptionSet(Global)\" && (GlobalOptionSetType == \"New\"))",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetOptionSetOptions.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Setting option set options" }
+      ],
+      "continueOnError": false,
+      "description": "Setting option set options"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddAttributeToEntityXml.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Adding attribute to entity.xml" }
+      ],
+      "continueOnError": false,
+      "description": "Adding attribute to entity.xml"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "condition": "(AddLookupRelationship)",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddLookupRelationship.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Adding lookup relationship xml" }
+      ],
+      "continueOnError": false,
+      "description": "Adding lookup relationship xml"
+    },
+    
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Removing Scripts" }
+      ],
+      "continueOnError": false,
+      "description": "Removing Scripts"
+    }
+  ]
 }

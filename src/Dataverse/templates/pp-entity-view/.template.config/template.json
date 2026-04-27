@@ -4,6 +4,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.View",
   "name": "Power Platform: View",
   "shortName": "pp-entity-view",
+  "description": "Adds a SavedQuery (view) XML for an existing entity. Includes fetchxml, grid layout, column definitions. queryType=64. Use when adding a new list view to an entity.",
   "tags": {
     "language": "XML",
     "type": "item"
@@ -11,41 +12,77 @@
   "sourceName": "customentity",
   "preferNameDirectory": false,
   "symbols": {
-    "Prefix": {
+    "SolutionRootPath": {
       "type": "parameter",
       "datatype": "text",
-      "defaultValue": "ntg",
-      "replaces": "ntg",
-      "fileRename": "ntg"
+      "defaultValue": ".",
+      "replaces": "SolutionDeclarationsRoot",
+      "fileRename": "SolutionDeclarationsRoot",
+      "description": "Path to the solution root directory"
     },
-    "QueryType": {
+    "DisplayName": {
       "type": "parameter",
-      "description": "Select query type.",
-      "datatype": "choice",
-      "replaces": "queryType",
-      "choices": [
-        {
-          "choice": "0",
-          "displayName": "Standard",
-          "description": "Standard public view (query type = 0)"
-        },
-        {
-          "choice": "2",
-          "displayName": "Subgrid",
-          "description": "Subgrid view (query type = 2)"
-        }
-      ],
-      "defaultValue": "0"
+      "datatype": "text",
+      "defaultValue": "Generated",
+      "replaces": "viewexamplename",
+      "description": "Display name of the view"
     },
-    //views
-    "customViewId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "customViewId",
-      "fileRename": "customViewId",
-      "parameters": {
-        "defaultFormat": "d"
-      }
+    "EntitySchemaName": {
+      "type": "parameter",
+      "datatype": "text",
+      "isRequired": true,
+      "replaces": "exampleexistingentity",
+      "fileRename": "exampleexistingentity",
+      "description": "Schema name of the entity including publisher prefix (Example: new_customentity)"
+    },
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "isRequired": true,
+      "replaces": "examplepublisherprefix",
+      "fileRename": "examplepublisherprefix",
+      "description": "Publisher prefix of the entity"
+    },
+    "ViewId": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "defaultValue": "customViewIdexample",
+      "replaces": "customViewIdexample",
+      "description": "GUID of the specific view where the cell will be added"
     }
-  }
+  },
+	"postActions": [
+		{
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetFormId.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [
+				{
+					"text": "Setting form ID"
+				}
+			],
+			"continueOnError": false,
+			"description": "Setting form ID"
+		},
+		{
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [
+				{
+					"text": "Removing Scripts"
+				}
+			],
+			"continueOnError": false,
+			"description": "Removing Scripts"
+		}
+	]
 }

@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "icon": {
+        "id": "file-add"
+      },
+      "label": "Update local templates",
+      "type": "shell",
+      "command": "dotnet pack && { dotnet new uninstall TALXIS.DevKit.Templates.Dataverse; dotnet new install $(ls ${workspaceFolder}/src/Dataverse/bin/Release/TALXIS.DevKit.Templates.Dataverse.*.nupkg | sort -V | tail -1); }",
+      "detail": "Builds the project and updates the local templates with the latest version.",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

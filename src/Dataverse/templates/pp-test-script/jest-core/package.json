@@ -1,0 +1,7 @@
+{
+    "name": "pp-jest-core",
+    "version": "1.0.0",
+    "description": "Reusable Jest core (Xrm mocks + helpers) for Power Platform web resources",
+    "main": "index.js",
+    "license": "MIT"
+  }

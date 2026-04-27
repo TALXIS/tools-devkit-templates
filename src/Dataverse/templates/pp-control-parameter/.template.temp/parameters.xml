@@ -1,0 +1,79 @@
+<parameters>
+  <!--#if (ParameterType == "Lookup") -->
+  <FilterRelationshipName>filterrelationshipnameexampletypestring</FilterRelationshipName>
+  <DependentAttributeName>dependentattributenameexampletypestring</DependentAttributeName>
+  <DependentAttributeType>dependentattributetypeexampletypestring</DependentAttributeType>
+  <AutoResolve>autoresolveexampletypeboolean</AutoResolve>
+  <ResolveEmailAddress>resolveemailaddressexampletypeboolean</ResolveEmailAddress>
+  <DefaultViewReadOnly>defaultviewreadonlyexampletypeboolean</DefaultViewReadOnly>
+  <ViewPickerReadOnly>viewpickerreadonlyexampletypeboolean</ViewPickerReadOnly>
+  <AllowFilterOff>allowfilteroffexampletypeboolean</AllowFilterOff>
+  <DisableMru>disablemruexampletypeboolean</DisableMru>
+  <DisableQuickFind>disablequickfindexampletypeboolean</DisableQuickFind>
+  <DisableViewPicker>disableViewpickerexampletypeboolean</DisableViewPicker>
+  <AvailableViewIds>availableviewidsexampletypestring</AvailableViewIds>
+  <!--#if (FormType != "dialog" ) -->
+  <EntityLogicalName>entitylogicalnameexampletypestring</EntityLogicalName>
+  <DefaultViewId>{defaultviewidexampletypeformguidtype}</DefaultViewId>
+  <!--#endif -->
+  <IsInlineNewEnabled>isinlinenewenabledexampletypeboolean</IsInlineNewEnabled>
+  <InlineViewIds>inlineviewidsexampletypestring</InlineViewIds>
+  <UnboundLookupTypes>unboundlookuptypesexampletypestring</UnboundLookupTypes>
+  <UnboundLookupBrowse>unboundlookupbrowseexampletypeboolean</UnboundLookupBrowse>
+  <UnboundLookupControlType>unboundlookupcontroltypeexampletypestring</UnboundLookupControlType>
+  <ShowAsBreadcrumbControl>showasbreadcrumbcontrolexampletypeboolean</ShowAsBreadcrumbControl>
+    <!--#if ( LookupType == "unbound"  || FormType == "dialog" ) -->
+    <TargetEntities>
+      <TargetEntity>
+        <DefaultViewId>{defaultviewidexampletypeformguidtype}</DefaultViewId>
+        <EntityLogicalName>entitylogicalnameexampletypestring</EntityLogicalName>
+        <IsDeDupLookup>isdeduplookupexampletypeboolean</IsDeDupLookup>
+        <UnboundLookupStyle>unboundlookupstyleexampletypestring</UnboundLookupStyle>
+      </TargetEntity>
+    </TargetEntities>
+    <!--#endif -->
+  <!--#elseif (ParameterType == "OptionSet") -->
+  <DefaultValue>defaultvalueexampletypestring</DefaultValue>
+  <OptionSetName>optionsetnameexampletypestring</OptionSetName>
+  <OptionSetId>{optionsetidexampletypeformguidtype}</OptionSetId>
+  <!--#elseif (ParameterType == "SubGrid") -->
+  <RecordsPerPage>recordsperpageexampletypeinteger</RecordsPerPage>
+  <AutoExpand>autoexpandeexampletypegridresizetype</AutoExpand>
+  <EnableQuickFind>enablequickfindexampletypeboolean</EnableQuickFind>
+  <EnableViewPicker>enableViewpickerexampletypeboolean</EnableViewPicker>
+  <EnableChartPicker>enablechartpickerexampletypeboolean</EnableChartPicker>
+  <ChartGridMode>chartgridmodeexampletypestring</ChartGridMode>
+  <TargetEntityType>targetentitytypeexampletypestring</TargetEntityType>
+  <ViewId>{viewidexampletypeformguidtype}</ViewId>
+  <ViewIds>{viewidexampletypeformguidtype}</ViewIds>
+  <IsUserView>isuserviewexampletypeboolean</IsUserView>
+  <IsUserChart>isuserchartexampletypeboolean</IsUserChart>
+  <RelationshipName>relationshipnameexampletypestring</RelationshipName>
+  <RelationshipRoleOrdinal>relationshiproleordinalexampletyperelationshiproleordinaltype</RelationshipRoleOrdinal>
+  <MaxRowsBeforeScroll>maxrowsbeforescrollexampletypeinteger</MaxRowsBeforeScroll>
+  <EnableJumpBar>enablejumpbarexampletypeboolean</EnableJumpBar>
+  <EnableViewPicker>enableViewpickerexampletypeboolean</EnableViewPicker>
+  <VisualizationId>visualizationidexampletypestring</VisualizationId>
+  <EnableContextualActions>enablecontextualactionsexampletypeboolean</EnableContextualActions>
+  <TeamTemplateId>{teamtemplateidexampletypeformguidtype}</TeamTemplateId>
+  <GridUIMode>griduimodeexampletypestring</GridUIMode>
+  <ReferencePanelSubgridIconUrl>referencepanelsubgridiconurlexampletypestring</ReferencePanelSubgridIconUrl>
+  <HeaderColorCode>headercolorcodeexampletypestring</HeaderColorCode>
+  <!--#elseif (ParameterType == "Label") -->
+  <IsTitle>istitleexampletypeboolean</IsTitle>
+  <!--#elseif (ParameterType == "TextBox") -->
+  <MaxLength>maxlengthexampletypeinteger</MaxLength>
+  <Format>formatexampletypeformattype</Format>
+  <!--#elseif (ParameterType == "Number") -->
+  <MinValue>minvalueexampletypedouble</MinValue>
+  <MaxValue>maxvalueexampletypedouble</MaxValue>
+  <Precision>precisionexampletypeinteger</Precision>
+  <!--#elseif (ParameterType == "QuickFormCollection") -->
+  <QuickForms>quickformsexampletypestring</QuickForms>
+  <ControlMode>controlmodeexampletypestring</ControlMode>
+  <ReferencePanelQuickFormCollectionIconUrl>referencepanelquickformcollectioniconurlexampletypestring</ReferencePanelQuickFormCollectionIconUrl>
+  <DisplayAsCustomer360Tile>displayascustomer360tileexampletypeboolean</DisplayAsCustomer360Tile>
+  <!--#endif -->
+
+  
+</parameters>

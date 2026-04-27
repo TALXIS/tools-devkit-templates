@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.Custom.API.Endpoint",
+  "name": "Power Platform: Custom API Endpoint",
+  "shortName": "pp-api-endpoint",
+  "description": "Creates a Dataverse Custom API: customapi.xml + customapirequestparameter.xml (string input) + customapiresponseproperty.xml (string output). Use when you need a callable Dataverse action/function via SDK or Web API.",
+  "classifications": ["Dataverse", "Power Platform"],
+  "sourceName": "pp-api-endpoint",
+  "tags": {
+    "language": "XML"
+  },
+  "preferNameDirectory": true,
+  "symbols": {
+    "SolutionRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "SolutionDeclarationsRoot",
+      "fileRename": "SolutionDeclarationsRoot",
+      "description": "Folder under the project folder where solution components will be placed. Use the folder name only, not the full path. Use '.' if you want to place components directly in the project folder.",
+      "isRequired": false
+    },
+    "CustomizationPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "customizationexampleprefix",
+      "fileRename": "customizationexampleprefix",
+      "description": "The customization prefix for the publisher (e.g. 'contoso')."
+    },
+    "ApiLogicalName": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "customapiexamplename",
+      "fileRename": "customapiexamplename",
+      "description": "The logical name of the custom API without the prefix (e.g. 'MyCustomApi')."
+    },
+    "DisplayName": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "customapiexampledisplayname",
+      "description": "The display name for the custom API."
+    },
+    "Description": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "customapiexampledescription",
+      "description": "The description for the custom API."
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddCustomApiToSolutionXml.ps1\""
+      },
+      "manualInstructions": [{ "text": "Add Custom API to Solution.xml" }],
+      "continueOnError": true,
+      "description": "Adding Custom API to Solution.xml"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [{ "text": "Removing Scripts" }],
+      "continueOnError": false,
+      "description": "Removing Scripts"
+    }
+  ]
+}

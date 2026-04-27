@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "appId": "appexampleId",
+  "appDisplayName": "appexampleDisplayName",
+  "region": "prod",
+  "environmentId": null,
+  "description": "",
+  "buildPath": "./dist",
+  "buildEntryPoint": "index.html",
+  "localAppUrl": "http://localhost:3000",
+  "logoPath": "Default",
+  "connectionReferences": {},
+  "databaseReferences": {}
+}

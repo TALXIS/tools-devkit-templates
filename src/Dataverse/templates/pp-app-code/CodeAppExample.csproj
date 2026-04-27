@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="TALXIS.DevKit.Build.Sdk/0.0.0.15">
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <AppName>codeappexample</AppName>
+    <ProjectType>CodeApp</ProjectType>
+  </PropertyGroup>
+</Project>
