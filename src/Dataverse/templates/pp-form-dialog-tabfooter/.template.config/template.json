@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.UI.Tabs.TabFooter",
+  "name": "Power Platform: Tab Footer",
+  "shortName": "pp-form-dialog-tabfooter",
+  "description": "Injects a <tabfooter> XML element into a Dataverse dialog form tab. Use when you need a footer area at the bottom of a dialog tab.",
+  "tags": {
+    "language": "XML",
+    "type": "item"
+  },
+  "sourceName": "examplecustomentityattribute",
+  "preferNameDirectory": false,
+  "symbols": {
+    "SolutionRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "SolutionDeclarationsRoot",
+      "defaultValue": ".",
+      "isRequired": false,
+      "description": "Path to the solution root directory"
+    },
+    "FormId": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknownFormId",
+      "replaces": "formguididexample",
+      "description": "GUID of the specific form where the tab footer will be added"
+    },
+    "TabId": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "replaces": "tabexampleid",
+      "description": "GUID of the specific tab where the footer will be added"
+    },
+    "TabIndex": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "replaces": "tabnumberexample",
+      "description": "Index number of the tab (1-based) where the footer will be added"
+    },
+    "TabFooterId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "tabfooterexampleid",
+      "parameters": {
+        "defaultFormat": "d"
+      },
+      "description": "Unique identifier for the tab footer (automatically generated GUID)"
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Add.ps1\" ",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding new tab to form"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Adding new tab to form"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Removing Scripts"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Removing Scripts"
+    }
+  ]
+}

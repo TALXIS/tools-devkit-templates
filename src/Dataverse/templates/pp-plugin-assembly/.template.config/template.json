@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.Plugin.Assembly",
+  "name": "Power Platform: Plugin Assembly",
+  "shortName": "pp-plugin-assembly",
+  "description": "Registers a plugin assembly in the solution. Script-only. Generates PluginAssemblies/{Name}-{GUID}/*.dll.data.xml. CHAIN: Step 2 \u2014 run in the target solution after pp-plugin. Required before pp-plugin-assembly-step.",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "symbols": {
+    "AssemblyId": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "pluginguididexample",
+      "isRequired": true,
+      "description": "Unique GUID identifier for the plugin assembly"
+    },
+    "PluginProjectRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "pluginprojectrootpathexample",
+      "description": "Path to the plugin project root directory containing the compiled assembly"
+    },
+    "SolutionRootPath": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": ".",
+			"replaces": "SolutionDeclarationsRoot",
+			"fileRename": "SolutionDeclarationsRoot",
+			"description": "Folder under the project folder where solution components will be placed. Use the folder name only, not the full path. Use '.' if you want to place components directly in the project folder."
+		}
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/GenerateAssembly.ps1\" "
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddAssemblyToSolution.ps1\" "
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddPluginAssemblyCustomizationsXml.ps1\" "
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Removing template files"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Removing template files"
+    }
+  ]
+}

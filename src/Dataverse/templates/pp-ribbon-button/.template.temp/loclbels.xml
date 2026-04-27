@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-16"?>
+<LocLabels>
+  <LocLabel Id="examplepublisher.exampleentityname.Button.examplebuttonlogicalname.Alt">
+    <Titles>
+      <Title description="examplebuttonlable" languagecode="1033" />
+    </Titles>
+  </LocLabel>
+  <LocLabel Id="examplepublisher.exampleentityname.Button.examplebuttonlogicalname.LabelText">
+    <Titles>
+      <Title description="examplebuttonlable" languagecode="1033" />
+    </Titles>
+  </LocLabel>
+  <LocLabel
+    Id="examplepublisher.exampleentityname.Button.examplebuttonlogicalname.ToolTipDescription">
+    <Titles>
+      <Title description="examplebuttonlable" languagecode="1033" />
+    </Titles>
+  </LocLabel>
+  <LocLabel Id="examplepublisher.exampleentityname.Button.examplebuttonlogicalname.ToolTipTitle">
+    <Titles>
+      <Title description="examplebuttonlable" languagecode="1033" />
+    </Titles>
+  </LocLabel>
+</LocLabels>

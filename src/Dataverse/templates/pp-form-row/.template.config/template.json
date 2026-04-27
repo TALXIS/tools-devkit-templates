@@ -1,0 +1,150 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.UI.Rows",
+  "name": "Power Platform: Entity Form Rows",
+  "shortName": "pp-form-row",
+  "description": "HIERARCHY: inside Section (pp-form-section) -> contains Cells (pp-form-cell). Generates empty <row> element. One horizontal line of fields.",
+  "tags": {
+    "language": "XML",
+    "type": "item"
+  },
+  "sourceName": "examplecustomentityattribute",
+  "preferNameDirectory": false,
+  "symbols": {
+    "EntitySchemaName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exampleentityname",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "description": "Logical name of the entity for which the row will be created"
+    },
+    "SolutionRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "SolutionDeclarationsRoot",
+      "defaultValue": ".",
+      "isRequired": false,
+      "description": "Path to the solution root directory"
+    },
+    "FormId": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknownFormId",
+      "replaces": "formguididexample",
+      "description": "GUID of the specific form where the row will be added"
+    },
+    "FormType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "isRequired": false,
+      "replaces": "formtypeexample",
+      "defaultValue": "unknown",
+      "choices": [
+        {
+          "choice": "main"
+        },
+        {
+          "choice": "quick"
+        },
+        {
+          "choice": "dialog"
+        },
+        {
+          "choice": "unknown"
+        }
+      ],
+      "description": "Type of form: main (main form), quick (quick create), dialog (dialog form), or unknown (auto-detect)"
+    },
+    "SetToTabFooter": {
+      "type": "parameter",
+      "datatype": "choice",
+      "isRequired": false,
+      "defaultValue": "False",
+      "replaces": "settotabfooterchoice",
+      "choices": [
+        {
+          "choice": "True"
+        },
+        {
+          "choice": "False"
+        }
+      ],
+      "description": "Whether to add the row to the tab footer (True) or to the main tab content (False)"
+    },
+    "TabId": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "replaces": "tabexampleid",
+      "description": "GUID of the specific tab where the row will be added"
+    },
+    "TabIndex": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "replaces": "tabnumberexample",
+      "description": "Index number of the tab (1-based) where the row will be added"
+    },
+    "ColumnIndex": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "replaces": "columnnumberexample",
+      "description": "Index number of the column (1-based) within the tab where the row will be added"
+    },
+    "SectionIndex": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "replaces": "sectionnumberexample",
+      "description": "Index number of the section (1-based) within the column where the row will be added"
+    },
+    "SectionId": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "replaces": "sectionidexample",
+      "description": "GUID of the specific section where the row will be added"
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Add.ps1\" ",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding new row to form"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Adding new row to form"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Removing Scripts"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Removing Scripts"
+    }
+  ]
+}

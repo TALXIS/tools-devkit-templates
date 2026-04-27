@@ -1,0 +1,8 @@
+<section showlabel="true" showbar="false" IsUserDefined="0" id="{sectionidexample}"
+  labelid="{sectionlabelexampleid}" name="examplesectionname">
+  <labels>
+    <label description="sectionnameexample" languagecode="1033" />
+  </labels>
+  <rows>
+  </rows>
+</section>

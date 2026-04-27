@@ -4,6 +4,7 @@
 	"identity": "TALXIS.DevKit.Templates.Dataverse.Test.UI.Step",
 	"name": "Power Platform: UI Test Step",
   "shortName": "pp-test-ui-step",
+  "description": "Creates a Reqnroll [Binding] step definition class with Given/When/Then stubs (PendingStepException). Use for app-specific steps not covered by TALXIS.TestKit.Bindings. Prefer data-testid selectors over text/role selectors to survive UI localization changes.",
   "tags": {
     "language": "C#",
     "type": "item"

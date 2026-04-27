@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.PluginTest",
+  "name": "Power Platform: Plugin Test",
+  "shortName": "pp-plugin-test",
+  "description": "Creates FakeXrmEasyTestBase.cs: abstract test base with _context (IXrmFakedContext) + _service (IOrganizationService), FakeXrmEasy middleware pre-configured (CRUD + message handlers + commercial license). Individual test classes extend this base in a separate test project.",
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  },
+  "sourceName": "exampleplugintestprojectname",
+  "preferNameDirectory": true,
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetUp.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    }
+  ]
+}

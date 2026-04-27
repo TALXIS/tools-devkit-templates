@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+
+    <JetsCoreDir>$(MSBuildProjectDirectory)\jest-core</JetsCoreDir>
+    <WebResPath>examplescriptlibrarypath</WebResPath>
+
+    <EnableJestJUnit>false</EnableJestJUnit>
+    <JestJUnitOutput>$(MSBuildProjectDirectory)\TestResults\jest-junit.xml</JestJUnitOutput>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="MSTestSettings.cs" />
+  </ItemGroup>
+
+  <Target Name="RunJest" BeforeTargets="VSTest">
+    <Message Text="Running Jest tests..." Importance="high" />
+    <Exec
+      Command="npx jest --runInBand --ci --env=jsdom --verbose"
+      WorkingDirectory="$(MSBuildProjectDirectory)"
+      EnvironmentVariables="JETS_CORE=$(JetsCoreDir);WEBRES_PATH=$(WebResPath)"
+      ContinueOnError="false"
+      StandardOutputImportance="high"
+      StandardErrorImportance="high" />
+  </Target>
+</Project>

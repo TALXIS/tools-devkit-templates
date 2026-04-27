@@ -1,4 +1,4 @@
-﻿# File Paths
+# File Paths
 $referencedEntityRelationshipFilePathRaw = 'SolutionDeclarationsRoot/Other/Relationships/examplereferencedentityname.xml'
 $relationshipsFilePathRaw = 'SolutionDeclarationsRoot/Other/Relationships.xml'
 $relationshipTemplateFilePathRaw = '.template.temp/LookupRelationship.xml'

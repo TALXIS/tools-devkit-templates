@@ -1,0 +1,5 @@
+
+  <control id="examplecustomerow" classid="{exampleclassid}" isunbound="isunboundchoice"
+    isrequired="isrequiredchoice" uniqueid="{controluniqueidexample}">
+
+  </control>

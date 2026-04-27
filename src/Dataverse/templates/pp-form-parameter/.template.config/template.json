@@ -1,0 +1,130 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.UI.Parameters",
+  "name": "Power Platform: Form Parameters",
+  "shortName": "pp-form-parameter",
+  "description": "Adds a typed parameter to a form. No source files \u2014 script-only. Types: UniqueId, SafeString, Integer, Boolean, Double, Long, Object. Required: FormId, ParameterLogicalName, ParameterType.",
+  "tags": {
+    "language": "XML",
+    "type": "item"
+  },
+  "sourceName": "examplecustomentityattribute",
+  "preferNameDirectory": false,
+  "symbols": {
+    "EntitySchemaName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exampleentityname",
+      "isRequired": false,
+      "defaultValue": "unknown",
+      "description": "Logical name of the entity for which the tab will be created"
+    },
+    "SolutionRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "SolutionDeclarationsRoot",
+      "defaultValue": ".",
+      "isRequired": false,
+      "description": "Path to the solution root directory"
+    },
+    "FormId": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": false,
+      "defaultValue": "unknownFormId",
+      "replaces": "formguididexample",
+      "description": "GUID of the specific form where the tab will be added"
+    },
+    "FormType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "isRequired": false,
+      "replaces": "formtypeexample",
+      "defaultValue": "unknown",
+      "choices": [
+        {
+          "choice": "main"
+        },
+        {
+          "choice": "quick"
+        },
+        {
+          "choice": "dialog"
+        },
+        {
+          "choice": "unknown"
+        }
+      ],
+      "description": "Type of form: main (main form), quick (quick create), dialog (dialog form), or unknown (auto-detect)"
+    },
+    "ParameterLogicalName": {
+      "type": "parameter",
+      "datatype": "text",
+      "isRequired": true,
+      "replaces": "nameexample",
+      "description": "Logical name of the parameter"
+    },
+    "ParameterType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "isRequired": true,
+      "replaces": "typeexample",
+      "choices": [
+        {
+          "choice": "UniqueId"
+        },
+        {
+          "choice": "SafeString"
+        },
+        {
+          "choice": "Integer"
+        },
+        {
+          "choice": "Boolean"
+        },
+        {
+          "choice": "Double"
+        },
+        {
+          "choice": "Long"
+        },
+        {
+          "choice": "Object"
+        }
+      ]
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Add.ps1\" ",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Adding new tab to form"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Adding new tab to form"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Removing Scripts"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Removing Scripts"
+    }
+  ]
+}

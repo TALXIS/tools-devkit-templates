@@ -1,0 +1,9 @@
+<Parameters>
+    <!--#if (ParameterType == "CrmSelectedControl") -->
+        <CrmParameter Value="SelectedControl" />
+    <!--#elseif (ParameterType == "CrmPrimaryControl") -->
+        <CrmParameter Value="PrimaryControl" />
+    <!--#else (ParameterType == "String") -->
+        <StringParameter Value="exampleparameterinput" />
+    <!--#endif -->
+</Parameters>

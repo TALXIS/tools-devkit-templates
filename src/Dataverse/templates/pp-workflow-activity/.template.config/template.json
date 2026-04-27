@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.WorkflowActivities",
+  "name": "Power Platform: Workflow Activities",
+  "shortName": "pp-workflow-activity",
+  "description": "Creates WorkflowActivityBase.cs: abstract CodeActivity with sealed Execute() that initializes IWorkflowContext, two IOrganizationService instances (user + system context), ITracingService, then calls virtual Execute() for subclass implementation. Use for custom Dynamics 365 workflow steps.",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "SolutionLogicalNameExample",
+  "sources": [
+    {
+      "exclude": [
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        "*/**/[Bb]in/**",
+        "*/**/[Oo]bj/**",
+        "**/**/[Bb]in/**",
+        "**/**/[Oo]bj/**",
+        ".template.config/**/*"
+      ]
+    }
+  ],
+  "preferNameDirectory": true,
+  "symbols": {
+    "PublisherName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplepublisher",
+      "isRequired": true,
+      "description": "Publisher name for the workflow activities project (used as author in PAC CLI)"
+    },
+    "Company": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exampleсompany",
+      "isRequired": true,
+      "description": "Company name for the workflow activities project metadata"
+    },
+    "SigningKeyFilePath": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "signingkeyfilepathexample",
+      "description": "Path to the signing key file for assembly signing (optional)"
+    }
+  },
+  "primaryOutputs": [
+    {
+      "path": "SolutionLogicalNameExample.csproj"
+    }
+  ],
+  "postActions": [
+    {
+      "description": "Add generated project to .sln file",
+      "manualInstructions": [
+        {
+          "text": "Add generated project to .sln file"
+        }
+      ],
+      "args": {
+        "inRoot": true
+      },
+      "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
+      "continueOnError": false,
+      "primaryOutputIndexes": "0"
+    }
+  ]
+}

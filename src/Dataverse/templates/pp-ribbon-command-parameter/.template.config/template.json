@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.RibbonCommandParameter",
+  "name": "Power Platform: Ribbon Command Parameter",
+  "shortName": "pp-ribbon-command-parameter",
+  "description": "Adds a parameter to a ribbon command. Types: CrmParameter(SelectedControl), CrmParameter(PrimaryControl), StringParameter. Injected into command definition in RibbonDiff.xml.",
+  "tags": {
+    "language": "XML",
+    "type": "item"
+  },
+  "sourceName": "examplebuttonname",
+  "sources": [
+    {
+      "exclude": [
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        "*/**/[Bb]in/**",
+        "*/**/[Oo]bj/**",
+        "**/**/[Bb]in/**",
+        "**/**/[Oo]bj/**",
+        ".template.config/**/*"
+      ]
+    }
+  ],
+  "preferNameDirectory": true,
+  "symbols": {
+    "SolutionRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "SolutionDeclarationsRoot",
+      "fileRename": "SolutionDeclarationsRoot",
+      "description": "Path to the solution root directory"
+    },
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplepublisher",
+      "fileRename": "examplepublisher",
+      "isRequired": true,
+      "description": "Publisher prefix for the ribbon button (Example: new, talxis)"
+    },
+    "EntityLogicalName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exampleentityname",
+      "fileRename": "exampleentityname",
+      "isRequired": true,
+      "description": "Logical name of the entity where the ribbon button will be added"
+    },
+    "ParameterInput": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exampleparameterinput",
+      "fileRename": "exampleparameterinput",
+      "isRequired": "ParameterType == \"String\"",
+      "description": ""
+    },
+    "ParameterType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "isRequired": true,
+      "choices": [
+        {
+          "choice": "CrmSelectedControl"
+        },
+        {
+          "choice": "String"
+        },
+        {
+          "choice": "CrmPrimaryControl"
+        }
+      ],
+      "description": "Type of parameter: Crm Selected Control (SelectedControl), String (String), Crm Primary Control (PrimaryControl)"
+    },
+    "LibraryLogicalName": {
+      "isRequired": true,
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "libraryexamplelogicalname",
+      "fileRename": "libraryexamplelogicalname",
+      "description": "Logical name of the library where the ribbon button will be added"
+    },
+    "FunctionName": {
+      "isRequired": true,
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "functioexamplenname",
+      "fileRename": "functioexamplenname",
+      "description": "Logical name of the function where the ribbon button will be added"
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetParameter.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      }
+    }
+  ]
+}

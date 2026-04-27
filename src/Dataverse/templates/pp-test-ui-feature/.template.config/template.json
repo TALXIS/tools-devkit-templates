@@ -4,6 +4,7 @@
 	"identity": "TALXIS.DevKit.Templates.Dataverse.Test.UI.Feature",
 	"name": "Power Platform: UI Test Feature",
   "shortName": "pp-test-ui-feature",
+  "description": "Creates a Gherkin .feature file for BDD UI tests. Use to describe business scenarios (e.g. 'Subtract stock to available quantity', 'Error when not enough stock'). TALXIS.TestKit.Bindings provides built-in Power Platform steps \u2014 only write custom steps for app-specific actions.",
   "tags": {
     "language": "C#",
     "type": "item"

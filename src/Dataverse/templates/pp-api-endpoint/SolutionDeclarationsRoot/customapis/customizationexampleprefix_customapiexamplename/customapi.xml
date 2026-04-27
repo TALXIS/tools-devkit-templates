@@ -1,0 +1,18 @@
+<customapi uniquename="customizationexampleprefix_customapiexamplename">
+  <allowedcustomprocessingsteptype>0</allowedcustomprocessingsteptype>
+  <bindingtype>0</bindingtype>
+  <boundentitylogicalname />
+  <description default="customapiexampledescription">
+    <label description="customapiexampledescription" languagecode="1033" />
+  </description>
+  <displayname default="customapiexampledisplayname">
+    <label description="customapiexampledisplayname" languagecode="1033" />
+  </displayname>
+  <executeprivilegename />
+  <iscustomizable>1</iscustomizable>
+  <isfunction>0</isfunction>
+  <isprivate>0</isprivate>
+  <name>customizationexampleprefix_customapiexamplename</name>
+  <plugintypeid />
+  <workflowsdkstepenabled>0</workflowsdkstepenabled>
+</customapi>

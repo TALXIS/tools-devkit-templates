@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.Optionset.Global",
+  "name": "Power Platform: OptionSet(Global)",
+  "shortName": "pp-optionset-global",
+  "description": "Creates a global OptionSet(picklist, IsGlobal=1): optionset XML + optionsetoption.xml. Options populated from comma-separated list. Reference from entity attributes using pp-entity-attribute with AttributeType=OptionSet(Global).",
+  "tags": {
+    "language": "XML",
+    "type": "item"
+  },
+  "sourceName": "examplecustomentityattribute",
+  "preferNameDirectory": false,
+  "symbols": {
+    "SolutionRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "SolutionDeclarationsRoot",
+      "fileRename": "SolutionDeclarationsRoot",
+      "description": "Path to the solution root directory"
+    },
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplepublisherprefix",
+      "fileRename": "examplepublisherprefix",
+      "isRequired": true,
+      "description": "The publisher prefix to be used for the custom OptionSet name (Example: tom, new)"
+    },
+    "RequiredLevel": {
+      "type": "parameter",
+      "description": "Select required level",
+      "datatype": "choice",
+      "replaces": "attributerequiredlevel",
+      "choices": [
+        { "choice": "none" },
+        { "choice": "required" }
+      ],
+      "defaultValue": "required"
+    },
+    "LogicalName": {
+      "displayName": "Logical name",
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplecustomentityattribute",
+      "fileRename": "examplecustomentityattribute",
+      "isRequired": true,
+      "description": "Logical name of the option set (Example: new_status, new_priority)"
+    },
+    "DisplayName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "ExampleEntityAttributeDisplayName",
+      "isRequired": true,
+      "description": "Display name for the option set that will be shown to users"
+    },
+    "OptionSetOptions": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "optinsforoptionsetexample",
+      "description": "Select options for the option set in format: {option1},{option2},{option3}",
+      "isRequired": true
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetOptionSetOptions.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Setting option set options" }
+      ],
+      "continueOnError": false,
+      "description": "Setting option set options"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Removing Scripts" }
+      ],
+      "continueOnError": false,
+      "description": "Removing Scripts"
+    }
+  ]
+}

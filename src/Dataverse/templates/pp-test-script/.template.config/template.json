@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "classifications": [ "TALXIS", "Dataverse", "Script Test" ],
+  "identity": "TALXIS.DevKit.Templates.Dataverse.ScriptTest",
+  "name": "TALXIS Script Test",
+  "shortName": "pp-test-script",
+  "description": "Creates a Jest test project for Dataverse script libraries: .csproj (MSTest wrapper) + jest.config.js (jsdom) + package.json + MSTestSettings.cs (parallel). Includes jest-core/ with full Xrm mocks: makeAttr/makeLookup/makeControl/makeUI/makeForm/makeExecutionContext/makeGridControl/setupXrm/resetXrmMocks + loadWebRes.js (isolated VM context).",
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  },
+  "sourceName": "examplescripttestprojectname",
+  "preferNameDirectory": true,
+  "symbols": {
+    "ScriptTestProjectName": {
+      "type": "parameter",
+      "isRequired": true,
+      "datatype": "text",
+      "replaces": "examplescripttestprojectname",
+      "fileRename": "examplescripttestprojectname",
+      "defaultValue": "Script.Tests",
+      "description": "Name of the script test project (default: Script.Tests)"
+    },
+    "ScriptLibraryPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplescriptlibrarypath",
+      "isRequired": true,
+      "description": "Path to the script library project file"
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/installpackages.ps1\""
+      },
+      "manualInstructions": [
+        {
+          "text": "Installing npm packages"
+        }
+      ]
+    },
+    {
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Removing Scripts" }],
+			"continueOnError": false,
+			"description": "Removing Scripts"
+		}
+  ]
+}

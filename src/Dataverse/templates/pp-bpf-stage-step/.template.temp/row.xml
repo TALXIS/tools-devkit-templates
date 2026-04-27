@@ -1,0 +1,8 @@
+<row>
+    <cell id="{processstepexampleid}" showlabel="true" visible="true" labelid="{rowid2}">
+      <labels>
+        <label description="examplerowdisplayname" languagecode="1033" />
+      </labels>
+      <control id="bpf_primaryentityexample_examplebpfname:controlexampleid" classid="{classexampleid}" datafieldname="controlexampleid" disabled="false" relationship="bpf_primaryentityexample_examplebpfname" isrequired="false" />
+    </cell>
+</row>
