@@ -5,7 +5,9 @@ if ($solutionRootPath -ne ".") { return }
 $projectRoot = (Get-Location).Path
 
 $stranded = Join-Path $projectRoot "SolutionDeclarationsRoot"
-if (Test-Path -LiteralPath $stranded) {
+$strandedResolved = (Resolve-Path -LiteralPath $stranded -ErrorAction SilentlyContinue)?.Path
+# Skip if the stranded path resolves to the project root itself (SolutionRootPath was '.')
+if ($strandedResolved -and $strandedResolved -ne $projectRoot -and (Test-Path -LiteralPath $stranded)) {
     Get-ChildItem -LiteralPath $stranded -Force | ForEach-Object {
         Move-Item -LiteralPath $_.FullName -Destination $projectRoot -Force
     }
