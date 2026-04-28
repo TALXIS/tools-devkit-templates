@@ -1,5 +1,3 @@
-#r "Newtonsoft.Json"
-using Newtonsoft.Json;
 using System.Xml;
 using System;
 using System.Collections.Generic;
@@ -19,16 +17,10 @@ string cleanedString = json
 
 string[] entities = cleanedString.Split(',', StringSplitOptions.RemoveEmptyEntries);
 
-var jsonObject = new { entities = entities };
-
-string entitiesList = JsonConvert.SerializeObject(jsonObject, Newtonsoft.Json.Formatting.Indented);
-
-dynamic entityData = JsonConvert.DeserializeObject(entitiesList);
-
 var attributes = new List<string>();
-foreach (string entity in entityData.entities)
+foreach (string entity in entities)
 {
-    attributes.Add($"{entity.Trim()}");
+    attributes.Add(entity.Trim());
 }
 
 XmlDocument doc = new XmlDocument();
