@@ -32,14 +32,31 @@ $referencedEntityRelationshipFilePath = Resolve-Path $referencedEntityRelationsh
 [xml]$referencedEntityRelationshipFile = Get-Content $referencedEntityRelationshipFilePath -Raw
 
 
-# add relationship to referenced entity relationship file
-$importedNode = $referencedEntityRelationshipFile.ImportNode($relationshipTemplateFile.EntityRelationship, $true)
-$referencedEntityRelationshipFile.EntityRelationships.AppendChild($importedNode) | Out-Null
+# add relationship to referenced entity relationship file (skip if already exists)
+$relationshipName = 'examplelookuprelationshipname'
+$existingInRef = $false
+foreach ($node in $referencedEntityRelationshipFile.GetElementsByTagName('EntityRelationship')) {
+    if ($node.GetAttribute('Name') -eq $relationshipName) { $existingInRef = $true; break }
+}
+if ($existingInRef) {
+    Write-Host "Relationship '$relationshipName' already exists in $referencedEntityRelationshipFilePathRaw – skipping."
+} else {
+    $importedNode = $referencedEntityRelationshipFile.ImportNode($relationshipTemplateFile.EntityRelationship, $true)
+    $referencedEntityRelationshipFile.EntityRelationships.AppendChild($importedNode) | Out-Null
+}
 
-# add relationship element to relationships file as the following element: <EntityRelationship Name="examplelookuprelationshipname" />
-$relationshipElement = $relationshipsFile.CreateElement('EntityRelationship')
-$relationshipElement.SetAttribute('Name', 'examplelookuprelationshipname')
-$relationshipsFile.EntityRelationships.AppendChild($relationshipElement) | Out-Null
+# add relationship element to relationships file (skip if already exists)
+$existingInRels = $false
+foreach ($node in $relationshipsFile.GetElementsByTagName('EntityRelationship')) {
+    if ($node.GetAttribute('Name') -eq $relationshipName) { $existingInRels = $true; break }
+}
+if ($existingInRels) {
+    Write-Host "Relationship '$relationshipName' already exists in $relationshipsFilePathRaw – skipping."
+} else {
+    $relationshipElement = $relationshipsFile.CreateElement('EntityRelationship')
+    $relationshipElement.SetAttribute('Name', $relationshipName)
+    $relationshipsFile.EntityRelationships.AppendChild($relationshipElement) | Out-Null
+}
 
 
 # Configure XmlWriter settings to avoid unwanted whitespace

@@ -21,9 +21,8 @@
 			"description": "Path to the solution root directory"
 		},
     "RoleId": {
-			"type": "parameter",
+			"type": "generated",
       "generator": "guid",
-      "defaultValue": ".",
       "replaces": "roleidexample",
 			"parameters": {
 				"defaultFormat": "d"
