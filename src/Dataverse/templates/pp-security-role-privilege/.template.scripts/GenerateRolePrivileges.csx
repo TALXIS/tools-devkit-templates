@@ -21,7 +21,7 @@ var permissions = JsonSerializer.Deserialize<List<Privilege>>(fixedJson, new Jso
     PropertyNameCaseInsensitive = true
 });
 
-var filePath = ".\\.template.scripts\\privileges.xml";
+var filePath = Path.Combine(".", ".template.scripts", "privileges.xml");
 
 using (var writer = new StreamWriter(filePath))
 {

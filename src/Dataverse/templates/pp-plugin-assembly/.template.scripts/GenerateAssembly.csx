@@ -12,7 +12,7 @@ string pluginAssemblyId = "pluginguididexample";
 string csprojPath = Directory.GetFiles(pluginRootPath, "*.csproj").FirstOrDefault();
 if (csprojPath == null) throw new Exception("csproj not found");
 string projectDirectory = Path.GetDirectoryName(csprojPath);
-string sdkPath = @$"{projectDirectory}\bin\Debug\net462\Microsoft.Xrm.Sdk.dll"; 
+string sdkPath = Path.Combine(projectDirectory, "bin", "Debug", "net462", "Microsoft.Xrm.Sdk.dll"); 
 Assembly.LoadFrom(sdkPath);
 string csprojFileName = Path.GetFileNameWithoutExtension(csprojPath);
 
@@ -95,7 +95,7 @@ solutionDoc.AppendChild(solutionRoot);
 
 Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), ".template.temp"));
 
-solutionDoc.Save(".template.temp\\RootComponent.xml");
+solutionDoc.Save(Path.Combine(".template.temp", "RootComponent.xml"));
 
 
 
