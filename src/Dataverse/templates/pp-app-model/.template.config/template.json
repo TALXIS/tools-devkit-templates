@@ -56,7 +56,8 @@
         {
           "text": "Adding Model Driven App to solution xml"
         }
-      ]
+      ],
+      "description": "Add model driven app to solution XML"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
@@ -68,7 +69,8 @@
         {
           "text": "Adding Model Driven App to solution xml"
         }
-      ]
+      ],
+      "description": "Generate ID for app module site map"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
@@ -80,7 +82,8 @@
         {
           "text": "Adding sitemapp  to solution xml"
         }
-      ]
+      ],
+      "description": "Add site map to solution XML"
     },{
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
@@ -91,7 +94,8 @@
         {
           "text": "Adding SiteMap to Customizations xml"
         }
-      ]
+      ],
+      "description": "Add site map to customizations XML"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
@@ -103,7 +107,8 @@
         {
           "text": "Adding Model Driven App to Customizations xml"
         }
-      ]
+      ],
+      "description": "Add model driven app to customizations XML"
     },
     {
 			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",

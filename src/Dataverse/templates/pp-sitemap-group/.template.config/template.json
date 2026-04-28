@@ -72,7 +72,8 @@
         {
           "text": "Adding Model Driven App to solution xml"
         }
-      ]
+      ],
+      "description": "Generate ID for app module site map"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
@@ -84,7 +85,8 @@
         {
           "text": "Adding area to the sitemapp "
         }
-      ]
+      ],
+      "description": "Add group to area"
     },
     {
 			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",

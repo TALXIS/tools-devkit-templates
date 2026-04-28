@@ -6,6 +6,7 @@ $paramType = "typeexample"
 
 $formNode = $entityXml.SelectSingleNode('//form')
 if (-not $formNode) {
+    Write-Error "Could not find form node in the XML file."
     exit 1
 }
 

@@ -5,6 +5,7 @@ $privilegesPath = (Resolve-Path '.template.scripts/privileges.xml').Path
 
 $rolePrivilegesNode = $entityXml.SelectSingleNode('//Role/RolePrivileges')
 if (-not $rolePrivilegesNode) {
+    Write-Error "Could not find Role/RolePrivileges node in the XML file."
     exit 1
 }
 

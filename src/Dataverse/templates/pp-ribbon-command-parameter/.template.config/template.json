@@ -98,7 +98,8 @@
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetParameter.ps1\"",
         "redirectStandardOutput": "false"
-      }
+      },
+      "description": "Set parameter"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
@@ -106,7 +107,8 @@
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
         "redirectStandardOutput": "false"
-      }
+      },
+      "description": "Cleanup"
     }
   ]
 }

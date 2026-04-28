@@ -4,6 +4,7 @@ $steplabelsPath = (Resolve-Path '.template.temp\steplabels.xml').Path
 $targetXmlFile = Get-ChildItem -Path $targetXmlFolderPath -Recurse -Filter *.xml | Select-Object -First 1
 
 if (-not $targetXmlFile) {
+    Write-Error "Could not find a .xml file in $targetXmlFolderPath."
     exit 1
 }
 

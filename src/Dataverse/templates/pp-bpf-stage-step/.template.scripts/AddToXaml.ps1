@@ -4,6 +4,7 @@ $stepXamlPath = (Resolve-Path '.template.temp\step.xaml').Path
 $targetXamlFile = Get-ChildItem -Path $targetXamlFolderPath -Recurse -Filter *.xaml | Select-Object -First 1
 
 if (-not $targetXamlFile) {
+    Write-Error "Could not find a .xaml file in $targetXamlFolderPath."
     exit 1
 }
 

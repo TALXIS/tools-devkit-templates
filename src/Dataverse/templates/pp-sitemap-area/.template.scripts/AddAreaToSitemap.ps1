@@ -13,6 +13,7 @@ foreach ($candidatePath in $entityXmlRelativePaths) {
 }
 
 if (-not $entityXmlPath) {
+    Write-Error "Could not find AppModuleSiteMap XML file. Searched paths: $($entityXmlRelativePaths -join ', ')"
     exit 1
 }
 
@@ -23,6 +24,7 @@ $areaPath  = (Resolve-Path '.template.temp/area.xml').Path
 
 $siteMapNode = $entityXml.SelectSingleNode('//SiteMap')
 if (-not $siteMapNode) {
+    Write-Error "Could not find SiteMap node in $entityXmlPath"
     exit 1
 }
 

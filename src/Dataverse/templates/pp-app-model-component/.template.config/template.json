@@ -120,7 +120,8 @@
         {
           "text": "Adding Model Driven App to solution xml"
         }
-      ]
+      ],
+      "description": "Add component to model driven app"
     },
     {
 			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",

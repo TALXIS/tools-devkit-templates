@@ -7,6 +7,7 @@ $stageFormPath = (Resolve-Path '.template.temp\stageForm.xml').Path
 $tabsNode = $targetXml.SelectSingleNode('//tabs')
 
 if (-not $tabsNode) {
+    Write-Error "Could not find tabs node in the target form XML."
     exit 1
 }
 
