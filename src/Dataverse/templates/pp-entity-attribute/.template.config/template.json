@@ -42,7 +42,7 @@
       "fileRename": "exampleexistingentity",
       "replaces": "exampleexistingentity",
       "isRequired": true,
-      "description": "Typically, a Pascal cased version of the logical name. For example, Account"
+      "description": "Schema name of the entity including publisher prefix (e.g., udpp_warehouseitem)"
     },
     "AttributeType": {
       "type": "parameter",
@@ -94,7 +94,7 @@
     },
     "LogicalName": {
       "displayName": "Logical name (without publisher prefix)",
-      "description": "All lower-case version of the schema name. For example, account",
+      "description": "Logical name of the attribute without publisher prefix (e.g., availablequantity). The prefix is added automatically.",
       "type": "parameter",
       "datatype": "text",
       "replaces": "examplecustomentityattribute",
@@ -155,7 +155,7 @@
       "datatype": "text",
       "replaces": "examplereferencedentityname",
       "isRequired": "AttributeType == \"Lookup\"",
-      "description": "Logical name of the entity that the lookup attribute will reference (required for Lookup type)"
+      "description": "Logical name of the referenced entity including publisher prefix (e.g., udpp_warehouseitem)"
     },
     "AddLookupRelationship": {
       "type": "computed",

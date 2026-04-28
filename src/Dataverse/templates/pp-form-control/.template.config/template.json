@@ -18,7 +18,7 @@
       "replaces": "exampleentityname",
       "isRequired": false,
       "defaultValue": "unknown",
-      "description": "Logical name of the entity for which the control will be created"
+      "description": "Schema name of the entity including publisher prefix (e.g., udpp_warehouseitem)"
     },
     "SolutionRootPath": {
       "type": "parameter",

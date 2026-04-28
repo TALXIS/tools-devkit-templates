@@ -46,7 +46,7 @@
       "replaces": "examplecustomentityattribute",
       "fileRename": "examplecustomentityattribute",
       "isRequired": true,
-      "description": "Logical name of the option set (Example: new_status, new_priority)"
+      "description": "Logical name of the option set without publisher prefix (e.g., paymentmethod). The prefix is added automatically."
     },
     "DisplayName": {
       "type": "parameter",

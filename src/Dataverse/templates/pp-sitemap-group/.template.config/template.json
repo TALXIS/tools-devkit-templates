@@ -23,7 +23,8 @@
     "AppName": {
       "type": "parameter",
       "datatype": "text",
-      "description": "Name of the app module where the sitemap will be modified",
+      "description": "Name of the app module including publisher prefix (e.g., udpp_warehouseapp)",
+      "isRequired": true,
       "replaces": "appexamplename",
       "fileRename": "appexamplename"
     },
@@ -47,6 +48,7 @@
       "type": "parameter",
       "datatype": "text",
       "description": "Title of the area in the sitemap where the group will be added",
+      "isRequired": true,
       "defaultValue": "NewTitle",
       "replaces": "areatitleexample",
       "fileRename": "areatitleexample"

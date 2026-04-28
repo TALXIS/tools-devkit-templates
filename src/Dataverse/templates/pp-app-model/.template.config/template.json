@@ -16,13 +16,15 @@
       "type": "parameter",
       "datatype": "text",
       "description": "Publisher prefix for the app (Example: new, talxis) - used in naming conventions",
+      "isRequired": true,
       "replaces": "userprefixexample",
       "fileRename": "userprefixexample"
     },
     "LogicalName": {
       "type": "parameter",
       "datatype": "text",
-      "description": "Logical name of the model-driven app (Example: customapp, salesapp)",
+      "description": "Logical name of the app without publisher prefix (e.g., warehouseapp). The prefix is added automatically.",
+      "isRequired": true,
       "replaces": "appexamplename",
       "fileRename": "appexamplename"
     },

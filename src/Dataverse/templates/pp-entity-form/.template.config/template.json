@@ -68,10 +68,11 @@
 		"EntitySchemaName": {
 			"type": "parameter",
 			"datatype": "text",
-			"defaultValue": ".",
+			"defaultValue": "exampleentity",
+			"isRequired": true,
 			"replaces": "ItemFolderName",
 			"fileRename": "ItemFolderName",
-			"description": "Logical name of the entity for which the form will be created"
+			"description": "Schema name of the entity including publisher prefix (e.g., udpp_warehouseitem)"
 		},
 		"DialogUniqueName": {
 			"type": "parameter",
