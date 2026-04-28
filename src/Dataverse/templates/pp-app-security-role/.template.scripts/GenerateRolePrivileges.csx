@@ -19,7 +19,7 @@ for (int i = 0; i < guids.Count; i++)
     guids[i] = guids[i].Trim();
 }
 
-var filePath = ".\\.template.scripts\\appaccess.xml";
+var filePath = Path.Combine(".", ".template.scripts", "appaccess.xml");
 
 Directory.CreateDirectory(Path.GetDirectoryName(filePath));
 
