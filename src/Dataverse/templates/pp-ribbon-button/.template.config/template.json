@@ -55,7 +55,7 @@
       "replaces": "exampleentityname",
       "fileRename": "exampleentityname",
       "isRequired": true,
-      "description": "Logical name of the entity where the ribbon button will be added"
+      "description": "Logical name of the entity including publisher prefix (e.g., udpp_warehouseitem)"
     },
     "Image32by32": {
       "type": "parameter",
@@ -147,7 +147,8 @@
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetIcon.ps1\"",
         "redirectStandardOutput": "false"
-      }
+      },
+      "description": "Set icon"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
@@ -155,7 +156,8 @@
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetButtonLogicalName.ps1\"",
         "redirectStandardOutput": "false"
-      }
+      },
+      "description": "Set button logical name"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
@@ -163,7 +165,8 @@
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/RibbonDiff.ps1\"",
         "redirectStandardOutput": "false"
-      }
+      },
+      "description": "Ribbon diff"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
@@ -171,7 +174,8 @@
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
         "redirectStandardOutput": "false"
-      }
+      },
+      "description": "Cleanup"
     }
   ]
 }

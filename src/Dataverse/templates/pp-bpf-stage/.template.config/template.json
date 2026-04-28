@@ -112,7 +112,8 @@
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/NextStage.ps1\"",
         "redirectStandardOutput": "false"
-      }
+      },
+      "description": "Next stage"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
@@ -120,7 +121,8 @@
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddToXaml.ps1\"",
         "redirectStandardOutput": "false"
-      }
+      },
+      "description": "Add to XAML"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
@@ -128,7 +130,8 @@
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddToForm.ps1\"",
         "redirectStandardOutput": "false"
-      }
+      },
+      "description": "Add to form"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
@@ -136,7 +139,8 @@
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/steplabels.ps1\"",
         "redirectStandardOutput": "false"
-      }
+      },
+      "description": "Step labels"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",

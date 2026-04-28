@@ -5,6 +5,7 @@ $rowPath = (Resolve-Path './.template.temp/subgrid.xml').Path
 
 $rowsNode = $entityXml.SelectSingleNode('//rows')
 if (-not $rowsNode) {
+    Write-Error "Could not find rows node in the XML file."
     exit 1
 }
 

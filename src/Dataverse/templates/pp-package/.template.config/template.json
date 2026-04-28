@@ -22,7 +22,8 @@
         {
           "text": "Creating Package"
         }
-      ]
+      ],
+      "description": "Create package"
     },
     {
 			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",

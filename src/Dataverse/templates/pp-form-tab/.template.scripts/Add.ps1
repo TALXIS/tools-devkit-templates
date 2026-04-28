@@ -6,6 +6,7 @@ $tabPath = (Resolve-Path './.template.temp/tab.xml').Path
 
 $tabsNode = $entityXml.SelectSingleNode('//tabs')
 if (-not $tabsNode) {
+    Write-Error "Could not find tabs node in the XML file."
     exit 1
 }
 

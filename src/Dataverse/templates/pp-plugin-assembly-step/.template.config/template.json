@@ -195,42 +195,48 @@
       "args": {
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddFilteringAttributes.ps1\" "
-      }
+      },
+      "description": "Add filtering attributes"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddPluginSolutionXml.ps1\" "
-      }
+      },
+      "description": "Add plugin solution XML"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddPublicKey.ps1\" "
-      }
+      },
+      "description": "Add public key"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetPluginTypeId.ps1\" "
-      }
+      },
+      "description": "Set plugin type ID"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/CopyStep.ps1\" "
-      }
+      },
+      "description": "Copy step"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddPluginStepCustomizationsXml.ps1\" "
-      }
+      },
+      "description": "Add plugin step customizations XML"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",

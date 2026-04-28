@@ -25,7 +25,7 @@
 			"datatype": "text",
 			"defaultValue": ".",
       "replaces": "entityexamplename",
-			"description": "Logical name of the entity for which privileges will be created"
+			"description": "Logical name of the entity including publisher prefix (e.g., udpp_warehouseitem)"
     },
     "RoleName": {
       "type": "parameter",

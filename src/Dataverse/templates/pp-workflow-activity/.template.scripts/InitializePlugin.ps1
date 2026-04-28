@@ -38,6 +38,7 @@ if (Test-Path $workflowBaseSource) {
 # --- 4. Locate the generated .csproj ---
 $csprojFile = Get-ChildItem -Path . -Filter *.csproj | Select-Object -First 1
 if (-not $csprojFile) {
+    Write-Error "Could not find a .csproj file in the current directory."
     exit 1
 }
 $projectName = [System.IO.Path]::GetFileNameWithoutExtension($csprojFile.Name)

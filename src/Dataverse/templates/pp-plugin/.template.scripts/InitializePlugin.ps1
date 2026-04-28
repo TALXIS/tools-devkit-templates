@@ -13,6 +13,7 @@ Remove-Item .\Plugin1.cs -ErrorAction SilentlyContinue
 # --- 3. Find the .csproj file ---
 $csprojFile = Get-ChildItem -Path . -Filter *.csproj | Select-Object -First 1
 if (-not $csprojFile) {
+    Write-Error "Could not find a .csproj file in the current directory."
     exit 1
 }
 

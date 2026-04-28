@@ -13,6 +13,7 @@ foreach ($candidatePath in $entityXmlRelativePaths) {
 }
 
 if (-not $entityXmlPath) {
+    Write-Error "Could not find the SiteMap XML file. Check that the file exists and the path parameters are correct."
     exit 1
 }
 
@@ -24,6 +25,7 @@ $subareaPath = (Resolve-Path '.template.temp/subarea.xml').Path
 $groupNode = $entityXml.SelectSingleNode("//SiteMap/Area[@ResourceId='SitemapDesigner.areatitleexample']/Group[@ResourceId='SitemapDesigner.grouptitleexample']")
 
 if (-not $groupNode) {
+    Write-Error "Could not find the Group node in the SiteMap XML."
     exit 1
 }
 

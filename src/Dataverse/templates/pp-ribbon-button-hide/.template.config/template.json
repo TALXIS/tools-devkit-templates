@@ -47,7 +47,7 @@
       "replaces": "exampleentityname",
       "fileRename": "exampleentityname",
       "isRequired": true,
-      "description": "Logical name of the entity where the ribbon button will be added"
+      "description": "Logical name of the entity including publisher prefix (e.g., udpp_warehouseitem)"
     },
     "ButtonToHide": {
 			"type": "parameter",
@@ -68,7 +68,8 @@
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Hide.ps1\"",
         "redirectStandardOutput": "false"
-      }
+      },
+      "description": "Hide"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
@@ -76,7 +77,8 @@
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
         "redirectStandardOutput": "false"
-      }
+      },
+      "description": "Cleanup"
     }
   ]
 }

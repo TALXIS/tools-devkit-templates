@@ -1,4 +1,4 @@
-<Project Sdk="TALXIS.DevKit.Build.Sdk/0.0.0.15">
+<Project Sdk="TALXIS.DevKit.Build.Sdk/0.0.0.16">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <SignAssembly>true</SignAssembly>

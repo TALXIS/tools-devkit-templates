@@ -38,21 +38,24 @@
       "args": {
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/GenerateAssembly.ps1\" "
-      }
+      },
+      "description": "Generate assembly"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddAssemblyToSolution.ps1\" "
-      }
+      },
+      "description": "Add assembly to solution"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddPluginAssemblyCustomizationsXml.ps1\" "
-      }
+      },
+      "description": "Add plugin assembly customizations XML"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
