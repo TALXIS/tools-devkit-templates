@@ -13,14 +13,14 @@
     "AssemblyId": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "pluginguididexample",
+      "replaces": "__assembly-id__",
       "isRequired": true,
       "description": "Unique GUID identifier for the plugin assembly"
     },
     "PluginProjectRootPath": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "pluginprojectrootpathexample",
+      "replaces": "__plugin-project-root__",
       "description": "Path to the plugin project root directory containing the compiled assembly"
     },
     "SolutionRootPath": {

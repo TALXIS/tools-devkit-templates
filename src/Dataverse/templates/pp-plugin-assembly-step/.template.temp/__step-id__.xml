@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SdkMessageProcessingStep Name="__plugin-project-name__.__plugin-class-name__: __sdk-message-text__ of __primary-entity__" SdkMessageProcessingStepId="{__step-id__}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SdkMessageId>__sdk-message-id__</SdkMessageId>
+  <PluginTypeName>__plugin-project-name__.__plugin-class-name__, __assembly-name__, Version=1.0.0.0, Culture=neutral, PublicKeyToken=__public-key-token__</PluginTypeName>
+  <PrimaryEntity>__primary-entity__</PrimaryEntity>
+  <PluginTypeId></PluginTypeId>
+  <AsyncAutoDelete>0</AsyncAutoDelete>
+  <FilteringAttributes></FilteringAttributes>
+  <InvocationSource>__invocation-source__</InvocationSource>
+  <Mode>0</Mode>
+  <Rank>1</Rank>
+  <EventHandlerTypeCode>4602</EventHandlerTypeCode>
+  <Stage>__stage-type-id__</Stage>
+  <IsCustomizable>1</IsCustomizable>
+  <IsHidden>0</IsHidden>
+  <SupportedDeployment>0</SupportedDeployment>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <SdkMessageProcessingStepImages />
+</SdkMessageProcessingStep>

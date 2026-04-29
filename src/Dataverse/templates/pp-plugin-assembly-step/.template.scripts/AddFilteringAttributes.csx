@@ -5,10 +5,8 @@ using System.IO;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
-var json = "jsonarraystringwhithentitiesList";
-string xmlPath = ".template.temp/{pluginstepexampleid}.xml";
-string PluginProjectName = "examplepluginprojectname"; 
-string cleanPluginProjectName = PluginProjectName.Replace(".", ""); 
+var json = "__filtering-attributes__";
+string xmlPath = ".template.temp/__step-id__.xml";
 
 string cleanedString = json
     .Trim('{', '}')                    
@@ -34,7 +32,4 @@ if (filteringNode != null)
 }
 
 doc.Save(xmlPath);
-string xmlContent = File.ReadAllText(xmlPath);
-xmlContent = xmlContent.Replace("buildnameexample", cleanPluginProjectName);
-File.WriteAllText(xmlPath, xmlContent);
 

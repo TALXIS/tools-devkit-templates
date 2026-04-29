@@ -1,16 +1,20 @@
-$xmlPath = ".template.temp/{pluginstepexampleid}.xml" 
-$PluginProjectName = "examplepluginprojectname"
-$plaginBuildName = $PluginProjectName.Replace(".", "")
-$pluginguidIdExampleToUpper = "pluginguididexample".ToUpper()
-$xmlPluginPath = "SolutionDeclarationsRoot/PluginAssemblies/${plaginBuildName}-${pluginguidIdExampleToUpper}/${plaginBuildName}.dll.data.xml"
+$xmlPath = ".template.temp/__step-id__.xml" 
+$assemblyName = "__assembly-name__"
 
-if (-not (Test-Path $xmlPluginPath)) {
-    throw "Plugin file not found in the path: $xmlPluginPath"
+# Search for the assembly data XML — supports both build-generated (flat) and
+# pp-plugin-assembly (subfolder with GUID) directory layouts.
+$assemblyXml = Get-ChildItem -Path "SolutionDeclarationsRoot/PluginAssemblies" -Filter "${assemblyName}.dll.data.xml" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+
+if ($null -eq $assemblyXml) {
+    Write-Error "Plugin assembly XML not found for '${assemblyName}' under SolutionDeclarationsRoot/PluginAssemblies/. Ensure the solution has been built or pp-plugin-assembly has been run."
+    exit 1
 }
 if (-not (Test-Path $xmlPath)) {
-    throw "Plugin file not found in the path: $xmlPath"
+    Write-Error "Step XML not found at: $xmlPath"
+    exit 1
 }
 
+$xmlPluginPath = $assemblyXml.FullName
 [xml]$xml = Get-Content $xmlPluginPath
 
 $fullName = $xml.PluginAssembly.FullName
@@ -22,8 +26,8 @@ else {
 }
 
 $content = Get-Content $xmlPath -Raw
-if ($content -match 'PublicKeyToken=publickeytokenexample') {
-    $content = $content -replace 'publickeytokenexample', $publicKeyToken
+if ($content -match 'PublicKeyToken=__public-key-token__') {
+    $content = $content -replace '__public-key-token__', $publicKeyToken
     $content | Set-Content $xmlPath -Force
 }
 
