@@ -652,13 +652,34 @@ We are happy to collaborate with developers and contributors interested in enhan
 
 ### Local building and debugging
 
-#### Using your local version of templates
+**Build the template package locally:**
+```sh
+dotnet pack --configuration Debug
+```
 
-Use the provided VS Code task to build the project and update the local templates:
+The `.nupkg` is output to `src/Dataverse/bin/Debug/`. To use it with the CLI, add it as a local NuGet source (see [cross-repo instructions](https://github.com/TALXIS/tools-cli#working-with-all-three-repos-locally)).
 
-1. Open the Command Palette (Ctrl+Shift+P or Cmd+Shift+P)
-2. Search for "Tasks: Run Task" and select it
-3. Choose "Update local templates" from the list
+For `dotnet new` (standalone template usage outside the CLI):
+```sh
+dotnet new install src/Dataverse/bin/Debug/TALXIS.DevKit.Templates.Dataverse.*.nupkg --force
+```
+
+Or use the VS Code task: Command Palette → "Tasks: Run Task" → "Update local templates".
+
+### Working with all three repos locally
+
+See the [tools-cli README](https://github.com/TALXIS/tools-cli#working-with-all-three-repos-locally) for instructions on testing local versions of the CLI, templates, and build SDK together.
+
+### Versioning & Release
+
+Releases are published through [GitHub Releases](https://github.com/TALXIS/tools-devkit-templates/releases):
+
+1. Go to **Releases** → **Draft a new release**
+2. Create a tag in the format `vX.Y.Z` (e.g. `v1.17.0`)
+3. Write the changelog in the release body
+4. Click **Publish release**
+
+The publish workflow builds the NuGet package with the tag version and pushes it to [nuget.org](https://www.nuget.org/packages/TALXIS.DevKit.Templates.Dataverse). Release notes are embedded in the package.
 
 ## Contact us
 
