@@ -412,38 +412,6 @@ dotnet new pp-plugin-assembly-step `
 
 ## Tools
 
-### Templates Builder
-
-The Templates Builder is a utility tool that helps you create custom .NET templates specifically for TALXIS custom controls. This tool reads a `ControlManifest.Input.xml` file and generates the necessary template files and configuration needed for a .NET template.
-
-#### How it works
-
-The Templates Builder reads a `ControlManifest.Input.xml` file (which contains the custom control definition) and generates the necessary template files and configuration needed for a .NET template. This allows you to:
-
-- Convert existing custom controls into reusable templates
-- Standardize custom control creation across your organization
-- Automate the scaffolding of custom control structures
-- Maintain consistency in custom control naming and structure
-
-#### Usage
-
-```console
-./TALXIS.DevKit.Templates.Builder.exe
---PathToTheImputXmlFile "ControlManifest.Input.xml"  `
---ResultFolderPath "C:\result" `
---TemplateName "New Custom Control Template" `
---TemplateIdentity "New.Custom.Control.Template" `
---TemplateShortName "pp-control-custom-template"
-```
-
-#### Parameters
-
-- `--PathToTheImputXmlFile` <span style="color: #ff6b6b; font-weight: bold;">[Required]</span>: Path to the `ControlManifest.Input.xml` file containing the custom control definition
-- `--ResultFolderPath`: Directory where the generated template files will be created
-- `--TemplateName`: Display name for the new template
-- `--TemplateIdentity`: Unique identifier for the template (used in template.json)
-- `--TemplateShortName`: Short name used when invoking the template with `dotnet new`
-
 ### Power Platform: Script Library template
 
 A .NET project template for building Dataverse script libraries with TypeScript. It scaffolds a `net462` class library project that executes an npm/TypeScript build during MSBuild and outputs a single AMD bundle for use as a web resource.
