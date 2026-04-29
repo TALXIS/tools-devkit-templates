@@ -1,5 +1,5 @@
 <attribute PhysicalName="examplepublisherprefix_examplecustomentityattribute">
-    <!--#if (AttributeType == "Text") -->
+    <!--#if (AttributeType == "Text" || AttributeType == "JsonText") -->
         <Type>ntext</Type>
     <!--#elseif (AttributeType == "MultilineText") -->
         <Type>nvarchar</Type>
@@ -91,6 +91,9 @@
         <Format>text</Format>
         <MaxLength>1000</MaxLength>
         <Length>2000</Length>
+    <!--#elseif (AttributeType == "JsonText") -->
+        <Format>json</Format>
+        <MaxLength>1048576</MaxLength>
     <!--#elseif (AttributeType == "MultilineText") -->
         <MaxLength>2000</MaxLength>
     <!--#elseif (AttributeType == "TwoOptions") -->

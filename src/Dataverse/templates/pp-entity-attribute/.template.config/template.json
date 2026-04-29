@@ -46,11 +46,12 @@
     },
     "AttributeType": {
       "type": "parameter",
-      "description": "Data type of the attribute: Text, MultilineText, WholeNumber, Decimal, Float, Money, DateTime, Lookup, OptionSet(Local), OptionSet(Global), or Boolean",
+      "description": "Data type of the attribute: Text, JsonText (Elastic tables only), MultilineText, WholeNumber, Decimal, Float, Money, DateTime, Lookup, OptionSet(Local), OptionSet(Global), or Boolean",
       "datatype": "choice",
       "isRequired": true,
       "choices": [
         { "choice": "Text" },
+        { "choice": "JsonText", "description": "Only for Elastic tables" },
         { "choice": "MultilineText" },
         { "choice": "WholeNumber" },
         { "choice": "Decimal" },
