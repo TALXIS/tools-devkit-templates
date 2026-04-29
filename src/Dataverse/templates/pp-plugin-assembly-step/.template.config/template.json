@@ -4,7 +4,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.Plugin.Steps",
   "name": "Power Platform: Plugin Steps",
   "shortName": "pp-plugin-assembly-step",
-  "description": "Creates SdkMessageProcessingStep XML: PluginTypeName (assembly-qualified), SdkMessageId, PrimaryEntity, Stage, Rank, EventHandlerTypeCode=4602, filtering attributes. Generates SdkMessageProcessingSteps/{GUID}.xml. CHAIN: Step 3 \u2014 run after pp-plugin-assembly. One step per plugin class per message.",
+  "description": "Creates SdkMessageProcessingStep XML: PluginTypeName (assembly-qualified), SdkMessageId, PrimaryEntity, Stage, Rank, EventHandlerTypeCode=4602, filtering attributes. Generates SdkMessageProcessingSteps/{GUID}.xml. CHAIN: run after pp-solution --GeneratePluginAssembly true + dotnet build. One step per plugin class per message.",
   "tags": {
     "language": "C#",
     "type": "project"
@@ -13,37 +13,58 @@
     "PrimaryEntity": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "exampleentity",
+      "replaces": "__primary-entity__",
       "isRequired": true,
       "description": "Entity that will trigger the plugin (Example: account, contact, custom_entity)"
-    },
-    "AssemblyId": {
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "pluginguididexample",
-      "isRequired": true,
-      "description": "GUID of the plugin assembly (found in PluginAssembly.xml file)"
     },
     "PluginProjectName": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "examplepluginprojectname",
-      "description": "Name of the plugin project containing the plugin class"
+      "replaces": "__plugin-project-name__",
+      "description": "Name of the plugin project containing the plugin class (e.g. Plugins.Warehouse)"
     },
     "PluginName": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "examplepluginname",
-      "description": "Name of the plugin class that will be executed"
+      "replaces": "__plugin-class-name__",
+      "description": "Name of the plugin class that will be executed (e.g. SubtractQuantityPlugin)"
+    },
+    "AssemblyName": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "The compiled assembly name (DLL name without extension). Defaults to PluginProjectName with dots removed. Override only if the .csproj has a custom <AssemblyName>."
+    },
+    "AssemblyNameResolved": {
+      "type": "generated",
+      "generator": "coalesce",
+      "replaces": "__assembly-name__",
+      "parameters": {
+        "sourceVariableName": "AssemblyName",
+        "fallbackVariableName": "PluginProjectNameNoDots"
+      }
+    },
+    "PluginProjectNameNoDots": {
+      "type": "generated",
+      "generator": "regex",
+      "datatype": "string",
+      "parameters": {
+        "source": "PluginProjectName",
+        "steps": [
+          {
+            "regex": "\\.",
+            "replacement": ""
+          }
+        ]
+      }
     },
     "PluginStepId": {
       "type": "generated",
       "generator": "guid",
-      "replaces": "pluginstepexampleid",
-      "fileRename": "pluginstepexampleid",
-			"parameters": {
-				"defaultFormat": "d"
-			}
+      "replaces": "__step-id__",
+      "fileRename": "__step-id__",
+      "parameters": {
+        "defaultFormat": "d"
+      }
     },
     "Stage": {
       "type": "parameter",
@@ -65,7 +86,7 @@
     "StageTypeId": {
       "type": "generated",
       "generator": "switch",
-      "replaces": "stagetypeexample",
+      "replaces": "__stage-type-id__",
       "parameters": {
         "datatype": "string",
         "cases": [
@@ -87,7 +108,7 @@
     "InvocationSource": {
       "type": "generated",
       "generator": "switch",
-      "replaces": "invocationsourceeexample",
+      "replaces": "__invocation-source__",
       "parameters": {
         "datatype": "string",
         "cases": [
@@ -119,7 +140,7 @@
       "datatype": "choice",
       "description": "CRM operation that triggers the plugin: Create (new record), Update (modify record), Delete (remove record), etc.",
       "defaultValue": "Create",
-      "replaces": "sdkmessageidexampletext",
+      "replaces": "__sdk-message-text__",
       "choices": [
         {
           "choice": "Create"
@@ -147,7 +168,7 @@
     "SdkMessageId": {
       "type": "generated",
       "generator": "switch",
-      "replaces": "sdkmessageidexample",
+      "replaces": "__sdk-message-id__",
       "parameters": {
         "datatype": "string",
         "cases": [
@@ -185,7 +206,7 @@
     "FilteringAttributes": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "jsonarraystringwhithentitiesList",
+      "replaces": "__filtering-attributes__",
       "description": "Comma-separated list of entity fields that must change to trigger the plugin (leave empty to run on any field change)"
     }
   },
