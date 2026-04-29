@@ -28,8 +28,8 @@ jobs:
         run: |
           if ("${{ github.event_name }}" -eq "release") {
             $tag = "${{ github.event.release.tag_name }}" -replace '^v', ''
-            if ($tag -notmatch '^\d+\.\d+(\.\d+)?(-[a-zA-Z0-9\.\-]+)?$') {
-              Write-Error "Invalid tag format '${{ github.event.release.tag_name }}'. Expected vX.Y or vX.Y.Z."
+            if ($tag -notmatch '^\d+\.\d+\.\d+(-[a-zA-Z0-9\.\-]+)?$') {
+              Write-Error "Invalid tag format '${{ github.event.release.tag_name }}'. Expected vX.Y.Z or vX.Y.Z-prerelease."
               exit 1
             }
             "package-version=$tag" >> $env:GITHUB_OUTPUT
