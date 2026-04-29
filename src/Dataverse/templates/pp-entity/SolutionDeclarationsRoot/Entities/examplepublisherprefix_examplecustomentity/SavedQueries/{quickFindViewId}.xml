@@ -38,6 +38,18 @@
           </filter>
         </entity>
       </fetch>
+      <!--#elseif (EntityType == "Elastic") -->
+      <fetch version="1.0" mapping="logical">
+        <entity name="examplepublisherprefix_examplecustomentity">
+          <attribute name="examplepublisherprefix_examplecustomentityid" />
+          <attribute name="examplepublisherprefix_name" />
+          <attribute name="createdon" />
+          <order attribute="examplepublisherprefix_name" descending="false" />
+          <filter type="or" isquickfindfields="1">
+            <condition attribute="examplepublisherprefix_name" operator="like" value="{0}" />
+          </filter>
+        </entity>
+      </fetch>
       <!--#else -->
       <fetch version="1.0" mapping="logical">
         <entity name="examplepublisherprefix_examplecustomentity">

@@ -35,6 +35,10 @@
                           <label description="Priority" languagecode="1033" />
                         </labels>
                         <control id="prioritycode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="prioritycode" disabled="false" />
+                        <!--#elseif (EntityType == "Elastic") -->
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                         <!--#else -->
                         <labels>
                           <label description="Status Reason" languagecode="1033" />

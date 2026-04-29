@@ -46,6 +46,15 @@
           </link-entity>
         </entity>
       </fetch>
+      <!--#elseif (EntityType == "Elastic") -->
+      <fetch version="1.0" mapping="logical">
+        <entity name="examplepublisherprefix_examplecustomentity">
+          <attribute name="examplepublisherprefix_examplecustomentityid" />
+          <attribute name="examplepublisherprefix_name" />
+          <attribute name="createdon" />
+          <order attribute="examplepublisherprefix_name" descending="false" />
+        </entity>
+      </fetch>
       <!--#else -->
       <fetch version="1.0" mapping="logical">
         <entity name="examplepublisherprefix_examplecustomentity">
@@ -64,6 +73,8 @@
     <LocalizedNames>
       <!--#if (EntityType == "Activity") -->
       <LocalizedName description="My Open ExampleEntityPluralDisplayName" languagecode="1033" />
+      <!--#elseif (EntityType == "Elastic") -->
+      <LocalizedName description="All ExampleEntityPluralDisplayName" languagecode="1033" />
       <!--#else -->
       <LocalizedName description="Active ExampleEntityPluralDisplayName" languagecode="1033" />
       <!--#endif -->

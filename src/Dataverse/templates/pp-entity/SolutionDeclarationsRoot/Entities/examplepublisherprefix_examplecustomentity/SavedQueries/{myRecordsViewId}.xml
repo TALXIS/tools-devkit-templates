@@ -19,6 +19,18 @@
           </filter>
         </entity>
       </fetch>
+      <!--#elseif (EntityType == "Elastic") -->
+      <fetch version="1.0" mapping="logical" output-format="xml-platform">
+        <entity name="examplepublisherprefix_examplecustomentity">
+          <attribute name="examplepublisherprefix_examplecustomentityid" />
+          <filter type="and">
+            <!--#if (IsOrganizationTypeEntity) -->
+            <!--#else -->
+            <condition attribute="ownerid" operator="eq-userid" />
+            <!--#endif -->
+          </filter>
+        </entity>
+      </fetch>
       <!--#else -->
       <fetch version="1.0" mapping="logical" output-format="xml-platform">
         <entity name="examplepublisherprefix_examplecustomentity">

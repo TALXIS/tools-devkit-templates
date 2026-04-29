@@ -82,7 +82,7 @@
 		},
 		"EntityType": {
 			"type": "parameter",
-			"description": "There are two types of entities: Standard and Activity. Standard entities are used to store data, while Activity entities are used to track events such as emails, appointments and tasks.",
+			"description": "There are three types of entities: Standard, Activity, and Elastic. Standard entities are used to store data, Activity entities track events such as emails and tasks, and Elastic entities use Azure Cosmos DB storage with PartitionId-based sharding and TTL-based record expiration.",
 			"datatype": "choice",
 			"choices": [
 				{
@@ -90,6 +90,9 @@
 				},
 				{
 					"choice": "Activity"
+				},
+				{
+					"choice": "Elastic"
 				}
 			],
 			"defaultValue": "Standard"
