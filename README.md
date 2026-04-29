@@ -77,6 +77,21 @@ dotnet new pp-entity `
 --allow-scripts yes
 ```
 
+Create a new *elastic* table:
+```console
+dotnet new pp-entity `
+--output "src/Solutions.DataModel" `
+--EntityType "Elastic" `
+--Behavior "New" `
+--PublisherPrefix "tom" `
+--LogicalName "inboundmessage" `
+--LogicalNamePlural "inboundmessages" `
+--DisplayName "Inbound Message" `
+--DisplayNamePlural "Inbound Messages" `
+--SolutionRootPath "Declarations" `
+--allow-scripts yes
+```
+
 Add an existing *custom table* to a solution:
 ```console
 dotnet new pp-entity `

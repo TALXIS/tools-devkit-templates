@@ -14,7 +14,7 @@
         <Description description="" languagecode="1033" />
       </Descriptions>
       <attributes>
-        <!--#if (EntityType == "Standard") -->
+        <!--#if (EntityType == "Standard" || EntityType == "Elastic") -->
         <attribute PhysicalName="CreatedBy">
           <Type>lookup</Type>
           <Name>createdby</Name>
@@ -408,7 +408,89 @@
             <Description description="Date and time that the record was migrated." languagecode="1033" />
           </Descriptions>
         </attribute>
-        <!--#if (IsOrganizationTypeEntity) -->
+        <!--#if (EntityType == "Elastic") -->
+        <attribute PhysicalName="PartitionId">
+          <Type>nvarchar</Type>
+          <Name>partitionid</Name>
+          <LogicalName>partitionid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>text</Format>
+          <MaxLength>100</MaxLength>
+          <Length>200</Length>
+          <displaynames>
+            <displayname description="Partition Id" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Logical partition id. A logical partition consists of a set of records with same partition id." languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="TTLInSeconds">
+          <Type>int</Type>
+          <Name>ttlinseconds</Name>
+          <LogicalName>ttlinseconds</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format></Format>
+          <MinValue>1</MinValue>
+          <MaxValue>2147483647</MaxValue>
+          <displaynames>
+            <displayname description="Time To Live (seconds)" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Time to live in seconds." languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <!--#endif -->
+        <!--#if (IsOrganizationTypeEntity && EntityType != "Elastic") -->
         <attribute PhysicalName="OrganizationId">
           <Type>lookup</Type>
           <Name>organizationid</Name>
@@ -446,7 +528,7 @@
             <Description description="Unique identifier for the organization" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <!--#else -->
+        <!--#elseif (!IsOrganizationTypeEntity) -->
         <attribute PhysicalName="OwnerId">
           <Type>owner</Type>
           <Name>ownerid</Name>
@@ -607,6 +689,7 @@
           </Descriptions>
         </attribute>
         <!--#endif -->
+        <!--#if (EntityType != "Elastic") -->
         <attribute PhysicalName="statecode">
           <Type>state</Type>
           <Name>statecode</Name>
@@ -727,6 +810,7 @@
             <Description description="Reason for the status of the ExampleEntityDisplayName" languagecode="1033" />
           </Descriptions>
         </attribute>
+        <!--#endif -->
         <attribute PhysicalName="TimeZoneRuleVersionNumber">
           <Type>int</Type>
           <Name>timezoneruleversionnumber</Name>
@@ -3503,17 +3587,21 @@
         <!--#endif -->
       </attributes>
       <EntitySetName>examplepublisherprefix_examplecustomentities</EntitySetName>
+      <!--#if (EntityType == "Elastic") -->
+      <IsDuplicateCheckSupported>0</IsDuplicateCheckSupported>
+      <!--#else -->
       <IsDuplicateCheckSupported>1</IsDuplicateCheckSupported>
+      <!--#endif -->
       <IsBusinessProcessEnabled>0</IsBusinessProcessEnabled>
       <IsRequiredOffline>0</IsRequiredOffline>
       <IsInteractionCentricEnabled>0</IsInteractionCentricEnabled>
-      <!--#if (EntityType == "Standard") -->
+      <!--#if (EntityType == "Standard" || EntityType == "Elastic") -->
       <IsCollaboration>0</IsCollaboration>
       <!--#elseif (EntityType == "Activity") -->
       <IsCollaboration>0</IsCollaboration>
       <!--#endif -->
       <AutoRouteToOwnerQueue>0</AutoRouteToOwnerQueue>
-      <!--#if (EntityType == "Standard") -->
+      <!--#if (EntityType == "Standard" || EntityType == "Elastic") -->
       <IsConnectionsEnabled>0</IsConnectionsEnabled>
       <!--#elseif (EntityType == "Activity") -->
       <IsConnectionsEnabled>1</IsConnectionsEnabled>
@@ -3525,6 +3613,10 @@
       <IsKnowledgeManagementEnabled>0</IsKnowledgeManagementEnabled>
       <IsSLAEnabled>0</IsSLAEnabled>
       <IsDocumentRecommendationsEnabled>0</IsDocumentRecommendationsEnabled>
+      <!--#if (EntityType == "Elastic") -->
+      <DataProviderId>{1d9bde74-9ebd-4da9-8ff5-aa74945b9f74}</DataProviderId>
+      <DataSourceId>{19897b6e-b2c2-461c-8f32-5a2413028030}</DataSourceId>
+      <!--#endif -->
       <IsBPFEntity>0</IsBPFEntity>
       <!--#if (IsOrganizationTypeEntity) -->
       <OwnershipTypeMask>OrgOwned</OwnershipTypeMask>
@@ -3534,7 +3626,7 @@
       <IsAuditEnabled>1</IsAuditEnabled>
       <IsRetrieveAuditEnabled>0</IsRetrieveAuditEnabled>
       <IsRetrieveMultipleAuditEnabled>0</IsRetrieveMultipleAuditEnabled>
-      <!--#if (EntityType == "Standard") -->
+      <!--#if (EntityType == "Standard" || EntityType == "Elastic") -->
       <IsActivity>0</IsActivity>
       <ActivityTypeMask></ActivityTypeMask>
       <!--#elseif (EntityType == "Activity") -->
@@ -3542,13 +3634,13 @@
       <ActivityTypeMask>CommunicationActivity</ActivityTypeMask>
       <!--#endif -->
       <IsActivityParty>0</IsActivityParty>
-      <!--#if (EntityType == "Standard") -->
+      <!--#if (EntityType == "Standard" || EntityType == "Elastic") -->
       <IsReplicated>0</IsReplicated>
       <!--#elseif (EntityType == "Activity") -->
       <IsReplicated>1</IsReplicated>
       <!--#endif -->
       <IsReplicationUserFiltered>0</IsReplicationUserFiltered>
-      <!--#if (EntityType == "Standard") -->
+      <!--#if (EntityType == "Standard" || EntityType == "Elastic") -->
       <IsMailMergeEnabled>1</IsMailMergeEnabled>
       <!--#elseif (EntityType == "Activity") -->
       <IsMailMergeEnabled>0</IsMailMergeEnabled>
@@ -3563,7 +3655,7 @@
       <IsReadingPaneEnabled>1</IsReadingPaneEnabled>
       <IsQuickCreateEnabled>0</IsQuickCreateEnabled>
       <SyncToExternalSearchIndex>0</SyncToExternalSearchIndex>
-      <!--#if (EntityType == "Standard") -->
+      <!--#if (EntityType == "Standard" || EntityType == "Elastic") -->
       <IntroducedVersion>1.0</IntroducedVersion>
       <!--#elseif (EntityType == "Activity") -->
       <IntroducedVersion>5.0.0.0</IntroducedVersion>
@@ -3582,7 +3674,11 @@
       <CanModifyQueueSettings>1</CanModifyQueueSettings>
       <CanCreateAttributes>1</CanCreateAttributes>
       <CanCreateForms>1</CanCreateForms>
+      <!--#if (EntityType == "Elastic") -->
+      <CanCreateCharts>0</CanCreateCharts>
+      <!--#else -->
       <CanCreateCharts>1</CanCreateCharts>
+      <!--#endif -->
       <CanCreateViews>1</CanCreateViews>
       <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
       <CanEnableSyncToExternalSearchIndex>1</CanEnableSyncToExternalSearchIndex>

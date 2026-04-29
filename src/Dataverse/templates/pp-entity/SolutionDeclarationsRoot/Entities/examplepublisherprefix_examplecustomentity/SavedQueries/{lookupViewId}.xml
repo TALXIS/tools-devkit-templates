@@ -40,6 +40,14 @@
           </filter>
         </entity>
       </fetch>
+      <!--#elseif (EntityType == "Elastic") -->
+      <fetch version="1.0" mapping="logical">
+        <entity name="examplepublisherprefix_examplecustomentity">
+          <attribute name="examplepublisherprefix_examplecustomentityid" />
+          <attribute name="examplepublisherprefix_name" />
+          <attribute name="createdon" />
+        </entity>
+      </fetch>
       <!--#else -->
       <fetch version="1.0" mapping="logical">
         <entity name="examplepublisherprefix_examplecustomentity">
