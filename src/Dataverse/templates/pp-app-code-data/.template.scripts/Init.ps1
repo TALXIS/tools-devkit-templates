@@ -16,9 +16,10 @@ if (-not (Test-Path $targetIndexTs))
 & (Join-Path $PSScriptRoot 'ReplacePlaceholder.ps1') -FilePath (Join-Path "src" "generated" "services" "capitalizedentitylogicalnameexamplesService.ts") -Placeholder "lowercaseentitylogicalnameexample" -Replacement $lowercasename
 & (Join-Path $PSScriptRoot 'ReplacePlaceholder.ps1') -FilePath (Join-Path "src" "generated" "services" "capitalizedentitylogicalnameexamplesService.ts") -Placeholder "capitalizedentitylogicalnameexample" -Replacement $capitalizedname
 
-$generateModelScript = Join-Path $PSScriptRoot "GenerateModel.csx"
+$generateModelScript = Join-Path $PSScriptRoot "GenerateModel.cs"
 $generatedModelsPath = Join-Path "src" "generated" "models"
-Start-Process dotnet-script -ArgumentList "`"$generateModelScript`" -- `"$modelSolutionPath`" `"entityexamplelogicalname`" `"$generatedModelsPath`"" -NoNewWindow -Wait
+$proc = Start-Process dotnet -ArgumentList "run --file `"$generateModelScript`" -- `"$modelSolutionPath`" `"entityexamplelogicalname`" `"$generatedModelsPath`"" -NoNewWindow -Wait -PassThru
+if ($proc.ExitCode -ne 0) { Write-Error "GenerateModel.cs failed (exit code $($proc.ExitCode))"; exit 1 }
 
 $modelIndexString = "export * as "+ $capitalizedname + "sModel from './models/"+ $capitalizedname + "sModel';"
 $serviceIndexString = "export * from './services/" + $capitalizedname + "sService';"
@@ -31,6 +32,7 @@ $generatedIndexTs = Join-Path "src" "generated" "index.ts"
 
 & (Join-Path $PSScriptRoot 'AddDataSourceInfo.ps1') -SolutionPath $modelSolutionPath -EntityLogicalName "entityexamplelogicalname" -FilePath (Join-Path ".power" "schemas" "appschemas" "dataSourcesInfo.ts")
 
-$generateSchemaScript = Join-Path $PSScriptRoot "GenerateSchema.csx"
+$generateSchemaScript = Join-Path $PSScriptRoot "GenerateSchema.cs"
 $dataverseSchemasPath = Join-Path ".power" "schemas" "dataverse"
-Start-Process dotnet-script -ArgumentList "`"$generateSchemaScript`" -- `"$modelSolutionPath`" `"entityexamplelogicalname`" `"$dataverseSchemasPath`"" -NoNewWindow -Wait
+$proc = Start-Process dotnet -ArgumentList "run --file `"$generateSchemaScript`" -- `"$modelSolutionPath`" `"entityexamplelogicalname`" `"$dataverseSchemasPath`"" -NoNewWindow -Wait -PassThru
+if ($proc.ExitCode -ne 0) { Write-Error "GenerateSchema.cs failed (exit code $($proc.ExitCode))"; exit 1 }

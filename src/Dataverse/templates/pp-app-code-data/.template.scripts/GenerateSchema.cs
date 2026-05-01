@@ -1,5 +1,4 @@
-#!/usr/bin/env dotnet-script
-// Usage: dotnet script GenerateSchema.csx -- <SolutionPath> <EntityLogicalName> [OutputPath]
+// Usage: dotnet run --file GenerateSchema.cs -- <SolutionPath> <EntityLogicalName> [OutputPath]
 
 using System;
 using System.Collections.Generic;
@@ -10,15 +9,15 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Xml.Linq;
 
-if (Args.Count < 2)
+if (args.Length < 2)
 {
-    Console.Error.WriteLine("Usage: dotnet script GenerateSchema.csx -- <SolutionPath> <EntityLogicalName> [OutputPath]");
+    Console.Error.WriteLine("Usage: dotnet run --file GenerateSchema.cs -- <SolutionPath> <EntityLogicalName> [OutputPath]");
     return;
 }
 
-var solutionPath = Args[0];
-var entityLogicalName = Args[1];
-var outputPath = Args.Count > 2 ? Args[2] : Directory.GetCurrentDirectory();
+var solutionPath = args[0];
+var entityLogicalName = args[1];
+var outputPath = args.Length > 2 ? args[2] : Directory.GetCurrentDirectory();
 
 // ── Load Entity.xml ───────────────────────────────────────────────────────────
 var entityXmlPath = Path.Combine(solutionPath, "SolutionDeclarationsRoot", "Entities", entityLogicalName, "Entity.xml");

@@ -1,46 +1,31 @@
-$formId = "customViewIdexample"
+# The template engine has already:
+# - Generated a GUID for ViewId
+# - Replaced "someexampleid" in the filename and file contents
+# This script wraps the GUID in braces for the savedqueryid element
+# and renames the file to use braces (SolutionPackager convention).
 
-$formIdNode = "//savedqueryid"
-$formIdPath = (Resolve-Path 'SolutionDeclarationsRoot/Entities\exampleexistingentity\SavedQueries\someexampleid.xml').Path
+$viewDir = Resolve-Path 'SolutionDeclarationsRoot/Entities/exampleexistingentity/SavedQueries'
+$viewFile = Get-ChildItem -Path $viewDir -Filter "*.xml" -ErrorAction SilentlyContinue | Select-Object -First 1
 
-
-# Generate GUID if formId is "unknown"
-if ($formId -eq "unknown") {
-    $formId = [System.Guid]::NewGuid()
-    Write-Host "Generated new form ID: $formId"
-}
-
-# Check if the file exists
-if (-not (Test-Path $formIdPath)) {
-    Write-Error "Form file not found at: $formIdPath"
+if ($null -eq $viewFile) {
+    Write-Error "No view XML found in '$viewDir'."
     exit 1
 }
 
-$formId = "{$formId}"
+$viewId = [System.IO.Path]::GetFileNameWithoutExtension($viewFile.Name)
 
-# Generate new file name with the form ID
-$directory = Split-Path $formIdPath -Parent
-$newFileName = "$formId.xml"
-$newFilePath = Join-Path $directory $newFileName
+# Wrap GUID in braces for the savedqueryid element
+$bracedId = "{$viewId}"
 
-# Load the XML file
-[xml]$formXml = Get-Content $formIdPath -Raw
-
-# Find and replace formguididexample with the actual form ID
-$formGuidNode = $formXml.SelectSingleNode($formIdNode)
-if ($formGuidNode) {
-    $formGuidNode.InnerText = $formId
-    Write-Host "Updated formid to: $formId"
-} else {
-    Write-Warning "formid node not found in XML"
+[xml]$xml = Get-Content $viewFile.FullName -Raw
+$idNode = $xml.SelectSingleNode("//savedqueryid")
+if ($idNode) {
+    $idNode.InnerText = $bracedId
 }
+$xml.Save($viewFile.FullName)
 
-# Save the updated XML to the new file
-$formXml.Save($newFilePath)
-Write-Host "Saved updated form to: $newFilePath"
-
-# Remove the old file if it has a different name
-if ($formIdPath -ne $newFilePath) {
-    Remove-Item $formIdPath -Force
-    Write-Host "Removed old file: $formIdPath"
+# Rename file to use braced GUID (SolutionPackager convention)
+$newPath = Join-Path $viewDir "$bracedId.xml"
+if ($viewFile.FullName -ne $newPath) {
+    Rename-Item $viewFile.FullName $newPath
 }
