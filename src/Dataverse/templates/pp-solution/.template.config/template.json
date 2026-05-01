@@ -132,6 +132,21 @@
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
         "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/NormalizeNilTags.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Normalize nil XML tags to single-line format"
+        }
+      ],
+      "continueOnError": true,
+      "description": "Normalize nil XML tags to match SolutionPackager export format"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
         "redirectStandardOutput": "false"
       },
