@@ -10,6 +10,7 @@
 		<Description>A collection of .NET templates for creating Power Platform components using a code-first approach. These templates will allow you to quickly scaffold projects with pre-configured settings and structure.</Description>
 		<PackageTags>powerplatform;dataverse;powerapps;talxis;networg</PackageTags>
 		<PackageProjectUrl>https://github.com/TALXIS/tools-devkit-templates</PackageProjectUrl>
+		<PackageIcon>package-icon.png</PackageIcon>
 
 		<!-- Keep package type as 'Template' to show the package as a template package on nuget.org and make your template available in dotnet new search.-->
 		<PackageType>Template</PackageType>
@@ -36,6 +37,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Include="..\package-icon.png" Pack="true" PackagePath="" Link="package-icon.png" />
 		<None Include="..\..\README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 
