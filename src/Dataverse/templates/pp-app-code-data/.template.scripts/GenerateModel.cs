@@ -1,6 +1,5 @@
-#!/usr/bin/env dotnet-script
-// Usage: dotnet script GenerateModel.csx -- <SolutionPath> <EntityLogicalName> [OutputPath]
-// Example: dotnet script GenerateModel.csx -- "C:\...\Solutions.DataModel" "udpp_warehouseitem" "C:\...\models"
+// Usage: dotnet run --file GenerateModel.cs -- <SolutionPath> <EntityLogicalName> [OutputPath]
+// Example: dotnet run --file GenerateModel.cs -- "C:\...\Solutions.DataModel" "udpp_warehouseitem" "C:\...\models"
 
 using System;
 using System.Collections.Generic;
@@ -10,15 +9,15 @@ using System.Text;
 using System.Xml.Linq;
 
 // ── Args ──────────────────────────────────────────────────────────────────────
-if (Args.Count < 2)
+if (args.Length < 2)
 {
-    Console.Error.WriteLine("Usage: dotnet script GenerateModel.csx -- <SolutionPath> <EntityLogicalName> [OutputPath]");
+    Console.Error.WriteLine("Usage: dotnet run --file GenerateModel.cs -- <SolutionPath> <EntityLogicalName> [OutputPath]");
     return;
 }
 
-var solutionPath = Args[0];
-var entityLogicalName = Args[1];
-var outputPath = Args.Count > 2 ? Args[2] : Directory.GetCurrentDirectory();
+var solutionPath = args[0];
+var entityLogicalName = args[1];
+var outputPath = args.Length > 2 ? args[2] : Directory.GetCurrentDirectory();
 
 // ── Locate Entity.xml ─────────────────────────────────────────────────────────
 var entityXmlPath = Path.Combine(solutionPath, "SolutionDeclarationsRoot", "Entities", entityLogicalName, "Entity.xml");

@@ -1,5 +1,5 @@
-#r "nuget: System.Text.Json, 8.0.2"
-#r "nuget: System.Reflection.MetadataLoadContext, 8.0.0"
+#:package System.Text.Json@8.0.2
+#:package System.Reflection.MetadataLoadContext@8.0.0
 
 using System;
 using System.IO;
@@ -11,8 +11,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 //  CONFIG 
-var dllPath = Args.Count > 0 ? Args[0] : throw new Exception(" DLL path not provided");
-var outputPath = Args.Count > 1 ? Args[1] : "FakeStepBindings.cs";
+var dllPath = args.Length > 0 ? args[0] : throw new Exception(" DLL path not provided");
+var outputPath = args.Length > 1 ? args[1] : "FakeStepBindings.cs";
 
 if (!File.Exists(dllPath))
 {
