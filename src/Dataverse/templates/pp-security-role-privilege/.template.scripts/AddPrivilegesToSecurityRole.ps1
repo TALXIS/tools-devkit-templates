@@ -28,7 +28,7 @@ foreach ($privilege in $newPrivilegesXml.RolePrivileges.ChildNodes) {
     # Insert in alphabetical order by name
     $insertBefore = $null
     foreach ($child in $rolePrivilegesNode.SelectNodes('RolePrivilege')) {
-        if ($child.GetAttribute('name') -gt $newName) {
+        if ([string]::Compare($child.GetAttribute('name'), $newName, [StringComparison]::OrdinalIgnoreCase) -gt 0) {
             $insertBefore = $child
             break
         }
