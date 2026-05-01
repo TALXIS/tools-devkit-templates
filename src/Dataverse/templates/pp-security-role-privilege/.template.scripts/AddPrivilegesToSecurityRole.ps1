@@ -18,6 +18,16 @@ foreach ($privilege in $newPrivilegesXml.RolePrivileges.ChildNodes) {
     $rolePrivilegesNode.AppendChild($imported) | Out-Null
 }
 
+# Sort all RolePrivilege elements alphabetically by name attribute
+$allPrivileges = @($rolePrivilegesNode.SelectNodes('RolePrivilege'))
+$sorted = $allPrivileges | Sort-Object { $_.GetAttribute('name') }
+
+# Remove all existing privileges and re-add in sorted order
+$rolePrivilegesNode.RemoveAll()
+foreach ($priv in $sorted) {
+    $rolePrivilegesNode.AppendChild($priv) | Out-Null
+}
+
 $settings = New-Object System.Xml.XmlWriterSettings
 $settings.Indent = $true
 $settings.NewLineHandling = [System.Xml.NewLineHandling]::None
