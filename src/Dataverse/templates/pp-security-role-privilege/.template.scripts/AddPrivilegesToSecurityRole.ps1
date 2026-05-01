@@ -15,17 +15,30 @@ $wrapped = "<RolePrivileges>$privilegesRaw</RolePrivileges>"
 
 foreach ($privilege in $newPrivilegesXml.RolePrivileges.ChildNodes) {
     $imported = $entityXml.ImportNode($privilege, $true)
-    $rolePrivilegesNode.AppendChild($imported) | Out-Null
-}
+    $newName = $imported.GetAttribute('name')
 
-# Sort all RolePrivilege elements alphabetically by name attribute
-$allPrivileges = @($rolePrivilegesNode.SelectNodes('RolePrivilege'))
-$sorted = $allPrivileges | Sort-Object { $_.GetAttribute('name') }
+    # Skip if privilege already exists (idempotency)
+    $existing = $rolePrivilegesNode.SelectSingleNode("RolePrivilege[@name='$newName']")
+    if ($existing) {
+        # Update level if different
+        $existing.SetAttribute('level', $imported.GetAttribute('level'))
+        continue
+    }
 
-# Remove all existing privileges and re-add in sorted order
-$rolePrivilegesNode.RemoveAll()
-foreach ($priv in $sorted) {
-    $rolePrivilegesNode.AppendChild($priv) | Out-Null
+    # Insert in alphabetical order by name
+    $insertBefore = $null
+    foreach ($child in $rolePrivilegesNode.SelectNodes('RolePrivilege')) {
+        if ($child.GetAttribute('name') -gt $newName) {
+            $insertBefore = $child
+            break
+        }
+    }
+
+    if ($insertBefore) {
+        $rolePrivilegesNode.InsertBefore($imported, $insertBefore) | Out-Null
+    } else {
+        $rolePrivilegesNode.AppendChild($imported) | Out-Null
+    }
 }
 
 $settings = New-Object System.Xml.XmlWriterSettings
