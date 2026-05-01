@@ -1,26 +1,13 @@
-# Find Solution.xml — may be in SolutionDeclarationsRoot/Other or Other depending on flattening
-$candidates = @(
-    'SolutionDeclarationsRoot/Other/Solution.xml',
-    'Other/Solution.xml'
-)
+# Normalize nil XML tags to match SolutionPackager export format
+# Template engine splits <Tag xsi:nil="true"></Tag> across two lines
 
-$solutionXmlPath = $null
-foreach ($c in $candidates) {
-    if (Test-Path $c) {
-        $solutionXmlPath = (Resolve-Path $c).Path
-        break
-    }
-}
+$solutionXml = Get-ChildItem -Path . -Filter Solution.xml -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
 
-if (-not $solutionXmlPath) {
+if (-not $solutionXml) {
     Write-Warning "Solution.xml not found, skipping nil tag normalization"
     exit 0
 }
 
-$content = [System.IO.File]::ReadAllText($solutionXmlPath)
-
-# Collapse nil tags split across lines by template engine:
-#   <Tag xsi:nil="true">\n      </Tag>  →  <Tag xsi:nil="true"></Tag>
+$content = [System.IO.File]::ReadAllText($solutionXml.FullName)
 $content = [regex]::Replace($content, '(xsi:nil="true")>\s*\r?\n\s*</', '$1></')
-
-[System.IO.File]::WriteAllText($solutionXmlPath, $content)
+[System.IO.File]::WriteAllText($solutionXml.FullName, $content)
