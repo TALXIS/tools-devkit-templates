@@ -15,7 +15,30 @@ $wrapped = "<RolePrivileges>$privilegesRaw</RolePrivileges>"
 
 foreach ($privilege in $newPrivilegesXml.RolePrivileges.ChildNodes) {
     $imported = $entityXml.ImportNode($privilege, $true)
-    $rolePrivilegesNode.AppendChild($imported) | Out-Null
+    $newName = $imported.GetAttribute('name')
+
+    # Skip if privilege already exists (idempotency)
+    $existing = $rolePrivilegesNode.SelectSingleNode("RolePrivilege[@name='$newName']")
+    if ($existing) {
+        # Update level if different
+        $existing.SetAttribute('level', $imported.GetAttribute('level'))
+        continue
+    }
+
+    # Insert in alphabetical order by name
+    $insertBefore = $null
+    foreach ($child in $rolePrivilegesNode.SelectNodes('RolePrivilege')) {
+        if ([string]::Compare($child.GetAttribute('name'), $newName, [StringComparison]::OrdinalIgnoreCase) -gt 0) {
+            $insertBefore = $child
+            break
+        }
+    }
+
+    if ($insertBefore) {
+        $rolePrivilegesNode.InsertBefore($imported, $insertBefore) | Out-Null
+    } else {
+        $rolePrivilegesNode.AppendChild($imported) | Out-Null
+    }
 }
 
 $settings = New-Object System.Xml.XmlWriterSettings

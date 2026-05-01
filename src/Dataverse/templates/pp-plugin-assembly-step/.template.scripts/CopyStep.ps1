@@ -1,10 +1,9 @@
 $sourcePath = "./.template.temp/__step-id__.xml"
 $targetDir = "./SolutionDeclarationsRoot/SdkMessageProcessingSteps"
-
-mkdir "SolutionDeclarationsRoot/SdkMessageProcessingSteps"
+$targetFile = Join-Path $targetDir "{__step-id__}.xml"
 
 if (!(Test-Path $targetDir)) {
     New-Item -ItemType Directory -Path $targetDir -Force
 }
 
-Copy-Item $sourcePath $targetDir -Force
+Copy-Item $sourcePath $targetFile -Force
