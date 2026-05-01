@@ -331,7 +331,7 @@
             <Description description="Date and time that the record was migrated." languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="examplepublisherprefix_examplecustomentityid">
+        <attribute PhysicalName="examplepublisherprefix_examplecustomentityId">
           <Type>primarykey</Type>
           <Name>examplepublisherprefix_examplecustomentityid</Name>
           <LogicalName>examplepublisherprefix_examplecustomentityid</LogicalName>
@@ -582,7 +582,7 @@
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>0</ValidForCreateApi>
           <IsCustomField>0</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
           <IntroducedVersion>1.0</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
