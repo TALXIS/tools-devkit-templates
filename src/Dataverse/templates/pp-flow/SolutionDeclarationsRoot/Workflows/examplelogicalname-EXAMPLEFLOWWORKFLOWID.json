@@ -1,16 +1,6 @@
 {
   "properties": {
-    "connectionReferences": {
-      "shared_commondataserviceforapps": {
-        "runtimeSource": "embedded",
-        "connection": {
-          "connectionReferenceLogicalName": "examplepublisher_exampleconnectionreference"
-        },
-        "api": {
-          "name": "shared_commondataserviceforapps"
-        }
-      }
-    },
+    "connectionReferences": {},
     "definition": {
       "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
       "contentVersion": "1.0.0.0",
@@ -24,7 +14,22 @@
           "type": "SecureObject"
         }
       },
-      "triggers": {},
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "EXAMPLEFLOWWORKFLOWID"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
       "actions": {}
     },
     "schemaVersion": "1.0.0.0"

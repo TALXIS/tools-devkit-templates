@@ -6,7 +6,7 @@ $guidLower = $guid.ToLowerInvariant()
 
 $files = Get-ChildItem -Path $targetDir -Recurse -File | Where-Object {
     (Get-Content $_.FullName -Raw) -match 'EXAMPLEFLOWWORKFLOWID|exampleflowworkflowid' -or
-    $_.Name -like '*EXAMPLEFLOWWORKFLOWID*'
+    $_.Name -match 'EXAMPLEFLOWWORKFLOWID'
 }
 
 foreach ($file in $files) {

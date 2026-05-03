@@ -4,7 +4,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.Flow",
   "name": "Power Platform: Cloud Flow",
   "shortName": "pp-flow",
-  "description": "Scaffolds a Power Automate cloud flow: .json.data.xml metadata (Category=5 ModernFlow, Type=1) and .json flow definition with basic trigger/actions structure and Dataverse connection reference.",
+  "description": "Scaffolds a Power Automate cloud flow: .json.data.xml metadata (Category=5 ModernFlow, Type=1) and .json flow definition with a manual trigger. Add connectors and actions in the flow designer.",
   "classifications": ["Dataverse", "Power Platform"],
   "tags": {
     "language": "JSON",
@@ -38,36 +38,13 @@
       "isRequired": true,
       "description": "Publisher prefix (e.g. contoso)"
     },
-    "FlowName": {
+    "LogicalName": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "exampleflowname",
-      "fileRename": "exampleflowname",
+      "replaces": "examplelogicalname",
+      "fileRename": "examplelogicalname",
       "isRequired": true,
       "description": "Logical name of the flow without publisher prefix (e.g. myautomation)"
-    },
-    "FlowDisplayName": {
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "exampleflowdisplayname",
-      "isRequired": true,
-      "description": "Display name of the flow shown in the maker portal"
-    },
-    "ConnectionReferenceName": {
-      "type": "parameter",
-      "datatype": "text",
-      "defaultValue": "shared_dataverse",
-      "replaces": "exampleconnectionreference",
-      "isRequired": false,
-      "description": "Logical name of the Dataverse connection reference (e.g. contoso_shared_dataverse)"
-    },
-    "PrimaryEntity": {
-      "type": "parameter",
-      "datatype": "text",
-      "defaultValue": "none",
-      "replaces": "primaryentityexample",
-      "isRequired": false,
-      "description": "Primary entity for the flow (use 'none' for flows not bound to an entity)"
     }
   },
   "postActions": [
