@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.Flow",
+  "name": "Power Platform: Cloud Flow",
+  "shortName": "pp-flow",
+  "description": "Scaffolds a Power Automate cloud flow: .json.data.xml metadata (Category=5 ModernFlow, Type=1) and .json flow definition with basic trigger/actions structure and Dataverse connection reference.",
+  "classifications": ["Dataverse", "Power Platform"],
+  "tags": {
+    "language": "JSON",
+    "type": "item"
+  },
+  "preferNameDirectory": true,
+  "sources": [
+    {
+      "exclude": [
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        ".template.config/**/*",
+        ".template.scripts/**/*"
+      ]
+    }
+  ],
+  "symbols": {
+    "SolutionRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "SolutionDeclarationsRoot",
+      "fileRename": "SolutionDeclarationsRoot",
+      "isRequired": false,
+      "description": "Path to the solution root directory"
+    },
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplepublisher",
+      "isRequired": true,
+      "description": "Publisher prefix (e.g. contoso)"
+    },
+    "FlowName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exampleflowname",
+      "fileRename": "exampleflowname",
+      "isRequired": true,
+      "description": "Logical name of the flow without publisher prefix (e.g. myautomation)"
+    },
+    "FlowDisplayName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "exampleflowdisplayname",
+      "isRequired": true,
+      "description": "Display name of the flow shown in the maker portal"
+    },
+    "ConnectionReferenceName": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "shared_dataverse",
+      "replaces": "exampleconnectionreference",
+      "isRequired": false,
+      "description": "Logical name of the Dataverse connection reference (e.g. contoso_shared_dataverse)"
+    },
+    "PrimaryEntity": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "none",
+      "replaces": "primaryentityexample",
+      "isRequired": false,
+      "description": "Primary entity for the flow (use 'none' for flows not bound to an entity)"
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/GenerateFlowId.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "description": "Generate flow workflow ID and rename files"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddFlowToSolution.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "description": "Add flow to Solution.xml"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [{ "text": "Removing template scripts" }],
+      "continueOnError": false,
+      "description": "Removing template scripts"
+    }
+  ]
+}
