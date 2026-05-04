@@ -4,7 +4,7 @@
     <isquickfindquery>0</isquickfindquery>
     <isprivate>0</isprivate>
     <isdefault>0</isdefault>
-    <savedqueryid></savedqueryid>
+    <savedqueryid>{someexampleid}</savedqueryid>
     <queryapi></queryapi>
     <layoutxml>
       <grid name="resultset" jump="name" select="1" preview="0" icon="1">
