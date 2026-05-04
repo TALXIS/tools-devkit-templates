@@ -5,7 +5,11 @@
 # and renames the file to use braces (SolutionPackager convention).
 
 $viewDir = Resolve-Path 'SolutionDeclarationsRoot/Entities/exampleexistingentity/SavedQueries'
-$viewFile = Get-ChildItem -Path $viewDir -Filter "*.xml" -ErrorAction SilentlyContinue | Select-Object -First 1
+# Filter out files that already have braces (existing views from pp-entity)
+# so we only process the newly scaffolded view file.
+$viewFile = Get-ChildItem -Path $viewDir -Filter "*.xml" -ErrorAction SilentlyContinue |
+    Where-Object { $_.BaseName -notlike '{*' } |
+    Select-Object -First 1
 
 if ($null -eq $viewFile) {
     Write-Error "No view XML found in '$viewDir'."
