@@ -1,9 +1,13 @@
 <Project Sdk="TALXIS.DevKit.Build.Sdk/1.2.2">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
+<!--#if (SolutionRootPath != ".") -->
     <SolutionRootPath>SolutionDeclarationsRoot</SolutionRootPath>
+<!--#endif -->
     <ProjectType>Solution</ProjectType>
-    <GeneratePluginAssembly>generateexamplepluginassembly</GeneratePluginAssembly>
+<!--#if (GeneratePluginAssembly == "false") -->
+    <GeneratePluginAssembly>false</GeneratePluginAssembly>
+<!--#endif -->
   </PropertyGroup>
   <PropertyGroup Label="Dataverse solution metadata">
     <PublisherName>examplepublisher</PublisherName>
