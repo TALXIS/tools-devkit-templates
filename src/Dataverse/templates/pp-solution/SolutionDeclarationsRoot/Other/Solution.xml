@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ImportExportXml version="9.1.0.643" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
-    <UniqueName>SolutionLogicalNameExample</UniqueName>
+    <UniqueName>SanitizedSolutionUniqueName</UniqueName>
     <LocalizedNames>
       <LocalizedName description="SolutionLogicalNameExample" languagecode="1033" />
     </LocalizedNames>
@@ -19,7 +19,7 @@
       <EMailAddress xsi:nil="true"></EMailAddress>
       <SupportingWebsiteUrl xsi:nil="true"></SupportingWebsiteUrl>
       <CustomizationPrefix>examplepublisherprefix</CustomizationPrefix>
-      <CustomizationOptionValuePrefix>36171</CustomizationOptionValuePrefix>
+      <CustomizationOptionValuePrefix>00000</CustomizationOptionValuePrefix>
       <Addresses>
         <Address>
           <AddressNumber>1</AddressNumber>

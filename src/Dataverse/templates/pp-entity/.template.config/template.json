@@ -12,6 +12,12 @@
 	"sourceName": "examplecustomentity",
 	"sources": [
 		{
+			"exclude": [
+				"**/[Bb]in/**",
+				"**/[Oo]bj/**",
+				".template.config/**/*",
+				".template.scripts/**/*"
+			],
 			"modifiers": [
 				{
 					"condition": "(Behavior == \"New\")",
@@ -759,99 +765,99 @@
 	},
 	"postActions": [
 		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"actionId": "A1B2C3D4-1001-4000-8000-000000000001",
 			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddEntityToSolutionXml.ps1\"",
-				"redirectStandardOutput": "false"
+				"type": "1",
+				"schemaName": "examplepublisherprefix_examplecustomentity",
+				"behavior": "behaviorType"
 			},
 			"manualInstructions": [
 				{
-					"text": "Adding entity to solution.xml"
+					"text": "Add <RootComponent type=\"1\" schemaName=\"{entity_schema_name}\" behavior=\"{behavior}\"/> to Solution.xml RootComponents"
 				}
 			],
 			"continueOnError": false,
-			"description": "Adding entity to solution.xml"
+			"description": "Register entity in Solution.xml"
 		},
 		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"actionId": "A1B2C3D4-1001-4000-8000-000000000001",
 			"condition": "(AddQuickCreateForm)",
 			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddQCFormToSolutionXml.ps1\"",
-				"redirectStandardOutput": "false"
+				"type": "60",
+				"id": "{quickCreateFormId}",
+				"behavior": "0"
 			},
 			"manualInstructions": [
 				{
-					"text": "Adding form to solution.xml"
+					"text": "Add <RootComponent type=\"60\" id=\"{form_id}\" behavior=\"0\"/> to Solution.xml RootComponents"
 				}
 			],
 			"continueOnError": false,
-			"description": "Adding form to solution.xml"
+			"description": "Register quick create form in Solution.xml"
 		},
 		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"actionId": "A1B2C3D4-1001-4000-8000-000000000001",
 			"condition": "(AddMainForm)",
 			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddFormToSolutionXml.ps1\"",
-				"redirectStandardOutput": "false"
+				"type": "60",
+				"id": "{mainFormId}",
+				"behavior": "0"
 			},
 			"manualInstructions": [
 				{
-					"text": "Adding form to solution.xml"
+					"text": "Add <RootComponent type=\"60\" id=\"{form_id}\" behavior=\"0\"/> to Solution.xml RootComponents"
 				}
 			],
 			"continueOnError": false,
-			"description": "Adding form to solution.xml"
+			"description": "Register main form in Solution.xml"
 		},
 		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"actionId": "A1B2C3D4-1001-4000-8000-000000000001",
 			"condition": "(AddCardForm)",
 			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddCardFormToSolutionXml.ps1\"",
-				"redirectStandardOutput": "false"
+				"type": "60",
+				"id": "{cardFormId}",
+				"behavior": "0"
 			},
 			"manualInstructions": [
-				{ "text": "Adding the card form to solution.xml" }
+				{
+					"text": "Add <RootComponent type=\"60\" id=\"{form_id}\" behavior=\"0\"/> to Solution.xml RootComponents"
+				}
 			],
 			"continueOnError": false,
-			"description": "Adding the card form to solution.xml"
+			"description": "Register card form in Solution.xml"
 		},
 		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"actionId": "A1B2C3D4-1001-4000-8000-000000000001",
 			"condition": "(AddQuickForm)",
 			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddQuickFormToSolutionXml.ps1\"",
-				"redirectStandardOutput": "false"
+				"type": "60",
+				"id": "{quickFormId}",
+				"behavior": "0"
 			},
-			"manualInstructions": [{ "text": "Adding a quick form to solution.xml" }],
+			"manualInstructions": [
+				{
+					"text": "Add <RootComponent type=\"60\" id=\"{form_id}\" behavior=\"0\"/> to Solution.xml RootComponents"
+				}
+			],
 			"continueOnError": false,
-			"description": "Adding form to solution.xml"
+			"description": "Register quick form in Solution.xml"
 		},
 		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"actionId": "A1B2C3D4-1002-4000-8000-000000000002",
 			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SortEntityAttributes.ps1\"",
-				"redirectStandardOutput": "false"
+				"filePattern": "Entities/*/Entity.xml",
+				"xpath": "//entity/attributes",
+				"sortBy": "PhysicalName",
+				"caseSensitive": "false"
 			},
-			"manualInstructions": [{ "text": "Sorting entity attributes alphabetically by PhysicalName" }],
+			"manualInstructions": [
+				{
+					"text": "Sort <attribute> elements in Entity.xml alphabetically by PhysicalName"
+				}
+			],
 			"continueOnError": false,
-			"description": "Sorting entity attributes"
-		},
-		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
-				"redirectStandardOutput": "false"
-			},
-			"manualInstructions": [{ "text": "Removing Scripts" }],
-			"continueOnError": false,
-			"description": "Removing Scripts"
+			"description": "Sort entity attributes alphabetically"
 		}
 	]
 }
