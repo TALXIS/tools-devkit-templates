@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<optionset Name="examplecustomentityattribute" localizedName="ExampleEntityAttributeDisplayName" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<optionset Name="__attribute-schema-name__" localizedName="__attribute-display-name__" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <OptionSetType>picklist</OptionSetType>
   <IsGlobal>1</IsGlobal>
   <IntroducedVersion>1.0</IntroducedVersion>
   <IsCustomizable>1</IsCustomizable>
   <ExternalTypeName></ExternalTypeName>
   <displaynames>
-    <displayname description="ExampleEntityAttributeDisplayName" languagecode="1033" />
+    <displayname description="__attribute-display-name__" languagecode="1033" />
   </displaynames>
   <Descriptions>
     <Description description="" languagecode="1033" />

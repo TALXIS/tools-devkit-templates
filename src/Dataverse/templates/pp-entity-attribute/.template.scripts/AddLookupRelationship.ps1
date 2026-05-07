@@ -1,6 +1,6 @@
 # File Paths
-$referencedEntityRelationshipFilePathRaw = 'SolutionDeclarationsRoot/Other/Relationships/examplereferencedentityname.xml'
-$relationshipsFilePathRaw = 'SolutionDeclarationsRoot/Other/Relationships.xml'
+$referencedEntityRelationshipFilePathRaw = '__solution-root-path__/Other/Relationships/__referenced-entity-name__.xml'
+$relationshipsFilePathRaw = '__solution-root-path__/Other/Relationships.xml'
 $relationshipTemplateFilePathRaw = '.template.temp/LookupRelationship.xml'
 
 # Ensure directories exist
@@ -33,7 +33,7 @@ $referencedEntityRelationshipFilePath = Resolve-Path $referencedEntityRelationsh
 
 
 # add relationship to referenced entity relationship file (skip if already exists)
-$relationshipName = 'examplelookuprelationshipname'
+$relationshipName = '__lookup-relationship-name__'
 $existingInRef = $false
 foreach ($node in $referencedEntityRelationshipFile.GetElementsByTagName('EntityRelationship')) {
     if ($node.GetAttribute('Name') -eq $relationshipName) { $existingInRef = $true; break }

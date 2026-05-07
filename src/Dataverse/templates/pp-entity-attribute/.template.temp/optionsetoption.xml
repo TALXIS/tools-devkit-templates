@@ -1,6 +1,6 @@
-<option value="exampleoptionnumber" ExternalValue="" IsHidden="0">
+<option value="__option-number__" ExternalValue="" IsHidden="0">
     <labels>
-      <label description="exampleoptionname" languagecode="1033" />
+      <label description="__option-name__" languagecode="1033" />
     </labels>
     <Descriptions>
       <Description description="" languagecode="1033" />

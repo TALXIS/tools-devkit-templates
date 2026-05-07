@@ -9,14 +9,14 @@
     "language": "XML",
     "type": "item"
   },
-  "sourceName": "examplecustomentityattribute",
+  "sourceName": "__attribute-logical-name__",
   "preferNameDirectory": false,
   "sources": [
 		{
 			"modifiers": [
 				{
 					"condition": "(!CreateGlobalOptionSet)",
-					"exclude": ["SolutionDeclarationsRoot/OptionSets/*"]
+					"exclude": ["__solution-root-path__/OptionSets/*"]
 				}
 			]
 		}
@@ -26,8 +26,8 @@
       "type": "parameter",
       "datatype": "text",
       "defaultValue": ".",
-      "replaces": "SolutionDeclarationsRoot",
-      "fileRename": "SolutionDeclarationsRoot",
+      "replaces": "__solution-root-path__",
+      "fileRename": "__solution-root-path__",
       "description": "Folder under the project folder where solution components will be placed. Use the folder name only, not the full path. Use '.' if you want to place components directly in the project folder."
     },
     "CreateGlobalOptionSet": {
@@ -39,8 +39,8 @@
       "displayName": "Schema name of the entity including publisher prefix (might be different from logical name)",
       "type": "parameter",
       "datatype": "text",
-      "fileRename": "exampleexistingentity",
-      "replaces": "exampleexistingentity",
+      "fileRename": "__entity-schema-name__",
+      "replaces": "__entity-schema-name__",
       "isRequired": true,
       "description": "Schema name of the entity including publisher prefix (e.g., udpp_warehouseitem)"
     },
@@ -78,7 +78,7 @@
       "type": "parameter",
       "description": "Select required level",
       "datatype": "choice",
-      "replaces": "attributerequiredlevel",
+      "replaces": "__required-level__",
       "choices": [
         { "choice": "none" },
         { "choice": "required" }
@@ -89,8 +89,6 @@
       "type": "parameter",
       "description": "Use the same publisher prefix as defined in Other/Solution.xml of the solution where this attribute is introduced to the system.",
       "datatype": "text",
-      "replaces": "examplepublisherprefix",
-      "fileRename": "examplepublisherprefix",
       "isRequired": true
     },
     "LogicalName": {
@@ -98,28 +96,50 @@
       "description": "Logical name of the attribute without publisher prefix (e.g., availablequantity). The prefix is added automatically.",
       "type": "parameter",
       "datatype": "text",
-      "replaces": "examplecustomentityattribute",
-      "fileRename": "examplecustomentityattribute",
+      "replaces": "__attribute-logical-name__",
       "isRequired": true
+    },
+    "AttributeSchemaNameUnsanitized": {
+      "type": "generated",
+      "generator": "join",
+      "parameters": {
+        "symbols": [
+          { "type": "ref", "value": "PublisherPrefix" },
+          { "type": "ref", "value": "LogicalName" }
+        ],
+        "separator": "_",
+        "removeEmptyValues": true
+      }
+    },
+    "AttributeSchemaName": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source": "AttributeSchemaNameUnsanitized",
+        "toLower": true
+      },
+      "replaces": "__attribute-schema-name__",
+      "fileRename": "__attribute-schema-name__",
+      "description": "Final attribute schema/logical name including publisher prefix"
     },
     "DisplayName": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "ExampleEntityAttributeDisplayName",
+      "replaces": "__attribute-display-name__",
       "isRequired": true,
       "description": "Display name for the attribute that will be shown to users"
     },
     "OptionSetOptions": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "optinsforoptionsetexample",
+      "replaces": "__option-set-options__",
       "description": "Comma-separated list of options for the option set (Example: Option1,Option2,Option3)",
       "isRequired": "(AttributeType == \"OptionSet(Local)\" || (AttributeType == \"OptionSet(Global)\" && GlobalOptionSetType == \"New\"))"
     },
     "Description": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "Example description",
+      "replaces": "__attribute-description__",
       "defaultValue": "",
       "description": "Description of the attribute that explains its purpose"
     },
@@ -154,7 +174,7 @@
     "ReferencedEntityName": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "examplereferencedentityname",
+      "replaces": "__referenced-entity-name__",
       "isRequired": "AttributeType == \"Lookup\"",
       "description": "Logical name of the referenced entity including publisher prefix (e.g., udpp_warehouseitem)"
     },
@@ -186,7 +206,7 @@
         "source": "LookupRelationshipNameUnsanitized",
         "toLower": true
       },
-      "replaces": "examplelookuprelationshipname",
+      "replaces": "__lookup-relationship-name__",
       "description": "Final lookup relationship name converted to lowercase (automatically generated)"
     }
   },
@@ -217,6 +237,20 @@
       ],
       "continueOnError": false,
       "description": "Adding attribute to entity.xml"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "condition": "(AttributeType == \"Money\")",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddMoneySupportToEntityXml.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Adding money support attributes to entity.xml" }
+      ],
+      "continueOnError": false,
+      "description": "Adding money support attributes to entity.xml"
     },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",

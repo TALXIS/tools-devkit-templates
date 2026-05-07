@@ -6,7 +6,7 @@ $optionNumber = (Get-Random -Minimum 10000 -Maximum 99999) * 10000
 $attributeXmlPath 
 
 <!--#if (AttributeType == "OptionSet(Global)") -->
-    $attributeXmlPath = "SolutionDeclarationsRoot/OptionSets\examplecustomentityattribute.xml"
+    $attributeXmlPath = "__solution-root-path__/OptionSets/__attribute-schema-name__.xml"
 <!--#endif -->
 
 <!--#if (AttributeType == "OptionSet(Local)") -->
@@ -15,7 +15,7 @@ $attributeXmlPath
 
 [xml]$attributeXml = Get-Content -Path $attributeXmlPath -Raw
 
-$options = "optinsforoptionsetexample"
+$options = "__option-set-options__"
 $options = $options.Split(',', [System.StringSplitOptions]::RemoveEmptyEntries) | ForEach-Object { $_.Replace('{', '').Replace('}', '') }
 
 $optionsNode = $attributeXml.SelectSingleNode("//options")
@@ -40,8 +40,8 @@ foreach ($option in $options) {
     
     $optionXmlString = $newOptionNode.OuterXml
     
-    $optionXmlString = $optionXmlString -replace "exampleoptionnumber", $optionNumber
-    $optionXmlString = $optionXmlString -replace "exampleoptionname", $option
+    $optionXmlString = $optionXmlString -replace "__option-number__", $optionNumber
+    $optionXmlString = $optionXmlString -replace "__option-name__", $option
     
     
     [xml]$updatedOptionXml = $optionXmlString
@@ -65,19 +65,24 @@ $writer.Close()
 
 <!--#if (AttributeType == "OptionSet(Global)") -->
     # Resolve the relative path to an absolute path (to support other OSes)
-    $solutionPath = Resolve-Path -Path 'SolutionDeclarationsRoot/Other/Solution.xml'
+    $solutionPath = Resolve-Path -Path '__solution-root-path__/Other/Solution.xml'
 
     # Load the XML file
     [XML]$File = Get-Content -Path $solutionPath -Raw
     $rootComponents = $File.SelectSingleNode("//RootComponents")
 
-    $newComponent = $File.CreateElement("RootComponent")
-    $newComponent.SetAttribute("type", '9')
-    $newComponent.SetAttribute("schemaName", 'examplecustomentityattribute')
-    $newComponent.SetAttribute("behavior", '0')
+    $schemaName = '__attribute-schema-name__'
+    $existingComponent = $File.SelectSingleNode("//RootComponent[@type='9' and @schemaName='$schemaName']")
 
-    # Append the new component to the root components without writing output to console
-    $null = $rootComponents.AppendChild($newComponent)
+    if ($existingComponent -eq $null) {
+        $newComponent = $File.CreateElement("RootComponent")
+        $newComponent.SetAttribute("type", '9')
+        $newComponent.SetAttribute("schemaName", $schemaName)
+        $newComponent.SetAttribute("behavior", '0')
+
+        # Append the new component to the root components without writing output to console
+        $null = $rootComponents.AppendChild($newComponent)
+    }
 
     # Save the updated XML back to the file
     $File.Save($solutionPath)

@@ -1,17 +1,17 @@
-<attribute PhysicalName="examplepublisherprefix_examplecustomentityattribute">
+<attribute PhysicalName="__attribute-schema-name__">
     <!--#if (AttributeType == "Text" || AttributeType == "JsonText") -->
         <Type>ntext</Type>
     <!--#elseif (AttributeType == "MultilineText") -->
         <Type>nvarchar</Type>
-    <!--#elseif (AttributeType == "TwoOptions") -->
+    <!--#elseif (AttributeType == "Boolean") -->
         <Type>bit</Type>
     <!--#elseif (AttributeType == "WholeNumber") -->
         <Type>int</Type>
-    <!--#elseif (AttributeType == "FloatingPoint") -->
-        <Type>double</Type>
+    <!--#elseif (AttributeType == "Float") -->
+        <Type>float</Type>
     <!--#elseif (AttributeType == "Decimal") -->
         <Type>decimal</Type>
-    <!--#elseif (AttributeType == "Currency") -->
+    <!--#elseif (AttributeType == "Money") -->
         <Type>money</Type>
     <!--#elseif (AttributeType == "DateTime") -->
         <Type>datetime</Type>
@@ -29,9 +29,9 @@
         <Type>picklist</Type>
     <!--#endif -->
 
-    <Name>examplepublisherprefix_examplecustomentityattribute</Name>
-    <LogicalName>examplepublisherprefix_examplecustomentityattribute</LogicalName>
-    <RequiredLevel>attributerequiredlevel</RequiredLevel>
+    <Name>__attribute-schema-name__</Name>
+    <LogicalName>__attribute-schema-name__</LogicalName>
+    <RequiredLevel>__required-level__</RequiredLevel>
     <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
     <ImeMode>disabled</ImeMode>
     <ValidForUpdateApi>1</ValidForUpdateApi>
@@ -63,15 +63,42 @@
     <IsFilterable>0</IsFilterable>
     <IsRetrievable>0</IsRetrievable>
     <IsLocalizable>0</IsLocalizable>
+    <!--#if (AttributeType == "Boolean") -->
+    <AppDefaultValue>0</AppDefaultValue>
+    <optionset Name="__entity-schema-name_____attribute-schema-name__">
+      <OptionSetType>bit</OptionSetType>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <ExternalTypeName></ExternalTypeName>
+      <displaynames>
+        <displayname description="__attribute-display-name__" languagecode="1033" />
+      </displaynames>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+      <options>
+        <option value="1" ExternalValue="" IsHidden="0">
+          <labels>
+            <label description="Yes" languagecode="1033" />
+          </labels>
+        </option>
+        <option value="0" ExternalValue="" IsHidden="0">
+          <labels>
+            <label description="No" languagecode="1033" />
+          </labels>
+        </option>
+      </options>
+    </optionset>
+    <!--#endif -->
     <!--#if (AttributeType == "OptionSet(Local)") -->
     <AppDefaultValue>-1</AppDefaultValue>
-    <optionset Name="exampleexistingentity_examplepublisherprefix_examplecustomentityattribute">
+    <optionset Name="__entity-schema-name_____attribute-schema-name__">
       <OptionSetType>picklist</OptionSetType>
       <IntroducedVersion>1.0</IntroducedVersion>
       <IsCustomizable>1</IsCustomizable>
       <ExternalTypeName></ExternalTypeName>
       <displaynames>
-        <displayname description="ExampleEntityAttributeDisplayName" languagecode="1033" />
+        <displayname description="__attribute-display-name__" languagecode="1033" />
       </displaynames>
       <Descriptions>
         <Description description="" languagecode="1033" />
@@ -84,7 +111,7 @@
 
     <!--#if (AttributeType == "OptionSet(Global)") -->
     <AppDefaultValue>-1</AppDefaultValue>
-    <OptionSetName>examplepublisherprefix_examplecustomentityattribute</OptionSetName>
+    <OptionSetName>__attribute-schema-name__</OptionSetName>
     <!--#endif -->
 
     <!--#if (AttributeType == "Text") -->
@@ -96,23 +123,22 @@
         <MaxLength>1048576</MaxLength>
     <!--#elseif (AttributeType == "MultilineText") -->
         <MaxLength>2000</MaxLength>
-    <!--#elseif (AttributeType == "TwoOptions") -->
-        <DefaultValue>false</DefaultValue>
     <!--#elseif (AttributeType == "WholeNumber") -->
         <Format>none</Format>
         <MinValue>0</MinValue>
         <MaxValue>1000000000</MaxValue>
-    <!--#elseif (AttributeType == "FloatingPoint") -->
+    <!--#elseif (AttributeType == "Float") -->
         <MinValue>0</MinValue>
         <MaxValue>1000000</MaxValue>
     <!--#elseif (AttributeType == "Decimal") -->
         <MinValue>0.0</MinValue>
         <MaxValue>1000000.0</MaxValue>
-        <Precision>2</Precision>
-    <!--#elseif (AttributeType == "Currency") -->
+        <Accuracy>2</Accuracy>
+    <!--#elseif (AttributeType == "Money") -->
         <MinValue>0</MinValue>
         <MaxValue>1000000</MaxValue>
-        <Precision>2</Precision>
+        <Accuracy>2</Accuracy>
+        <AccuracySource>2</AccuracySource>
     <!--#elseif (AttributeType == "DateTime") -->
         <DateTimeFormat>dateonly</DateTimeFormat>
     <!--#elseif (AttributeType == "Lookup") -->
@@ -133,9 +159,9 @@
     <!--#endif -->
 
     <displaynames>
-        <displayname description="ExampleEntityAttributeDisplayName" languagecode="1033" />
+        <displayname description="__attribute-display-name__" languagecode="1033" />
     </displaynames>
     <Descriptions>
-        <Description description="" languagecode="1033" />
+        <Description description="__attribute-description__" languagecode="1033" />
     </Descriptions>
 </attribute>
