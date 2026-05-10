@@ -28,10 +28,10 @@
     <IsFilterable>0</IsFilterable>
     <IsRetrievable>0</IsRetrievable>
     <IsLocalizable>0</IsLocalizable>
-    <MinValue>0</MinValue>
-    <MaxValue>1000000</MaxValue>
-    <Accuracy>2</Accuracy>
-    <AccuracySource>2</AccuracySource>
+    <MinValue>-922337203685477</MinValue>
+    <MaxValue>922337203685477</MaxValue>
+    <Accuracy>__precision__</Accuracy>
+    <AccuracySource>0</AccuracySource>
     <CalculationOf>__attribute-schema-name__</CalculationOf>
     <displaynames>
         <displayname description="__attribute-display-name__ (Base)" languagecode="1033" />

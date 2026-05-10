@@ -4,7 +4,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.Entity.Attribute",
   "name": "Power Platform: Entity Attribute",
   "shortName": "pp-entity-attribute",
-  "description": "Adds a column to an existing entity. Types: Text, MultilineText, WholeNumber, Decimal, Float, Money, DateTime, Boolean, Lookup, OptionSet(Local/Global). Generates attribute.xml + LookupRelationship.xml (for Lookup) + optionset XML (for new Global OptionSet). Required: EntitySchemaName, PublisherPrefix, LogicalName, DisplayName.",
+  "description": "Adds a column to an existing entity. Types: Text, MultilineText, WholeNumber, Decimal, Float, Money, DateTime, Boolean, Lookup, Customer, File, Image, BigInt, OptionSet(Local/Global/LocalMulti/GlobalMulti). Generates attribute.xml + LookupRelationship.xml (for Lookup/Customer) + optionset XML (for new Global OptionSet). Required: EntitySchemaName, PublisherPrefix, LogicalName, DisplayName.",
   "tags": {
     "language": "XML",
     "type": "item"
@@ -32,8 +32,8 @@
     },
     "CreateGlobalOptionSet": {
       "type": "computed",
-			"value": "(AttributeType == \"OptionSet(Global)\") && (GlobalOptionSetType == \"New\")",
-      "description": "Automatically computed: True when AttributeType is New OptionSet(Global), False otherwise"
+      "value": "((AttributeType == \"OptionSet(Global)\") || (AttributeType == \"OptionSet(GlobalMulti)\")) && (GlobalOptionSetType == \"New\")",
+      "description": "Automatically computed: True when AttributeType is New OptionSet(Global/GlobalMulti), False otherwise"
     },
     "EntitySchemaName": {
       "displayName": "Schema name of the entity including publisher prefix (might be different from logical name)",
@@ -46,33 +46,112 @@
     },
     "AttributeType": {
       "type": "parameter",
-      "description": "Data type of the attribute: Text, JsonText (Elastic tables only), MultilineText, WholeNumber, Decimal, Float, Money, DateTime, Lookup, OptionSet(Local), OptionSet(Global), or Boolean",
+      "description": "Data type of the attribute",
       "datatype": "choice",
       "isRequired": true,
       "choices": [
-        { "choice": "Text" },
-        { "choice": "JsonText", "description": "Only for Elastic tables" },
-        { "choice": "MultilineText" },
-        { "choice": "WholeNumber" },
-        { "choice": "Decimal" },
-        { "choice": "Float" },
-        { "choice": "Money" },
-        { "choice": "DateTime" },
-        { "choice": "Lookup" },
-        { "choice": "OptionSet(Local)" },
-        { "choice": "OptionSet(Global)" },
-        { "choice": "Boolean" }
+        { "choice": "Text", "description": "Single line of text (nvarchar)" },
+        { "choice": "MultilineText", "description": "Multiple lines of text (ntext/memo)" },
+        { "choice": "WholeNumber", "description": "Whole number (int)" },
+        { "choice": "Decimal", "description": "Decimal number" },
+        { "choice": "Float", "description": "Floating point number" },
+        { "choice": "Money", "description": "Currency with base field and support columns" },
+        { "choice": "DateTime", "description": "Date and time" },
+        { "choice": "Boolean", "description": "Yes/No (bit)" },
+        { "choice": "Lookup", "description": "Lookup to another entity" },
+        { "choice": "Customer", "description": "Customer lookup (Account/Contact)" },
+        { "choice": "OptionSet(Local)", "description": "Local choice (single select)" },
+        { "choice": "OptionSet(Global)", "description": "Global choice (single select)" },
+        { "choice": "OptionSet(LocalMulti)", "description": "Local choice (multi select)" },
+        { "choice": "OptionSet(GlobalMulti)", "description": "Global choice (multi select)" },
+        { "choice": "File", "description": "File attachment" },
+        { "choice": "Image", "description": "Image" },
+        { "choice": "BigInt", "description": "Big integer" },
+        { "choice": "JsonText", "description": "Only for Elastic tables" }
       ]
+    },
+    "StringFormat": {
+      "type": "parameter",
+      "description": "Format for single-line text fields",
+      "datatype": "choice",
+      "defaultValue": "text",
+      "replaces": "__string-format__",
+      "choices": [
+        { "choice": "text", "description": "Plain text" },
+        { "choice": "email", "description": "Email address" },
+        { "choice": "url", "description": "URL" },
+        { "choice": "phone", "description": "Phone number" },
+        { "choice": "tickersymbol", "description": "Ticker symbol" },
+        { "choice": "textarea", "description": "Text area" }
+      ]
+    },
+    "NumberFormat": {
+      "type": "parameter",
+      "description": "Format for whole number fields",
+      "datatype": "choice",
+      "defaultValue": "none",
+      "replaces": "__number-format__",
+      "choices": [
+        { "choice": "none", "description": "Standard whole number" },
+        { "choice": "duration", "description": "Duration (minutes)" },
+        { "choice": "timezone", "description": "Time zone" },
+        { "choice": "language", "description": "Language code" },
+        { "choice": "locale", "description": "Locale" }
+      ]
+    },
+    "DateTimeFormatChoice": {
+      "type": "parameter",
+      "description": "Display format for date/time fields",
+      "datatype": "choice",
+      "defaultValue": "dateandtime",
+      "replaces": "__datetime-format__",
+      "choices": [
+        { "choice": "dateandtime", "description": "Date and time" },
+        { "choice": "dateonly", "description": "Date only" }
+      ]
+    },
+    "DateTimeBehaviorChoice": {
+      "type": "parameter",
+      "description": "Time zone behavior for date/time fields",
+      "datatype": "choice",
+      "defaultValue": "0",
+      "replaces": "__datetime-behavior__",
+      "choices": [
+        { "choice": "0", "description": "User local" },
+        { "choice": "1", "description": "Date only" },
+        { "choice": "2", "description": "Time zone independent" }
+      ]
+    },
+    "BooleanTrueLabel": {
+      "type": "parameter",
+      "description": "Label for the true/yes option on Boolean fields",
+      "datatype": "text",
+      "defaultValue": "Yes",
+      "replaces": "__boolean-true-label__"
+    },
+    "BooleanFalseLabel": {
+      "type": "parameter",
+      "description": "Label for the false/no option on Boolean fields",
+      "datatype": "text",
+      "defaultValue": "No",
+      "replaces": "__boolean-false-label__"
     },
     "GlobalOptionSetType": {
       "type": "parameter",
-      "description": "Type of the option set: You can choose Existing if the option set already exists in the solution and you want to add attribute to it or New if you want to create a new option set",
+      "description": "Whether to create a new global option set or reference an existing one",
       "datatype": "choice",
-      "isRequired": "AttributeType == \"OptionSet(Global)\"",
+      "isRequired": "(AttributeType == \"OptionSet(Global)\") || (AttributeType == \"OptionSet(GlobalMulti)\")",
       "choices": [
-        { "choice": "Existing" },
-        { "choice": "New" }
+        { "choice": "New" },
+        { "choice": "Existing" }
       ]
+    },
+    "GlobalOptionSetName": {
+      "type": "parameter",
+      "description": "Logical name of the global option set. Defaults to the attribute schema name if not specified.",
+      "datatype": "text",
+      "defaultValue": "",
+      "replaces": "__global-optionset-name-override__"
     },
     "RequiredLevel": {
       "type": "parameter",
@@ -81,9 +160,10 @@
       "replaces": "__required-level__",
       "choices": [
         { "choice": "none" },
+        { "choice": "recommended" },
         { "choice": "required" }
       ],
-      "defaultValue": "required"
+      "defaultValue": "none"
     },
     "PublisherPrefix": {
       "type": "parameter",
@@ -133,8 +213,8 @@
       "type": "parameter",
       "datatype": "text",
       "replaces": "__option-set-options__",
-      "description": "Comma-separated list of options for the option set (Example: Option1,Option2,Option3)",
-      "isRequired": "(AttributeType == \"OptionSet(Local)\" || (AttributeType == \"OptionSet(Global)\" && GlobalOptionSetType == \"New\"))"
+      "description": "Options for the option set. Comma-separated labels (e.g., Active,Inactive) or Label:Value pairs (e.g., Active:100000000,Inactive:100000001). If values are omitted, they auto-increment from 100000000.",
+      "isRequired": "(AttributeType == \"OptionSet(Local)\" || AttributeType == \"OptionSet(LocalMulti)\" || ((AttributeType == \"OptionSet(Global)\" || AttributeType == \"OptionSet(GlobalMulti)\") && GlobalOptionSetType == \"New\"))"
     },
     "Description": {
       "type": "parameter",
@@ -147,42 +227,94 @@
       "type": "parameter",
       "datatype": "int",
       "defaultValue": 100,
+      "replaces": "__max-length__",
       "isRequired": "false",
-      "description": "Maximum length for text attributes (default: 100 characters)"
+      "description": "Maximum length for single-line text attributes (default: 100)"
+    },
+    "MaxLengthMemo": {
+      "type": "parameter",
+      "datatype": "int",
+      "defaultValue": 2000,
+      "replaces": "__max-length-memo__",
+      "isRequired": "false",
+      "description": "Maximum length for multi-line text attributes (default: 2000)"
     },
     "Precision": {
       "type": "parameter",
       "datatype": "int",
       "defaultValue": 2,
+      "replaces": "__precision__",
       "isRequired": "false",
-      "description": "Number of decimal places for decimal/money attributes (default: 2)"
+      "description": "Number of decimal places for decimal/float/money attributes (default: 2)"
     },
     "MinValue": {
       "type": "parameter",
-      "datatype": "decimal",
-      "defaultValue": 0.0,
+      "datatype": "text",
+      "defaultValue": "-922337203685477",
+      "replaces": "__min-value__",
       "isRequired": "false",
-      "description": "Minimum allowed value for numeric attributes (default: 0.0)"
+      "description": "Minimum value for decimal/float/money attributes"
     },
     "MaxValue": {
       "type": "parameter",
-      "datatype": "decimal",
-      "defaultValue": 1000000000.0,
+      "datatype": "text",
+      "defaultValue": "922337203685477",
+      "replaces": "__max-value__",
       "isRequired": "false",
-      "description": "Maximum allowed value for numeric attributes (default: 1000000000.0)"
+      "description": "Maximum value for decimal/float/money attributes"
+    },
+    "MinValueInt": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "-2147483648",
+      "replaces": "__min-value-int__",
+      "isRequired": "false",
+      "description": "Minimum value for whole number attributes"
+    },
+    "MaxValueInt": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "2147483647",
+      "replaces": "__max-value-int__",
+      "isRequired": "false",
+      "description": "Maximum value for whole number attributes"
+    },
+    "MaxFileSizeInKB": {
+      "type": "parameter",
+      "datatype": "int",
+      "defaultValue": 32768,
+      "replaces": "__max-file-size__",
+      "isRequired": "false",
+      "description": "Maximum file size in KB for File attributes (default: 32768 = 32 MB)"
+    },
+    "MaxImageSizeInKB": {
+      "type": "parameter",
+      "datatype": "int",
+      "defaultValue": 10240,
+      "replaces": "__max-image-size__",
+      "isRequired": "false",
+      "description": "Maximum image size in KB for Image attributes (default: 10240 = 10 MB)"
+    },
+    "CanStoreFullImage": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "replaces": "__can-store-full-image__",
+      "isRequired": "false",
+      "description": "Whether full-size images can be stored (default: true)"
     },
     "ReferencedEntityName": {
       "type": "parameter",
       "datatype": "text",
       "replaces": "__referenced-entity-name__",
-      "isRequired": "AttributeType == \"Lookup\"",
-      "description": "Logical name of the referenced entity including publisher prefix (e.g., udpp_warehouseitem)"
+      "isRequired": "(AttributeType == \"Lookup\") || (AttributeType == \"Customer\")",
+      "description": "Logical name of the referenced entity including publisher prefix (e.g., udpp_warehouseitem). For Customer type, defaults to account."
     },
     "AddLookupRelationship": {
       "type": "computed",
-      "value": "(AttributeType == \"Lookup\")",
+      "value": "(AttributeType == \"Lookup\") || (AttributeType == \"Customer\")",
       "datatype": "bool",
-      "description": "Automatically computed: True when AttributeType is Lookup, False otherwise"
+      "description": "Automatically computed: True when AttributeType is Lookup or Customer, False otherwise"
     },
     "LookupRelationshipNameUnsanitized": {
       "type": "generated",
@@ -213,7 +345,7 @@
   "postActions": [
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "condition": "(AttributeType == \"OptionSet(Local)\" || (AttributeType == \"OptionSet(Global)\" && (GlobalOptionSetType == \"New\"))",
+      "condition": "(AttributeType == \"OptionSet(Local)\" || AttributeType == \"OptionSet(LocalMulti)\" || ((AttributeType == \"OptionSet(Global)\" || AttributeType == \"OptionSet(GlobalMulti)\") && (GlobalOptionSetType == \"New\")))",
       "args": {
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetOptionSetOptions.ps1\"",
