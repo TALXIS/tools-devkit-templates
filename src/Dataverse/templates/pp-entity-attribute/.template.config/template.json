@@ -99,16 +99,27 @@
         { "choice": "locale", "description": "Locale" }
       ]
     },
+    "DateTimeFormatChoice": {
+      "type": "parameter",
+      "description": "Display format for date/time fields. DateOnly behavior requires 'date' format.",
+      "datatype": "choice",
+      "defaultValue": "date",
+      "replaces": "__datetime-format__",
+      "choices": [
+        { "choice": "date", "description": "Date only (date picker)" },
+        { "choice": "datetime", "description": "Date and time (date + time picker)" }
+      ]
+    },
     "DateTimeBehaviorChoice": {
       "type": "parameter",
-      "description": "Date/time behavior: 0=User local (date and time), 1=Date only, 2=Time zone independent (date and time)",
+      "description": "Time zone behavior: 1=User local, 2=Date only, 3=Time zone independent",
       "datatype": "choice",
-      "defaultValue": "0",
+      "defaultValue": "1",
       "replaces": "__datetime-behavior__",
       "choices": [
-        { "choice": "0", "description": "User local (date and time)" },
-        { "choice": "1", "description": "Date only" },
-        { "choice": "2", "description": "Time zone independent (date and time)" }
+        { "choice": "1", "description": "User local (stores as UTC, converts to user TZ)" },
+        { "choice": "2", "description": "Date only (no time component)" },
+        { "choice": "3", "description": "Time zone independent (stores actual value)" }
       ]
     },
     "BooleanTrueLabel": {

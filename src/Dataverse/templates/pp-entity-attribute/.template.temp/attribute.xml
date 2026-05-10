@@ -144,7 +144,7 @@
         <Accuracy>__precision__</Accuracy>
         <AccuracySource>2</AccuracySource>
     <!--#elseif (AttributeType == "DateTime") -->
-        <Format>date</Format>
+        <Format>__datetime-format__</Format>
         <Behavior>__datetime-behavior__</Behavior>
     <!--#elseif (AttributeType == "Lookup" || AttributeType == "Customer") -->
         <LookupStyle>single</LookupStyle>
