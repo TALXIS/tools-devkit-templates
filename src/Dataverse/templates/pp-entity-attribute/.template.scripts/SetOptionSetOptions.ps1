@@ -1,4 +1,4 @@
-$optionSetOptionXmlPath = (Resolve-Path '.template.temp/optionsetoption.xml').Path
+$optionSetOptionXmlPath = (Resolve-Path '.template.temp/option-set-option.xml').Path
 [xml]$optionSetOptionTemplate = Get-Content -Path $optionSetOptionXmlPath -Raw
 
 # Default starting value for auto-increment

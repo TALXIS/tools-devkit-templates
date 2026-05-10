@@ -1,7 +1,7 @@
 # File Paths
 $referencedEntityRelationshipFilePathRaw = '__solution-root-path__/Other/Relationships/__referenced-entity-name__.xml'
 $relationshipsFilePathRaw = '__solution-root-path__/Other/Relationships.xml'
-$relationshipTemplateFilePathRaw = '.template.temp/LookupRelationship.xml'
+$relationshipTemplateFilePathRaw = '.template.temp/lookup-relationship.xml'
 
 # Ensure directories exist
 foreach ($path in @($referencedEntityRelationshipFilePathRaw, $relationshipsFilePathRaw)) {
