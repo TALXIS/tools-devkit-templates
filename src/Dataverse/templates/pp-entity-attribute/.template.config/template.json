@@ -99,7 +99,7 @@
         { "choice": "locale", "description": "Locale" }
       ]
     },
-    "DateTimeFormatChoice": {
+    "DateTimeFormat": {
       "type": "parameter",
       "description": "Display format for date/time fields. DateOnly behavior requires 'date' format.",
       "datatype": "choice",
@@ -110,7 +110,7 @@
         { "choice": "datetime", "description": "Date and time (date + time picker)" }
       ]
     },
-    "DateTimeBehaviorChoice": {
+    "DateTimeBehavior": {
       "type": "parameter",
       "description": "Time zone behavior: 1=User local, 2=Date only, 3=Time zone independent",
       "datatype": "choice",
@@ -323,8 +323,8 @@
       "type": "parameter",
       "datatype": "text",
       "replaces": "__referenced-entity-name__",
-      "isRequired": "(AttributeType == \"Lookup\") || (AttributeType == \"Customer\")",
-      "description": "Logical name of the referenced entity including publisher prefix (e.g., udpp_warehouseitem). For Customer type, defaults to account."
+      "isRequired": "(AttributeType == \"Lookup\")",
+      "description": "Logical name of the referenced entity including publisher prefix (e.g., udpp_warehouseitem). Required for Lookup; optional for Customer (defaults to account)."
     },
     "AddLookupRelationship": {
       "type": "computed",

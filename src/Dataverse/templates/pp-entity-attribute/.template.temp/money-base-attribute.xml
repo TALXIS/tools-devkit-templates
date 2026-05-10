@@ -4,14 +4,14 @@
     <LogicalName>__attribute-schema-name___base</LogicalName>
     <RequiredLevel>none</RequiredLevel>
     <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-    <ImeMode>disabled</ImeMode>
+    <ImeMode>auto</ImeMode>
     <ValidForUpdateApi>0</ValidForUpdateApi>
     <ValidForReadApi>1</ValidForReadApi>
     <ValidForCreateApi>0</ValidForCreateApi>
     <IsCustomField>1</IsCustomField>
     <IsAuditEnabled>1</IsAuditEnabled>
     <IsSecured>0</IsSecured>
-    <IntroducedVersion>1.0.0.1</IntroducedVersion>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
     <IsCustomizable>1</IsCustomizable>
     <IsRenameable>1</IsRenameable>
     <CanModifySearchSettings>1</CanModifySearchSettings>
