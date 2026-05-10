@@ -1,10 +1,12 @@
+$ErrorActionPreference = 'Stop'
+
 $optionSetOptionXmlPath = (Resolve-Path '.template.temp/option-set-option.xml').Path
 [xml]$optionSetOptionTemplate = Get-Content -Path $optionSetOptionXmlPath -Raw
 
 # Default starting value for auto-increment
 $optionNumber = 100000000
 
-$attributeXmlPath 
+$attributeXmlPath = $null
 
 <!--#if (AttributeType == "OptionSet(Global)" || AttributeType == "OptionSet(GlobalMulti)") -->
     $attributeXmlPath = "__solution-root-path__/OptionSets/__attribute-schema-name__.xml"

@@ -1,3 +1,5 @@
+$ErrorActionPreference = 'Stop'
+
 $entityXmlPaths = Get-ChildItem -Path "__solution-root-path__/Entities" -Recurse -File -Filter "Entity.xml" -ErrorAction SilentlyContinue
 if (-not $entityXmlPaths) { exit 0 }
 
