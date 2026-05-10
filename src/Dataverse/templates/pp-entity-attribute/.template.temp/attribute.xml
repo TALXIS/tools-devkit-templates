@@ -95,11 +95,7 @@
     <!--#if (AttributeType == "OptionSet(Local)" || AttributeType == "OptionSet(LocalMulti)") -->
     <AppDefaultValue>-1</AppDefaultValue>
     <optionset Name="__entity-schema-name_____attribute-schema-name__">
-      <!--#if (AttributeType == "OptionSet(LocalMulti)") -->
-      <OptionSetType>multiselectpicklist</OptionSetType>
-      <!--#else -->
       <OptionSetType>picklist</OptionSetType>
-      <!--#endif -->
       <IntroducedVersion>1.0.0.0</IntroducedVersion>
       <IsCustomizable>1</IsCustomizable>
       <ExternalTypeName></ExternalTypeName>
@@ -143,12 +139,12 @@
         <MaxValue>__max-value__</MaxValue>
         <Accuracy>__precision__</Accuracy>
     <!--#elseif (AttributeType == "Money") -->
-        <MinValue>__min-value__</MinValue>
-        <MaxValue>__max-value__</MaxValue>
+        <MinValue>__min-value-money__</MinValue>
+        <MaxValue>__max-value-money__</MaxValue>
         <Accuracy>__precision__</Accuracy>
         <AccuracySource>2</AccuracySource>
     <!--#elseif (AttributeType == "DateTime") -->
-        <DateTimeFormat>__datetime-format__</DateTimeFormat>
+        <Format>__datetime-format__</Format>
         <Behavior>__datetime-behavior__</Behavior>
     <!--#elseif (AttributeType == "Lookup" || AttributeType == "Customer") -->
         <LookupStyle>single</LookupStyle>

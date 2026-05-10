@@ -250,18 +250,34 @@
     "MinValue": {
       "type": "parameter",
       "datatype": "text",
-      "defaultValue": "-922337203685477",
+      "defaultValue": "-100000000000",
       "replaces": "__min-value__",
       "isRequired": "false",
-      "description": "Minimum value for decimal/float/money attributes"
+      "description": "Minimum value for decimal/float attributes (default: -100000000000)"
     },
     "MaxValue": {
       "type": "parameter",
       "datatype": "text",
-      "defaultValue": "922337203685477",
+      "defaultValue": "100000000000",
       "replaces": "__max-value__",
       "isRequired": "false",
-      "description": "Maximum value for decimal/float/money attributes"
+      "description": "Maximum value for decimal/float attributes (default: 100000000000)"
+    },
+    "MinValueMoney": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "-922337203685477",
+      "replaces": "__min-value-money__",
+      "isRequired": "false",
+      "description": "Minimum value for money attributes (default: -922337203685477)"
+    },
+    "MaxValueMoney": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "922337203685477",
+      "replaces": "__max-value-money__",
+      "isRequired": "false",
+      "description": "Maximum value for money attributes (default: 922337203685477)"
     },
     "MinValueInt": {
       "type": "parameter",

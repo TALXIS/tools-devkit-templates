@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <optionset Name="__attribute-schema-name__" localizedName="__attribute-display-name__" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <!--#if (AttributeType == "OptionSet(GlobalMulti)") -->
-  <OptionSetType>multiselectpicklist</OptionSetType>
-  <!--#else -->
   <OptionSetType>picklist</OptionSetType>
-  <!--#endif -->
   <IsGlobal>1</IsGlobal>
   <IntroducedVersion>1.0</IntroducedVersion>
   <IsCustomizable>1</IsCustomizable>
