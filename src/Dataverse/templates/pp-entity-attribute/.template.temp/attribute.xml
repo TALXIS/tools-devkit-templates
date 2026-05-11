@@ -1,17 +1,19 @@
-<attribute PhysicalName="examplepublisherprefix_examplecustomentityattribute">
-    <!--#if (AttributeType == "Text" || AttributeType == "JsonText") -->
-        <Type>ntext</Type>
-    <!--#elseif (AttributeType == "MultilineText") -->
+<attribute PhysicalName="__attribute-schema-name__">
+    <!--#if (AttributeType == "Text") -->
         <Type>nvarchar</Type>
-    <!--#elseif (AttributeType == "TwoOptions") -->
+    <!--#elseif (AttributeType == "JsonText") -->
+        <Type>nvarchar</Type>
+    <!--#elseif (AttributeType == "MultilineText") -->
+        <Type>ntext</Type>
+    <!--#elseif (AttributeType == "Boolean") -->
         <Type>bit</Type>
     <!--#elseif (AttributeType == "WholeNumber") -->
         <Type>int</Type>
-    <!--#elseif (AttributeType == "FloatingPoint") -->
-        <Type>double</Type>
+    <!--#elseif (AttributeType == "Float") -->
+        <Type>float</Type>
     <!--#elseif (AttributeType == "Decimal") -->
         <Type>decimal</Type>
-    <!--#elseif (AttributeType == "Currency") -->
+    <!--#elseif (AttributeType == "Money") -->
         <Type>money</Type>
     <!--#elseif (AttributeType == "DateTime") -->
         <Type>datetime</Type>
@@ -19,59 +21,122 @@
         <Type>lookup</Type>
     <!--#elseif (AttributeType == "Customer") -->
         <Type>customer</Type>
-    <!--#elseif (AttributeType == "Owner") -->
-        <Type>owner</Type>
     <!--#elseif (AttributeType == "File") -->
         <Type>file</Type>
     <!--#elseif (AttributeType == "Image") -->
         <Type>image</Type>
-    <!--#elseif (AttributeType == "OptionSet(Local)" || AttributeType == "OptionSet(Global)") -->
+    <!--#elseif (AttributeType == "BigInt") -->
+        <Type>bigint</Type>
+    <!--#elseif (AttributeType == "OptionSet(Local)" || AttributeType == "OptionSet(Global)" || AttributeType == "OptionSet(LocalMulti)" || AttributeType == "OptionSet(GlobalMulti)") -->
+        <!--#if (AttributeType == "OptionSet(LocalMulti)" || AttributeType == "OptionSet(GlobalMulti)") -->
+        <Type>multiselectpicklist</Type>
+        <!--#else -->
         <Type>picklist</Type>
+        <!--#endif -->
     <!--#endif -->
 
-    <Name>examplepublisherprefix_examplecustomentityattribute</Name>
-    <LogicalName>examplepublisherprefix_examplecustomentityattribute</LogicalName>
-    <RequiredLevel>attributerequiredlevel</RequiredLevel>
+    <Name>__attribute-schema-name__</Name>
+    <LogicalName>__attribute-schema-name__</LogicalName>
+    <RequiredLevel>__required-level__</RequiredLevel>
+    <!--#if (AttributeType == "BigInt") -->
+    <!--#elseif (AttributeType == "File") -->
+    <DisplayMask>ValidForForm|ValidForGrid</DisplayMask>
+    <!--#elseif (AttributeType == "Image") -->
+    <DisplayMask>DenormalizedChild|PrimaryImage|ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+    <!--#else -->
     <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+    <!--#endif -->
+    <!--#if (AttributeType == "WholeNumber" || AttributeType == "Image" || AttributeType == "File") -->
     <ImeMode>disabled</ImeMode>
+    <!--#else -->
+    <ImeMode>auto</ImeMode>
+    <!--#endif -->
+    <!--#if (AttributeType == "File") -->
+    <ValidForUpdateApi>0</ValidForUpdateApi>
+    <!--#else -->
     <ValidForUpdateApi>1</ValidForUpdateApi>
+    <!--#endif -->
     <ValidForReadApi>1</ValidForReadApi>
+    <!--#if (AttributeType == "File") -->
+    <ValidForCreateApi>0</ValidForCreateApi>
+    <!--#else -->
     <ValidForCreateApi>1</ValidForCreateApi>
+    <!--#endif -->
     <IsCustomField>1</IsCustomField>
     <IsAuditEnabled>1</IsAuditEnabled>
     <IsSecured>0</IsSecured>
     <IntroducedVersion>1.0.0.0</IntroducedVersion>
     <IsCustomizable>1</IsCustomizable>
     <IsRenameable>1</IsRenameable>
+    <!--#if (AttributeType == "Image" || AttributeType == "File") -->
+    <CanModifySearchSettings>0</CanModifySearchSettings>
+    <!--#else -->
     <CanModifySearchSettings>1</CanModifySearchSettings>
+    <!--#endif -->
+    <!--#if (AttributeType == "Image" || AttributeType == "File") -->
+    <CanModifyRequirementLevelSettings>0</CanModifyRequirementLevelSettings>
+    <!--#else -->
     <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+    <!--#endif -->
     <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
     <SourceType>0</SourceType>
+    <!--#if (AttributeType == "Image") -->
+    <IsLogical>1</IsLogical>
+    <!--#endif -->
     <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
     <IsSortableEnabled>0</IsSortableEnabled>
     <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+    <!--#if (AttributeType == "File") -->
+    <CanModifyIsSortableSettings>0</CanModifyIsSortableSettings>
+    <!--#else -->
     <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+    <!--#endif -->
     <IsDataSourceSecret>0</IsDataSourceSecret>
     <AutoNumberFormat></AutoNumberFormat>
-
-    <!--#if (AttributeType == "Lookup" or AttributeType == "Customer" or AttributeType == "Owner" or AttributeType == "OptionSet(Local)" or AttributeType == "OptionSet(Global)") -->
-        <IsSearchable>0</IsSearchable>
-    <!--#else -->
-        <IsSearchable>1</IsSearchable>
-    <!--#endif -->
-
+    <IsSearchable>0</IsSearchable>
     <IsFilterable>0</IsFilterable>
     <IsRetrievable>0</IsRetrievable>
     <IsLocalizable>0</IsLocalizable>
-    <!--#if (AttributeType == "OptionSet(Local)") -->
-    <AppDefaultValue>-1</AppDefaultValue>
-    <optionset Name="exampleexistingentity_examplepublisherprefix_examplecustomentityattribute">
-      <OptionSetType>picklist</OptionSetType>
-      <IntroducedVersion>1.0</IntroducedVersion>
+
+    <!--#if (AttributeType == "Boolean") -->
+    <AppDefaultValue>0</AppDefaultValue>
+    <optionset Name="__entity-schema-name_____attribute-schema-name__">
+      <OptionSetType>bit</OptionSetType>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
       <IsCustomizable>1</IsCustomizable>
       <ExternalTypeName></ExternalTypeName>
       <displaynames>
-        <displayname description="ExampleEntityAttributeDisplayName" languagecode="1033" />
+        <displayname description="__attribute-display-name__" languagecode="1033" />
+      </displaynames>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+      <options>
+        <option value="1" ExternalValue="" IsHidden="0">
+          <labels>
+            <label description="__boolean-true-label__" languagecode="1033" />
+          </labels>
+        </option>
+        <option value="0" ExternalValue="" IsHidden="0">
+          <labels>
+            <label description="__boolean-false-label__" languagecode="1033" />
+          </labels>
+        </option>
+      </options>
+    </optionset>
+    <!--#endif -->
+
+    <!--#if (AttributeType == "OptionSet(Local)" || AttributeType == "OptionSet(LocalMulti)") -->
+    <!--#if (AttributeType == "OptionSet(Local)") -->
+    <AppDefaultValue>-1</AppDefaultValue>
+    <!--#endif -->
+    <optionset Name="__entity-schema-name_____attribute-schema-name__">
+      <OptionSetType>picklist</OptionSetType>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <ExternalTypeName></ExternalTypeName>
+      <displaynames>
+        <displayname description="__attribute-display-name__" languagecode="1033" />
       </displaynames>
       <Descriptions>
         <Description description="" languagecode="1033" />
@@ -82,60 +147,62 @@
     </optionset>
     <!--#endif -->
 
+    <!--#if (AttributeType == "OptionSet(Global)" || AttributeType == "OptionSet(GlobalMulti)") -->
     <!--#if (AttributeType == "OptionSet(Global)") -->
     <AppDefaultValue>-1</AppDefaultValue>
-    <OptionSetName>examplepublisherprefix_examplecustomentityattribute</OptionSetName>
+    <!--#endif -->
+    <!--#if (OptionSetNameIsOverridden) -->
+    <OptionSetName>__global-optionset-name-override__</OptionSetName>
+    <!--#else -->
+    <OptionSetName>__attribute-schema-name__</OptionSetName>
+    <!--#endif -->
     <!--#endif -->
 
     <!--#if (AttributeType == "Text") -->
-        <Format>text</Format>
-        <MaxLength>1000</MaxLength>
-        <Length>2000</Length>
+        <Format>__string-format__</Format>
+        <MaxLength>__max-length__</MaxLength>
+        <Length>__max-length__</Length>
     <!--#elseif (AttributeType == "JsonText") -->
         <Format>json</Format>
         <MaxLength>1048576</MaxLength>
     <!--#elseif (AttributeType == "MultilineText") -->
-        <MaxLength>2000</MaxLength>
-    <!--#elseif (AttributeType == "TwoOptions") -->
-        <DefaultValue>false</DefaultValue>
+        <Format>text</Format>
+        <MaxLength>__max-length-memo__</MaxLength>
     <!--#elseif (AttributeType == "WholeNumber") -->
-        <Format>none</Format>
-        <MinValue>0</MinValue>
-        <MaxValue>1000000000</MaxValue>
-    <!--#elseif (AttributeType == "FloatingPoint") -->
-        <MinValue>0</MinValue>
-        <MaxValue>1000000</MaxValue>
+        <Format>__number-format__</Format>
+        <MinValue>__min-value-int__</MinValue>
+        <MaxValue>__max-value-int__</MaxValue>
+    <!--#elseif (AttributeType == "Float") -->
+        <MinValue>__min-value__</MinValue>
+        <MaxValue>__max-value__</MaxValue>
+        <Accuracy>__precision__</Accuracy>
     <!--#elseif (AttributeType == "Decimal") -->
-        <MinValue>0.0</MinValue>
-        <MaxValue>1000000.0</MaxValue>
-        <Precision>2</Precision>
-    <!--#elseif (AttributeType == "Currency") -->
-        <MinValue>0</MinValue>
-        <MaxValue>1000000</MaxValue>
-        <Precision>2</Precision>
+        <MinValue>__min-value__</MinValue>
+        <MaxValue>__max-value__</MaxValue>
+        <Accuracy>__precision__</Accuracy>
+    <!--#elseif (AttributeType == "Money") -->
+        <MinValue>__min-value-money__</MinValue>
+        <MaxValue>__max-value-money__</MaxValue>
+        <Accuracy>__precision__</Accuracy>
+        <AccuracySource>2</AccuracySource>
     <!--#elseif (AttributeType == "DateTime") -->
-        <DateTimeFormat>dateonly</DateTimeFormat>
+        <Format>__datetime-format__</Format>
+        <Behavior>__datetime-behavior__</Behavior>
     <!--#elseif (AttributeType == "Lookup") -->
         <LookupStyle>single</LookupStyle>
         <LookupTypes />
-    <!--#elseif (AttributeType == "Customer") -->
-        <LookupStyle>single</LookupStyle>
-        <LookupTypes>Account,Contact</LookupTypes>
-    <!--#elseif (AttributeType == "Owner") -->
-        <LookupStyle>single</LookupStyle>
-        <LookupTypes>User,Team</LookupTypes>
     <!--#elseif (AttributeType == "File") -->
-        <MaxFileSize>10485760</MaxFileSize>
-        <AllowedFileTypes>pdf,doc,docx</AllowedFileTypes>
+        <MaxValue>__max-file-size__</MaxValue>
     <!--#elseif (AttributeType == "Image") -->
-        <MaxImageSize>1048576</MaxImageSize>
-        <AllowedImageFormats>jpg,png</AllowedImageFormats>
+        <Format>jpeg</Format>
+        <MaxLength>9437328</MaxLength>
+        <MaxValue>__max-image-size__</MaxValue>
     <!--#endif -->
 
     <displaynames>
-        <displayname description="ExampleEntityAttributeDisplayName" languagecode="1033" />
+        <displayname description="__attribute-display-name__" languagecode="1033" />
     </displaynames>
     <Descriptions>
-        <Description description="" languagecode="1033" />
+        <Description description="__attribute-description__" languagecode="1033" />
     </Descriptions>
 </attribute>
