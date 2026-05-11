@@ -46,29 +46,29 @@
     },
     "AttributeType": {
       "type": "parameter",
-      "description": "Data type of the attribute",
+      "description": "Data type of the column. Each type enables a specific set of type-prefixed parameters (e.g., Text enables TextFormat and TextMaxLength; Money enables MoneyAccuracySource, MoneyMinValue, MoneyMaxValue, and DecimalPrecision).",
       "datatype": "choice",
       "isRequired": true,
       "choices": [
-        { "choice": "Text", "description": "Single line of text (nvarchar)" },
-        { "choice": "MultilineText", "description": "Multiple lines of text (ntext/memo)" },
-        { "choice": "Autonumber", "description": "Auto-numbered text field (nvarchar)" },
-        { "choice": "WholeNumber", "description": "Whole number (int)" },
-        { "choice": "Decimal", "description": "Decimal number" },
-        { "choice": "Float", "description": "Floating point number" },
-        { "choice": "Money", "description": "Currency with base field and support columns" },
-        { "choice": "DateTime", "description": "Date and time" },
-        { "choice": "Boolean", "description": "Yes/No (bit)" },
-        { "choice": "Lookup", "description": "Lookup to another entity" },
-        { "choice": "Customer", "description": "Customer lookup (Account/Contact)" },
-        { "choice": "OptionSet(Local)", "description": "Local choice (single select)" },
-        { "choice": "OptionSet(Global)", "description": "Global choice (single select)" },
-        { "choice": "OptionSet(LocalMulti)", "description": "Local choice (multi select)" },
-        { "choice": "OptionSet(GlobalMulti)", "description": "Global choice (multi select)" },
-        { "choice": "File", "description": "File attachment" },
-        { "choice": "Image", "description": "Image" },
-        { "choice": "BigInt", "description": "Big integer" },
-        { "choice": "JsonText", "description": "Only for Elastic tables" }
+        { "choice": "Text", "description": "Single line of text. Use TextFormat for email/url/phone/richtext variants. Use TextMaxLength for max characters." },
+        { "choice": "MultilineText", "description": "Multiple lines of text (memo). Use MemoFormat for plain text or rich text. Use MemoMaxLength for max characters." },
+        { "choice": "Autonumber", "description": "Auto-numbered text. Use AutonumberFormat with {SEQNUM:N}, {RANDSTRING:N}, {DATETIMEUTC:format} placeholders. Read-only in forms." },
+        { "choice": "WholeNumber", "description": "Whole number (integer). Use WholeNumberFormat for standard/duration/timezone/language/locale variants." },
+        { "choice": "Decimal", "description": "Decimal number. Use DecimalPrecision for decimal places, DecimalMinValue/DecimalMaxValue for range." },
+        { "choice": "Float", "description": "Floating point number. Use DecimalPrecision for decimal places, DecimalMinValue/DecimalMaxValue for range." },
+        { "choice": "Money", "description": "Currency field. Auto-creates _base support column. Use MoneyAccuracySource (0=attribute, 1=org, 2=currency), DecimalPrecision, MoneyMinValue/MoneyMaxValue." },
+        { "choice": "DateTime", "description": "Date and time. Use DateTimeFormat (date/datetime) and DateTimeBehavior (1=UserLocal, 2=DateOnly, 3=TimeZoneIndependent)." },
+        { "choice": "Boolean", "description": "Yes/No field. Use BooleanTrueLabel and BooleanFalseLabel to customize option labels." },
+        { "choice": "Lookup", "description": "Lookup to another entity. Requires LookupTarget (e.g., account). Creates N:1 relationship." },
+        { "choice": "Customer", "description": "Polymorphic lookup targeting Account and Contact. LookupTarget defaults to account." },
+        { "choice": "OptionSet(Local)", "description": "Single-select choice scoped to this entity. Requires OptionSetOptions (e.g., Active:100000000,Inactive:100000001)." },
+        { "choice": "OptionSet(Global)", "description": "Single-select choice shared across entities. Use OptionSetType=New to create or Existing to reference. Requires OptionSetOptions for New." },
+        { "choice": "OptionSet(LocalMulti)", "description": "Multi-select choice scoped to this entity. Requires OptionSetOptions." },
+        { "choice": "OptionSet(GlobalMulti)", "description": "Multi-select choice shared across entities. Use OptionSetType=New or Existing. Requires OptionSetOptions for New." },
+        { "choice": "File", "description": "File attachment column. Use FileMaxSizeInKB for max size (default: 32 MB)." },
+        { "choice": "Image", "description": "Image column. Use ImageMaxSizeInKB for max size (default: 10 MB)." },
+        { "choice": "BigInt", "description": "64-bit integer for large numbers (timestamps, versioning)." },
+        { "choice": "JsonText", "description": "JSON text column. Only valid on Elastic tables." }
       ]
     },
     "TextFormat": {
@@ -171,8 +171,8 @@
       "isEnabled": "(AttributeType == \"OptionSet(Global)\") || (AttributeType == \"OptionSet(GlobalMulti)\")",
       "isRequired": "(AttributeType == \"OptionSet(Global)\") || (AttributeType == \"OptionSet(GlobalMulti)\")",
       "choices": [
-        { "choice": "New" },
-        { "choice": "Existing" }
+        { "choice": "New", "description": "Create a new global option set with the options specified in OptionSetOptions" },
+        { "choice": "Existing", "description": "Reference an existing global option set by name (specify OptionSetName)" }
       ]
     },
     "OptionSetName": {
