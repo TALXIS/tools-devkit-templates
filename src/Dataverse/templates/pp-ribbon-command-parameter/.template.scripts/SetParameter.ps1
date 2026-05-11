@@ -1,6 +1,6 @@
 $javaScriptFunctionName = "functioexamplenname"
 $commandDefinitionId= "examplepublisher.exampleentityname.Command.functioexamplennamelibraryexamplelogicalname"
-$ribbonXmlPath = (Resolve-Path './SolutionDeclarationsRoot/Entities/exampleentityname/RibbonDiff.xml').Path
+$ribbonXmlPath = (Resolve-Path './__solution-root-path__/Entities/exampleentityname/RibbonDiff.xml').Path
 $parameterXmlPath = (Resolve-Path './.template.temp/parameter.xml').Path
 
 [xml]$ribbonXml = Get-Content $ribbonXmlPath -Raw

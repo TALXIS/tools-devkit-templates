@@ -1,4 +1,4 @@
-$baseDir = "SolutionDeclarationsRoot/AppModuleSiteMaps"
+$baseDir = "__solution-root-path__/AppModuleSiteMaps"
 
 # Try both naming conventions (with and without _managed suffix)
 $file = Get-ChildItem -Path $baseDir -Filter "AppModuleSiteMap.xml" -Recurse -File | Select-Object -First 1

@@ -7,7 +7,7 @@
 # This script validates the result and falls back to adding braces if a view
 # file without them is found (e.g. older template engine behavior).
 
-$viewDir = Resolve-Path 'SolutionDeclarationsRoot/Entities/exampleexistingentity/SavedQueries'
+$viewDir = Resolve-Path '__solution-root-path__/Entities/exampleexistingentity/SavedQueries'
 
 # Check for view files without braces (need fixing)
 $unbracedFile = Get-ChildItem -Path $viewDir -Filter "*.xml" -ErrorAction SilentlyContinue |

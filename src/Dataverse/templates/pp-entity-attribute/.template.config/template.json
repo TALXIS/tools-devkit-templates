@@ -28,7 +28,7 @@
       "defaultValue": ".",
       "replaces": "__solution-root-path__",
       "fileRename": "__solution-root-path__",
-      "description": "Solution project root folder (contains Entities/, Other/, OptionSets/ subdirectories). Use '.' for current directory or a subfolder like 'Declarations'. Do NOT use 'Entities' — that is a subdirectory inside the solution root, not the root itself."
+      "description": "Relative path from the project folder (.csproj) to the folder containing unpacked Dataverse solution files (Other/, Entities/, OptionSets/). Use '.' if solution files are directly in the project folder, or a subfolder name like 'Declarations'. Do not use 'Entities' or 'Other' — those are subdirectories inside the solution metadata root."
     },
     "CreateGlobalOptionSet": {
       "type": "computed",

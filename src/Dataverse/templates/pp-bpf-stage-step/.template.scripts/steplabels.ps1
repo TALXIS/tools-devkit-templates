@@ -1,4 +1,4 @@
-$targetXmlFolderPath = (Resolve-Path 'SolutionDeclarationsRoot/Workflows').Path
+$targetXmlFolderPath = (Resolve-Path '__solution-root-path__/Workflows').Path
 $steplabelsPath = (Resolve-Path '.template.temp\steplabels.xml').Path
 
 $targetXmlFile = Get-ChildItem -Path $targetXmlFolderPath -Recurse -Filter *.xml | Select-Object -First 1

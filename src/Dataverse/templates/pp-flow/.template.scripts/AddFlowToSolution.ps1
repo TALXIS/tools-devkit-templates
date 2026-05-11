@@ -1,4 +1,4 @@
-$solutionPath = Resolve-Path -Path 'SolutionDeclarationsRoot/Other/Solution.xml'
+$solutionPath = Resolve-Path -Path '__solution-root-path__/Other/Solution.xml'
 
 $filePath = ".template.scripts/FlowWorkflowID.txt"
 $WorkflowId = (Get-Content -Path $filePath -Raw).Trim()

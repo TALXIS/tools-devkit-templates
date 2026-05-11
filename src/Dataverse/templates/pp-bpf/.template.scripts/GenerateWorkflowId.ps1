@@ -1,4 +1,4 @@
-$targetDir = "SolutionDeclarationsRoot/Workflows"  
+$targetDir = "__solution-root-path__/Workflows"  
 
 $guid = [guid]::NewGuid().ToString()
 $guidUpper = $guid.ToUpperInvariant()

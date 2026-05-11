@@ -1,5 +1,5 @@
 $sourcePath = "./.template.temp/__step-id__.xml"
-$targetDir = "./SolutionDeclarationsRoot/SdkMessageProcessingSteps"
+$targetDir = "./__solution-root-path__/SdkMessageProcessingSteps"
 $targetFile = Join-Path $targetDir "{__step-id__}.xml"
 
 if (!(Test-Path $targetDir)) {

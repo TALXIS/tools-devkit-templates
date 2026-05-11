@@ -1,6 +1,6 @@
 $TabName = "stageexamplename"
 
-$entityXmlPath=(Resolve-Path './SolutionDeclarationsRoot/Entities/examplebpfname/FormXml/main/{formguididexample}.xml').Path
+$entityXmlPath=(Resolve-Path './__solution-root-path__/Entities/examplebpfname/FormXml/main/{formguididexample}.xml').Path
 $rowPath = (Resolve-Path './.template.temp/row.xml').Path
 
 [xml]$entityXml = Get-Content -Path $entityXmlPath -Raw

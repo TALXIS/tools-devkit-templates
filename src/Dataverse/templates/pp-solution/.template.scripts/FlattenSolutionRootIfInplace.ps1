@@ -1,10 +1,10 @@
-$solutionRootPath = "SolutionDeclarationsRoot"
+$solutionRootPath = "__solution-root-path__"
 
 if ($solutionRootPath -ne ".") { return }
 
 $projectRoot = (Get-Location).Path
 
-$stranded = Join-Path $projectRoot "SolutionDeclarationsRoot"
+$stranded = Join-Path $projectRoot "__solution-root-path__"
 $strandedResolved = (Resolve-Path -LiteralPath $stranded -ErrorAction SilentlyContinue)?.Path
 # Skip if the stranded path resolves to the project root itself (SolutionRootPath was '.')
 if ($strandedResolved -and $strandedResolved -ne $projectRoot -and (Test-Path -LiteralPath $stranded)) {

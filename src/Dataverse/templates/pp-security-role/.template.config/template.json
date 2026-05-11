@@ -16,9 +16,9 @@
 			"type": "parameter",
 			"datatype": "text",
 			"defaultValue": ".",
-			"replaces": "SolutionDeclarationsRoot",
-			"fileRename": "SolutionDeclarationsRoot",
-			"description": "Path to the solution root directory"
+			"replaces": "__solution-root-path__",
+			"fileRename": "__solution-root-path__",
+			"description": "Relative path from the project folder (.csproj) to the folder containing unpacked Dataverse solution files (Other/, Entities/, OptionSets/). Use '.' if solution files are directly in the project folder, or a subfolder name like 'Declarations'. Do not use 'Entities' or 'Other' — those are subdirectories inside the solution metadata root."
 		},
     "RoleId": {
 			"type": "generated",

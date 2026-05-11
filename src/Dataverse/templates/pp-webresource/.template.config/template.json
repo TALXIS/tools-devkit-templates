@@ -16,8 +16,8 @@
             "type": "parameter",
             "datatype": "text",
             "defaultValue": ".",
-            "replaces": "SolutionDeclarationsRoot",
-            "fileRename": "SolutionDeclarationsRoot"
+            "replaces": "__solution-root-path__",
+            "fileRename": "__solution-root-path__"
         },
         "PublisherPrefix": {
             "type": "parameter",
