@@ -72,7 +72,7 @@
 			"defaultValue": ".",
 			"replaces": "SolutionDeclarationsRoot",
 			"fileRename": "SolutionDeclarationsRoot",
-			"description": "Folder under the project folder where solution components will be placed. Use the folder name only, not the full path. Use '.' if you want to place components directly in the project folder."
+			"description": "Solution project root folder (contains Entities/, Other/, OptionSets/ subdirectories). Use '.' for current directory or a subfolder like 'Declarations'. Do NOT use 'Entities' — that is a subdirectory inside the solution root, not the root itself."
 		},
 		"IsSystemEntity": {
 			"type": "parameter",
