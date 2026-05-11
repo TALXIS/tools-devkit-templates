@@ -101,6 +101,7 @@
     <!--#endif -->
 
     <!--#if (AttributeType == "OptionSet(Local)" || AttributeType == "OptionSet(LocalMulti)") -->
+    <AppDefaultValue>-1</AppDefaultValue>
     <optionset Name="__entity-schema-name_____attribute-schema-name__">
       <OptionSetType>picklist</OptionSetType>
       <IntroducedVersion>1.0.0.0</IntroducedVersion>
