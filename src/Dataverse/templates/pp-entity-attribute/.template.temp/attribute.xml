@@ -38,33 +38,59 @@
     <Name>__attribute-schema-name__</Name>
     <LogicalName>__attribute-schema-name__</LogicalName>
     <RequiredLevel>__required-level__</RequiredLevel>
+    <!--#if (AttributeType == "BigInt") -->
+    <!--#elseif (AttributeType == "File") -->
+    <DisplayMask>ValidForForm|ValidForGrid</DisplayMask>
+    <!--#elseif (AttributeType == "Image") -->
+    <DisplayMask>DenormalizedChild|PrimaryImage|ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+    <!--#else -->
     <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-    <!--#if (AttributeType == "WholeNumber" || AttributeType == "Image") -->
+    <!--#endif -->
+    <!--#if (AttributeType == "WholeNumber" || AttributeType == "Image" || AttributeType == "File") -->
     <ImeMode>disabled</ImeMode>
     <!--#else -->
     <ImeMode>auto</ImeMode>
     <!--#endif -->
+    <!--#if (AttributeType == "File") -->
+    <ValidForUpdateApi>0</ValidForUpdateApi>
+    <!--#else -->
     <ValidForUpdateApi>1</ValidForUpdateApi>
+    <!--#endif -->
     <ValidForReadApi>1</ValidForReadApi>
+    <!--#if (AttributeType == "File") -->
+    <ValidForCreateApi>0</ValidForCreateApi>
+    <!--#else -->
     <ValidForCreateApi>1</ValidForCreateApi>
+    <!--#endif -->
     <IsCustomField>1</IsCustomField>
     <IsAuditEnabled>1</IsAuditEnabled>
     <IsSecured>0</IsSecured>
     <IntroducedVersion>1.0.0.0</IntroducedVersion>
     <IsCustomizable>1</IsCustomizable>
     <IsRenameable>1</IsRenameable>
-    <!--#if (AttributeType == "Image") -->
+    <!--#if (AttributeType == "Image" || AttributeType == "File") -->
     <CanModifySearchSettings>0</CanModifySearchSettings>
     <!--#else -->
     <CanModifySearchSettings>1</CanModifySearchSettings>
     <!--#endif -->
+    <!--#if (AttributeType == "Image" || AttributeType == "File") -->
+    <CanModifyRequirementLevelSettings>0</CanModifyRequirementLevelSettings>
+    <!--#else -->
     <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+    <!--#endif -->
     <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
     <SourceType>0</SourceType>
+    <!--#if (AttributeType == "Image") -->
+    <IsLogical>1</IsLogical>
+    <!--#endif -->
     <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
     <IsSortableEnabled>0</IsSortableEnabled>
     <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+    <!--#if (AttributeType == "File") -->
+    <CanModifyIsSortableSettings>0</CanModifyIsSortableSettings>
+    <!--#else -->
     <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+    <!--#endif -->
     <IsDataSourceSecret>0</IsDataSourceSecret>
     <AutoNumberFormat></AutoNumberFormat>
     <IsSearchable>0</IsSearchable>
@@ -101,7 +127,9 @@
     <!--#endif -->
 
     <!--#if (AttributeType == "OptionSet(Local)" || AttributeType == "OptionSet(LocalMulti)") -->
+    <!--#if (AttributeType == "OptionSet(Local)") -->
     <AppDefaultValue>-1</AppDefaultValue>
+    <!--#endif -->
     <optionset Name="__entity-schema-name_____attribute-schema-name__">
       <OptionSetType>picklist</OptionSetType>
       <IntroducedVersion>1.0.0.0</IntroducedVersion>
@@ -120,7 +148,9 @@
     <!--#endif -->
 
     <!--#if (AttributeType == "OptionSet(Global)" || AttributeType == "OptionSet(GlobalMulti)") -->
+    <!--#if (AttributeType == "OptionSet(Global)") -->
     <AppDefaultValue>-1</AppDefaultValue>
+    <!--#endif -->
     <!--#if (OptionSetNameIsOverridden) -->
     <OptionSetName>__global-optionset-name-override__</OptionSetName>
     <!--#else -->
@@ -158,12 +188,14 @@
     <!--#elseif (AttributeType == "DateTime") -->
         <Format>__datetime-format__</Format>
         <Behavior>__datetime-behavior__</Behavior>
-    <!--#elseif (AttributeType == "Lookup" || AttributeType == "Customer") -->
+    <!--#elseif (AttributeType == "Lookup") -->
         <LookupStyle>single</LookupStyle>
         <LookupTypes />
     <!--#elseif (AttributeType == "File") -->
         <MaxValue>__max-file-size__</MaxValue>
     <!--#elseif (AttributeType == "Image") -->
+        <Format>jpeg</Format>
+        <MaxLength>9437328</MaxLength>
         <MaxValue>__max-image-size__</MaxValue>
     <!--#endif -->
 
