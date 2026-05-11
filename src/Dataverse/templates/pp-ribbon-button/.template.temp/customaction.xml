@@ -1,7 +1,7 @@
 <CustomActions>
   <CustomAction
     Id="__publisher-prefix__.__entity-logical-name__.Button.__button-logical-name__.CustomAction"
-    Location="Mscrm.__location-path__.__entity-logical-name__.MainTab.Management.Controls._children"
+    Location="Mscrm.__location-path__.__entity-logical-name__.__tab-path__"
     Sequence="10">
     <CommandUIDefinition>
       <Button
