@@ -1,4 +1,4 @@
-$dialogsRootPath = 'SolutionDeclarationsRoot/Dialogs\{formexampleId}.xml'
+$dialogsRootPath = '__solution-root-path__/Dialogs\{formexampleId}.xml'
 $formName = 'formexamplename'
 $EntitySchemaName = 'ItemFolderName'
 

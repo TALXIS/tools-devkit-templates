@@ -4,7 +4,7 @@ if ($removeDefaultTab -eq "True") {
     $entityXmlPath = ./.template.scripts/LocateForm
 
     if ($mainFormId -eq "unknownFormId") {
-        $formDirectory = './SolutionDeclarationsRoot/Entities/exampleentityname/FormXml/formtypeexample/'
+        $formDirectory = './__solution-root-path__/Entities/exampleentityname/FormXml/formtypeexample/'
 
         $latestForm = Get-ChildItem -Path $formDirectory -Filter "*.xml" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
 
@@ -18,7 +18,7 @@ if ($removeDefaultTab -eq "True") {
         }
     }
     else {
-        $entityXmlPath = (Resolve-Path './SolutionDeclarationsRoot/Entities/exampleentityname/FormXml/formtypeexample/{formguididexample}.xml').Path
+        $entityXmlPath = (Resolve-Path './__solution-root-path__/Entities/exampleentityname/FormXml/formtypeexample/{formguididexample}.xml').Path
     }
 
 

@@ -8,6 +8,7 @@
   "classifications": ["Dataverse", "Power Platform"],
   "sourceName": "pp-api-endpoint",
   "tags": {
+    "type": "item",
     "language": "XML"
   },
   "preferNameDirectory": true,
@@ -16,8 +17,8 @@
       "type": "parameter",
       "datatype": "text",
       "defaultValue": ".",
-      "replaces": "SolutionDeclarationsRoot",
-      "fileRename": "SolutionDeclarationsRoot",
+      "replaces": "__solution-root-path__",
+      "fileRename": "__solution-root-path__",
       "description": "Folder under the project folder where solution components will be placed. Use the folder name only, not the full path. Use '.' if you want to place components directly in the project folder.",
       "isRequired": false
     },

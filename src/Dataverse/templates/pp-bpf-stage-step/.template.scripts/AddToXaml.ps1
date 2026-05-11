@@ -1,4 +1,4 @@
-$targetXamlFolderPath = (Resolve-Path 'SolutionDeclarationsRoot/Workflows').Path
+$targetXamlFolderPath = (Resolve-Path '__solution-root-path__/Workflows').Path
 $stepXamlPath = (Resolve-Path '.template.temp\step.xaml').Path
 
 $targetXamlFile = Get-ChildItem -Path $targetXamlFolderPath -Recurse -Filter *.xaml | Select-Object -First 1

@@ -16,19 +16,19 @@
 				{
 					"condition": "(!AddMainForm)",
 					"exclude": [
-						"SolutionDeclarationsRoot/Entities/ItemFolderName/FormXml/main/*"
+						"__solution-root-path__/Entities/ItemFolderName/FormXml/main/*"
 					]
 				},
 				{
 					"condition": "(!AddQuickCreateForm)",
 					"exclude": [
-						"SolutionDeclarationsRoot/Entities/ItemFolderName/FormXml/quick/*"
+						"__solution-root-path__/Entities/ItemFolderName/FormXml/quick/*"
 					]
 				},
 				{
 					"condition": "(!AddDialogForm)",
 					"exclude": [
-						"SolutionDeclarationsRoot/Dialogs/*"
+						"__solution-root-path__/Dialogs/*"
 					]
 				}
 			]
@@ -61,9 +61,9 @@
 			"type": "parameter",
 			"datatype": "text",
 			"defaultValue": ".",
-			"replaces": "SolutionDeclarationsRoot",
-			"fileRename": "SolutionDeclarationsRoot",
-			"description": "Path to the solution root directory"
+			"replaces": "__solution-root-path__",
+			"fileRename": "__solution-root-path__",
+			"description": "Relative path from the project folder (.csproj) to the folder containing unpacked Dataverse solution files (Other/, Entities/, OptionSets/). Use '.' if solution files are directly in the project folder, or a subfolder name like 'Declarations'. Do not use 'Entities' or 'Other' — those are subdirectories inside the solution metadata root."
 		},
 		"EntitySchemaName": {
 			"type": "parameter",
@@ -106,7 +106,7 @@
 			"value": "(FormType == \"dialog\")",
 			"description": "Automatically computed: True when FormType is dialog, False otherwise"
 		},
-		//forms
+		
 		"FormId": {
 			"type": "parameter",
 			"generator": "guid",
@@ -118,7 +118,7 @@
 			},
 			"description": "Unique identifier for the form (automatically generated GUID)"
 		},
-		//Main Form IDs
+		
 		"1formexampleId": {
 			"type": "generated",
 			"generator": "guid",
@@ -280,7 +280,7 @@
 				"defaultFormat": "d"
 			}
 		},
-		//Quick Create Form IDs
+		
 		"1formexampleId": {
 			"type": "generated",
 			"generator": "guid",

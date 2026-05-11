@@ -8,6 +8,7 @@
   "classifications": ["Dataverse", "Power Platform"],
   "sourceName": "CodeAppExample",
   "tags": {
+		"type": "project",
 		"language": "XML"
 	},
   "preferNameDirectory": true,

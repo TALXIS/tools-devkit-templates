@@ -5,7 +5,7 @@ $optionNumber = (Get-Random -Minimum 10000 -Maximum 99999) * 10000
 
 $attributeXmlPath 
 
-$attributeXmlPath = "SolutionDeclarationsRoot/OptionSets/examplepublisherprefix_examplecustomentityattribute.xml"
+$attributeXmlPath = "__solution-root-path__/OptionSets/examplepublisherprefix_examplecustomentityattribute.xml"
 
 [xml]$attributeXml = Get-Content -Path $attributeXmlPath -Raw
 
@@ -57,7 +57,7 @@ $attributeXml.Save($writer)
 $writer.Close()
 
 # Resolve the relative path to an absolute path (to support other OSes)
-$solutionPath = Resolve-Path -Path 'SolutionDeclarationsRoot/Other/Solution.xml'
+$solutionPath = Resolve-Path -Path '__solution-root-path__/Other/Solution.xml'
 
 # Load the XML file
 [XML]$File = Get-Content -Path $solutionPath -Raw

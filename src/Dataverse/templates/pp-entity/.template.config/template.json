@@ -16,48 +16,48 @@
 				{
 					"condition": "(Behavior == \"New\")",
 					"exclude": [
-						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{customViewId}.xml"
+						"__solution-root-path__/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{customViewId}.xml"
 					]
 				},
 				{
 					"condition": "(Behavior == \"Existing\")",
 					"exclude": [
-						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{defaultViewId}.xml",
-						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{quickFindViewId}.xml",
-						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{myRecordsViewId}.xml",
-						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{lookupViewId}.xml",
-						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{advancedFindViewId}.xml",
-						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{associatedViewId}.xml"
+						"__solution-root-path__/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{defaultViewId}.xml",
+						"__solution-root-path__/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{quickFindViewId}.xml",
+						"__solution-root-path__/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{myRecordsViewId}.xml",
+						"__solution-root-path__/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{lookupViewId}.xml",
+						"__solution-root-path__/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{advancedFindViewId}.xml",
+						"__solution-root-path__/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{associatedViewId}.xml"
 					]
 				},
 				{
 					"condition": "(!AddMainForm)",
 					"exclude": [
-						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/FormXml/main/*"
+						"__solution-root-path__/Entities/examplepublisherprefix_examplecustomentity/FormXml/main/*"
 					]
 				},
 				{
 					"condition": "(!AddQuickForm)",
 					"exclude": [
-						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/FormXml/quick/*"
+						"__solution-root-path__/Entities/examplepublisherprefix_examplecustomentity/FormXml/quick/*"
 					]
 				},
 				{
 					"condition": "(!AddCardForm)",
 					"exclude": [
-						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/FormXml/card/*"
+						"__solution-root-path__/Entities/examplepublisherprefix_examplecustomentity/FormXml/card/*"
 					]
 				},
 				{
 					"condition": "(!AddQuickCreateForm)",
 					"exclude": [
-						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/FormXml/quickCreate/*"
+						"__solution-root-path__/Entities/examplepublisherprefix_examplecustomentity/FormXml/quickCreate/*"
 					]
 				},
 				{
 					"condition": "(!AddCustomView)",
 					"exclude": [
-						"SolutionDeclarationsRoot/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{customViewId}.xml"
+						"__solution-root-path__/Entities/examplepublisherprefix_examplecustomentity/SavedQueries/{customViewId}.xml"
 					]
 				}
 			]
@@ -65,14 +65,13 @@
 	],
 	"preferNameDirectory": false,
 	"symbols": {
-		//this was supposed to be done using msbuild props binding but it didn't work for some reason
 		"SolutionRootPath": {
 			"type": "parameter",
 			"datatype": "text",
 			"defaultValue": ".",
-			"replaces": "SolutionDeclarationsRoot",
-			"fileRename": "SolutionDeclarationsRoot",
-			"description": "Folder under the project folder where solution components will be placed. Use the folder name only, not the full path. Use '.' if you want to place components directly in the project folder."
+			"replaces": "__solution-root-path__",
+			"fileRename": "__solution-root-path__",
+			"description": "Relative path from the project folder (.csproj) to the folder containing unpacked Dataverse solution files (Other/, Entities/, OptionSets/). Use '.' if solution files are directly in the project folder, or a subfolder name like 'Declarations'. Do not use 'Entities' or 'Other' — those are subdirectories inside the solution metadata root."
 		},
 		"IsSystemEntity": {
 			"type": "parameter",
@@ -131,7 +130,7 @@
 						"value": 2
 					},
 					{
-						"value": 2 // default
+						"value": 2
 					}
 				]
 			}
@@ -139,7 +138,7 @@
 		"SystemPublisherPrefix": {
 			"type": "generated",
 			"isEnabled": "(IsSystemEntity == true)",
-			"generator": "switch", // for some reason constant doesn't respect isEnabled
+			"generator": "switch",
 			"parameters": {
 				"cases": [
 					{
@@ -235,7 +234,7 @@
 			"displayName": "Add Custom View",
 			"datatype": "bool"
 		},
-		//forms
+		
 		"cardFormId": {
 			"type": "generated",
 			"generator": "guid",
@@ -272,7 +271,7 @@
 				"defaultFormat": "d"
 			}
 		},
-		//views
+		
 		"customViewId": {
 			"type": "generated",
 			"generator": "guid",
@@ -336,7 +335,7 @@
 				"defaultFormat": "d"
 			}
 		},
-		//Card Form IDs
+		
 		"1cardFormId": {
 			"type": "generated",
 			"generator": "guid",
@@ -449,7 +448,7 @@
 				"defaultFormat": "d"
 			}
 		},
-		//Main Form IDs
+		
 		"1mainFormId": {
 			"type": "generated",
 			"generator": "guid",
@@ -610,7 +609,7 @@
 				"defaultFormat": "d"
 			}
 		},
-		//Quick Form IDs
+		
 		"1quickFormId": {
 			"type": "generated",
 			"generator": "guid",
@@ -643,7 +642,7 @@
 				"defaultFormat": "d"
 			}
 		},
-		//Quick Create Form IDs
+		
 		"1quickCreateFormId": {
 			"type": "generated",
 			"generator": "guid",

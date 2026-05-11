@@ -3,10 +3,10 @@ $assemblyName = "__assembly-name__"
 
 # Search for the assembly data XML — supports both build-generated (flat) and
 # pp-plugin-assembly (subfolder with GUID) directory layouts.
-$assemblyXml = Get-ChildItem -Path "SolutionDeclarationsRoot/PluginAssemblies" -Filter "${assemblyName}.dll.data.xml" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+$assemblyXml = Get-ChildItem -Path "__solution-root-path__/PluginAssemblies" -Filter "${assemblyName}.dll.data.xml" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
 
 if ($null -eq $assemblyXml) {
-    Write-Error "Plugin assembly XML not found for '${assemblyName}' under SolutionDeclarationsRoot/PluginAssemblies/. Ensure the solution has been built or pp-plugin-assembly has been run."
+    Write-Error "Plugin assembly XML not found for '${assemblyName}' under __solution-root-path__/PluginAssemblies/. Ensure the solution has been built or pp-plugin-assembly has been run."
     exit 1
 }
 if (-not (Test-Path $xmlPath)) {

@@ -34,7 +34,7 @@
     "SolutionRootPath": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "SolutionDeclarationsRoot",
+      "replaces": "__solution-root-path__",
       "defaultValue": ".",
       "isRequired": false
     },

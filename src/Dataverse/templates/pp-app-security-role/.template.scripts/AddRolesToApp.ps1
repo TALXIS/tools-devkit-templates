@@ -1,4 +1,4 @@
-$entityXmlPath = (Resolve-Path 'SolutionDeclarationsRoot/AppModules/appexamplename/AppModule.xml').Path
+$entityXmlPath = (Resolve-Path '__solution-root-path__/AppModules/appexamplename/AppModule.xml').Path
 $privilegesPath = (Resolve-Path '.template.scripts/appaccess.xml').Path
 
 

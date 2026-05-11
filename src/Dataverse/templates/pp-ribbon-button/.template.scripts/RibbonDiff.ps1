@@ -1,4 +1,4 @@
-$ribbonXmlPath = (Resolve-Path './SolutionDeclarationsRoot/Entities/exampleentityname/RibbonDiff.xml').Path
+$ribbonXmlPath = (Resolve-Path './__solution-root-path__/Entities/exampleentityname/RibbonDiff.xml').Path
 $commanddefinitionPath = (Resolve-Path './.template.temp/commanddefinition.xml').Path
 $loclbelsPath = (Resolve-Path './.template.temp/loclbels.xml').Path
 $customactionPath = (Resolve-Path './.template.temp/customaction.xml').Path

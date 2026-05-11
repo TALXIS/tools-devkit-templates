@@ -5,7 +5,7 @@ param(
 )
 
 # Parse Entity.xml to get EntitySetName and PrimaryKey
-$entityXmlPath = Join-Path $SolutionPath "SolutionDeclarationsRoot" "Entities" $EntityLogicalName "Entity.xml"
+$entityXmlPath = Join-Path $SolutionPath "__solution-root-path__" "Entities" $EntityLogicalName "Entity.xml"
 if (-not (Test-Path $entityXmlPath)) {
     Write-Error "Entity.xml not found: $entityXmlPath"
     exit 1

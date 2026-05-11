@@ -1,5 +1,5 @@
 $sourceFile = ".template.temp/RootComponent.xml"
-$destinationFile = "SolutionDeclarationsRoot/Other/Solution.xml"
+$destinationFile = "__solution-root-path__/Other/Solution.xml"
 
 if (-not (Test-Path $sourceFile)) {
     Write-Error "RootComponent.xml not found at '$sourceFile'. GenerateAssembly.cs likely failed. Ensure the plugin project is built (dotnet publish) and signed."
