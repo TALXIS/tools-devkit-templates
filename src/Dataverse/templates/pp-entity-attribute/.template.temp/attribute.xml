@@ -113,7 +113,11 @@
 
     <!--#if (AttributeType == "OptionSet(Global)" || AttributeType == "OptionSet(GlobalMulti)") -->
     <AppDefaultValue>-1</AppDefaultValue>
+    <!--#if (OptionSetNameIsOverridden) -->
+    <OptionSetName>__global-optionset-name-override__</OptionSetName>
+    <!--#else -->
     <OptionSetName>__attribute-schema-name__</OptionSetName>
+    <!--#endif -->
     <!--#endif -->
 
     <!--#if (AttributeType == "Text") -->

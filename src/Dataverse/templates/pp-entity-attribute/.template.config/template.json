@@ -155,11 +155,15 @@
     },
     "OptionSetName": {
       "type": "parameter",
-      "description": "Logical name of the global option set. Defaults to the attribute schema name if not specified.",
+      "description": "Logical name of the global option set. Required for Existing; defaults to attribute schema name for New.",
       "datatype": "text",
       "defaultValue": "",
       "isEnabled": "(AttributeType == \"OptionSet(Global)\") || (AttributeType == \"OptionSet(GlobalMulti)\")",
       "replaces": "__global-optionset-name-override__"
+    },
+    "OptionSetNameIsOverridden": {
+      "type": "computed",
+      "value": "(OptionSetName != \"\")"
     },
     "RequiredLevel": {
       "type": "parameter",
