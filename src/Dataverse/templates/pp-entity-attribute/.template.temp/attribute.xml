@@ -39,7 +39,11 @@
     <LogicalName>__attribute-schema-name__</LogicalName>
     <RequiredLevel>__required-level__</RequiredLevel>
     <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+    <!--#if (AttributeType == "WholeNumber" || AttributeType == "Image") -->
+    <ImeMode>disabled</ImeMode>
+    <!--#else -->
     <ImeMode>auto</ImeMode>
+    <!--#endif -->
     <ValidForUpdateApi>1</ValidForUpdateApi>
     <ValidForReadApi>1</ValidForReadApi>
     <ValidForCreateApi>1</ValidForCreateApi>
@@ -49,7 +53,11 @@
     <IntroducedVersion>1.0.0.0</IntroducedVersion>
     <IsCustomizable>1</IsCustomizable>
     <IsRenameable>1</IsRenameable>
+    <!--#if (AttributeType == "Image") -->
+    <CanModifySearchSettings>0</CanModifySearchSettings>
+    <!--#else -->
     <CanModifySearchSettings>1</CanModifySearchSettings>
+    <!--#endif -->
     <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
     <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
     <SourceType>0</SourceType>
@@ -93,7 +101,6 @@
     <!--#endif -->
 
     <!--#if (AttributeType == "OptionSet(Local)" || AttributeType == "OptionSet(LocalMulti)") -->
-    <AppDefaultValue>-1</AppDefaultValue>
     <optionset Name="__entity-schema-name_____attribute-schema-name__">
       <OptionSetType>picklist</OptionSetType>
       <IntroducedVersion>1.0.0.0</IntroducedVersion>
@@ -154,10 +161,9 @@
         <LookupStyle>single</LookupStyle>
         <LookupTypes />
     <!--#elseif (AttributeType == "File") -->
-        <MaxSizeInKB>__max-file-size__</MaxSizeInKB>
+        <MaxValue>__max-file-size__</MaxValue>
     <!--#elseif (AttributeType == "Image") -->
-        <MaxSizeInKB>__max-image-size__</MaxSizeInKB>
-        <CanStoreFullImage>__can-store-full-image__</CanStoreFullImage>
+        <MaxValue>__max-image-size__</MaxValue>
     <!--#endif -->
 
     <displaynames>

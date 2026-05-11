@@ -4,7 +4,7 @@
     <LogicalName>__attribute-schema-name___base</LogicalName>
     <RequiredLevel>none</RequiredLevel>
     <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-    <ImeMode>auto</ImeMode>
+    <ImeMode>disabled</ImeMode>
     <ValidForUpdateApi>0</ValidForUpdateApi>
     <ValidForReadApi>1</ValidForReadApi>
     <ValidForCreateApi>0</ValidForCreateApi>
@@ -31,7 +31,7 @@
     <MinValue>-922337203685477</MinValue>
     <MaxValue>922337203685477</MaxValue>
     <Accuracy>__precision__</Accuracy>
-    <AccuracySource>0</AccuracySource>
+    <AccuracySource>2</AccuracySource>
     <CalculationOf>__attribute-schema-name__</CalculationOf>
     <displaynames>
         <displayname description="__attribute-display-name__ (Base)" languagecode="1033" />

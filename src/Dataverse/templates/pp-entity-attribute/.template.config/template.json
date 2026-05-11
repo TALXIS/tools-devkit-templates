@@ -266,7 +266,7 @@
       "defaultValue": "-100000000000",
       "replaces": "__min-value__",
       "isEnabled": "(AttributeType == \"Decimal\" || AttributeType == \"Float\")",
-      "description": "[Decimal/Float] Minimum allowed value (default: -100000000000)."
+      "description": "[Decimal/Float] Minimum allowed value. Decimal default: -100000000000; Float default: 0."
     },
     "DecimalMaxValue": {
       "type": "parameter",
@@ -274,7 +274,7 @@
       "defaultValue": "100000000000",
       "replaces": "__max-value__",
       "isEnabled": "(AttributeType == \"Decimal\" || AttributeType == \"Float\")",
-      "description": "[Decimal/Float] Maximum allowed value (default: 100000000000)."
+      "description": "[Decimal/Float] Maximum allowed value. Decimal default: 100000000000; Float default: 1000000000."
     },
     "MoneyMinValue": {
       "type": "parameter",
@@ -324,14 +324,7 @@
       "isEnabled": "(AttributeType == \"Image\")",
       "description": "[Image] Maximum image size in KB (default: 10240 = 10 MB)."
     },
-    "ImageCanStoreFullImage": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "true",
-      "replaces": "__can-store-full-image__",
-      "isEnabled": "(AttributeType == \"Image\")",
-      "description": "[Image] Whether full-size images can be stored (default: true)."
-    },
+
     "LookupTarget": {
       "type": "parameter",
       "datatype": "text",
