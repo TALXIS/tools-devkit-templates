@@ -1,5 +1,5 @@
 <attribute PhysicalName="__attribute-schema-name__">
-    <!--#if (AttributeType == "Text") -->
+    <!--#if (AttributeType == "Text" || AttributeType == "Autonumber") -->
         <Type>nvarchar</Type>
     <!--#elseif (AttributeType == "JsonText") -->
         <Type>nvarchar</Type>
@@ -43,6 +43,8 @@
     <DisplayMask>ValidForForm|ValidForGrid</DisplayMask>
     <!--#elseif (AttributeType == "Image") -->
     <DisplayMask>DenormalizedChild|PrimaryImage|ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+    <!--#elseif (AttributeType == "Autonumber") -->
+    <DisplayMask>ReadOnlyInUI|ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
     <!--#else -->
     <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
     <!--#endif -->
@@ -92,7 +94,11 @@
     <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
     <!--#endif -->
     <IsDataSourceSecret>0</IsDataSourceSecret>
+    <!--#if (AttributeType == "Autonumber") -->
+    <AutoNumberFormat>__autonumber-format__</AutoNumberFormat>
+    <!--#else -->
     <AutoNumberFormat></AutoNumberFormat>
+    <!--#endif -->
     <IsSearchable>0</IsSearchable>
     <IsFilterable>0</IsFilterable>
     <IsRetrievable>0</IsRetrievable>
@@ -162,11 +168,15 @@
         <Format>__string-format__</Format>
         <MaxLength>__max-length__</MaxLength>
         <Length>__max-length__</Length>
+    <!--#elseif (AttributeType == "Autonumber") -->
+        <Format>text</Format>
+        <MaxLength>__max-length__</MaxLength>
+        <Length>__max-length__</Length>
     <!--#elseif (AttributeType == "JsonText") -->
         <Format>json</Format>
         <MaxLength>1048576</MaxLength>
     <!--#elseif (AttributeType == "MultilineText") -->
-        <Format>text</Format>
+        <Format>__memo-format__</Format>
         <MaxLength>__max-length-memo__</MaxLength>
     <!--#elseif (AttributeType == "WholeNumber") -->
         <Format>__number-format__</Format>
@@ -184,7 +194,7 @@
         <MinValue>__min-value-money__</MinValue>
         <MaxValue>__max-value-money__</MaxValue>
         <Accuracy>__precision__</Accuracy>
-        <AccuracySource>2</AccuracySource>
+        <AccuracySource>__accuracy-source__</AccuracySource>
     <!--#elseif (AttributeType == "DateTime") -->
         <Format>__datetime-format__</Format>
         <Behavior>__datetime-behavior__</Behavior>
