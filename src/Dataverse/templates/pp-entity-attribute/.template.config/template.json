@@ -335,10 +335,11 @@
     "LookupTarget": {
       "type": "parameter",
       "datatype": "text",
+      "defaultValue": "account",
       "replaces": "__referenced-entity-name__",
       "isEnabled": "(AttributeType == \"Lookup\") || (AttributeType == \"Customer\")",
       "isRequired": "(AttributeType == \"Lookup\")",
-      "description": "Logical name of the target entity (e.g., udpp_warehouseitem). Required for Lookup; optional for Customer (defaults to account)."
+      "description": "Logical name of the target entity (e.g., udpp_warehouseitem). Required for Lookup; defaults to account for Customer."
     },
     "AddLookupRelationship": {
       "type": "computed",
