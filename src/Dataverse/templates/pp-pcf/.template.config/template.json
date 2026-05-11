@@ -1,32 +1,36 @@
 {
-  "$schema": "http://json.schemastore.org/template",
-  "author": "NETWORG",
-  "identity": "TALXIS.DevKit.Templates.Dataverse.PCF",
-  "name": "Power Platform: PCF",
-  "shortName": "pp-pcf",
-  "description": "Scaffolds a PCF control project: ControlManifest.Input.xml + index.ts (StandardControl with init/updateView/getOutputs/destroy) + .csproj (TALXIS.DevKit.Build.Sdk) + tsconfig.json + package.json (pcf-scripts) + eslint.config.mjs + pcfconfig.json. Required: Name, Namespace.",
-  "classifications": ["Dataverse", "Power Platform"],
-  "tags": {
-    "language": "XML"
-  },
-  "sourceName": "examplesourcename",
-  "preferNameDirectory": true,
-  "symbols": {
-    "Name": {
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "pcfnameexample",
-      "fileRename": "pcfnameexample",
-      "isRequired": true,
-      "description": ""
-    },
-    "Namespace": {
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "pcfnamespaceexample",
-      "fileRename": "pcfnamespaceexample",
-      "isRequired": true,
-      "description": ""
-    }
-  }
+	"$schema": "http://json.schemastore.org/template",
+	"author": "NETWORG",
+	"identity": "TALXIS.DevKit.Templates.Dataverse.PCF",
+	"name": "Power Platform: PCF",
+	"shortName": "pp-pcf",
+	"description": "Scaffolds a PCF control project: ControlManifest.Input.xml + index.ts (StandardControl with init/updateView/getOutputs/destroy) + .csproj (TALXIS.DevKit.Build.Sdk) + tsconfig.json + package.json (pcf-scripts) + eslint.config.mjs + pcfconfig.json. Required: Name, Namespace.",
+	"classifications": [
+		"Dataverse",
+		"Power Platform"
+	],
+	"tags": {
+		"language": "XML",
+		"type": "project"
+	},
+	"sourceName": "examplesourcename",
+	"preferNameDirectory": true,
+	"symbols": {
+		"Name": {
+			"type": "parameter",
+			"datatype": "text",
+			"replaces": "pcfnameexample",
+			"fileRename": "pcfnameexample",
+			"isRequired": true,
+			"description": ""
+		},
+		"Namespace": {
+			"type": "parameter",
+			"datatype": "text",
+			"replaces": "pcfnamespaceexample",
+			"fileRename": "pcfnamespaceexample",
+			"isRequired": true,
+			"description": ""
+		}
+	}
 }

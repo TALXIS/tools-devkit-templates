@@ -1,40 +1,48 @@
 {
-  "$schema": "http://json.schemastore.org/template",
-  "author": "NETWORG",
-  "identity": "TALXIS.DevKit.Templates.Dataverse.PackageDeployerPackage",
-  "name": "Power Platform: Package Deployer Package",
-  "shortName": "pp-package",
-  "description": "Scaffolds a Package Deployer project. Script-only \u2014 generates PkgAssets/ with ImportConfig.xml (solution import order) + manifest.ppkg.json. Use when packaging multiple solutions for deployment.",
-  "classifications": ["Dataverse", "Power Platform"],
-  "tags": {
-    "language": "XML"
-  },
-  "sourceName": "packagenameexample",
-  "preferNameDirectory": true,
-  "postActions": [
-    {
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "args": {
-        "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/CreatePackage.ps1\""
-      },
-      "manualInstructions": [
-        {
-          "text": "Creating Package"
-        }
-      ],
-      "description": "Create package"
-    },
-    {
+	"$schema": "http://json.schemastore.org/template",
+	"author": "NETWORG",
+	"identity": "TALXIS.DevKit.Templates.Dataverse.PackageDeployerPackage",
+	"name": "Power Platform: Package Deployer Package",
+	"shortName": "pp-package",
+	"description": "Scaffolds a Package Deployer project. Script-only — generates PkgAssets/ with ImportConfig.xml (solution import order) + manifest.ppkg.json. Use when packaging multiple solutions for deployment.",
+	"classifications": [
+		"Dataverse",
+		"Power Platform"
+	],
+	"tags": {
+		"language": "XML",
+		"type": "project"
+	},
+	"sourceName": "packagenameexample",
+	"preferNameDirectory": true,
+	"postActions": [
+		{
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/CreatePackage.ps1\""
+			},
+			"manualInstructions": [
+				{
+					"text": "Creating Package"
+				}
+			],
+			"description": "Create package"
+		},
+		{
 			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
 			"args": {
 				"executable": "pwsh",
 				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
 				"redirectStandardOutput": "false"
 			},
-			"manualInstructions": [{ "text": "Removing Scripts" }],
+			"manualInstructions": [
+				{
+					"text": "Removing Scripts"
+				}
+			],
 			"continueOnError": false,
 			"description": "Removing Scripts"
 		}
-  ]
+	]
 }

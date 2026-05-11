@@ -1,29 +1,33 @@
 {
-  "$schema": "http://json.schemastore.org/template",
-  "author": "NETWORG",
-  "identity": "TALXIS.DevKit.Templates.Dataverse.CodeApp",
-  "name": "Power Platform: Code App",
-  "shortName": "pp-app-code",
-  "description": "Creates a code-based Power App project: .csproj (net462, ProjectType=CodeApp) + power.config.json (appId, displayName, environment, build paths). Use when building a .NET code app for Power Platform.",
-  "classifications": ["Dataverse", "Power Platform"],
-  "sourceName": "CodeAppExample",
-  "tags": {
-		"language": "XML"
+	"$schema": "http://json.schemastore.org/template",
+	"author": "NETWORG",
+	"identity": "TALXIS.DevKit.Templates.Dataverse.CodeApp",
+	"name": "Power Platform: Code App",
+	"shortName": "pp-app-code",
+	"description": "Creates a code-based Power App project: .csproj (net462, ProjectType=CodeApp) + power.config.json (appId, displayName, environment, build paths). Use when building a .NET code app for Power Platform.",
+	"classifications": [
+		"Dataverse",
+		"Power Platform"
+	],
+	"sourceName": "CodeAppExample",
+	"tags": {
+		"language": "XML",
+		"type": "project"
 	},
-  "preferNameDirectory": true,
-  "symbols": {
-    "DisplayName": {
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "appexampleDisplayName"
-    },
-    "AppId": {
-      "type": "generated",
+	"preferNameDirectory": true,
+	"symbols": {
+		"DisplayName": {
+			"type": "parameter",
+			"datatype": "text",
+			"replaces": "appexampleDisplayName"
+		},
+		"AppId": {
+			"type": "generated",
 			"generator": "guid",
 			"replaces": "appexampleId",
 			"parameters": {
 				"defaultFormat": "d"
 			}
 		}
-  }
+	}
 }
