@@ -72,7 +72,7 @@
     },
     "TextFormat": {
       "type": "parameter",
-      "description": "Format for single-line text fields",
+      "description": "[Text] Format for single-line text fields.",
       "datatype": "choice",
       "defaultValue": "text",
       "isEnabled": "(AttributeType == \"Text\")",
@@ -88,7 +88,7 @@
     },
     "WholeNumberFormat": {
       "type": "parameter",
-      "description": "Format for whole number fields",
+      "description": "[WholeNumber] Format variant for integer fields.",
       "datatype": "choice",
       "defaultValue": "none",
       "isEnabled": "(AttributeType == \"WholeNumber\")",
@@ -103,7 +103,7 @@
     },
     "DateTimeFormat": {
       "type": "parameter",
-      "description": "Display format for date/time fields. DateOnly behavior requires 'date' format.",
+      "description": "[DateTime] Display format. Use 'date' for date picker only, 'datetime' for date+time. DateOnly behavior requires 'date'.",
       "datatype": "choice",
       "defaultValue": "date",
       "isEnabled": "(AttributeType == \"DateTime\")",
@@ -115,7 +115,7 @@
     },
     "DateTimeBehavior": {
       "type": "parameter",
-      "description": "Time zone behavior: 1=User local, 2=Date only, 3=Time zone independent",
+      "description": "[DateTime] Time zone behavior. Controls how values are stored and displayed across time zones.",
       "datatype": "choice",
       "defaultValue": "1",
       "isEnabled": "(AttributeType == \"DateTime\")",
@@ -128,7 +128,7 @@
     },
     "BooleanTrueLabel": {
       "type": "parameter",
-      "description": "Label for the true/yes option on Boolean fields",
+      "description": "[Boolean] Label for the true/yes option.",
       "datatype": "text",
       "defaultValue": "Yes",
       "isEnabled": "(AttributeType == \"Boolean\")",
@@ -136,7 +136,7 @@
     },
     "BooleanFalseLabel": {
       "type": "parameter",
-      "description": "Label for the false/no option on Boolean fields",
+      "description": "[Boolean] Label for the false/no option.",
       "datatype": "text",
       "defaultValue": "No",
       "isEnabled": "(AttributeType == \"Boolean\")",
@@ -144,7 +144,7 @@
     },
     "OptionSetType": {
       "type": "parameter",
-      "description": "Whether to create a new global option set or reference an existing one",
+      "description": "[OptionSet(Global/GlobalMulti)] Whether to create a new global option set or reference an existing one.",
       "datatype": "choice",
       "isEnabled": "(AttributeType == \"OptionSet(Global)\") || (AttributeType == \"OptionSet(GlobalMulti)\")",
       "isRequired": "(AttributeType == \"OptionSet(Global)\") || (AttributeType == \"OptionSet(GlobalMulti)\")",
@@ -155,7 +155,7 @@
     },
     "OptionSetName": {
       "type": "parameter",
-      "description": "Logical name of the global option set. Required for Existing; defaults to attribute schema name for New.",
+      "description": "[OptionSet(Global/GlobalMulti)] Logical name of the global option set. Required for Existing; defaults to attribute schema name for New.",
       "datatype": "text",
       "defaultValue": "",
       "isEnabled": "(AttributeType == \"OptionSet(Global)\") || (AttributeType == \"OptionSet(GlobalMulti)\")",
@@ -225,7 +225,7 @@
       "type": "parameter",
       "datatype": "text",
       "replaces": "__option-set-options__",
-      "description": "Options for the option set. Comma-separated labels (e.g., Active,Inactive) or Label:Value pairs (e.g., Active:100000000,Inactive:100000001). If values are omitted, they auto-increment from 100000000.",
+      "description": "[OptionSet(Local/Global/LocalMulti/GlobalMulti)] Options for the choice column. Comma-separated labels (e.g., Active,Inactive) or Label:Value pairs (e.g., Active:100000000,Inactive:100000001). Values auto-increment from 100000000 if omitted.",
       "isEnabled": "(AttributeType == \"OptionSet(Local)\" || AttributeType == \"OptionSet(LocalMulti)\" || AttributeType == \"OptionSet(Global)\" || AttributeType == \"OptionSet(GlobalMulti)\")",
       "isRequired": "(AttributeType == \"OptionSet(Local)\" || AttributeType == \"OptionSet(LocalMulti)\" || ((AttributeType == \"OptionSet(Global)\" || AttributeType == \"OptionSet(GlobalMulti)\") && OptionSetType == \"New\"))"
     },
@@ -242,7 +242,7 @@
       "defaultValue": 100,
       "replaces": "__max-length__",
       "isEnabled": "(AttributeType == \"Text\")",
-      "description": "Maximum length for single-line text attributes (default: 100)"
+      "description": "[Text] Maximum character length for single-line text (default: 100)."
     },
     "MemoMaxLength": {
       "type": "parameter",
@@ -250,7 +250,7 @@
       "defaultValue": 2000,
       "replaces": "__max-length-memo__",
       "isEnabled": "(AttributeType == \"MultilineText\")",
-      "description": "Maximum length for multi-line text attributes (default: 2000)"
+      "description": "[MultilineText] Maximum character length for multi-line/memo text (default: 2000)."
     },
     "DecimalPrecision": {
       "type": "parameter",
@@ -258,7 +258,7 @@
       "defaultValue": 2,
       "replaces": "__precision__",
       "isEnabled": "(AttributeType == \"Decimal\" || AttributeType == \"Float\" || AttributeType == \"Money\")",
-      "description": "Number of decimal places for decimal/float/money attributes (default: 2)"
+      "description": "[Decimal/Float/Money] Number of decimal places (default: 2)."
     },
     "DecimalMinValue": {
       "type": "parameter",
@@ -266,7 +266,7 @@
       "defaultValue": "-100000000000",
       "replaces": "__min-value__",
       "isEnabled": "(AttributeType == \"Decimal\" || AttributeType == \"Float\")",
-      "description": "Minimum value for decimal/float attributes (default: -100000000000)"
+      "description": "[Decimal/Float] Minimum allowed value (default: -100000000000)."
     },
     "DecimalMaxValue": {
       "type": "parameter",
@@ -274,7 +274,7 @@
       "defaultValue": "100000000000",
       "replaces": "__max-value__",
       "isEnabled": "(AttributeType == \"Decimal\" || AttributeType == \"Float\")",
-      "description": "Maximum value for decimal/float attributes (default: 100000000000)"
+      "description": "[Decimal/Float] Maximum allowed value (default: 100000000000)."
     },
     "MoneyMinValue": {
       "type": "parameter",
@@ -282,7 +282,7 @@
       "defaultValue": "-922337203685477",
       "replaces": "__min-value-money__",
       "isEnabled": "(AttributeType == \"Money\")",
-      "description": "Minimum value for money attributes (default: -922337203685477)"
+      "description": "[Money] Minimum allowed value (default: -922337203685477)."
     },
     "MoneyMaxValue": {
       "type": "parameter",
@@ -290,7 +290,7 @@
       "defaultValue": "922337203685477",
       "replaces": "__max-value-money__",
       "isEnabled": "(AttributeType == \"Money\")",
-      "description": "Maximum value for money attributes (default: 922337203685477)"
+      "description": "[Money] Maximum allowed value (default: 922337203685477)."
     },
     "WholeNumberMinValue": {
       "type": "parameter",
@@ -298,7 +298,7 @@
       "defaultValue": "-2147483648",
       "replaces": "__min-value-int__",
       "isEnabled": "(AttributeType == \"WholeNumber\")",
-      "description": "Minimum value for whole number attributes (default: -2147483648)"
+      "description": "[WholeNumber] Minimum allowed value (default: -2147483648)."
     },
     "WholeNumberMaxValue": {
       "type": "parameter",
@@ -306,7 +306,7 @@
       "defaultValue": "2147483647",
       "replaces": "__max-value-int__",
       "isEnabled": "(AttributeType == \"WholeNumber\")",
-      "description": "Maximum value for whole number attributes (default: 2147483647)"
+      "description": "[WholeNumber] Maximum allowed value (default: 2147483647)."
     },
     "FileMaxSizeInKB": {
       "type": "parameter",
@@ -314,7 +314,7 @@
       "defaultValue": 32768,
       "replaces": "__max-file-size__",
       "isEnabled": "(AttributeType == \"File\")",
-      "description": "Maximum file size in KB (default: 32768 = 32 MB)"
+      "description": "[File] Maximum file size in KB (default: 32768 = 32 MB)."
     },
     "ImageMaxSizeInKB": {
       "type": "parameter",
@@ -322,7 +322,7 @@
       "defaultValue": 10240,
       "replaces": "__max-image-size__",
       "isEnabled": "(AttributeType == \"Image\")",
-      "description": "Maximum image size in KB (default: 10240 = 10 MB)"
+      "description": "[Image] Maximum image size in KB (default: 10240 = 10 MB)."
     },
     "ImageCanStoreFullImage": {
       "type": "parameter",
@@ -330,7 +330,7 @@
       "defaultValue": "true",
       "replaces": "__can-store-full-image__",
       "isEnabled": "(AttributeType == \"Image\")",
-      "description": "Whether full-size images can be stored (default: true)"
+      "description": "[Image] Whether full-size images can be stored (default: true)."
     },
     "LookupTarget": {
       "type": "parameter",
@@ -339,7 +339,7 @@
       "replaces": "__referenced-entity-name__",
       "isEnabled": "(AttributeType == \"Lookup\") || (AttributeType == \"Customer\")",
       "isRequired": "(AttributeType == \"Lookup\")",
-      "description": "Logical name of the target entity (e.g., udpp_warehouseitem). Required for Lookup; defaults to account for Customer."
+      "description": "[Lookup/Customer] Logical name of the target entity (e.g., udpp_warehouseitem). Required for Lookup; defaults to account for Customer."
     },
     "AddLookupRelationship": {
       "type": "computed",
