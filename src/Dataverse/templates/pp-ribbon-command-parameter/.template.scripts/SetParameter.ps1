@@ -1,23 +1,23 @@
-$javaScriptFunctionName = "functioexamplenname"
-$commandDefinitionId= "examplepublisher.exampleentityname.Command.functioexamplennamelibraryexamplelogicalname"
-$ribbonXmlPath = (Resolve-Path './__solution-root-path__/Entities/exampleentityname/RibbonDiff.xml').Path
+$ErrorActionPreference = 'Stop'
+
+$commandDefinitionId = "__publisher-prefix__.__entity-logical-name__.Command.__button-logical-name__"
+$ribbonXmlPath = (Resolve-Path './__solution-root-path__/Entities/__entity-logical-name__/RibbonDiff.xml').Path
 $parameterXmlPath = (Resolve-Path './.template.temp/parameter.xml').Path
 
 [xml]$ribbonXml = Get-Content $ribbonXmlPath -Raw
-
 [xml]$parameterXml = Get-Content $parameterXmlPath -Raw
 
 $commandDefinition = $ribbonXml.SelectSingleNode("//CommandDefinition[@Id='$commandDefinitionId']")
 
 if (-not $commandDefinition) {
-    Write-Error "CommandDefinition with ID '$commandDefinitionId' not found in RibbonDiff.xml"
+    Write-Error "CommandDefinition with ID '$commandDefinitionId' not found in RibbonDiff.xml. Available IDs: $($ribbonXml.SelectNodes('//CommandDefinition') | ForEach-Object { $_.Id })"
     exit 1
 }
 
-$javaScriptFunction = $commandDefinition.SelectSingleNode(".//JavaScriptFunction[@FunctionName='$javaScriptFunctionName']")
+$javaScriptFunction = $commandDefinition.SelectSingleNode(".//JavaScriptFunction")
 
 if (-not $javaScriptFunction) {
-    Write-Error "JavaScriptFunction with FunctionName '$javaScriptFunctionName' not found in CommandDefinition '$commandDefinitionId'"
+    Write-Error "No JavaScriptFunction found in CommandDefinition '$commandDefinitionId'"
     exit 1
 }
 
