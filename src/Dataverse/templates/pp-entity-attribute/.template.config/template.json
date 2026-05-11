@@ -52,6 +52,7 @@
       "choices": [
         { "choice": "Text", "description": "Single line of text (nvarchar)" },
         { "choice": "MultilineText", "description": "Multiple lines of text (ntext/memo)" },
+        { "choice": "Autonumber", "description": "Auto-numbered text field (nvarchar)" },
         { "choice": "WholeNumber", "description": "Whole number (int)" },
         { "choice": "Decimal", "description": "Decimal number" },
         { "choice": "Float", "description": "Floating point number" },
@@ -83,8 +84,29 @@
         { "choice": "url", "description": "URL" },
         { "choice": "phone", "description": "Phone number" },
         { "choice": "tickersymbol", "description": "Ticker symbol" },
-        { "choice": "textarea", "description": "Text area" }
+        { "choice": "textarea", "description": "Text area" },
+        { "choice": "richtext", "description": "Rich text with HTML editor" }
       ]
+    },
+    "MemoFormat": {
+      "type": "parameter",
+      "description": "[MultilineText] Format for multi-line text fields.",
+      "datatype": "choice",
+      "defaultValue": "text",
+      "isEnabled": "(AttributeType == \"MultilineText\")",
+      "replaces": "__memo-format__",
+      "choices": [
+        { "choice": "text", "description": "Plain text" },
+        { "choice": "richtext", "description": "Rich text with HTML editor" }
+      ]
+    },
+    "AutonumberFormat": {
+      "type": "parameter",
+      "description": "[Autonumber] Format string for auto-numbered fields (e.g., INV-{SEQNUM:5}-{DATEFMT:yyyyMMdd}).",
+      "datatype": "text",
+      "defaultValue": "{SEQNUM:5}",
+      "isEnabled": "(AttributeType == \"Autonumber\")",
+      "replaces": "__autonumber-format__"
     },
     "WholeNumberFormat": {
       "type": "parameter",
@@ -241,7 +263,7 @@
       "datatype": "int",
       "defaultValue": 100,
       "replaces": "__max-length__",
-      "isEnabled": "(AttributeType == \"Text\")",
+      "isEnabled": "(AttributeType == \"Text\" || AttributeType == \"Autonumber\")",
       "description": "[Text] Maximum character length for single-line text (default: 100)."
     },
     "MemoMaxLength": {
@@ -291,6 +313,19 @@
       "replaces": "__max-value-money__",
       "isEnabled": "(AttributeType == \"Money\")",
       "description": "[Money] Maximum allowed value (default: 922337203685477)."
+    },
+    "MoneyAccuracySource": {
+      "type": "parameter",
+      "description": "[Money] Precision source: 0=use attribute Precision value, 1=use organization pricing precision, 2=use currency precision.",
+      "datatype": "choice",
+      "defaultValue": "2",
+      "isEnabled": "(AttributeType == \"Money\")",
+      "replaces": "__accuracy-source__",
+      "choices": [
+        { "choice": "0", "description": "Attribute precision (use DecimalPrecision value)" },
+        { "choice": "1", "description": "Organization pricing precision" },
+        { "choice": "2", "description": "Currency precision (default)" }
+      ]
     },
     "WholeNumberMinValue": {
       "type": "parameter",
