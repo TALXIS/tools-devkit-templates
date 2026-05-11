@@ -102,7 +102,7 @@
     },
     "AutonumberFormat": {
       "type": "parameter",
-      "description": "[Autonumber] Format string for auto-numbered fields (e.g., INV-{SEQNUM:5}-{DATEFMT:yyyyMMdd}).",
+      "description": "[Autonumber] Format string using {SEQNUM:N}, {RANDSTRING:N}, {DATETIMEUTC:format} placeholders (e.g., INV-{SEQNUM:5}-{DATETIMEUTC:yyyyMMdd}).",
       "datatype": "text",
       "defaultValue": "{SEQNUM:5}",
       "isEnabled": "(AttributeType == \"Autonumber\")",
