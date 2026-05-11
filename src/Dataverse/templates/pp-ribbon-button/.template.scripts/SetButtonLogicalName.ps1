@@ -1,4 +1,4 @@
-$ButtonLabel = "examplebuttonlable"
+$ButtonLabel = "__button-label__"
 
 $commanddefinitionPath = (Resolve-Path './.template.temp/commanddefinition.xml').Path
 $loclbelsPath = (Resolve-Path './.template.temp/loclbels.xml').Path
@@ -12,6 +12,6 @@ $files = @($commanddefinitionPath, $loclbelsPath, $customactionPath)
 
 foreach ($file in $files) {
     $content = Get-Content -Path $file -Raw
-    $content = $content -replace 'examplebuttonlogicalname', $logicalName
+    $content = $content -replace '__button-logical-name__', $logicalName
     Set-Content -Path $file -Value $content
 }

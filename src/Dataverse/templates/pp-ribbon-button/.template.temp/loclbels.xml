@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-16"?>
 <LocLabels>
-  <LocLabel Id="examplepublisher.exampleentityname.Button.examplebuttonlogicalname.Alt">
+  <LocLabel Id="__publisher-prefix__.__entity-logical-name__.Button.__button-logical-name__.Alt">
     <Titles>
-      <Title description="examplebuttonlable" languagecode="1033" />
+      <Title description="__button-label__" languagecode="1033" />
     </Titles>
   </LocLabel>
-  <LocLabel Id="examplepublisher.exampleentityname.Button.examplebuttonlogicalname.LabelText">
+  <LocLabel Id="__publisher-prefix__.__entity-logical-name__.Button.__button-logical-name__.LabelText">
     <Titles>
-      <Title description="examplebuttonlable" languagecode="1033" />
+      <Title description="__button-label__" languagecode="1033" />
     </Titles>
   </LocLabel>
   <LocLabel
-    Id="examplepublisher.exampleentityname.Button.examplebuttonlogicalname.ToolTipDescription">
+    Id="__publisher-prefix__.__entity-logical-name__.Button.__button-logical-name__.ToolTipDescription">
     <Titles>
-      <Title description="examplebuttonlable" languagecode="1033" />
+      <Title description="__button-label__" languagecode="1033" />
     </Titles>
   </LocLabel>
-  <LocLabel Id="examplepublisher.exampleentityname.Button.examplebuttonlogicalname.ToolTipTitle">
+  <LocLabel Id="__publisher-prefix__.__entity-logical-name__.Button.__button-logical-name__.ToolTipTitle">
     <Titles>
-      <Title description="examplebuttonlable" languagecode="1033" />
+      <Title description="__button-label__" languagecode="1033" />
     </Titles>
   </LocLabel>
 </LocLabels>
