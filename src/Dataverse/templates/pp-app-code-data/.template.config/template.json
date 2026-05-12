@@ -10,7 +10,6 @@
   "tags": {
 		"type": "item",
 		"language": "XML",
-		"componentType": "AppCodeData"
 	},
   "preferNameDirectory": true,
   "symbols": {

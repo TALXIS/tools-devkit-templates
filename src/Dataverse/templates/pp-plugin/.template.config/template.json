@@ -8,7 +8,6 @@
   "tags": {
     "language": "C#",
     "type": "project",
-    "componentType": "Plugin"
   },
   "sourceName": "SolutionLogicalNameExample",
   "sources": [

@@ -9,7 +9,6 @@
   "tags": {
     "language": "javascript",
     "type": "project",
-    "componentType": "ScriptLibrary"
   },
   "sourceName": "examplesourcename",
   "preferNameDirectory": true,
