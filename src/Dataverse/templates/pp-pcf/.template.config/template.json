@@ -8,7 +8,8 @@
   "classifications": ["Dataverse", "Power Platform"],
   "tags": {
 		"type": "project",
-    "language": "XML"
+    "language": "XML",
+		"componentType": "CustomControl"
   },
   "sourceName": "examplesourcename",
   "preferNameDirectory": true,

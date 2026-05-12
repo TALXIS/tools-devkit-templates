@@ -7,7 +7,8 @@
   "description": "Injects a <tabfooter> XML element into a Dataverse dialog form tab. Use when you need a footer area at the bottom of a dialog tab.",
   "tags": {
     "language": "XML",
-    "type": "item"
+    "type": "item",
+    "componentType": "SystemForm"
   },
   "sourceName": "examplecustomentityattribute",
   "preferNameDirectory": false,

@@ -7,7 +7,8 @@
   "description": "HIERARCHY: inside Form (pp-entity-form / pp-entity) -> contains Columns (pp-form-column). Generates <tab verticallayout=true> with name, labelid, empty <columns>. Top-level form container. Can remove default tab via parameter.",
   "tags": {
     "language": "XML",
-    "type": "item"
+    "type": "item",
+    "componentType": "SystemForm"
   },
   "sourceName": "examplecustomentityattribute",
   "preferNameDirectory": false,

@@ -7,7 +7,8 @@
   "description": "HIERARCHY: inside Cell (pp-form-cell) -> leaf element. Generates control.xml (standard, 11 types: Text/MultilineText/WholeNumber/Decimal/Float/Currency/DateTime/Lookup/OptionSet/SubGrid/Button, classid auto-calculated) + dialogcontrol.xml (unbound dialog control).",
   "tags": {
     "language": "XML",
-    "type": "item"
+    "type": "item",
+    "componentType": "SystemForm"
   },
   "sourceName": "examplecustomentityattribute",
   "preferNameDirectory": false,

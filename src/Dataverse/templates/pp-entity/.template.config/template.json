@@ -7,7 +7,8 @@
 	"description": "Defines the database schema for a business object - its attributes (columns), keys and indexes—stores its records (rows), includes the forms, views and charts that display the data, supports binding of validations, rules, workflows and plug-ins that run in the object’s context, and applies role-based security that controls behavior and access across apps and environments.",
 	"tags": {
 		"language": "XML",
-		"type": "item"
+		"type": "item",
+		"componentType": "Entity"
 	},
 	"sourceName": "examplecustomentity",
 	"sources": [

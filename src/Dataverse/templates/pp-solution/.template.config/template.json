@@ -7,7 +7,8 @@
   "description": "Creates a Dataverse solution project: .csproj (TALXIS.DevKit.Build.Sdk, ProjectType=Solution, PublisherName, PublisherPrefix, Version=1.0.0.0). Includes Solution.xml, Customizations.xml and Relationships.xml. A repo typically has multiple solution projects with separate concerns (data model, logic, security, UI).",
   "tags": {
     "language": "C#",
-    "type": "project"
+    "type": "project",
+    "componentType": "Solution"
   },
   "sourceName": "SolutionLogicalNameExample",
   "sources": [

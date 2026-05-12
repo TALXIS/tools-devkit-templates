@@ -7,7 +7,8 @@
   "description": "Adds a parameter to a ribbon command. Types: CrmParameter(SelectedControl), CrmParameter(PrimaryControl), StringParameter. Injected into command definition in RibbonDiff.xml.",
   "tags": {
     "language": "XML",
-    "type": "item"
+    "type": "item",
+    "componentType": "RibbonCustomization"
   },
   "sourceName": "examplebuttonname",
   "sources": [

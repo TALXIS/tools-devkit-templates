@@ -9,7 +9,8 @@
   "sourceName": "Security-Role",
   "tags": {
 		"type": "item",
-		"language": "XML"
+		"language": "XML",
+		"componentType": "Role"
 	},
   "preferNameDirectory": true,
   "symbols": {

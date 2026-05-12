@@ -7,7 +7,8 @@
   "description": "Creates form definitions for an existing entity: mainform.xml + quick form XML + dialogform.xml. Use when pp-entity already exists and you need an additional or replacement form.",
 	"tags": {
 		"language": "XML",
-		"type": "item"
+		"type": "item",
+		"componentType": "SystemForm"
 	},
 	"sourceName": "examplecustomentity",
 	"sources": [

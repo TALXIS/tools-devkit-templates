@@ -8,7 +8,8 @@
   "classifications": ["Dataverse", "Power Platform"],
   "tags": {
     "language": "JSON",
-    "type": "item"
+    "type": "item",
+    "componentType": "Workflow"
   },
   "preferNameDirectory": true,
   "sources": [

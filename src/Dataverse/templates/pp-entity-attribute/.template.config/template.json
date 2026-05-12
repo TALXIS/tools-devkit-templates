@@ -7,7 +7,8 @@
   "description": "Adds a column to an existing entity. Types: Text, MultilineText, WholeNumber, Decimal, Float, Money, DateTime, Boolean, Lookup, Customer, File, Image, BigInt, OptionSet(Local/Global/LocalMulti/GlobalMulti).",
   "tags": {
     "language": "XML",
-    "type": "item"
+    "type": "item",
+    "componentType": "Attribute"
   },
   "sourceName": "__attribute-logical-name__",
   "preferNameDirectory": false,

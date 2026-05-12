@@ -7,7 +7,8 @@
   "description": "Creates SdkMessageProcessingStep XML: PluginTypeName (assembly-qualified), SdkMessageId, PrimaryEntity, Stage, Rank, EventHandlerTypeCode=4602, filtering attributes. Generates SdkMessageProcessingSteps/{GUID}.xml. CHAIN: run after pp-solution --GeneratePluginAssembly true + dotnet build. One step per plugin class per message.",
   "tags": {
     "language": "C#",
-    "type": "project"
+    "type": "project",
+    "componentType": "SdkMessageProcessingStep"
   },
   "symbols": {
     "PrimaryEntity": {

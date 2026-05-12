@@ -9,7 +9,8 @@
   "sourceName": "App-ModelDriven",
   "tags": {
 		"type": "item",
-		"language": "XML"
+		"language": "XML",
+		"componentType": "AppModule"
 	},
   "preferNameDirectory": true,
   "symbols": {
