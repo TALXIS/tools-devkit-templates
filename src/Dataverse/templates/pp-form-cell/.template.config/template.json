@@ -7,7 +7,8 @@
   "description": "HIERARCHY: inside Row (pp-form-row) -> wraps Control (pp-form-control). Generates cell.xml (standard) + dialogcell.xml (dialog). Direct container for a single field label + control.",
   "tags": {
     "language": "XML",
-    "type": "item"
+    "type": "item",
+    "componentType": "FormCell"
   },
   "sourceName": "examplecustomentityattribute",
   "preferNameDirectory": false,

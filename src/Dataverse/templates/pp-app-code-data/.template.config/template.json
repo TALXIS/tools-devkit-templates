@@ -9,7 +9,7 @@
   "sourceName": "pp-app-code-data",
   "tags": {
 		"type": "item",
-		"language": "XML"
+		"language": "XML",
 	},
   "preferNameDirectory": true,
   "symbols": {

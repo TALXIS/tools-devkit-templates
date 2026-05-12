@@ -7,7 +7,8 @@
   "description": "Creates WorkflowActivityBase.cs: abstract CodeActivity with sealed Execute() that initializes IWorkflowContext, two IOrganizationService instances (user + system context), ITracingService, then calls virtual Execute() for subclass implementation. Use for custom Dynamics 365 workflow steps.",
   "tags": {
     "language": "C#",
-    "type": "project"
+    "type": "project",
+    "componentType": "WorkflowActivity"
   },
   "sourceName": "SolutionLogicalNameExample",
   "sources": [

@@ -7,7 +7,7 @@
   "description": "Creates a Dataverse plugin project: PluginBase.cs (abstract IPlugin with _context, _organizationService, _tracingService, calls abstract OnExecute()). CHAIN: Step 1 \u2014 create project. Then pp-plugin-assembly (step 2) to register assembly in the target solution, then pp-plugin-assembly-step (step 3) to register steps. Individual plugin classes extend PluginBase.cs in the same project.",
   "tags": {
     "language": "C#",
-    "type": "project"
+    "type": "project",
   },
   "sourceName": "SolutionLogicalNameExample",
   "sources": [

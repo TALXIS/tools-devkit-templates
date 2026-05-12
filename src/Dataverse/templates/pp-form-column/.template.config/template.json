@@ -7,7 +7,8 @@
   "description": "HIERARCHY: inside Tab (pp-form-tab) -> contains Sections (pp-form-section). Generates <column> with percentage width. Divides tab horizontally.",
   "tags": {
     "language": "XML",
-    "type": "item"
+    "type": "item",
+    "componentType": "FormColumn"
   },
   "sourceName": "examplecustomentityattribute",
   "preferNameDirectory": false,

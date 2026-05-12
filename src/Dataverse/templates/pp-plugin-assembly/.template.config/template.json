@@ -7,7 +7,8 @@
   "description": "Registers a plugin assembly in the solution. Script-only. Generates PluginAssemblies/{Name}-{GUID}/*.dll.data.xml. CHAIN: Step 2 \u2014 run in the target solution after pp-plugin. Required before pp-plugin-assembly-step.",
   "tags": {
     "language": "C#",
-    "type": "project"
+    "type": "project",
+    "componentType": "PluginAssembly"
   },
   "symbols": {
     "AssemblyId": {

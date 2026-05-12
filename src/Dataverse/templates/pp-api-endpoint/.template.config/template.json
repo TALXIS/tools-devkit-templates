@@ -9,7 +9,8 @@
   "sourceName": "pp-api-endpoint",
   "tags": {
     "type": "item",
-    "language": "XML"
+    "language": "XML",
+    "componentType": "CustomAPI"
   },
   "preferNameDirectory": true,
   "symbols": {

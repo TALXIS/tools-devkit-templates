@@ -7,7 +7,8 @@
   "description": "Adds a typed parameter to a form. No source files \u2014 script-only. Types: UniqueId, SafeString, Integer, Boolean, Double, Long, Object. Required: FormId, ParameterLogicalName, ParameterType.",
   "tags": {
     "language": "XML",
-    "type": "item"
+    "type": "item",
+    "componentType": "FormParameter"
   },
   "sourceName": "examplecustomentityattribute",
   "preferNameDirectory": false,

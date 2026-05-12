@@ -9,7 +9,8 @@
   "sourceName": "Sitemap-Area-Group-SubArea",
   "tags": {
 		"type": "item",
-		"language": "XML"
+		"language": "XML",
+		"componentType": "SiteMapSubArea"
 	},
   "preferNameDirectory": true,
   "symbols": {

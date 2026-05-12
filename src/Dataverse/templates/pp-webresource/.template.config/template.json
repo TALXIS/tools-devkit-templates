@@ -7,7 +7,8 @@
   "description": "Registers a web resource in a Dataverse solution: JsBuildTarget.xml (MSBuild target: builds the script library project -> validates JS output -> copies to WebResources/ with publisher prefix) + {publisher}_{name}.data.xml (WebResourceId, Name, DisplayName, WebResourceType, Version). Works with pp-script-library: compiled JS gets deployed as {publisher}_{name}.js.",
     "tags": {
         "language": "XML",
-        "type": "item"
+        "type": "item",
+        "componentType": "WebResource"
     },
     "sourceName": "examplesourcename",
     "preferNameDirectory": true,

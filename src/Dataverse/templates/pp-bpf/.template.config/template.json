@@ -7,7 +7,8 @@
   "description": "Scaffolds a Business Process Flow: Entity.xml (BPF entity with ActiveStageId, Duration etc.) + main form + RibbonDiff.xml + relationship to primary entity + XAML workflow. Add stages with pp-bpf-stage, steps with pp-bpf-stage-step.",
   "tags": {
     "language": "XML",
-    "type": "item"
+    "type": "item",
+    "componentType": "BusinessProcessFlow"
   },
   "sourceName": "SolutionLogicalNameExample",
   "sources": [

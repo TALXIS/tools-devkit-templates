@@ -7,7 +7,8 @@
   "description": "Adds a step inside a BPF stage: step.xaml (StepComposite + ControlStep) + row.xml (form row with cell and control) + steplabels.xml. Run inside a stage created by pp-bpf-stage.",
   "tags": {
     "language": "XML",
-    "type": "item"
+    "type": "item",
+    "componentType": "BpfStageStep"
   },
   "sourceName": "SolutionLogicalNameExample",
   "sources": [

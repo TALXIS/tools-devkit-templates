@@ -9,7 +9,8 @@
   "sourceName": "Sitemap-Area",
   "tags": {
 		"type": "item",
-		"language": "XML"
+		"language": "XML",
+		"componentType": "SiteMapArea"
 	},
   "preferNameDirectory": true,
   "symbols": {

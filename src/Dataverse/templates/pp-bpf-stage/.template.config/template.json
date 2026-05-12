@@ -7,7 +7,8 @@
   "description": "Adds a stage to an existing BPF: stage.xaml (StageComposite XAML) + stageForm.xml (tab with columns/sections) + steplabels.xml. Run inside the BPF project created by pp-bpf.",
   "tags": {
     "language": "XML",
-    "type": "item"
+    "type": "item",
+    "componentType": "BpfStage"
   },
   "sourceName": "SolutionLogicalNameExample",
   "sources": [

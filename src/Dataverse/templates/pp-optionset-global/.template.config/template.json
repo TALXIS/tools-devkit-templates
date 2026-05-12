@@ -7,7 +7,8 @@
   "description": "Creates a global OptionSet(picklist, IsGlobal=1): optionset XML + optionsetoption.xml. Options populated from comma-separated list. Reference from entity attributes using pp-entity-attribute with AttributeType=OptionSet(Global).",
   "tags": {
     "language": "XML",
-    "type": "item"
+    "type": "item",
+    "componentType": "OptionSet"
   },
   "sourceName": "examplecustomentityattribute",
   "preferNameDirectory": false,

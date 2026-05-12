@@ -9,7 +9,8 @@
   "sourceName": "Role-App",
   "tags": {
 		"type": "item",
-		"language": "XML"
+		"language": "XML",
+		"componentType": "AppSecurityRole"
 	},
   "preferNameDirectory": true,
   "symbols": {
