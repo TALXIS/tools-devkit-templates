@@ -2,34 +2,18 @@ $ErrorActionPreference = 'Stop'
 
 $ribbonXmlRaw = './__solution-root-path__/Entities/__entity-logical-name__/RibbonDiff.xml'
 
-# Create empty RibbonDiff.xml if entity was scaffolded without one (e.g., Existing behavior)
+# Create empty RibbonDiff.xml from template if entity doesn't have one
 if (-not (Test-Path $ribbonXmlRaw)) {
-    $emptyRibbon = @'
-<?xml version="1.0" encoding="utf-8"?>
-<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CustomActions />
-  <Templates>
-    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
-  </Templates>
-  <CommandDefinitions />
-  <RuleDefinitions>
-    <TabDisplayRules />
-    <DisplayRules />
-    <EnableRules />
-  </RuleDefinitions>
-  <LocLabels />
-</RibbonDiffXml>
-'@
     $dir = Split-Path $ribbonXmlRaw
     if (-not (Test-Path $dir)) { New-Item -ItemType Directory -Path $dir -Force | Out-Null }
-    Set-Content -Path $ribbonXmlRaw -Value $emptyRibbon -Encoding UTF8
+    Copy-Item './.template.temp/ribbon-diff-empty.xml' $ribbonXmlRaw
     Write-Host "Created missing RibbonDiff.xml at $ribbonXmlRaw"
 }
 
 $ribbonXmlPath = (Resolve-Path $ribbonXmlRaw).Path
-$commanddefinitionPath = (Resolve-Path './.template.temp/commanddefinition.xml').Path
-$loclbelsPath = (Resolve-Path './.template.temp/loclbels.xml').Path
-$customactionPath = (Resolve-Path './.template.temp/customaction.xml').Path
+$commandDefinitionPath = (Resolve-Path './.template.temp/command-definition.xml').Path
+$locLabelsPath = (Resolve-Path './.template.temp/loc-labels.xml').Path
+$customActionPath = (Resolve-Path './.template.temp/custom-action.xml').Path
 
 [xml]$ribbonXml = Get-Content $ribbonXmlPath -Raw
 
@@ -51,8 +35,8 @@ function Add-XmlContent {
     }
 }
 
-Add-XmlContent -parentXml $ribbonXml -nodeName "CommandDefinitions" -contentPath $commanddefinitionPath
-Add-XmlContent -parentXml $ribbonXml -nodeName "LocLabels" -contentPath $loclbelsPath
-Add-XmlContent -parentXml $ribbonXml -nodeName "CustomActions" -contentPath $customactionPath
+Add-XmlContent -parentXml $ribbonXml -nodeName "CommandDefinitions" -contentPath $commandDefinitionPath
+Add-XmlContent -parentXml $ribbonXml -nodeName "LocLabels" -contentPath $locLabelsPath
+Add-XmlContent -parentXml $ribbonXml -nodeName "CustomActions" -contentPath $customActionPath
 
 $ribbonXml.Save($ribbonXmlPath)

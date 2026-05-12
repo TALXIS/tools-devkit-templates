@@ -1,4 +1,4 @@
-$filePath = ".template.temp\customaction.xml"
+$filePath = ".template.temp\custom-action.xml"
 
 $icon16Path = "__image-16x16__"
 $icon32Path = "__image-32x32__"
