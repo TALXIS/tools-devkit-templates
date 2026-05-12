@@ -1,6 +1,7 @@
 $ErrorActionPreference = 'Stop'
 
 $commandDefinitionId = "__publisher-prefix__.__entity-logical-name__.Command.__button-logical-name__"
+$functionName = "__function-name__"
 $ribbonXmlPath = (Resolve-Path './__solution-root-path__/Entities/__entity-logical-name__/RibbonDiff.xml').Path
 $parameterXmlPath = (Resolve-Path './.template.temp/parameter.xml').Path
 
@@ -10,14 +11,16 @@ $parameterXmlPath = (Resolve-Path './.template.temp/parameter.xml').Path
 $commandDefinition = $ribbonXml.SelectSingleNode("//CommandDefinition[@Id='$commandDefinitionId']")
 
 if (-not $commandDefinition) {
-    Write-Error "CommandDefinition with ID '$commandDefinitionId' not found in RibbonDiff.xml. Available IDs: $($ribbonXml.SelectNodes('//CommandDefinition') | ForEach-Object { $_.Id })"
+    $available = ($ribbonXml.SelectNodes('//CommandDefinition') | ForEach-Object { $_.Id }) -join ', '
+    Write-Error "CommandDefinition '$commandDefinitionId' not found in RibbonDiff.xml. Available: $available"
     exit 1
 }
 
-$javaScriptFunction = $commandDefinition.SelectSingleNode(".//JavaScriptFunction")
+$javaScriptFunction = $commandDefinition.SelectSingleNode(".//JavaScriptFunction[@FunctionName='$functionName']")
 
 if (-not $javaScriptFunction) {
-    Write-Error "No JavaScriptFunction found in CommandDefinition '$commandDefinitionId'"
+    $available = ($commandDefinition.SelectNodes('.//JavaScriptFunction') | ForEach-Object { $_.FunctionName }) -join ', '
+    Write-Error "JavaScriptFunction '$functionName' not found in CommandDefinition '$commandDefinitionId'. Available: $available"
     exit 1
 }
 
@@ -35,4 +38,4 @@ foreach ($parameter in $parameters) {
 }
 
 $ribbonXml.Save($ribbonXmlPath)
-Write-Host "Successfully updated RibbonDiff.xml with parameters"
+Write-Host "Successfully added parameters to '$functionName' in command '$commandDefinitionId'"

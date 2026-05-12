@@ -4,6 +4,6 @@
     <!--#elseif (ParameterType == "CrmPrimaryControl") -->
         <CrmParameter Value="PrimaryControl" />
     <!--#else (ParameterType == "String") -->
-        <StringParameter Value="exampleparameterinput" />
+        <StringParameter Value="__parameter-input__" />
     <!--#endif -->
 </Parameters>
