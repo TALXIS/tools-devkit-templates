@@ -10,7 +10,7 @@
   "tags": {
 		"type": "item",
 		"language": "XML",
-		"componentType": "SiteMap"
+		"componentType": "SiteMapArea"
 	},
   "preferNameDirectory": true,
   "symbols": {

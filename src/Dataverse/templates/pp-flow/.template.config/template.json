@@ -9,7 +9,7 @@
   "tags": {
     "language": "JSON",
     "type": "item",
-    "componentType": "Workflow"
+    "componentType": "Flow"
   },
   "preferNameDirectory": true,
   "sources": [

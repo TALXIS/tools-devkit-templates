@@ -10,7 +10,7 @@
   "tags": {
 		"type": "item",
 		"language": "XML",
-		"componentType": "AppModule"
+		"componentType": "AppSecurityRole"
 	},
   "preferNameDirectory": true,
   "symbols": {

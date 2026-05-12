@@ -8,7 +8,7 @@
     "tags": {
         "language": "XML",
         "type": "item",
-        "componentType": "SystemForm"
+        "componentType": "FormSubgrid"
     },
     "sourceName": "subgridconfig",
     "preferNameDirectory": false,

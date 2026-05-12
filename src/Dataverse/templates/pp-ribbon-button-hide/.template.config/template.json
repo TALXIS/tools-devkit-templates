@@ -8,7 +8,7 @@
   "tags": {
     "language": "XML",
     "type": "item",
-    "componentType": "RibbonCustomization"
+    "componentType": "RibbonButtonHide"
   },
   "sourceName": "examplebuttonname",
   "sources": [

@@ -8,7 +8,7 @@
   "tags": {
     "language": "XML",
     "type": "item",
-    "componentType": "SavedQuery"
+    "componentType": "EntityView"
   },
   "sourceName": "customentity",
   "preferNameDirectory": false,

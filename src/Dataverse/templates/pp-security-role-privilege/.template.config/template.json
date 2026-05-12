@@ -10,7 +10,7 @@
   "tags": {
 		"type": "item",
 		"language": "XML",
-		"componentType": "Role"
+		"componentType": "SecurityRolePrivilege"
 	},
   "preferNameDirectory": true,
   "symbols": {

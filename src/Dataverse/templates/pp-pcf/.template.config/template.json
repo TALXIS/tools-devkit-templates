@@ -9,7 +9,7 @@
   "tags": {
 		"type": "project",
     "language": "XML",
-		"componentType": "CustomControl"
+		"componentType": "PcfControl"
   },
   "sourceName": "examplesourcename",
   "preferNameDirectory": true,

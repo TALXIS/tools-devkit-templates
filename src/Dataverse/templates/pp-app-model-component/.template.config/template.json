@@ -10,7 +10,7 @@
   "tags": {
 		"type": "item",
 		"language": "XML",
-		"componentType": "AppModule"
+		"componentType": "AppModuleComponent"
 	},
   "preferNameDirectory": true,
   "symbols": {

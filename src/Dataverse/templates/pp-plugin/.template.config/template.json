@@ -8,7 +8,7 @@
   "tags": {
     "language": "C#",
     "type": "project",
-    "componentType": "PluginAssembly"
+    "componentType": "Plugin"
   },
   "sourceName": "SolutionLogicalNameExample",
   "sources": [
