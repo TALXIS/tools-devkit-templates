@@ -34,29 +34,46 @@
     "PublisherPrefix": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "examplepublisher",
+      "replaces": "__publisher-prefix__",
       "isRequired": true,
       "description": "Publisher prefix (e.g. contoso)"
     },
     "LogicalName": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "examplelogicalname",
-      "fileRename": "examplelogicalname",
+      "replaces": "__logical-name__",
+      "fileRename": "__logical-name__",
       "isRequired": true,
       "description": "Logical name of the flow without publisher prefix (e.g. myautomation)"
+    },
+    "FlowWorkflowId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "__flow-workflow-id__",
+      "parameters": {
+        "defaultFormat": "D"
+      }
+    },
+    "TriggerOperationId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "__trigger-operation-id__",
+      "parameters": {
+        "defaultFormat": "D"
+      }
+    },
+    "FlowWorkflowIdUpper": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source": "FlowWorkflowId",
+        "toUpper": true
+      },
+      "replaces": "__flow-workflow-id-upper__",
+      "fileRename": "__flow-workflow-id-upper__"
     }
   },
   "postActions": [
-    {
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "args": {
-        "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/GenerateFlowId.ps1\"",
-        "redirectStandardOutput": "false"
-      },
-      "description": "Generate flow workflow ID and rename files"
-    },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {

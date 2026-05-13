@@ -17,7 +17,7 @@
       "triggers": {
         "manual": {
           "metadata": {
-            "operationMetadataId": "EXAMPLEFLOWWORKFLOWID"
+            "operationMetadataId": "__trigger-operation-id__"
           },
           "type": "Request",
           "kind": "Button",
@@ -32,6 +32,7 @@
       },
       "actions": {}
     },
-    "schemaVersion": "1.0.0.0"
-  }
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
 }
