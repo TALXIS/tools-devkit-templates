@@ -1,21 +1,22 @@
 <row>
-    <cell locklevel="0" id="cellidexample" rowspan="4" colspan="1"
-        auto="false">
+    <cell locklevel="0" id="__cell-id__" rowspan="__row-span__" colspan="__col-span__"
+        auto="false" showlabel="__show-label__">
         <labels>
-            <label description="subgridlabelexample" languagecode="1033" />
+            <label description="__subgrid-label__" languagecode="1033" />
         </labels>
-        <control indicationOfSubgrid="true" id="controlidexample"
-            classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+        <control indicationOfSubgrid="true" id="__control-id__"
+            classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" uniqueid="__unique-id__">
             <parameters>
-                <RecordsPerPage>4</RecordsPerPage>
+                <RecordsPerPage>__row-span__</RecordsPerPage>
                 <AutoExpand>Fixed</AutoExpand>
-                <EnableQuickFind>false</EnableQuickFind>
-                <EnableViewPicker>false</EnableViewPicker>
-                <EnableChartPicker>true</EnableChartPicker>
+                <EnableQuickFind>__enable-quick-find__</EnableQuickFind>
+                <EnableViewPicker>__enable-view-picker__</EnableViewPicker>
+                <EnableChartPicker>__enable-chart-picker__</EnableChartPicker>
                 <ChartGridMode>All</ChartGridMode>
                 <TargetEntityType>__target-entity-logical-name__</TargetEntityType>
-                <ViewId>__view-id__</ViewId>
-                <ViewIds>__view-id__</ViewIds>
+                <ViewId>{__view-id__}</ViewId>
+                <ViewIds>{__view-id__}</ViewIds>
+                <RelationshipName>__relationship-name__</RelationshipName>
             </parameters>
         </control>
     </cell>
