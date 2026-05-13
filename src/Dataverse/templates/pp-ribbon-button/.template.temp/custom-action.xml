@@ -2,14 +2,14 @@
   <CustomAction
     Id="__publisher-prefix__.__entity-logical-name__.Button.__button-logical-name__.CustomAction"
     Location="Mscrm.__location-path__.__entity-logical-name__.__tab-path__"
-    Sequence="10">
+    Sequence="__sequence__">
     <CommandUIDefinition>
       <Button
         Alt="$LocLabels:__publisher-prefix__.__entity-logical-name__.Button.__button-logical-name__.Alt"
         Command="__publisher-prefix__.__entity-logical-name__.Command.__button-logical-name__"
-        Id="__publisher-prefix__.__entity-logical-name__.Button.__button-logical-name__" __icon-16x16-placeholder__ __icon-32x32-placeholder__
+        Id="__publisher-prefix__.__entity-logical-name__.Button.__button-logical-name__" __icon-16x16-placeholder__ __icon-32x32-placeholder__ __modern-image-placeholder__
         LabelText="$LocLabels:__publisher-prefix__.__entity-logical-name__.Button.__button-logical-name__.LabelText"
-        Sequence="10" TemplateAlias="o1"
+        Sequence="__sequence__" TemplateAlias="__template-alias__"
         ToolTipTitle="$LocLabels:__publisher-prefix__.__entity-logical-name__.Button.__button-logical-name__.ToolTipTitle"
         ToolTipDescription="$LocLabels:__publisher-prefix__.__entity-logical-name__.Button.__button-logical-name__.ToolTipDescription" />
     </CommandUIDefinition>

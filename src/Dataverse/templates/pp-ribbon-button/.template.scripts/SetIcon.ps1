@@ -2,12 +2,13 @@ $filePath = ".template.temp\custom-action.xml"
 
 $icon16Path = "__image-16x16__"
 $icon32Path = "__image-32x32__"
+$modernImagePath = "__modern-image__"
 
 function Replace-ButtonIcon {
     param (
-        [string]$FilePath,      
-        [string]$replaseString, 
-        [string]$iconPath       
+        [string]$FilePath,
+        [string]$replaseString,
+        [string]$iconPath
     )
 
     $content = Get-Content -Path $FilePath -Raw
@@ -27,6 +28,13 @@ if ($icon32Path -eq "icon32pathdefault") {
 } else {
     $path32 = 'Image32by32="$webresource:' + $icon32Path + '"'
     Replace-ButtonIcon -FilePath $filePath -replaseString "__icon-32x32-placeholder__" -iconPath $path32
+}
+
+if ($modernImagePath -eq "modernimagedefault") {
+    Replace-ButtonIcon -FilePath $filePath -replaseString "__modern-image-placeholder__" -iconPath ""
+} else {
+    $modern = 'ModernImage="$webresource:' + $modernImagePath + '"'
+    Replace-ButtonIcon -FilePath $filePath -replaseString "__modern-image-placeholder__" -iconPath $modern
 }
 
 
