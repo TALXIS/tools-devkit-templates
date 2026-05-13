@@ -13,9 +13,9 @@
                 <EnableViewPicker>false</EnableViewPicker>
                 <EnableChartPicker>true</EnableChartPicker>
                 <ChartGridMode>All</ChartGridMode>
-                <TargetEntityType>targetentitytypeexample</TargetEntityType>
-                <ViewId>viewidexample</ViewId>
-                <ViewIds>viewidexample</ViewIds>
+                <TargetEntityType>__target-entity-logical-name__</TargetEntityType>
+                <ViewId>__view-id__</ViewId>
+                <ViewIds>__view-id__</ViewIds>
             </parameters>
         </control>
     </cell>

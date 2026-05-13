@@ -71,7 +71,7 @@
         "TargetEntityLogicalName": {
             "type": "parameter",
             "datatype": "text",
-            "replaces": "targetentitytypeexample",
+            "replaces": "__target-entity-logical-name__",
             "isRequired": true,
             "displayName": "Target Entity Logical Name",
             "description": "Entity whose records will be displayed in the subgrid (Example: contact, opportunity, custom_entity)"
@@ -85,12 +85,12 @@
             "description": "Entity where the subgrid will be added (Example: account, contact, custom_entity)"
         },
         "ViewId": {
-            "type": "generated",
-            "generator": "guid",
-            "replaces": "viewidexample",
-            "parameters": {
-                "defaultFormat": "d"
-            }
+            "type": "parameter",
+            "datatype": "text",
+            "replaces": "__view-id__",
+            "isRequired": true,
+            "displayName": "View ID",
+            "description": "GUID of the view to be used in the subgrid"
         }
     },
     "postActions": [
