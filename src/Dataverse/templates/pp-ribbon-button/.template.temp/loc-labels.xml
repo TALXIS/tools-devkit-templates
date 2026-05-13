@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-16"?>
+<LocLabels>
+  <LocLabel Id="__publisher-prefix__.__entity-logical-name__.Button.__button-logical-name__.Alt">
+    <Titles>
+      <Title description="__button-label__" languagecode="1033" />
+    </Titles>
+  </LocLabel>
+  <LocLabel Id="__publisher-prefix__.__entity-logical-name__.Button.__button-logical-name__.LabelText">
+    <Titles>
+      <Title description="__button-label__" languagecode="1033" />
+    </Titles>
+  </LocLabel>
+  <LocLabel
+    Id="__publisher-prefix__.__entity-logical-name__.Button.__button-logical-name__.ToolTipDescription">
+    <Titles>
+      <Title description="__button-label__" languagecode="1033" />
+    </Titles>
+  </LocLabel>
+  <LocLabel Id="__publisher-prefix__.__entity-logical-name__.Button.__button-logical-name__.ToolTipTitle">
+    <Titles>
+      <Title description="__button-label__" languagecode="1033" />
+    </Titles>
+  </LocLabel>
+</LocLabels>

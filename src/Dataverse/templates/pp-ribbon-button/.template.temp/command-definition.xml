@@ -1,0 +1,10 @@
+<CommandDefinitions>
+  <CommandDefinition Id="__publisher-prefix__.__entity-logical-name__.Command.__button-logical-name__">
+    <EnableRules />
+    <DisplayRules />
+    <Actions>
+      <JavaScriptFunction FunctionName="__function-name__"
+        Library="$webresource:__library-logical-name__" />
+    </Actions>
+  </CommandDefinition>
+</CommandDefinitions>
