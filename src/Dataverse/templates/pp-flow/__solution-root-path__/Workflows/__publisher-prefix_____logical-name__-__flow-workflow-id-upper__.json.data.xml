@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Workflow WorkflowId="{exampleflowworkflowid}" Name="examplepublisher_examplelogicalname" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <JsonFileName>/Workflows/examplelogicalname-EXAMPLEFLOWWORKFLOWID.json</JsonFileName>
+<Workflow WorkflowId="{__flow-workflow-id__}" Name="__publisher-prefix_____logical-name__" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JsonFileName>/Workflows/__publisher-prefix_____logical-name__-__flow-workflow-id-upper__.json</JsonFileName>
   <Type>1</Type>
   <Subprocess>0</Subprocess>
   <Category>5</Category>
@@ -19,8 +19,9 @@
   <IsCustomizable>1</IsCustomizable>
   <BusinessProcessType>0</BusinessProcessType>
   <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <ModernFlowType>0</ModernFlowType>
   <PrimaryEntity>none</PrimaryEntity>
   <LocalizedNames>
-    <LocalizedName languagecode="1033" description="examplepublisher_examplelogicalname" />
+    <LocalizedName languagecode="1033" description="__publisher-prefix_____logical-name__" />
   </LocalizedNames>
 </Workflow>
