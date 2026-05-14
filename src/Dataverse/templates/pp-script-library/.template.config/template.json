@@ -5,7 +5,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.ScriptLibrary",
   "name": "Power Platform: Script Library",
   "shortName": "pp-script-library",
-  "description": "Creates a TypeScript web resource project with Rollup bundler (UMD output). Supports npm packages via ES module imports, bundled into a single .js file. The UMD namespace (publisherprefix_libraryname) is the global for Dataverse form/button references. Build with 'dotnet build' — the SDK runs npm install and rollup automatically. After generating, add as a project reference from the solution that uses it.",
+  "description": "Creates a TypeScript web resource project with Rollup bundler (UMD output). Supports npm packages via ES module imports, bundled into a single .js file. Build with 'dotnet build' — the SDK runs npm install and rollup automatically. CHAIN: Step 1 — create this project. Step 2 — add it as a project reference from the solution project ('dotnet add reference'). Step 3 — run pp-webresource in the solution project to register the compiled JS as a web resource. Step 4 — reference from forms via pp-form-event-handler (libraryName=publisherprefix_libraryname.js, functionName=publisherprefix_libraryname.ClassName.methodName) or from ribbon buttons via pp-ribbon-button (LibraryLogicalName=publisherprefix_libraryname).",
   "tags": {
     "language": "javascript",
     "type": "project",
