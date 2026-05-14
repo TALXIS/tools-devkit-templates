@@ -24,7 +24,7 @@ $ProjectPath = $csprojFile.FullName
 
 # --- 5. Update the Sdk in the .csproj text and remove unwanted elements ---
 $csprojText = Get-Content $ProjectPath -Raw
-$csprojText = $csprojText -replace '<Project Sdk="Microsoft\.NET\.Sdk">', '<Project Sdk="TALXIS.DevKit.Build.Sdk/1.3.0">'
+$csprojText = $csprojText -replace '<Project Sdk="Microsoft\.NET\.Sdk">', '<Project Sdk="TALXIS.DevKit.Build.Sdk/1.4.0">'
 $csprojText = $csprojText -replace '\s*<PackageReference Include="Microsoft\.PowerApps\.MSBuild\.Plugin"[^>]*/>\s*', ''
 $csprojText = $csprojText -replace '\s*<Import[^>]*Project="\$\(PowerAppsTargetsPath\)\\Microsoft\.PowerApps\.VisualStudio\.Plugin\.targets"[^>]*/>\s*', ''
 $csprojText = $csprojText -replace '\s*<Import[^>]*Project="\$\(PowerAppsTargetsPath\)\\Microsoft\.PowerApps\.VisualStudio\.Plugin\.props"[^>]*/>\s*', ''
