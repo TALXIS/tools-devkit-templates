@@ -7,10 +7,10 @@ export default [
     input: 'src/index.ts',
     output: [
       {
-        file: 'build/examplelibraryname.js',
+        file: 'build/__publisher-prefix_____library-name__.js',
         format: 'umd',
         sourcemap: true,
-        name: 'examplelibrarynamespace'
+        name: '__publisher-prefix_____library-name__'
       }
     ],
     plugins: [

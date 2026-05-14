@@ -5,7 +5,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.ScriptLibrary",
   "name": "Power Platform: Script Library",
   "shortName": "pp-script-library",
-  "description": "Creates a TypeScript web resource project with Rollup bundler (UMD output). Supports npm packages via ES module imports, bundled into a single .js file. The UMD name creates a global namespace for Dataverse form/button references (e.g., MyNamespace.Main.onLoad). After generating, add as a project reference from the solution that uses it.",
+  "description": "Creates a TypeScript web resource project with Rollup bundler (UMD output). Supports npm packages via ES module imports, bundled into a single .js file. The UMD namespace (publisherprefix_libraryname) is the global for Dataverse form/button references. Build with 'dotnet build' — the SDK runs npm install and rollup automatically. After generating, add as a project reference from the solution that uses it.",
   "tags": {
     "language": "javascript",
     "type": "project",
@@ -14,20 +14,21 @@
   "sourceName": "examplesourcename",
   "preferNameDirectory": true,
   "symbols": {
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "__publisher-prefix__",
+      "fileRename": "__publisher-prefix__",
+      "isRequired": true,
+      "description": "Publisher prefix (e.g., talxis, udpp). Combined with LibraryName to form the web resource name and UMD namespace."
+    },
     "LibraryName": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "examplelibraryname",
-      "fileRename": "examplelibraryname",
+      "replaces": "__library-name__",
+      "fileRename": "__library-name__",
       "isRequired": true,
-      "description": "Web resource logical name and output file name (e.g., talxis_documentgen). Used as ScriptLibraryName in .csproj and rollup output file."
-    },
-    "LibraryNamespace": {
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "examplelibrarynamespace",
-      "isRequired": true,
-      "description": "UMD global namespace for Dataverse form/button references (e.g., TALXIS_DocumentGeneration). Forms reference functions as LibraryNamespace.ClassName.methodName."
+      "description": "Library name without prefix (e.g., documentgen, coreappshome). Combined with PublisherPrefix to form the web resource name (prefix_name) and UMD namespace."
     }
   }
 }

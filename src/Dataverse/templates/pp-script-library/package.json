@@ -1,5 +1,5 @@
 {
-  "name": "examplelibraryname",
+  "name": "__publisher-prefix_____library-name__",
   "version": "1.0.0",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.0",
