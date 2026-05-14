@@ -3,5 +3,6 @@
     <TargetFramework>net462</TargetFramework>
     <ProjectType>ScriptLibrary</ProjectType>
     <ScriptLibraryName>examplelibraryname</ScriptLibraryName>
+    <TypeScriptDir>$(MSBuildProjectDirectory)</TypeScriptDir>
   </PropertyGroup>
 </Project>

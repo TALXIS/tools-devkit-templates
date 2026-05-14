@@ -5,10 +5,11 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.ScriptLibrary",
   "name": "Power Platform: Script Library",
   "shortName": "pp-script-library",
-  "description": "Creates a TypeScript web resource library: .csproj (ProjectType=ScriptLibrary) + TS/tsconfig.json (outFile=single AMD .js, es6, @types/xrm) + TS/package.json (@types/xrm, typescript). Individual TS files in TS/scripts/ compile to one JS file. That output is picked up by pp-webresource build target. After generating, add it as a reference to the solution that uses it (e.g. if you generated 'solution.script' and want to use it in 'solution.ui', run 'dotnet add reference ../solution.script/solution.script.csproj' from the solution.ui directory).",
+  "description": "Creates a TypeScript web resource project with Rollup bundler (UMD output). Supports npm packages via ES module imports, bundled into a single .js file. The UMD name creates a global namespace for Dataverse form/button references (e.g., MyNamespace.Main.onLoad). After generating, add as a project reference from the solution that uses it.",
   "tags": {
     "language": "javascript",
     "type": "project",
+    "componentType": "ScriptLibrary"
   },
   "sourceName": "examplesourcename",
   "preferNameDirectory": true,
@@ -17,8 +18,16 @@
       "type": "parameter",
       "datatype": "text",
       "replaces": "examplelibraryname",
+      "fileRename": "examplelibraryname",
       "isRequired": true,
-      "description": "Name of the script library"
+      "description": "Web resource logical name and output file name (e.g., talxis_documentgen). Used as ScriptLibraryName in .csproj and rollup output file."
+    },
+    "LibraryNamespace": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "examplelibrarynamespace",
+      "isRequired": true,
+      "description": "UMD global namespace for Dataverse form/button references (e.g., TALXIS_DocumentGeneration). Forms reference functions as LibraryNamespace.ClassName.methodName."
     }
   }
 }
