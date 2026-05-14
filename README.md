@@ -434,8 +434,8 @@ A .NET project template for building Dataverse script libraries with TypeScript 
 ```bash
 dotnet new pp-script-library `
     -n solution.scripts `
-    --PublisherPrefix "udpp" `
-    --LibraryName "warehousemgmt"
+    --PublisherPrefix "tom" `
+    --LibraryName "inventory"
 ```
 
 ### Build
@@ -446,16 +446,16 @@ dotnet build
 
 ### Outputs
 After building, you will find:
-- `build/<prefix>_<name>.js` — UMD bundle (e.g., `build/udpp_warehousemgmt.js`)
+- `build/<prefix>_<name>.js` — UMD bundle (e.g., `build/tom_inventory.js`)
 - `build/<prefix>_<name>.js.map` — source map
 - `bin/Debug/net462/<prefix>_<name>.js` — copied by the Build SDK for deployment
 
 ### Workflow chain
 1. **Create script library** — `pp-script-library` (this template)
 2. **Add project reference** — from the solution project: `dotnet add reference ../solution.scripts/solution.scripts.csproj`
-3. **Register web resource** — run `pp-webresource` in the solution project
-4. **Reference from forms** — use `pp-form-event-handler` with `libraryName=udpp_warehousemgmt.js` and `functionName=udpp_warehousemgmt.Main.onLoad`
-5. **Reference from ribbon** — use `pp-ribbon-button` with `LibraryLogicalName=udpp_warehousemgmt`
+3. **Build the solution** — `dotnet build` (SDK auto-generates web resource data.xml and packs it)
+4. **Reference from forms** — use `pp-form-event-handler` with `libraryName=<prefix>_<name>.js` and `functionName=<prefix>_<name>.ClassName.methodName`
+5. **Reference from ribbon** — use `pp-ribbon-button` with `LibraryLogicalName=<prefix>_<name>`
 
 ### Using npm packages
 Unlike the previous AMD approach, this template uses Rollup to bundle npm dependencies into the output. Install packages normally and import them:

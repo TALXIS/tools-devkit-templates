@@ -5,7 +5,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.ScriptLibrary",
   "name": "Power Platform: Script Library",
   "shortName": "pp-script-library",
-  "description": "Creates a TypeScript web resource project with Rollup bundler (UMD output). Supports npm packages via ES module imports, bundled into a single .js file. Build with 'dotnet build' — the SDK runs npm install and rollup automatically. CHAIN: Step 1 — create this project. Step 2 — add it as a project reference from the solution project ('dotnet add reference'). Step 3 — run pp-webresource in the solution project to register the compiled JS as a web resource. Step 4 — reference from forms via pp-form-event-handler (libraryName=publisherprefix_libraryname.js, functionName=publisherprefix_libraryname.ClassName.methodName) or from ribbon buttons via pp-ribbon-button (LibraryLogicalName=publisherprefix_libraryname).",
+  "description": "Creates a TypeScript web resource project with Rollup bundler (UMD output). Supports npm packages via ES module imports, bundled into a single .js file. Build with 'dotnet build' — the SDK runs npm install and rollup automatically, generates web resource data.xml, and packs it into the solution. CHAIN: Step 1 — create this project. Step 2 — add it as a project reference from the solution project ('dotnet add reference'). Step 3 — 'dotnet build' the solution (SDK auto-generates web resource). Step 4 — reference from forms via pp-form-event-handler (libraryName=prefix_name.js, functionName=prefix_name.ClassName.methodName) or from ribbon buttons via pp-ribbon-button (LibraryLogicalName=prefix_name).",
   "tags": {
     "language": "javascript",
     "type": "project",
@@ -20,7 +20,7 @@
       "replaces": "__publisher-prefix__",
       "fileRename": "__publisher-prefix__",
       "isRequired": true,
-      "description": "Publisher prefix (e.g., talxis, udpp). Combined with LibraryName to form the web resource name and UMD namespace."
+      "description": "Use the same publisher prefix as defined in Other/Solution.xml of the solution where this web resource is introduced. Combined with LibraryName to form the web resource name and UMD namespace."
     },
     "LibraryName": {
       "type": "parameter",
@@ -28,7 +28,7 @@
       "replaces": "__library-name__",
       "fileRename": "__library-name__",
       "isRequired": true,
-      "description": "Library name without prefix (e.g., documentgen, coreappshome). Combined with PublisherPrefix to form the web resource name (prefix_name) and UMD namespace."
+      "description": "Library name without publisher prefix. Combined with PublisherPrefix to form the web resource name (prefix_name) and UMD namespace used for Dataverse form/button function references."
     }
   }
 }
