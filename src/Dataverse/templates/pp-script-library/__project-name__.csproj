@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <ProjectType>ScriptLibrary</ProjectType>
-    <ScriptLibraryName>examplelibraryname</ScriptLibraryName>
+    <ScriptLibraryName>__publisher-prefix_____library-name__</ScriptLibraryName>
+    <TypeScriptDir>$(MSBuildProjectDirectory)</TypeScriptDir>
   </PropertyGroup>
 </Project>

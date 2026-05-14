@@ -1,0 +1,17 @@
+{
+  "name": "__publisher-prefix_____library-name__",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-typescript": "^12.0.0",
+    "@types/xrm": "^9.0.61",
+    "rollup": "^4.0.0",
+    "tslib": "^2.4.0",
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "start": "npm run build -- -w"
+  }
+}

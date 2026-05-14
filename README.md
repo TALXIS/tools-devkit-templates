@@ -414,56 +414,76 @@ dotnet new pp-plugin-assembly-step `
 
 ### Power Platform: Script Library template
 
-A .NET project template for building Dataverse script libraries with TypeScript. It scaffolds a `net462` class library project that executes an npm/TypeScript build during MSBuild and outputs a single AMD bundle for use as a web resource.
+A .NET project template for building Dataverse script libraries with TypeScript and Rollup. It scaffolds a `net462` project that uses Rollup to bundle TypeScript source (including npm dependencies) into a single UMD JavaScript file for use as a web resource.
 
 ### What you get
-- A .NET SDK project targeting `net462`
-- TypeScript workspace under `TS/` with:
-  - `tsconfig.json` configured to emit a single bundle to `TS/build/<LibraryName>.js`
-  - `package.json` with `typescript` and `@types/xrm`
-  - npm scripts: `build` and `start` (watch)
-- MSBuild target that runs `npm install` and `npm run build` automatically on `Build` 
+- A .NET SDK project targeting `net462` with `ProjectType=ScriptLibrary`
+- TypeScript + Rollup at the project root:
+  - `src/index.ts` — entry point with a skeleton `onLoad` handler
+  - `rollup.config.mjs` — bundles to `build/<prefix>_<name>.js` as UMD
+  - `tsconfig.json` — ES6 modules, strict mode
+  - `package.json` — Rollup plugins, TypeScript, `@types/xrm`
+- MSBuild target that runs `npm install` and `npm run build` (rollup) automatically on `dotnet build`
+- UMD output creates a global namespace for Dataverse form/button references
 
 ### Prerequisites
 - .NET SDK 6+ (`dotnet --version`)
 - Node.js and npm (`node -v`, `npm -v`)
 
-
 ### Create a new project
 ```bash
-dotnet new pp-script-library -n UI.Scripts --LibraryName MyCompany.Scripts
+dotnet new pp-script-library `
+    -n solution.scripts `
+    --PublisherPrefix "tom" `
+    --LibraryName "inventory"
 ```
-### Build and develop
-- Build with MSBuild (this will run npm automatically):
-  ```bash
-  dotnet build
-  ```
-- Develop with watch mode (run inside `TS/`):
-  ```bash
-  npm install
-  npm run start
-  ```
-  Then build the .NET project (optional) to copy outputs to the project output directory.
+
+### Build
+Build with `dotnet build` — the SDK runs npm install and Rollup automatically:
+```bash
+dotnet build
+```
 
 ### Outputs
 After building, you will find:
-- `TS/build/<LibraryName>.js`
-- `TS/build/<LibraryName>.js.map`
-- `TS/build/<LibraryName>.d.ts`
+- `build/<prefix>_<name>.js` — UMD bundle (e.g., `build/tom_inventory.js`)
+- `build/<prefix>_<name>.js.map` — source map
+- `bin/Debug/net462/<prefix>_<name>.js` — copied by the Build SDK for deployment
 
-### Use in Dataverse
-- Upload `TS/build/<LibraryName>.js` as a Script (JavaScript) Web Resource.
+### Workflow chain
+1. **Create script library** — `pp-script-library` (this template)
+2. **Add project reference** — from the solution project: `dotnet add reference ../solution.scripts/solution.scripts.csproj`
+3. **Build the solution** — `dotnet build` (SDK auto-generates web resource data.xml and packs it)
+4. **Reference from forms** — use `pp-form-event-handler` with `libraryName=<prefix>_<name>.js` and `functionName=<prefix>_<name>.ClassName.methodName`
+5. **Reference from ribbon** — use `pp-ribbon-button` with `LibraryLogicalName=<prefix>_<name>`
+
+### Using npm packages
+Unlike the previous AMD approach, this template uses Rollup to bundle npm dependencies into the output. Install packages normally and import them:
+```bash
+cd solution.scripts
+npm install liquidjs
+```
+```typescript
+// src/index.ts
+import { Liquid } from 'liquidjs';
+
+export class DocumentGenerator {
+    public static async generate(executionContext: Xrm.Events.EventContext): Promise<void> {
+        const engine = new Liquid();
+        // ...
+    }
+}
+```
+The dependency is bundled into the single output .js file automatically.
 
 ### Troubleshooting
 - If `npm` is not found during `dotnet build`, ensure Node.js is installed and on PATH.
-- To force a clean TypeScript build:
+- To force a clean build:
   ```bash
-  cd TS
   rm -rf node_modules build
-  npm install
-  npm run build
+  dotnet build
   ```
-- If watch mode does not re-emit, verify `tsconfig.json` paths and that files are saved.
+- For watch mode during development: `npm run start`
 
 
 ### Power Platform: Script Test Template

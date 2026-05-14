@@ -5,20 +5,30 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.ScriptLibrary",
   "name": "Power Platform: Script Library",
   "shortName": "pp-script-library",
-  "description": "Creates a TypeScript web resource library: .csproj (ProjectType=ScriptLibrary) + TS/tsconfig.json (outFile=single AMD .js, es6, @types/xrm) + TS/package.json (@types/xrm, typescript). Individual TS files in TS/scripts/ compile to one JS file. That output is picked up by pp-webresource build target. After generating, add it as a reference to the solution that uses it (e.g. if you generated 'solution.script' and want to use it in 'solution.ui', run 'dotnet add reference ../solution.script/solution.script.csproj' from the solution.ui directory).",
+  "description": "Creates a TypeScript web resource project with Rollup bundler (UMD output). Supports npm packages via ES module imports, bundled into a single .js file. Build with 'dotnet build' — the SDK runs npm install and rollup automatically, generates web resource data.xml, and packs it into the solution. CHAIN: Step 1 — create this project. Step 2 — add it as a project reference from the solution project ('dotnet add reference'). Step 3 — 'dotnet build' the solution (SDK auto-generates web resource). Step 4 — reference from forms via pp-form-event-handler (libraryName=prefix_name.js, functionName=prefix_name.ClassName.methodName) or from ribbon buttons via pp-ribbon-button (LibraryLogicalName=prefix_name).",
   "tags": {
     "language": "javascript",
     "type": "project",
+    "componentType": "ScriptLibrary"
   },
-  "sourceName": "examplesourcename",
+  "sourceName": "__project-name__",
   "preferNameDirectory": true,
   "symbols": {
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "__publisher-prefix__",
+      "fileRename": "__publisher-prefix__",
+      "isRequired": true,
+      "description": "Use the same publisher prefix as defined in Other/Solution.xml of the solution where this web resource is introduced. Combined with LibraryName to form the web resource name and UMD namespace."
+    },
     "LibraryName": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "examplelibraryname",
+      "replaces": "__library-name__",
+      "fileRename": "__library-name__",
       "isRequired": true,
-      "description": "Name of the script library"
+      "description": "Library name without publisher prefix. Combined with PublisherPrefix to form the web resource name (prefix_name) and UMD namespace used for Dataverse form/button function references."
     }
   }
 }
