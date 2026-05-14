@@ -11,7 +11,7 @@
     "type": "project",
     "componentType": "ScriptLibrary"
   },
-  "sourceName": "examplesourcename",
+  "sourceName": "__project-name__",
   "preferNameDirectory": true,
   "symbols": {
     "PublisherPrefix": {
