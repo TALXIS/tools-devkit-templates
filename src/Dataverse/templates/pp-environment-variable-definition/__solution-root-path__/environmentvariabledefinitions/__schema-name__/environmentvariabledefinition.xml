@@ -1,0 +1,14 @@
+<environmentvariabledefinition schemaname="__schema-name__">
+  <defaultvalue>__default-value__</defaultvalue>
+  <description default="__description__">
+    <label description="__description__" languagecode="1033" />
+  </description>
+  <displayname default="__display-name__">
+    <label description="__display-name__" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.0.0</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>__is-required__</isrequired>
+  <secretstore>__secret-store__</secretstore>
+  <type>__type-code__</type>
+</environmentvariabledefinition>
