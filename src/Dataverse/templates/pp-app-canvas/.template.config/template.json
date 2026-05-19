@@ -3,10 +3,10 @@
   "author": "NETWORG",
   "identity": "TALXIS.DevKit.Templates.Dataverse.CanvasApp",
   "name": "Power Platform: Canvas App",
-  "shortName": "pp-canvas-app",
+  "shortName": "pp-app-canvas",
   "description": "Creates a Canvas App: <prefix>_<logicalname>_<suffix>.meta.xml + paired BackgroundImageUri (PNG) + DocumentUri (.msapp) + AdditionalUris0_identity.json. LogicalName is derived from DisplayName (lowercase, alphanumerics only). Adds a RootComponent type=300 to Solution.xml. All canvas-app GUIDs (App, Test, Host, Screen1, plus the Properties.json Id/FileID inside the .msapp) are regenerated per scaffold.",
   "classifications": ["Dataverse", "Power Platform"],
-  "sourceName": "PpCanvasAppSource",
+  "sourceName": "PpAppCanvasSource",
   "tags": {
     "type": "item",
     "language": "XML",
