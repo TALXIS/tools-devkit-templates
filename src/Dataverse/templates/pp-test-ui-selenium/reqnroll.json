@@ -1,0 +1,11 @@
+{
+    "language": {
+        "feature": "en-US",
+        "binding": "en-US"
+    },
+    "bindingAssemblies": [
+        {
+            "assembly": "TALXIS.TestKit.Bindings"
+        }
+    ]
+}

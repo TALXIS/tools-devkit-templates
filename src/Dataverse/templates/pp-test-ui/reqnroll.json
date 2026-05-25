@@ -1,11 +1,25 @@
 {
-    "language": {
-        "feature": "en-US",
-        "binding": "en-US"
+  "$schema": "https://schemas.reqnroll.net/reqnroll-config-latest.json",
+  "language": {
+    "feature": "en"
+  },
+  "trace": {
+    "traceSuccessfulSteps": false,
+    "traceTimings": false,
+    "minTracedDuration": "0:0:0.1"
+  },
+  "runtime": {
+    "missingOrPendingStepsOutcome": "Error"
+  },
+  "generator": {
+    "addNonParallelizableMarkerForTags": []
+  },
+  "formatters": {
+    "html": {
+      "outputFilePath": "TestResults/bdd-report.html"
     },
-    "bindingAssemblies": [
-        {
-            "assembly": "TALXIS.TestKit.Bindings"
-        }
-    ]
+    "message": {
+      "outputFilePath": "TestResults/cucumber-messages.ndjson"
+    }
+  }
 }

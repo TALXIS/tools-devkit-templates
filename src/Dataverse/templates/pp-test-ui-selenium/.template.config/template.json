@@ -1,0 +1,239 @@
+{
+	"$schema": "http://json.schemastore.org/template",
+	"author": "NETWORG",
+	"identity": "TALXIS.DevKit.Templates.Dataverse.Test.UI.Selenium",
+	"name": "Power Platform: UI Test (Selenium)",
+  "shortName": "pp-test-ui-selenium",
+  "description": "Creates a Reqnroll BDD UI test project: .csproj (.NET 8, TALXIS.TestKit.Bindings) + reqnroll.json (bindingAssemblies: TALXIS.TestKit.Bindings) + appsettings.json (url, browser=Chrome, 1920x1080, deleteTestData=true) + ImplicitUsings.cs + generate-mock-bindings.cs. URL format: https://{org}.crm.dynamics.com/main.aspx?appid={GUID}&pagetype=entitylist&etn={entity}&viewid={GUID}&viewType=1039. Place test data JSON files in Data/ folder for auto-created test records.",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "TestProjectName",
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(!createAppsetingsFile)",
+          "exclude": [
+            "appsettings.json"
+          ]
+        },
+        {
+          "condition": "(!enableCucumberSupport)",
+          "exclude": [
+            ".vscode/settings.json"
+          ]
+        },
+        {
+          "condition": "(!enableCucumberSupport)",
+          "exclude": [
+            "scripts/generate-mock-bindings.cs"
+          ]
+        }
+      ],
+      "exclude": [
+        "**/.git/**",
+        "**/.vs/**",
+        "**/.vs",
+        ".vs/**",
+        ".vs",
+        "**/[Oo]bj/**",
+        "*/**/[Bb]in/**",
+        "*/**/[Oo]bj/**",
+        "**/**/[Bb]in/**",
+        "**/**/[Oo]bj/**",
+        ".template.config/**/*"
+      ]
+    }
+  ],
+  "primaryOutputs": [
+    {
+      "path": "TestProjectName.csproj"
+    }
+  ],
+  "preferNameDirectory": true,
+  "symbols": {
+    "CreateAppsetingsFile": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Create appsetings.json"
+    },
+    "EnableUserSecrets": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Enable User Secrets"
+    },
+    "EnableCucumberSupport": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Enable Cucumber Support"
+    },
+    "TestExecutionFramework": {
+      "type": "parameter",
+      "description": "Test Execution Framework",
+      "datatype": "choice",
+      "defaultValue": "mstest",
+      "choices": [
+        {
+          "choice": "xunit",
+          "description": "xUnit"
+        },
+        {
+          "choice": "nunit",
+          "description": "NUnit"
+        },
+        {
+          "choice": "mstest",
+          "description": "MSTest"
+        }
+      ]
+    },
+    "IncludeFluentAssertions": {
+      "type": "parameter",
+      "datatype": "bool",
+      "description": "Add FluentAssertions library",
+      "defaultValue": "true"
+    },
+    "ReqnrollNugetPackages": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "$ReqnrollNugetPackages$",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(TestExecutionFramework == 'xunit')",
+            "value": "<PackageReference Include=\"Reqnroll.xUnit\" Version=\"2.*\" />"
+          },
+          {
+            "condition": "(TestExecutionFramework == 'mstest')",
+            "value": "<PackageReference Include=\"Reqnroll.MsTest\" Version=\"2.*\" />"
+          },
+          {
+            "condition": "(TestExecutionFramework == 'nunit')",
+            "value": "<PackageReference Include=\"Reqnroll.NUnit\" Version=\"2.*\" />"
+          }
+        ]
+      }
+    },
+    "TestFrameworkUsings": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "$TestFrameworkUsings$",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(TestExecutionFramework == 'xunit')",
+            "value": "global using Microsoft.VisualStudio.TestTools.UnitTesting;"
+          },
+          {
+            "condition": "(TestExecutionFramework == 'mstest')",
+            "value": "global using Microsoft.VisualStudio.TestTools.UnitTesting;"
+          },
+          {
+            "condition": "(TestExecutionFramework == 'nunit')",
+            "value": "global using NUnit;"
+          }
+        ]
+      }
+    },
+    "AdditionalNugetPackages": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "$additionalNugetPackages$",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(TestExecutionFramework == 'xunit')",
+            "value": "<PackageReference Include=\"xunit\" Version=\"2.*\" />\n    <PackageReference Include=\"xunit.runner.visualstudio\" Version=\"2.*\">\n    <PrivateAssets>all</PrivateAssets>\n        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>\n    </PackageReference>"
+          },
+          {
+            "condition": "(TestExecutionFramework == 'mstest')",
+            "value": "<PackageReference Include=\"MSTest.TestFramework\" Version=\"3.*\" />\n    <PackageReference Include=\"MSTest.TestAdapter\" Version=\"3.*\" />"
+          },
+          {
+            "condition": "(TestExecutionFramework == 'nunit')",
+            "value": "<PackageReference Include=\"nunit\" Version=\"4.*\" />\n    <PackageReference Include=\"NUnit3TestAdapter\" Version=\"4.*\" />"
+          }
+        ]
+      }
+    },
+    "FluentAssertionsNugetPackage": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "$fluentAssertionsNugetPackage$",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(IncludeFluentAssertions)",
+            "value": "<PackageReference Include=\"FluentAssertions\" Version=\"6.12.0\" />"
+          }
+        ]
+      }
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "condition": "EnableUserSecrets == true",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/EnableUserSecrets.ps1\""
+      },
+      "manualInstructions": [
+        {
+          "text": "If the script does not start automatically, run the command: dotnet user-secrets init"
+        }
+      ],
+      "description": "Enable user secrets"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "condition": "EnableCucumberSupport == true",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -nologo -executionpolicy bypass -File \"./.template.scripts/EnableCucumberSupport.ps1\""
+      },
+      "manualInstructions": [
+        {
+          "text": "Generating mock step bindings"
+        }
+      ],
+      "description": "Enable Cucumber support"
+    },
+    {
+      "description": "Add generated project to .sln file",
+      "manualInstructions": [
+        {
+          "text": "Add generated project to .sln file manually if necessary."
+        }
+      ],
+      "args": {
+        "inRoot": true
+      },
+      "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
+      "continueOnError": true
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\""
+      },
+      "manualInstructions": [
+        {
+          "text": "Removing template files"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Removing template files"
+    }
+  ]
+}
