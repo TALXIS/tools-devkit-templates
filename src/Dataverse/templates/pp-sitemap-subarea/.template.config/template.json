@@ -4,7 +4,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.Sitemap.Area.Group.SubArea",
   "name": "Power Platform: Site Map Area Group SubArea",
   "shortName": "pp-sitemap-subarea",
-  "description": "Adds <SubArea> to a sitemap group: Id, Entity reference, Client=All/Outlook/Web, AvailableOffline=true, PassParams=false, Sku=All. Leaf navigation item linking to an entity list.",
+  "description": "Adds <SubArea> to a sitemap group. Supports entity, entitylist, dashboard, control, custom page, web resource, and generative page types.",
   "classifications": ["Dataverse", "Power Platform"],
   "sourceName": "Sitemap-Area-Group-SubArea",
   "tags": {
@@ -14,12 +14,77 @@
 	},
   "preferNameDirectory": true,
   "symbols": {
+    "PageType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "choices": [
+        { "choice": "entity", "description": "Entity list (default view)" },
+        { "choice": "entitylist", "description": "Entity list with specific view" },
+        { "choice": "dashboard", "description": "Dashboard" },
+        { "choice": "control", "description": "PCF control page" },
+        { "choice": "custom", "description": "Custom page" },
+        { "choice": "webresource", "description": "Web resource page" },
+        { "choice": "genpage", "description": "Generative page (React)" }
+      ],
+      "defaultValue": "entity",
+      "replaces": "__page-type__",
+      "description": "Type of page this subarea links to"
+    },
+    "Title": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "__subarea-title__",
+      "isRequired": true,
+      "description": "Display title for the navigation item"
+    },
     "EntityLogicalName": {
       "type": "parameter",
       "datatype": "text",
-      "description": "Logical name of the entity including publisher prefix (e.g., udpp_warehouseitem)",
+      "description": "Logical name of the entity including publisher prefix (e.g., udpp_warehouseitem). Required for entity, entitylist, and control page types.",
       "isRequired": true,
       "replaces": "entityexamplename"
+    },
+    "ViewId": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "__view-id__",
+      "defaultValue": "",
+      "description": "Saved query GUID (required when PageType=entitylist)"
+    },
+    "DashboardId": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "__dashboard-id__",
+      "defaultValue": "",
+      "description": "Dashboard GUID (required when PageType=dashboard)"
+    },
+    "ControlName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "__control-name__",
+      "defaultValue": "",
+      "description": "PCF control name (required when PageType=control)"
+    },
+    "GenPageId": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "__genpage-id__",
+      "defaultValue": "",
+      "description": "Generative page GUID from the GenPage project (required when PageType=genpage)"
+    },
+    "CustomPageName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "__custom-page-name__",
+      "defaultValue": "",
+      "description": "Custom page logical name (required when PageType=custom)"
+    },
+    "WebResourceName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "__webresource-name__",
+      "defaultValue": "",
+      "description": "Web resource name (required when PageType=webresource)"
     },
     "SolutionRootPath": {
 			"type": "parameter",
@@ -70,24 +135,11 @@
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
         "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/GenerateIdForAppModuleSiteMap.ps1\" "
-      },
-      "manualInstructions": [
-        {
-          "text": "Adding Model Driven App to solution xml"
-        }
-      ],
-      "description": "Generate ID for app module site map"
-    },
-    {
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "args": {
-        "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddSubAreaToGroup.ps1\""
       },
       "manualInstructions": [
         {
-          "text": "Adding area to the sitemapp "
+          "text": "Adding subarea to the sitemap group"
         }
       ],
       "description": "Add sub area to group"

@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.GenPage",
+  "name": "Power Platform: Generative Page",
+  "shortName": "pp-page-generative",
+  "description": "Creates a generative page project: page.tsx (React 17 + Fluent UI V9, export default GeneratedComponent) + .csproj (ProjectType=GenPage). CHAIN: Step 1 — create this project. Step 2 — add as project reference from solution. Step 3 — add sitemap subarea with PageType=genpage. Step 4 — dotnet build.",
+  "classifications": ["Dataverse", "Power Platform"],
+  "sourceName": "__project-name__",
+  "preferNameDirectory": true,
+  "tags": {
+    "type": "project",
+    "language": "TypeScript",
+    "componentType": "GenPage"
+  },
+  "symbols": {
+    "Name": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "__genpage-name__",
+      "isRequired": true,
+      "description": "Logical name of the generative page (used in solution schema name, e.g., 'accountdashboard')"
+    },
+    "DisplayName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "__genpage-display-name__",
+      "isRequired": true,
+      "description": "Display name shown in the model-driven app sitemap navigation"
+    },
+    "PageId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "__genpage-id__",
+      "parameters": {
+        "defaultFormat": "d"
+      }
+    }
+  },
+  "primaryOutputs": [
+    { "path": "__project-name__.csproj" }
+  ],
+  "postActions": [
+    {
+      "description": "Add generated project to .sln file",
+      "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
+      "args": { "inRoot": true },
+      "continueOnError": false,
+      "primaryOutputIndexes": "0"
+    }
+  ]
+}
