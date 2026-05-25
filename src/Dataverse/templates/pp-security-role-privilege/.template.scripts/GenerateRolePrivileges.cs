@@ -2,14 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization.Metadata;
 using System.Text.RegularExpressions;
 
-
-public class Privilege
-{
-    public string PrivilegeType { get; set; }
-    public string Level { get; set; }
-}
 
 var json = "jsonarraystringwhithPrivilegeTypeandandLevel";
 
@@ -17,10 +12,11 @@ string fixedJson = Regex.Replace(json, @"(\w+):\s*(\w+)", "\"$1\": \"$2\"");
 
 var permissions = JsonSerializer.Deserialize<List<Privilege>>(fixedJson, new JsonSerializerOptions
 {
-    PropertyNameCaseInsensitive = true
+    PropertyNameCaseInsensitive = true,
+    TypeInfoResolver = new DefaultJsonTypeInfoResolver()
 });
 
-var filePath = Path.Combine(".", ".template.scripts", "privileges.xml");
+var filePath = Path.Combine(".", "privileges.xml");
 
 using (var writer = new StreamWriter(filePath))
 {
@@ -28,4 +24,10 @@ using (var writer = new StreamWriter(filePath))
     {
         writer.WriteLine($"<RolePrivilege name=\"prv{permission.PrivilegeType}entityexamplename\" level=\"{permission.Level}\" />");
     }
+}
+
+public class Privilege
+{
+    public string PrivilegeType { get; set; }
+    public string Level { get; set; }
 }
