@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization.Metadata;
 using System.Text.RegularExpressions;
 
 
@@ -11,7 +12,8 @@ string fixedJson = Regex.Replace(json, @"(\w+):\s*(\w+)", "\"$1\": \"$2\"");
 
 var permissions = JsonSerializer.Deserialize<List<Privilege>>(fixedJson, new JsonSerializerOptions
 {
-    PropertyNameCaseInsensitive = true
+    PropertyNameCaseInsensitive = true,
+    TypeInfoResolver = new DefaultJsonTypeInfoResolver()
 });
 
 var filePath = Path.Combine(".", ".template.scripts", "privileges.xml");
