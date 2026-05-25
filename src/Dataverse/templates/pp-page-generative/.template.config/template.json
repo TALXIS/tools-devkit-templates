@@ -4,9 +4,9 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.GenPage",
   "name": "Power Platform: Generative Page",
   "shortName": "pp-page-generative",
-  "description": "Scaffolds a generative page project: page.tsx (React 17 + Fluent UI V9) that renders natively inside model-driven apps. Build with 'dotnet build' — the SDK transpiles TSX to JS via tsc and packs it into the solution as a UX Agent Project. No PAC CLI dependency for build. CHAIN: Step 1 — create this project. Step 2 — add it as a project reference from the solution project. Step 3 — add a sitemap subarea with PageType=genpage pointing to this page's GenPageId. Step 4 — 'dotnet build' the solution.",
-  "classifications": ["Dataverse", "Power Platform", "Generative Page"],
-  "sourceName": "__project-name__",
+  "description": "Creates a generative page project: page.tsx (React 17 + Fluent UI V9, export default GeneratedComponent) + .csproj (ProjectType=GenPage). CHAIN: Step 1 — create this project. Step 2 — add as project reference from solution. Step 3 — add sitemap subarea with PageType=genpage. Step 4 — dotnet build.",
+  "classifications": ["Dataverse", "Power Platform"],
+  "sourceName": "GenPageExample",
   "preferNameDirectory": true,
   "tags": {
     "type": "project",
@@ -14,39 +14,30 @@
     "componentType": "GenPage"
   },
   "symbols": {
-    "Name": {
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "__genpage-name__",
-      "fileRename": "__genpage-name__",
-      "isRequired": true,
-      "description": "Logical name of the generative page (used in solution schema name, e.g., 'accountdashboard')"
-    },
     "DisplayName": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "__genpage-display-name__",
-      "isRequired": true,
+      "replaces": "genpageexampleDisplayName",
       "description": "Display name shown in the model-driven app sitemap navigation"
     },
     "DataSources": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "__genpage-data-sources__",
+      "replaces": "genpageexampleDataSources",
       "defaultValue": "",
       "description": "Comma-separated Dataverse table logical names used by this page (e.g., 'account,contact')"
     },
     "PageId": {
       "type": "generated",
       "generator": "guid",
-      "replaces": "__genpage-id__",
+      "replaces": "genpageexampleId",
       "parameters": {
         "defaultFormat": "d"
       }
     }
   },
   "primaryOutputs": [
-    { "path": "__project-name__.csproj" }
+    { "path": "GenPageExample.csproj" }
   ],
   "postActions": [
     {

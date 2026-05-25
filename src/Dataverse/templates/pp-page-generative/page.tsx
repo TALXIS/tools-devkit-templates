@@ -34,7 +34,7 @@ const GeneratedComponent = (props: GeneratedComponentProps) => {
 
   return (
     <div className={styles.container}>
-      <Title1>__genpage-display-name__</Title1>
+      <Title1>genpageexampleDisplayName</Title1>
       <Card>
         <CardHeader header={<Text weight="semibold">Getting Started</Text>} />
         <Text>Edit page.tsx to build your generative page. Use props.dataApi for Dataverse CRUD operations.</Text>
