@@ -6,7 +6,7 @@
   "shortName": "pp-page-generative",
   "description": "Creates a generative page project: page.tsx (React 17 + Fluent UI V9, export default GeneratedComponent) + .csproj (ProjectType=GenPage). CHAIN: Step 1 — create this project. Step 2 — add as project reference from solution. Step 3 — add sitemap subarea with PageType=genpage. Step 4 — dotnet build.",
   "classifications": ["Dataverse", "Power Platform"],
-  "sourceName": "GenPageExample",
+  "sourceName": "__project-name__",
   "preferNameDirectory": true,
   "tags": {
     "type": "project",
@@ -14,30 +14,38 @@
     "componentType": "GenPage"
   },
   "symbols": {
+    "Name": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "__genpage-name__",
+      "isRequired": true,
+      "description": "Logical name of the generative page (used in solution schema name, e.g., 'accountdashboard')"
+    },
     "DisplayName": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "genpageexampleDisplayName",
+      "replaces": "__genpage-display-name__",
+      "isRequired": true,
       "description": "Display name shown in the model-driven app sitemap navigation"
     },
     "DataSources": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "genpageexampleDataSources",
+      "replaces": "__genpage-data-sources__",
       "defaultValue": "",
       "description": "Comma-separated Dataverse table logical names used by this page (e.g., 'account,contact')"
     },
     "PageId": {
       "type": "generated",
       "generator": "guid",
-      "replaces": "genpageexampleId",
+      "replaces": "__genpage-id__",
       "parameters": {
         "defaultFormat": "d"
       }
     }
   },
   "primaryOutputs": [
-    { "path": "GenPageExample.csproj" }
+    { "path": "__project-name__.csproj" }
   ],
   "postActions": [
     {

@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <ProjectType>GenPage</ProjectType>
-    <GenPageName>genpageexample</GenPageName>
-    <GenPageId>genpageexampleId</GenPageId>
-    <GenPageDataSources>genpageexampleDataSources</GenPageDataSources>
+    <GenPageName>__genpage-name__</GenPageName>
+    <GenPageId>__genpage-id__</GenPageId>
+    <GenPageDataSources>__genpage-data-sources__</GenPageDataSources>
   </PropertyGroup>
 </Project>
