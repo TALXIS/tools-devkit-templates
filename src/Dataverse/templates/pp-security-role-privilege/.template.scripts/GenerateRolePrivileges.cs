@@ -16,7 +16,7 @@ var permissions = JsonSerializer.Deserialize<List<Privilege>>(fixedJson, new Jso
     TypeInfoResolver = new DefaultJsonTypeInfoResolver()
 });
 
-var filePath = Path.Combine(".", ".template.scripts", "privileges.xml");
+var filePath = Path.Combine(".", "privileges.xml");
 
 using (var writer = new StreamWriter(filePath))
 {
