@@ -28,13 +28,6 @@
       "isRequired": true,
       "description": "Display name shown in the model-driven app sitemap navigation"
     },
-    "DataSources": {
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "__genpage-data-sources__",
-      "defaultValue": "",
-      "description": "Comma-separated Dataverse table logical names used by this page (e.g., 'account,contact')"
-    },
     "PageId": {
       "type": "generated",
       "generator": "guid",
