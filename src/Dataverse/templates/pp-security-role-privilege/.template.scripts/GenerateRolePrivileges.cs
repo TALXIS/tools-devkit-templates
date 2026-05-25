@@ -5,12 +5,6 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 
 
-public class Privilege
-{
-    public string PrivilegeType { get; set; }
-    public string Level { get; set; }
-}
-
 var json = "jsonarraystringwhithPrivilegeTypeandandLevel";
 
 string fixedJson = Regex.Replace(json, @"(\w+):\s*(\w+)", "\"$1\": \"$2\"");
@@ -28,4 +22,10 @@ using (var writer = new StreamWriter(filePath))
     {
         writer.WriteLine($"<RolePrivilege name=\"prv{permission.PrivilegeType}entityexamplename\" level=\"{permission.Level}\" />");
     }
+}
+
+public class Privilege
+{
+    public string PrivilegeType { get; set; }
+    public string Level { get; set; }
 }
