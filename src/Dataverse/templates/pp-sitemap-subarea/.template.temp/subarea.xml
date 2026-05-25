@@ -1,1 +1,1 @@
-<SubArea Id="subarea_subareaidexample" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="entityexamplename" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
+<!-- SubArea XML is now generated dynamically by AddSubAreaToGroup.ps1 based on PageType. This file is kept as a placeholder. -->

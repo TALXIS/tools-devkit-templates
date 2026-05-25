@@ -1,10 +1,2 @@
-$subareaPath  = (Resolve-Path '.template.temp/subarea.xml').Path
-
-[XML]$File = Get-Content -Path $subareaPath -Raw
-
-$XmlText = $File.OuterXml
-$modifiedXmlText = $XmlText -replace [Regex]::Escape("subareaidexample"), ([guid]::NewGuid().ToString() -split '-')[0]
-
-[XML]$File = $ModifiedXmlText
-
-$File.Save($subareaPath)
+# SubArea ID is now generated directly in AddSubAreaToGroup.ps1.
+# This script is kept as a no-op for backwards compatibility with the post-action chain.

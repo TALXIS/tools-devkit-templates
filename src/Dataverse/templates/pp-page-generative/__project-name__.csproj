@@ -1,0 +1,9 @@
+<Project Sdk="TALXIS.DevKit.Build.Sdk/1.4.0">
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <ProjectType>GenPage</ProjectType>
+    <GenPageName>__genpage-name__</GenPageName>
+    <GenPageId>__genpage-id__</GenPageId>
+    <GenPageDataSources>__genpage-data-sources__</GenPageDataSources>
+  </PropertyGroup>
+</Project>
