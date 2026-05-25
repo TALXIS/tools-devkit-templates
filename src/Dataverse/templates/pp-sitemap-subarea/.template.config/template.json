@@ -41,8 +41,7 @@
       "type": "parameter",
       "datatype": "text",
       "description": "Logical name of the entity including publisher prefix (e.g., udpp_warehouseitem). Required for entity, entitylist, and control page types.",
-      "isRequired": false,
-      "defaultValue": "",
+      "isRequired": true,
       "replaces": "entityexamplename"
     },
     "ViewId": {

@@ -20,7 +20,8 @@ const useStyles = makeStyles({
 });
 
 const GeneratedComponent = (props: GeneratedComponentProps) => {
-  const { dataApi, pageInput } = props;
+  // Access Dataverse data via props.dataApi
+  // Access navigation context via props.pageInput
   const styles = useStyles();
   const [loading, setLoading] = useState(true);
 
