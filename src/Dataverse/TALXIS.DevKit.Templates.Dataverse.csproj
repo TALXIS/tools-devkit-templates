@@ -32,7 +32,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\**\package-lock.json;templates\**\node_modules\**" />
+		<Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\**\package-lock.json;templates\**\node_modules\**;templates\pp-test-ui-selenium\**" />
 		<Compile Remove="**\*" />
 	</ItemGroup>
 
