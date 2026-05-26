@@ -6,7 +6,9 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 
 var json = "__filtering-attributes__";
-string outputRoot = Path.GetFullPath("..");
+string outputRoot = Path.GetFileName(Directory.GetCurrentDirectory()) == ".template.scripts"
+    ? Path.GetFullPath("..")
+    : Directory.GetCurrentDirectory();
 string xmlPath = Path.Combine(outputRoot, ".template.temp", "__step-id__.xml");
 
 string cleanedString = json
