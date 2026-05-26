@@ -6,7 +6,8 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 
 var json = "__filtering-attributes__";
-string xmlPath = ".template.temp/__step-id__.xml";
+string outputRoot = Path.GetFullPath("..");
+string xmlPath = Path.Combine(outputRoot, ".template.temp", "__step-id__.xml");
 
 string cleanedString = json
     .Trim('{', '}')                    
