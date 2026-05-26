@@ -20,7 +20,10 @@ XmlDocument csprojDoc = new XmlDocument();
 csprojDoc.Load(csprojPath);
 string assemblyName = csprojDoc.SelectNodes("//Project/PropertyGroup/AssemblyName").Cast<XmlNode>().LastOrDefault()?.InnerText ?? csprojFileName;
 string fileVersion = csprojDoc.SelectNodes("//Project/PropertyGroup/FileVersion").Cast<XmlNode>().LastOrDefault()?.InnerText ?? "1.0.0.0";
-string xmlPath = Path.Combine(Directory.GetCurrentDirectory(), "__solution-root-path__", "PluginAssemblies", $"{assemblyName}-{pluginAssemblyId.ToUpper()}", $"{assemblyName}.dll.data.xml");
+string outputRoot = Path.GetFileName(Directory.GetCurrentDirectory()) == ".template.scripts"
+    ? Path.GetFullPath("..")
+    : Directory.GetCurrentDirectory();
+string xmlPath = Path.Combine(outputRoot, "__solution-root-path__", "PluginAssemblies", $"{assemblyName}-{pluginAssemblyId.ToUpper()}", $"{assemblyName}.dll.data.xml");
 
 string dllPath = Path.Combine(pluginRootPath, "bin", "Debug", "net462", "publish", $"{assemblyName}.dll");
 if (!File.Exists(dllPath)) throw new FileNotFoundException("Build not found", dllPath);
@@ -93,9 +96,9 @@ solutionRoot.SetAttribute("behavior", "0");
 
 solutionDoc.AppendChild(solutionRoot);
 
-Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), ".template.temp"));
+Directory.CreateDirectory(Path.Combine(outputRoot, ".template.temp"));
 
-solutionDoc.Save(Path.Combine(".template.temp", "RootComponent.xml"));
+solutionDoc.Save(Path.Combine(outputRoot, ".template.temp", "RootComponent.xml"));
 
 
 

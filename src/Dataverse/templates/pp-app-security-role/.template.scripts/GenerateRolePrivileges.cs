@@ -18,9 +18,11 @@ for (int i = 0; i < guids.Count; i++)
     guids[i] = guids[i].Trim();
 }
 
-var filePath = Path.Combine(".", ".template.scripts", "appaccess.xml");
-
-Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+string scriptsDir = Path.GetFileName(Directory.GetCurrentDirectory()) == ".template.scripts"
+    ? Directory.GetCurrentDirectory()
+    : Path.Combine(Directory.GetCurrentDirectory(), ".template.scripts");
+Directory.CreateDirectory(scriptsDir);
+var filePath = Path.Combine(scriptsDir, "appaccess.xml");
 
 using (var writer = new StreamWriter(filePath))
 {
