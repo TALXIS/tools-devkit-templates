@@ -2,7 +2,5 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <ProjectType>GenPage</ProjectType>
-    <GenPageName>__genpage-name__</GenPageName>
-    <GenPageId>__genpage-id__</GenPageId>
   </PropertyGroup>
 </Project>
