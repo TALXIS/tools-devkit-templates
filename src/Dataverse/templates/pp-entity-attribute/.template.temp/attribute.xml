@@ -81,7 +81,11 @@
     <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
     <!--#endif -->
     <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+    <!--#if (IsFormulaField) -->
+    <SourceType>3</SourceType>
+    <!--#else -->
     <SourceType>0</SourceType>
+    <!--#endif -->
     <!--#if (AttributeType == "Image") -->
     <IsLogical>1</IsLogical>
     <!--#endif -->
@@ -215,4 +219,7 @@
     <Descriptions>
         <Description description="__attribute-description__" languagecode="1033" />
     </Descriptions>
+    <!--#if (IsFormulaField) -->
+    <FormulaDefinitionFileName>/Formulas/__attribute-schema-name__.yaml</FormulaDefinitionFileName>
+    <!--#endif -->
 </attribute>

@@ -18,6 +18,10 @@
 				{
 					"condition": "(!CreateGlobalOptionSet)",
 					"exclude": ["__solution-root-path__/OptionSets/*"]
+        },
+        {
+          "condition": "(!IsFormulaField)",
+          "exclude": ["__solution-root-path__/Entities/__entity-schema-name__/Formulas/__attribute-schema-name__.yaml"]
 				}
 			]
 		}
@@ -148,6 +152,13 @@
         { "choice": "2", "description": "Date only (no time component)" },
         { "choice": "3", "description": "Time zone independent (stores actual value)" }
       ]
+    },
+    "IsFormulaField": {
+      "type": "parameter",
+      "description": "[Text/Decimal/WholeNumber/Float/Boolean/Choice/DateTime] Set true to mark this column as a formula field. This sets SourceType to 3 and adds FormulaDefinitionFileName metadata.",
+      "datatype": "bool",
+      "defaultValue": false,
+      "isEnabled": "(AttributeType == \"Text\" || AttributeType == \"Decimal\" || AttributeType == \"WholeNumber\" || AttributeType == \"Float\" || AttributeType == \"Boolean\" || AttributeType == \"OptionSet(Local)\" || AttributeType == \"OptionSet(Global)\" || AttributeType == \"DateTime\")"
     },
     "BooleanTrueLabel": {
       "type": "parameter",
