@@ -81,7 +81,7 @@
     <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
     <!--#endif -->
     <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-    <!--#if (IsFormulaField) -->
+    <!--#if (IsFormulaFieldComputed) -->
     <SourceType>3</SourceType>
     <!--#else -->
     <SourceType>0</SourceType>
@@ -219,7 +219,7 @@
     <Descriptions>
         <Description description="__attribute-description__" languagecode="1033" />
     </Descriptions>
-    <!--#if (IsFormulaField) -->
+    <!--#if (IsFormulaFieldComputed) -->
     <FormulaDefinitionFileName>/Formulas/__attribute-schema-name__.yaml</FormulaDefinitionFileName>
     <!--#endif -->
 </attribute>
