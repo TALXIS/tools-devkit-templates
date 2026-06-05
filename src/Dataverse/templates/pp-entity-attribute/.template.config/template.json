@@ -155,7 +155,7 @@
     },
     "IsFormulaField": {
       "type": "parameter",
-      "description": "[Text/Decimal/WholeNumber/Float/Boolean/Choice/DateTime] Set true to mark this column as a formula field. This sets SourceType to 3 and adds FormulaDefinitionFileName metadata.",
+      "description": "[Text/Decimal/WholeNumber/Float/Boolean/Choice/DateTime] Set true to mark this column as a formula field. This sets SourceType to 3, adds FormulaDefinitionFileName metadata pointing to Entities/{EntitySchemaName}/Formulas/{AttributeSchemaName}.yaml, and generates that YAML file as a placeholder. After scaffolding, populate the YAML file with the Power Fx formula expression under the 'prefix + logical name' key (e.g., 'uddp_formulafield: =ThisRecord.udpp_price * ThisRecord.udpp_quantity'). For multi-line formulas use |- (e.g. 'uddp_formulafield: |- =ThisRecord.udpp_price * ThisRecord.udpp_quantity'). Reference same-record columns via ThisRecord.column_logical_name. The formula's return type must match the chosen AttributeType (e.g., a Decimal formula for a Decimal column). Supported operators: +, -, *, /, %, in, exactin, &. Use Power Fx functions such as If, Switch, Concatenate, Text, DateAdd, UTCNow, etc.",
       "datatype": "bool",
       "defaultValue": "false",
       "isEnabled": "(AttributeType == \"Text\" || AttributeType == \"Decimal\" || AttributeType == \"WholeNumber\" || AttributeType == \"Float\" || AttributeType == \"Boolean\" || AttributeType == \"OptionSet(Local)\" || AttributeType == \"OptionSet(Global)\" || AttributeType == \"DateTime\")"
