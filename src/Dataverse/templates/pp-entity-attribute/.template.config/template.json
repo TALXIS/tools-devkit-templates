@@ -20,9 +20,8 @@
 					"exclude": ["__solution-root-path__/OptionSets/*"]
         },
         {
-          "condition": "(!IsFormulaFieldComputed)",
-          "exclude": ["__solution-root-path__/Entities/__entity-schema-name__/Formulas/__attribute-schema-name__.yaml"]
-				}
+          "exclude": ["__solution-root-path__/Entities/__entity-schema-name__/Formulas/__entity-schema-name__-FormulaDefinitions.yaml"]
+        }
 			]
 		}
 	],
@@ -155,7 +154,7 @@
     },
     "IsFormulaField": {
       "type": "parameter",
-      "description": "[Text/Decimal/WholeNumber/Float/Boolean/Choice/DateTime] Set true to mark this column as a formula field. This sets SourceType to 3, adds FormulaDefinitionFileName metadata pointing to Entities/{EntitySchemaName}/Formulas/{AttributeSchemaName}.yaml, and generates that YAML file as a placeholder. After scaffolding, populate the YAML file with the Power Fx formula expression under the 'prefix + logical name' key (e.g., 'uddp_formulafield: =ThisRecord.udpp_price * ThisRecord.udpp_quantity'). For multi-line formulas use |- (e.g. 'uddp_formulafield: |- =ThisRecord.udpp_price * ThisRecord.udpp_quantity'). Reference same-record columns via ThisRecord.column_logical_name. The formula's return type must match the chosen AttributeType (e.g., a Decimal formula for a Decimal column). Supported operators: +, -, *, /, %, in, exactin, &. Use Power Fx functions such as If, Switch, Concatenate, Text, DateAdd, UTCNow, etc.",
+      "description": "[Text/Decimal/WholeNumber/Float/Boolean/Choice/DateTime] Set true to mark this column as a formula field. This sets SourceType to 3, sets ValidForCreate/UpdateApi to 0 (read-only), adds FormulaDefinitionFileName metadata pointing to Entities/{EntitySchemaName}/Formulas/{EntitySchemaName}-FormulaDefinitions.yaml, and creates or appends to that consolidated YAML file with a placeholder entry. After scaffolding, fill in the Power Fx expression after the colon (e.g., 'ntg_totalamount: =ThisRecord.ntg_price * ThisRecord.ntg_quantity'). For multi-line formulas use '|-'. Reference same-record columns via ThisRecord.column_logical_name. The formula's return type must match the chosen AttributeType. Supported operators: +, -, *, /, %, in, exactin, &. Use Power Fx functions such as If, Switch, Concatenate, Text, DateAdd, UTCNow, etc.",
       "datatype": "bool",
       "defaultValue": "false",
       "isEnabled": "(AttributeType == \"Text\" || AttributeType == \"Decimal\" || AttributeType == \"WholeNumber\" || AttributeType == \"Float\" || AttributeType == \"Boolean\" || AttributeType == \"OptionSet(Local)\" || AttributeType == \"OptionSet(Global)\" || AttributeType == \"DateTime\")"
@@ -474,6 +473,20 @@
       "description": "Adding lookup relationship xml"
     },
     
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "condition": "(IsFormulaFieldComputed)",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/InitFormulaDefinition.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Initializing formula definition YAML" }
+      ],
+      "continueOnError": false,
+      "description": "Initializing formula definition YAML"
+    },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
