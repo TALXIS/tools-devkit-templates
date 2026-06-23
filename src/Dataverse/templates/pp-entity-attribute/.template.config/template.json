@@ -159,10 +159,6 @@
       "defaultValue": "false",
       "isEnabled": "(AttributeType == \"Text\" || AttributeType == \"Decimal\" || AttributeType == \"WholeNumber\" || AttributeType == \"Float\" || AttributeType == \"Boolean\" || AttributeType == \"OptionSet(Local)\" || AttributeType == \"OptionSet(Global)\" || AttributeType == \"DateTime\")"
     },
-    "IsFormulaFieldComputed": {
-      "type": "computed",
-      "value": "(IsFormulaField)"
-    },
     "BooleanTrueLabel": {
       "type": "parameter",
       "description": "[Boolean] Label for the true/yes option.",
@@ -475,7 +471,7 @@
     
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "condition": "(IsFormulaFieldComputed)",
+      "condition": "(IsFormulaField)",
       "args": {
         "executable": "pwsh",
         "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/InitFormulaDefinition.ps1\"",
