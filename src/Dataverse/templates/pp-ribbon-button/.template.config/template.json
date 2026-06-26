@@ -74,6 +74,28 @@
 			"fileRename": "__image-16x16__",
 			"description": "Path to the 16x16 pixel icon image for the ribbon button"
 		},
+		"ModernImage": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": "modernimagedefault",
+			"replaces": "__modern-image__",
+			"fileRename": "__modern-image__",
+			"description": "Optional. Web resource path for a modern SVG icon (e.g. 'myicon.svg' or 'subfolder/myicon.svg'). Rendered as ModernImage=\"$webresource:<value>\". Omitted from XML when not specified."
+		},
+		"Sequence": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": "10",
+			"replaces": "__sequence__",
+			"description": "Display order of the button within its location. Lower values appear first (PCT examples range from 1 to ~95). Default: 10."
+		},
+		"TemplateAlias": {
+			"type": "parameter",
+			"datatype": "text",
+			"defaultValue": "o1",
+			"replaces": "__template-alias__",
+			"description": "Layout slot alias inside the ribbon template (Common values: o1, o2, o3, isv). Default: o1."
+		},
 		"Location": {
 			"type": "parameter",
 			"datatype": "choice",
