@@ -7,8 +7,7 @@
   "description": "Adds a subgrid to a form showing related entity records. Generates row > cell > control. Params: TargetEntityLogicalName, ViewId, RecordsPerPage, EnableQuickFind, EnableViewPicker, EnableChartPicker. Required: FormId, FormType(main/quick), EntityLogicalName, SubgridLabel.",
     "tags": {
         "language": "XML",
-        "type": "item",
-        "componentType": "FormSubgrid"
+        "type": "item"
     },
     "sourceName": "subgridconfig",
     "preferNameDirectory": false,
@@ -16,7 +15,7 @@
         "SolutionRootPath": {
             "type": "parameter",
             "datatype": "text",
-            "replaces": "__solution-root-path__",
+            "replaces": "__solution-declarations-root__",
             "defaultValue": ".",
             "isRequired": false,
             "description": "Relative path from the project folder (.csproj) to the folder containing unpacked Dataverse solution files (Other/, Entities/, OptionSets/). Use '.' if solution files are directly in the project folder, or a subfolder name like 'Declarations'. Do not use 'Entities' or 'Other' — those are subdirectories inside the solution metadata root."
@@ -24,32 +23,40 @@
         "CellId": {
             "type": "generated",
             "generator": "guid",
-            "replaces": "cellidexample",
+            "replaces": "__cell-id__",
             "parameters": {
-                "defaultFormat": "d"
+                "defaultFormat": "B"
             }
         },
         "SubgridLabel": {
             "type": "parameter",
             "datatype": "text",
-            "replaces": "subgridlabelexample",
+            "replaces": "__subgrid-label__",
             "isRequired": true,
             "displayName": "Subgrid Label Text",
             "description": "Display name for the subgrid section"
         },
         "ControlId": {
+            "type": "parameter",
+            "datatype": "text",
+            "replaces": "__control-id__",
+            "defaultValue": "subgrid",
+            "isRequired": false,
+            "description": "Human-readable identifier of the subgrid control (lands as the <control id=\"...\"> attribute). Example PCT values: 'sitessubgrid', 'accountauthorizations'. Multiple subgrids can share the same name; per-cell uniqueness is provided by the auto-generated <control uniqueid=\"{guid}\">."
+        },
+        "UniqueId": {
             "type": "generated",
             "generator": "guid",
-            "replaces": "controlidexample",
+            "replaces": "__unique-id__",
             "parameters": {
-                "defaultFormat": "d"
+                "defaultFormat": "B"
             }
         },
         "FormType": {
             "type": "parameter",
             "datatype": "choice",
             "isRequired": true,
-            "replaces": "formtypeexample",
+            "replaces": "__form-type__",
             "choices": [
                 {
                     "choice": "main"
@@ -65,13 +72,13 @@
             "datatype": "string",
             "isRequired": true,
             "defaultValue": "",
-            "replaces": "formguididexample",
+            "replaces": "__form-id__",
             "description": "GUID of the specific form where the subgrid will be added"
         },
         "TargetEntityLogicalName": {
             "type": "parameter",
             "datatype": "text",
-            "replaces": "targetentitytypeexample",
+            "replaces": "__target-entity-logical-name__",
             "isRequired": true,
             "displayName": "Target Entity Logical Name",
             "description": "Entity whose records will be displayed in the subgrid (Example: contact, opportunity, custom_entity)"
@@ -79,18 +86,90 @@
         "EntityLogicalName": {
             "type": "parameter",
             "datatype": "text",
-            "replaces": "entitytypeexample",
+            "replaces": "__entity-logical-name__",
             "isRequired": true,
             "displayName": "Entity Logical Name",
             "description": "Entity where the subgrid will be added (Example: account, contact, custom_entity)"
         },
         "ViewId": {
-            "type": "generated",
-            "generator": "guid",
-            "replaces": "viewidexample",
-            "parameters": {
-                "defaultFormat": "d"
-            }
+            "type": "parameter",
+            "datatype": "text",
+            "replaces": "__view-id__",
+            "isRequired": true,
+            "displayName": "View ID",
+            "description": "GUID of the view to be used in the subgrid"
+        },
+        "EnableQuickFind": {
+            "type": "parameter",
+            "datatype": "choice",
+            "replaces": "__enable-quick-find__",
+            "defaultValue": "false",
+            "isRequired": false,
+            "choices": [
+                { "choice": "true" },
+                { "choice": "false" }
+            ],
+            "description": "Show the Quick Find search box above the subgrid (true/false)."
+        },
+        "EnableViewPicker": {
+            "type": "parameter",
+            "datatype": "choice",
+            "replaces": "__enable-view-picker__",
+            "defaultValue": "false",
+            "isRequired": false,
+            "choices": [
+                { "choice": "true" },
+                { "choice": "false" }
+            ],
+            "description": "Let the user switch the displayed view from the subgrid header (true/false)."
+        },
+        "EnableChartPicker": {
+            "type": "parameter",
+            "datatype": "choice",
+            "replaces": "__enable-chart-picker__",
+            "defaultValue": "true",
+            "isRequired": false,
+            "choices": [
+                { "choice": "true" },
+                { "choice": "false" }
+            ],
+            "description": "Let the user switch between grid and chart visualizations (true/false)."
+        },
+        "RowSpan": {
+            "type": "parameter",
+            "datatype": "text",
+            "replaces": "__row-span__",
+            "defaultValue": "4",
+            "isRequired": false,
+            "description": "How many form rows the subgrid cell occupies vertically (positive integer; default 4)."
+        },
+        "ColSpan": {
+            "type": "parameter",
+            "datatype": "text",
+            "replaces": "__col-span__",
+            "defaultValue": "1",
+            "isRequired": false,
+            "description": "How many form columns the subgrid cell occupies horizontally (positive integer; default 1)."
+        },
+        "RelationshipName": {
+            "type": "parameter",
+            "datatype": "text",
+            "replaces": "__relationship-name__",
+            "defaultValue": "",
+            "isRequired": false,
+            "description": "Schema name of the 1:N/N:N relationship that links parent and child records (e.g. ppf_ppf_request_ppf_address_requestid). Leave empty for an unfiltered subgrid; Dataverse stores an empty <RelationshipName/> element which is the canonical 'no relationship' form."
+        },
+        "ShowLabel": {
+            "type": "parameter",
+            "datatype": "choice",
+            "replaces": "__show-label__",
+            "defaultValue": "false",
+            "isRequired": false,
+            "choices": [
+                { "choice": "true" },
+                { "choice": "false" }
+            ],
+            "description": "Show the subgrid label on the cell itself (true/false). PCT-canonical subgrids use 'false' because the section/header already conveys the label. Set to 'true' if you want the inline cell label visible above the grid."
         }
     },
     "postActions": [
