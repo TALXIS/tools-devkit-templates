@@ -183,6 +183,44 @@ dotnet new pp-entity-attribute `
 --allow-scripts yes
 ```
 
+### Environment variables
+Add an environment variable definition (plain text with default value):
+```console
+dotnet new pp-environment-variable-definition `
+--output "src/Solutions.Configuration" `
+--SolutionRootPath "Declarations" `
+--PublisherPrefix "tom" `
+--LogicalName "portal_hostnamemain" `
+--DisplayName "Portal Hostname (Main)" `
+--Description "Primary hostname for the portal frontend." `
+--Type "String" `
+--DefaultValue "portal.example.com" `
+--allow-scripts yes
+```
+
+Other supported `--Type` values are `Number`, `Boolean` (`--DefaultValue yes`/`no`), `JSON`, `Secret` (Azure Key Vault — sets `secretstore=1`), and `ConnectionReference` (DataSource). `--Description`, `--DefaultValue` and `--IsRequired` (0/1) are optional. The definition folder is created under `<SolutionRootPath>/environmentvariabledefinitions/<prefix>_<LogicalName>/`, and the definition is registered as `<RootComponent type="380">` in `Other/Solution.xml` (idempotent — re-runs with `--force` don't duplicate).
+
+Add the default value for an existing definition:
+```console
+dotnet new pp-environment-variable-value `
+--output "src/Solutions.Configuration" `
+--SolutionRootPath "Declarations" `
+--DefinitionLogicalName "tom_portal_hostnamemain" `
+--Value "portal.production.example.com" `
+--allow-scripts yes
+```
+
+The value JSON is written next to `environmentvariabledefinition.xml`. Arbitrary characters in `--Value` (double quotes, backslashes, JSON payloads) are escaped automatically via `ConvertTo-Json`, so JSON-type variables can carry their default object as-is:
+
+```console
+dotnet new pp-environment-variable-value `
+--output "src/Solutions.Configuration" `
+--SolutionRootPath "Declarations" `
+--DefinitionLogicalName "tom_auditnotification_configuration" `
+--Value '{"account":["name","description"],"contact":["fullname","emailaddress1"]}' `
+--allow-scripts yes
+```
+
 ### UI
 Create a model-driven app:
 ```console
