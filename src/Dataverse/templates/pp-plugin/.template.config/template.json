@@ -53,7 +53,7 @@
     "SigningKeyFilePath": {
       "type": "parameter",
       "datatype": "text",
-      "isRequired": true,
+      "isRequired": false,
       "replaces": "signingkeyfilepathexample",
       "description": "Path to the signing key file for plugin assembly signing (optional)"
     }

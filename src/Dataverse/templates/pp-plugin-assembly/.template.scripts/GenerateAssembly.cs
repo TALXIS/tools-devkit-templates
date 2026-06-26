@@ -23,7 +23,7 @@ string fileVersion = csprojDoc.SelectNodes("//Project/PropertyGroup/FileVersion"
 string outputRoot = Path.GetFileName(Directory.GetCurrentDirectory()) == ".template.scripts"
     ? Path.GetFullPath("..")
     : Directory.GetCurrentDirectory();
-string xmlPath = Path.Combine(outputRoot, "__solution-root-path__", "PluginAssemblies", $"{assemblyName}-{pluginAssemblyId.ToUpper()}", $"{assemblyName}.dll.data.xml");
+string xmlPath = Path.Combine(outputRoot, "__solution-root-path__", "PluginAssemblies", $"{assemblyName}.dll.data.xml");
 
 string dllPath = Path.Combine(pluginRootPath, "bin", "Debug", "net462", "publish", $"{assemblyName}.dll");
 if (!File.Exists(dllPath)) throw new FileNotFoundException("Build not found", dllPath);
@@ -63,7 +63,7 @@ sourceType.InnerText = "0";
 root.AppendChild(sourceType);
 
 XmlElement fileName = pluginDoc.CreateElement("FileName");
-fileName.InnerText = $"/PluginAssemblies/{assemblyName}-{pluginAssemblyId.ToUpper()}/{assemblyName}.dll";
+fileName.InnerText = $"/PluginAssemblies/{assemblyName}.dll";
 root.AppendChild(fileName);
 
 XmlElement pluginTypes = pluginDoc.CreateElement("PluginTypes");
