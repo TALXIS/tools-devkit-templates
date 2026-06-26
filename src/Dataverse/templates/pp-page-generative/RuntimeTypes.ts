@@ -1,5 +1,5 @@
 // Stub RuntimeTypes — regenerate with: pac model genpage generate-types --data-sources "table1,table2"
-// These types provide IDE IntelliSense for the generative page component.
+// These types provide IDE IntelliSense for the GenPage component.
 
 export type TableRow<T> = T & { readonly [key: string]: any };
 export type ReadableTableRow<T> = T;

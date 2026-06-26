@@ -1,3 +1,5 @@
+$ErrorActionPreference = 'Stop'
+
 $entityXmlRelativePaths = @(
     '__solution-root-path__/AppModuleSiteMaps/appexamplename/AppModuleSiteMap.xml'
     '__solution-root-path__/AppModuleSiteMaps/appexamplename/AppModuleSiteMap_managed.xml'
@@ -52,8 +54,8 @@ $ControlName = @'
 __control-name__
 '@
 
-$GenPageId = @'
-__genpage-id__
+$PageName = @'
+__page-name__
 '@
 
 $CustomPageName = @'
@@ -63,6 +65,79 @@ __custom-page-name__
 $WebResourceName = @'
 __webresource-name__
 '@
+
+function Get-XmlValueByLocalName {
+    param(
+        [Parameter(Mandatory = $true)] [xml] $Document,
+        [Parameter(Mandatory = $true)] [string[]] $LocalNames
+    )
+
+    foreach ($node in $Document.SelectNodes('//*')) {
+        foreach ($attribute in $node.Attributes) {
+            if ($LocalNames -contains $attribute.LocalName) {
+                return $attribute.Value
+            }
+        }
+
+        if (($LocalNames -contains $node.LocalName) -and -not [string]::IsNullOrWhiteSpace($node.InnerText)) {
+            return $node.InnerText.Trim()
+        }
+    }
+
+    return $null
+}
+
+function Get-GenPageIdByPageName {
+    param([Parameter(Mandatory = $true)] [string] $Name)
+
+    $solutionRoot = Resolve-Path '__solution-root-path__' -ErrorAction SilentlyContinue
+    if (-not $solutionRoot) {
+        Write-Error "Could not resolve solution root path '__solution-root-path__'."
+        exit 1
+    }
+
+    $genPageRoot = Join-Path $solutionRoot.Path 'uxagentprojects'
+    if (-not (Test-Path -LiteralPath $genPageRoot)) {
+        Write-Error "No GenPage named '$Name' found in this solution. The uxagentprojects folder does not exist."
+        exit 1
+    }
+
+    $matches = @()
+    $projectFiles = Get-ChildItem -LiteralPath $genPageRoot -Filter 'uxagentproject.xml' -Recurse -File
+    foreach ($projectFile in $projectFiles) {
+        [xml]$projectXml = Get-Content -LiteralPath $projectFile.FullName -Raw
+        $schemaName = Get-XmlValueByLocalName -Document $projectXml -LocalNames @('schemaname', 'SchemaName')
+
+        if ($schemaName -eq $Name) {
+            $id = Get-XmlValueByLocalName -Document $projectXml -LocalNames @('uxagentprojectid', 'UxAgentProjectId', 'uxagentprojectidunique', 'UxAgentProjectIdUnique')
+            if ([string]::IsNullOrWhiteSpace($id)) {
+                $folderName = Split-Path -Leaf (Split-Path -Parent $projectFile.FullName)
+                if ($folderName -match '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$') {
+                    $id = $folderName
+                }
+            }
+
+            if ([string]::IsNullOrWhiteSpace($id)) {
+                Write-Error "GenPage named '$Name' was found in '$($projectFile.FullName)', but its GUID could not be resolved."
+                exit 1
+            }
+
+            $matches += $id
+        }
+    }
+
+    if ($matches.Count -eq 0) {
+        Write-Error "No GenPage named '$Name' found in this solution."
+        exit 1
+    }
+
+    if ($matches.Count -gt 1) {
+        Write-Error "Multiple GenPages named '$Name' were found in this solution. Page names must be unique."
+        exit 1
+    }
+
+    return $matches[0]
+}
 
 $subareaId = "subarea_" + ([guid]::NewGuid().ToString() -split '-')[0]
 $commonAttrs = "Client=`"All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web`" AvailableOffline=`"true`" PassParams=`"false`" Sku=`"All,OnPremise,Live,SPLA`""
@@ -121,11 +196,12 @@ switch ($PageType) {
         $subareaXmlString = "<SubArea Id=`"$subareaId`" Icon=`"/_imgs/imagestrips/transparent_spacer.gif`" Url=`"$url`" $commonAttrs>$titlesXml</SubArea>"
     }
     'genpage' {
-        if ([string]::IsNullOrWhiteSpace($GenPageId)) {
-            Write-Error "GenPageId is required when PageType is 'genpage'"
+        if ([string]::IsNullOrWhiteSpace($PageName)) {
+            Write-Error "PageName is required when PageType is 'genpage'"
             exit 1
         }
-        $subareaXmlString = "<SubArea Id=`"$subareaId`" GenPageId=`"$GenPageId`" VectorIcon=`"/_imgs/TableIconsFluentV9/document_one_page_sparkle.svg`" $commonAttrs>$titlesXml</SubArea>"
+        $genPageId = Get-GenPageIdByPageName -Name $PageName
+        $subareaXmlString = "<SubArea Id=`"$subareaId`" GenPageId=`"$genPageId`" VectorIcon=`"/_imgs/TableIconsFluentV9/document_one_page_sparkle.svg`" $commonAttrs>$titlesXml</SubArea>"
     }
     default {
         Write-Error "Unknown PageType: $PageType"
