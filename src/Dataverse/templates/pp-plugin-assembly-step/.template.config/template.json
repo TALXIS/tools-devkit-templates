@@ -207,6 +207,7 @@
     "FilteringAttributes": {
       "type": "parameter",
       "datatype": "text",
+      "defaultValue": "",
       "replaces": "__filtering-attributes__",
       "description": "Comma-separated list of entity fields that must change to trigger the plugin (leave empty to run on any field change)"
     }

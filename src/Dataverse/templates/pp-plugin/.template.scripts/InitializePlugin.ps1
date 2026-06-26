@@ -42,31 +42,12 @@ if (-not $firstPropertyGroup) {
     $firstPropertyGroup = $csproj.CreateElement("PropertyGroup", $namespaceUri)
     $csproj.Project.PrependChild($firstPropertyGroup) | Out-Null
 }
-$projectTypeElement = $firstPropertyGroup.ProjectType
-if (-not $projectTypeElement) {
-    $projectTypeElement = $csproj.CreateElement("ProjectType", $namespaceUri)
-    $projectTypeElement.InnerText = "Plugin"
-    $firstPropertyGroup.AppendChild($projectTypeElement) | Out-Null
-} else {
-    $projectTypeElement.InnerText = "Plugin"
-}
 
 # --- 8. Find or create a PropertyGroup ---
 $propertyGroup = $csproj.Project.PropertyGroup | Where-Object { $_.AssemblyName -or $_.TargetFramework }
 if (-not $propertyGroup) {
     $propertyGroup = $csproj.CreateElement("PropertyGroup", $namespaceUri)
     $csproj.Project.AppendChild($propertyGroup) | Out-Null
-}
-
-# --- 9. Remove existing AssemblyName and PackageId ---
-$csproj.Project.PropertyGroup.AssemblyName | ForEach-Object {
-    $_.ParentNode.RemoveChild($_) | Out-Null
-}
-$csproj.Project.PropertyGroup.PackageId | ForEach-Object {
-    $_.ParentNode.RemoveChild($_) | Out-Null
-}
-$csproj.Project.PropertyGroup.Company | ForEach-Object {
-    $_.ParentNode.RemoveChild($_) | Out-Null
 }
 
 # --- 10. Add new AssemblyName and PackageId ---
@@ -84,15 +65,7 @@ $companyElement = $csproj.CreateElement("Company", $namespaceUri)
 $companyElement.InnerText = $company
 $propertyGroup.AppendChild($companyElement) | Out-Null
 
-# --- 13. Save changes back to the .csproj file ---
-$csproj.Save($ProjectPath)
-
-# --- 14. Copy the PluginBase.cs file to the project ---
-if ("pluginbasetypeexample" -eq "TALXIS") {
-    Copy-Item ".template.temp/PluginBase.cs" -Destination . -Force
-}
-
-# --- 15. Generate SNK file if it doesn't exist (cross-platform, no sn.exe needed) ---
+# --- 13. Generate SNK file if it doesn't exist (cross-platform, no sn.exe needed) ---
 $snkPath = $signingKey
 if (-not (Test-Path $snkPath)) {
     Write-Host "Generating strong name key file: $signingKey"
@@ -112,6 +85,21 @@ public static class SnkGenerator {
 }
 "@
     Add-Type -TypeDefinition $csharp -Language CSharp -ErrorAction Stop
-    [SnkGenerator]::Create($snkPath)
+    $snkPath = "AssemblyOriginatorKeyFile.snk"
+    [SnkGenerator]::Create("$snkPath")
     Write-Host "Generated SNK file at: $snkPath"
 }
+
+
+$assemblyNameElement = $csproj.CreateElement("AssemblyOriginatorKeyFile", $namespaceUri)
+$assemblyNameElement.InnerText = $snkPath
+$propertyGroup.AppendChild($assemblyNameElement) | Out-Null
+
+# --- 14. Save changes back to the .csproj file ---
+$csproj.Save($ProjectPath)
+
+# --- 15. Copy the PluginBase.cs file to the project ---
+if ("pluginbasetypeexample" -eq "TALXIS") {
+    Copy-Item ".template.temp/PluginBase.cs" -Destination . -Force
+}
+
