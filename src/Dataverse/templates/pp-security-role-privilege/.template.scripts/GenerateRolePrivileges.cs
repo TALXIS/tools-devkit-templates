@@ -16,7 +16,11 @@ var permissions = JsonSerializer.Deserialize<List<Privilege>>(fixedJson, new Jso
     TypeInfoResolver = new DefaultJsonTypeInfoResolver()
 });
 
-var filePath = Path.Combine(".", "privileges.xml");
+string scriptsDir = Path.GetFileName(Directory.GetCurrentDirectory()) == ".template.scripts"
+    ? Directory.GetCurrentDirectory()
+    : Path.Combine(Directory.GetCurrentDirectory(), ".template.scripts");
+Directory.CreateDirectory(scriptsDir);
+var filePath = Path.Combine(scriptsDir, "privileges.xml");
 
 using (var writer = new StreamWriter(filePath))
 {

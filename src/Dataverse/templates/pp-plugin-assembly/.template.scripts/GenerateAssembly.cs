@@ -7,9 +7,15 @@ using System.Collections.Generic;
 
 string pluginRootPath = @"__plugin-project-root__";
 string pluginAssemblyId = "__assembly-id__";
+string outputRoot = Path.GetFileName(Directory.GetCurrentDirectory()) == ".template.scripts"
+    ? Path.GetFullPath("..")
+    : Directory.GetCurrentDirectory();
+string resolvedPluginRootPath = Path.IsPathRooted(pluginRootPath)
+    ? Path.GetFullPath(pluginRootPath)
+    : Path.GetFullPath(Path.Combine(outputRoot, pluginRootPath));
 
 
-string csprojPath = Directory.GetFiles(pluginRootPath, "*.csproj").FirstOrDefault();
+string csprojPath = Directory.GetFiles(resolvedPluginRootPath, "*.csproj").FirstOrDefault();
 if (csprojPath == null) throw new Exception("csproj not found");
 string projectDirectory = Path.GetDirectoryName(csprojPath);
 string sdkPath = Path.Combine(projectDirectory, "bin", "Debug", "net462", "Microsoft.Xrm.Sdk.dll"); 
@@ -20,12 +26,9 @@ XmlDocument csprojDoc = new XmlDocument();
 csprojDoc.Load(csprojPath);
 string assemblyName = csprojDoc.SelectNodes("//Project/PropertyGroup/AssemblyName").Cast<XmlNode>().LastOrDefault()?.InnerText ?? csprojFileName;
 string fileVersion = csprojDoc.SelectNodes("//Project/PropertyGroup/FileVersion").Cast<XmlNode>().LastOrDefault()?.InnerText ?? "1.0.0.0";
-string outputRoot = Path.GetFileName(Directory.GetCurrentDirectory()) == ".template.scripts"
-    ? Path.GetFullPath("..")
-    : Directory.GetCurrentDirectory();
 string xmlPath = Path.Combine(outputRoot, "__solution-root-path__", "PluginAssemblies", $"{assemblyName}.dll.data.xml");
 
-string dllPath = Path.Combine(pluginRootPath, "bin", "Debug", "net462", "publish", $"{assemblyName}.dll");
+string dllPath = Path.Combine(resolvedPluginRootPath, "bin", "Debug", "net462", "publish", $"{assemblyName}.dll");
 if (!File.Exists(dllPath)) throw new FileNotFoundException("Build not found", dllPath);
 
 Assembly pluginAssembly = Assembly.LoadFrom(dllPath);
@@ -99,6 +102,5 @@ solutionDoc.AppendChild(solutionRoot);
 Directory.CreateDirectory(Path.Combine(outputRoot, ".template.temp"));
 
 solutionDoc.Save(Path.Combine(outputRoot, ".template.temp", "RootComponent.xml"));
-
 
 
