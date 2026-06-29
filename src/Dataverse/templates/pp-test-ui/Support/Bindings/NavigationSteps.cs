@@ -42,6 +42,12 @@ public sealed class NavigationSteps
         await ClickSitemapItemAsync(subarea);
     }
 
+    [When("I click on {string} in the sitemap")]
+    public async Task WhenIClickOnInTheSitemap(string name)
+    {
+        await ClickSitemapItemAsync(name);
+    }
+
     [When("I switch to the {string} app")]
     public async Task WhenISwitchToTheApp(string appName)
     {

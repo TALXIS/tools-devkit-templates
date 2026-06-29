@@ -62,6 +62,23 @@ public sealed class ViewSteps
         await Page.GetByRole(AriaRole.Columnheader, new PageGetByRoleOptions { Name = columnLabel }).ClickAsync();
     }
 
+    [Then("I should see the {string} view")]
+    public async Task ThenIShouldSeeTheView(string viewName)
+    {
+        var viewSelector = Page.Locator("[data-id*='ViewSelector'], button[data-id*='ViewSelector']").First;
+
+        await viewSelector.WaitForAsync(new LocatorWaitForOptions
+        {
+            State = WaitForSelectorState.Visible,
+            Timeout = TestConfiguration.Timeout
+        });
+
+        var currentViewName = (await viewSelector.TextContentAsync())?.Trim() ?? string.Empty;
+        Assert.IsTrue(
+            currentViewName.Contains(viewName, StringComparison.OrdinalIgnoreCase),
+            $"Expected the current view to contain '{viewName}', but found '{currentViewName}'.");
+    }
+
     [Then("the grid should contain {int} records")]
     public async Task ThenTheGridShouldContainRecords(int count)
     {
