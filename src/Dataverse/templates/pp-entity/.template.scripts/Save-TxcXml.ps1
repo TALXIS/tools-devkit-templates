@@ -44,8 +44,7 @@ function Save-TxcXml {
     }
 
     # Re-normalize xsi:nil tags to single line (XmlDocument may expand them)
-    $content = [regex]::Replace($content, '(xsi:nil="true")>\s*
-\s*</', '$1></')
+    $content = [regex]::Replace($content, '(xsi:nil="true")>\s*\r?\n\s*</', '$1></')
 
     [System.IO.File]::WriteAllText($Path, $content, [System.Text.UTF8Encoding]::new($false))
 }
