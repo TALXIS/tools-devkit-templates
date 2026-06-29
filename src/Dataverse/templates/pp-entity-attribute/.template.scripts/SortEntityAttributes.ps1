@@ -1,5 +1,3 @@
-. "$PSScriptRoot/Save-TxcXml.ps1"
-
 $ErrorActionPreference = 'Stop'
 
 $entityXmlPaths = Get-ChildItem -Path "__solution-root-path__/Entities" -Recurse -File -Filter "Entity.xml" -ErrorAction SilentlyContinue
@@ -22,9 +20,14 @@ foreach ($entityXmlFile in $entityXmlPaths) {
             $attributesNode.AppendChild($a) | Out-Null
         }
     }
-    Save-TxcXml -Document $xml -Path $entityXmlFile.FullName -ExpandEmptyElements @(
-    'AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor',
-    'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask',
-    'ExternalTypeName'
-)
+
+    $settings = New-Object System.Xml.XmlWriterSettings
+    $settings.Indent = $true
+    $settings.NewLineHandling = [System.Xml.NewLineHandling]::None
+    $settings.OmitXmlDeclaration = $false
+    $settings.Encoding = New-Object System.Text.UTF8Encoding($true)
+
+    $writer = [System.Xml.XmlWriter]::Create($entityXmlFile.FullName, $settings)
+    $xml.Save($writer)
+    $writer.Close()
 }
