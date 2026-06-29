@@ -10,5 +10,4 @@ if (-not $solutionXml) {
 
 $content = [System.IO.File]::ReadAllText($solutionXml.FullName)
 $content = [regex]::Replace($content, '(xsi:nil="true")>\s*\r?\n\s*</', '$1></')
-$content = $content.Replace("`r`n", "`n").Replace("`r", "`n")
-[System.IO.File]::WriteAllText($solutionXml.FullName, $content, [System.Text.UTF8Encoding]::new($false))
+[System.IO.File]::WriteAllText($solutionXml.FullName, $content)
