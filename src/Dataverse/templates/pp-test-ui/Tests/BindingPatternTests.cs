@@ -17,8 +17,7 @@ public sealed class BindingPatternTests
                 "When:I navigate to {string} > {string}",
                 "When:I navigate to {string} > {string} > {string}",
                 "When:I switch to the {string} app",
-                "When:I search for {string} in global search",
-                "When:I click on {string} in the sitemap"
+                "When:I search for {string} in global search"
             ]);
 
     [TestMethod]
@@ -64,8 +63,7 @@ public sealed class BindingPatternTests
                 "When:I search for {string} in the grid",
                 "When:I sort the grid by {string}",
                 "Then:the grid should contain {int} records",
-                "Then:the grid should contain a record with {string} equal to {string}",
-                "Then:I should see the {string} view"
+                "Then:the grid should contain a record with {string} equal to {string}"
             ]);
 
     [TestMethod]

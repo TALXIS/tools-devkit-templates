@@ -1,0 +1,11 @@
+# Normalize line endings to LF for all text files
+# Ensures consistent behavior across Windows, macOS, and Linux
+* text=auto eol=lf
+
+*.xml text eol=lf
+*.json text eol=lf
+*.ps1 text eol=lf
+*.cs text eol=lf
+*.csproj text eol=lf
+*.sln text eol=lf
+*.md text eol=lf

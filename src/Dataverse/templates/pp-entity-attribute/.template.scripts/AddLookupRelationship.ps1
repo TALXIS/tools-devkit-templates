@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $ErrorActionPreference = 'Stop'
 
 # File Paths
@@ -19,7 +21,7 @@ foreach ($xmlFile in @($referencedEntityRelationshipFilePathRaw, $relationshipsF
     if (-not (Test-Path $xmlFile)) {
         [xml]$xmlDoc = New-Object System.Xml.XmlDocument
         $xmlDoc.LoadXml($emptyXmlContent)
-        $xmlDoc.Save($xmlFile)
+        Save-TxcXml -Document $xmlDoc -Path ([System.IO.Path]::GetFullPath($xmlFile))
     }
 }
 
@@ -61,18 +63,5 @@ if ($existingInRels) {
 }
 
 
-# Configure XmlWriter settings to avoid unwanted whitespace
-$settings = New-Object System.Xml.XmlWriterSettings
-$settings.Indent = $true
-$settings.NewLineHandling = [System.Xml.NewLineHandling]::None
-$settings.OmitXmlDeclaration = $false
-
-# Save relationships file
-$writer = [System.Xml.XmlWriter]::Create($relationshipsFilePath, $settings)
-$relationshipsFile.Save($writer)
-$writer.Close()
-
-# Save referenced entity relationship file
-$writer = [System.Xml.XmlWriter]::Create($referencedEntityRelationshipFilePath, $settings)
-$referencedEntityRelationshipFile.Save($writer)
-$writer.Close()
+Save-TxcXml -Document $relationshipsFile -Path $relationshipsFilePath
+Save-TxcXml -Document $referencedEntityRelationshipFile -Path $referencedEntityRelationshipFilePath

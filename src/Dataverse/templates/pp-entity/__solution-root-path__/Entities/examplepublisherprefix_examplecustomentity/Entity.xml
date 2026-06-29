@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Entity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Name LocalizedName="ExampleEntityDisplayName" OriginalName="ExampleEntityDisplayName">examplepublisherprefix_examplecustomentity</Name>
   <EntityInfo>
@@ -731,12 +731,12 @@
               <Description description="Status of the ExampleEntityDisplayName" languagecode="1033" />
             </Descriptions>
             <states>
-              <state value="0" defaultstatus="1" invariantname="Active">
+              <state value="0" IsHidden="0" defaultstatus="1" invariantname="Active">
                 <labels>
                   <label description="Active" languagecode="1033" />
                 </labels>
               </state>
-              <state value="1" defaultstatus="2" invariantname="Inactive">
+              <state value="1" IsHidden="0" defaultstatus="2" invariantname="Inactive">
                 <labels>
                   <label description="Inactive" languagecode="1033" />
                 </labels>
@@ -791,12 +791,12 @@
               <Description description="Reason for the status of the ExampleEntityDisplayName" languagecode="1033" />
             </Descriptions>
             <statuses>
-              <status value="1" state="0">
+              <status value="1" IsHidden="0" state="0">
                 <labels>
                   <label description="Active" languagecode="1033" />
                 </labels>
               </status>
-              <status value="2" state="1">
+              <status value="2" IsHidden="0" state="1">
                 <labels>
                   <label description="Inactive" languagecode="1033" />
                 </labels>
@@ -3283,22 +3283,22 @@
               <Description description="Status of the activity." languagecode="1033" />
             </Descriptions>
             <states>
-              <state value="0" defaultstatus="1" invariantname="Open">
+              <state value="0" IsHidden="0" defaultstatus="1" invariantname="Open">
                 <labels>
                   <label description="Open" languagecode="1033" />
                 </labels>
               </state>
-              <state value="1" defaultstatus="2" invariantname="Completed">
+              <state value="1" IsHidden="0" defaultstatus="2" invariantname="Completed">
                 <labels>
                   <label description="Completed" languagecode="1033" />
                 </labels>
               </state>
-              <state value="2" defaultstatus="3" invariantname="Canceled">
+              <state value="2" IsHidden="0" defaultstatus="3" invariantname="Canceled">
                 <labels>
                   <label description="Canceled" languagecode="1033" />
                 </labels>
               </state>
-              <state value="3" defaultstatus="4" invariantname="Scheduled">
+              <state value="3" IsHidden="0" defaultstatus="4" invariantname="Scheduled">
                 <labels>
                   <label description="Scheduled" languagecode="1033" />
                 </labels>
@@ -3353,22 +3353,22 @@
               <Description description="Reason for the status of the activity." languagecode="1033" />
             </Descriptions>
             <statuses>
-              <status value="1" state="0">
+              <status value="1" IsHidden="0" state="0">
                 <labels>
                   <label description="Open" languagecode="1033" />
                 </labels>
               </status>
-              <status value="2" state="1">
+              <status value="2" IsHidden="0" state="1">
                 <labels>
                   <label description="Completed" languagecode="1033" />
                 </labels>
               </status>
-              <status value="3" state="2">
+              <status value="3" IsHidden="0" state="2">
                 <labels>
                   <label description="Canceled" languagecode="1033" />
                 </labels>
               </status>
-              <status value="4" state="3">
+              <status value="4" IsHidden="0" state="3">
                 <labels>
                   <label description="Scheduled" languagecode="1033" />
                 </labels>

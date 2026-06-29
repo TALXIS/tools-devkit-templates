@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $ErrorActionPreference = 'Stop'
 
 $optionSetOptionXmlPath = (Resolve-Path '.template.temp/option-set-option.xml').Path
@@ -17,6 +19,7 @@ $attributeXmlPath = $null
 <!--#endif -->
 
 [xml]$attributeXml = Get-Content -Path $attributeXmlPath -Raw
+$attributeXmlPath = (Resolve-Path $attributeXmlPath).Path
 
 $options = "__option-set-options__"
 $optionEntries = $options.Split(',', [System.StringSplitOptions]::RemoveEmptyEntries) | ForEach-Object { $_.Replace('{', '').Replace('}', '').Trim() }
@@ -63,15 +66,7 @@ foreach ($entry in $optionEntries) {
 }
 
 
-$settings = New-Object System.Xml.XmlWriterSettings
-$settings.Indent = $true
-$settings.NewLineHandling = [System.Xml.NewLineHandling]::None
-$settings.OmitXmlDeclaration = $false
-$settings.Encoding = [System.Text.Encoding]::UTF8
-
-$writer = [System.Xml.XmlWriter]::Create($attributeXmlPath, $settings)
-$attributeXml.Save($writer)
-$writer.Close()
+Save-TxcXml -Document $attributeXml -Path $attributeXmlPath
 
 <!--#if (AttributeType == "OptionSet(Global)" || AttributeType == "OptionSet(GlobalMulti)") -->
     # Resolve the relative path to an absolute path (to support other OSes)
@@ -100,5 +95,5 @@ $writer.Close()
     }
 
     # Save the updated XML back to the file
-    $File.Save($solutionPath)
+    Save-TxcXml -Document $File -Path $solutionPath
 <!--#endif -->
