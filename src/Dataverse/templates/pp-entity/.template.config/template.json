@@ -843,6 +843,20 @@
 			"description": "Sorting entity attributes"
 		},
 		{
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B98E",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/NormalizeNilTags.ps1\"",
+				"redirectStandardOutput": false,
+				"redirectStandardError": false
+			},
+			"manualInstructions": [
+				{ "text": "Normalizing xsi:nil tags in solution.xml" }
+			],
+			"continueOnError": true,
+			"description": "Normalizing xsi:nil tags in solution.xml"
+		},
+		{
 			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
 			"args": {
 				"executable": "pwsh",

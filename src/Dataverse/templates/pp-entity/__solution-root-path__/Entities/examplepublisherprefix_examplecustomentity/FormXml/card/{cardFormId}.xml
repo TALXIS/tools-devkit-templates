@@ -107,7 +107,7 @@
                   <rows>
                     <row>
                       <!--#if (!IsOrganizationTypeEntity) -->
-                      <cell id="{12cardFormId}" showlabel="true" locklevel="0">
+                      <cell id="{11cardFormId}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Owner" languagecode="1033" />
                         </labels>
