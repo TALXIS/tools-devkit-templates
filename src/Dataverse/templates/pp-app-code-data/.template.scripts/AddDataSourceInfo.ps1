@@ -58,7 +58,8 @@ export const dataSourcesInfo = {
 $newEntry
 };
 "@
-    [System.IO.File]::WriteAllText($FilePath, $content.Replace("`r`n", "`n") + "`n")
+    $content = $content.Replace("`r`n", "`n").Replace("`r", "`n")
+    [System.IO.File]::WriteAllText($FilePath, $content + "`n", [System.Text.UTF8Encoding]::new($false))
     Write-Host "Created $FilePath with '$EntitySetName'."
     return
 }
@@ -113,5 +114,6 @@ for ($i = 0; $i -lt $lines.Count; $i++) {
     }
 }
 
-[System.IO.File]::WriteAllLines($FilePath, $result)
+$content = (($result -join "`n").Replace("`r`n", "`n").Replace("`r", "`n")) + "`n"
+[System.IO.File]::WriteAllText($FilePath, $content, [System.Text.UTF8Encoding]::new($false))
 Write-Host "Added '$EntitySetName' to $FilePath"

@@ -13,5 +13,6 @@ $files = @($commanddefinitionPath, $loclbelsPath, $customactionPath)
 foreach ($file in $files) {
     $content = Get-Content -Path $file -Raw
     $content = $content -replace '__button-logical-name__', $logicalName
-    Set-Content -Path $file -Value $content
+    $content = $content.Replace("`r`n", "`n").Replace("`r", "`n")
+    [System.IO.File]::WriteAllText($file, $content, [System.Text.UTF8Encoding]::new($false))
 }

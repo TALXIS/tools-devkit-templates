@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $ErrorActionPreference = 'Stop'
 
 $ribbonXmlRaw = './__solution-root-path__/Entities/__entity-logical-name__/RibbonDiff.xml'
@@ -39,4 +41,4 @@ Add-XmlContent -parentXml $ribbonXml -nodeName "CommandDefinitions" -contentPath
 Add-XmlContent -parentXml $ribbonXml -nodeName "LocLabels" -contentPath $locLabelsPath
 Add-XmlContent -parentXml $ribbonXml -nodeName "CustomActions" -contentPath $customActionPath
 
-$ribbonXml.Save($ribbonXmlPath)
+Save-TxcXml -Document $ribbonXml -Path $ribbonXmlPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

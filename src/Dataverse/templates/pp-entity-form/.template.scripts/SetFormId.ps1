@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $formId = "formexampleId"
 
 <!--#if (FormType == "dialog") -->
@@ -40,7 +42,7 @@ if ($formGuidNode) {
 }
 
 # Save the updated XML to the new file
-$formXml.Save($newFilePath)
+Save-TxcXml -Document $formXml -Path $newFilePath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')
 Write-Host "Saved updated form to: $newFilePath"
 
 # Remove the old file if it has a different name

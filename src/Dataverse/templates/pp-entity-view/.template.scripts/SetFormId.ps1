@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 # Post-action script for pp-entity-view template.
 #
 # The template engine replaces "someexampleid" in the filename and XML content
@@ -29,7 +31,7 @@ $idNode = $xml.SelectSingleNode("//savedqueryid")
 if ($idNode) {
     $idNode.InnerText = $bracedId
 }
-$xml.Save($unbracedFile.FullName)
+Save-TxcXml -Document $xml -Path $unbracedFile.FullName -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')
 
 $newPath = Join-Path $viewDir "$bracedId.xml"
 if ($unbracedFile.FullName -ne $newPath) {

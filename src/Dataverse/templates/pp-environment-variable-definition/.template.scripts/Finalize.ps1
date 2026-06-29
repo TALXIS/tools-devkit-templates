@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $ErrorActionPreference = 'Stop'
 
 # Path to the generated environment variable definition XML
@@ -34,6 +36,4 @@ $settings.NewLineHandling = [System.Xml.NewLineHandling]::Replace
 $settings.OmitXmlDeclaration = $true
 $settings.Encoding = New-Object System.Text.UTF8Encoding($false)
 
-$writer = [System.Xml.XmlWriter]::Create($definitionXmlPath, $settings)
-$definitionXml.Save($writer)
-$writer.Close()
+Save-TxcXml -Document $definitionXml -Path $definitionXmlPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

@@ -449,6 +449,14 @@
 				"defaultFormat": "d"
 			}
 		},
+		"15cardFormId": {
+			"type": "generated",
+			"generator": "guid",
+			"replaces": "15cardFormId",
+			"parameters": {
+				"defaultFormat": "d"
+			}
+		},
 		
 		"1mainFormId": {
 			"type": "generated",
@@ -841,6 +849,17 @@
 			"manualInstructions": [{ "text": "Sorting entity attributes alphabetically by PhysicalName" }],
 			"continueOnError": false,
 			"description": "Sorting entity attributes"
+		},
+		{
+			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"args": {
+				"executable": "pwsh",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/NormalizeNilTags.ps1\"",
+				"redirectStandardOutput": "false"
+			},
+			"manualInstructions": [{ "text": "Normalizing xsi:nil tags in solution.xml" }],
+			"continueOnError": false,
+			"description": "Normalizing xsi:nil tags in solution.xml"
 		},
 		{
 			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",

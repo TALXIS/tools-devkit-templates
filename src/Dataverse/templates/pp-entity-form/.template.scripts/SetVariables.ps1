@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $dialogsRootPath = '__solution-root-path__/Dialogs\{formexampleId}.xml'
 $formName = 'formexamplename'
 $EntitySchemaName = 'ItemFolderName'
@@ -21,7 +23,7 @@ $uniqueNameNode = $xmlDoc.SelectSingleNode("//UniqueName")
 if ($uniqueNameNode) {
     $uniqueNameNode.InnerText = $uniqueNameFull
     
-    $xmlDoc.Save($dialogsRootPath)
+    Save-TxcXml -Document $xmlDoc -Path $dialogsRootPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')
     Write-Host "Value updated successfully"
 }
 else {

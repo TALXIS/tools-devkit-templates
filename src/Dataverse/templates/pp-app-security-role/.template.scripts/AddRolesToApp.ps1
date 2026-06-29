@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $entityXmlPath = (Resolve-Path '__solution-root-path__/AppModules/appexamplename/AppModule.xml').Path
 $privilegesPath = (Resolve-Path '.template.scripts/appaccess.xml').Path
 
@@ -27,6 +29,4 @@ $settings.Indent = $true
 $settings.OmitXmlDeclaration = $false
 $settings.Encoding = [System.Text.UTF8Encoding]::new($false)
 
-$writer = [System.Xml.XmlWriter]::Create($entityXmlPath, $settings)
-$entityXml.Save($writer)
-$writer.Close()
+Save-TxcXml -Document $entityXml -Path $entityXmlPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

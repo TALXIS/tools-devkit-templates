@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 # --- Input parameters ---
 $signingKey = "signingkeyfilepathexample"
 $outputDir = "../SolutionLogicalNameExample"
@@ -30,7 +32,8 @@ $csprojText = $csprojText -replace '\s*<Import[^>]*Project="\$\(PowerAppsTargets
 $csprojText = $csprojText -replace '\s*<Import[^>]*Project="\$\(PowerAppsTargetsPath\)\\Microsoft\.PowerApps\.VisualStudio\.Plugin\.props"[^>]*/>\s*', ''
 $csprojText = $csprojText -replace '\s*<ProjectTypeGuids>[^<]*</ProjectTypeGuids>\s*', ''
 $csprojText = $csprojText -replace '\s*<PowerAppsTargetsPath>[^<]*</PowerAppsTargetsPath>\s*', ''
-Set-Content -Path $ProjectPath -Value $csprojText
+$csprojText = $csprojText.Replace("`r`n", "`n").Replace("`r", "`n")
+[System.IO.File]::WriteAllText($ProjectPath, $csprojText, [System.Text.UTF8Encoding]::new($false))
 
 # --- 6. Load .csproj as XML ---
 [xml]$csproj = $csprojText
@@ -96,7 +99,7 @@ $assemblyNameElement.InnerText = $snkPath
 $propertyGroup.AppendChild($assemblyNameElement) | Out-Null
 
 # --- 14. Save changes back to the .csproj file ---
-$csproj.Save($ProjectPath)
+Save-TxcXml -Document $csproj -Path $ProjectPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')
 
 # --- 15. Copy the PluginBase.cs file to the project ---
 if ("pluginbasetypeexample" -eq "TALXIS") {

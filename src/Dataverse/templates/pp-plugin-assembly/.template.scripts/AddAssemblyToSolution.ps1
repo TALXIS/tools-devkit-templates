@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $sourceFile = ".template.temp/RootComponent.xml"
 $destinationFile = "__solution-root-path__/Other/Solution.xml"
 
@@ -16,4 +18,4 @@ $rootComponentsNode = $destinationXml.SelectSingleNode("//RootComponents")
 $importNode = $destinationXml.ImportNode($rootComponent, $true)
 $rootComponentsNode.AppendChild($importNode)
 
-$destinationXml.Save($destinationFile)
+Save-TxcXml -Document $destinationXml -Path $destinationFile -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

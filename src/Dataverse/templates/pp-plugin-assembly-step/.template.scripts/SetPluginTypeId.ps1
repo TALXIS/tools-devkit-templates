@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $assemblyName = "__assembly-name__"
 $destinationFile = ".template.temp/__step-id__.xml"
 
@@ -24,4 +26,4 @@ $pluginTypeId = $pluginType.GetAttribute("PluginTypeId")
 
 $destinationXml.SdkMessageProcessingStep.PluginTypeId = $pluginTypeId
 
-$destinationXml.Save($destinationFile)
+Save-TxcXml -Document $destinationXml -Path $destinationFile -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

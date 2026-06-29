@@ -19,7 +19,8 @@ $content = $content -replace "wridexample", $guid
 
 Remove-Item -Path $dataXmlFilePath
 
-Set-Content -Path $newDataXmlFilePath -Value $content
+$content = $content.Replace("`r`n", "`n").Replace("`r", "`n")
+[System.IO.File]::WriteAllText($newDataXmlFilePath, $content, [System.Text.UTF8Encoding]::new($false))
 
 $fileNewNoExtName = "examplepublisher_$fileName"
 $destinationPath = Join-Path $destinationFolder $fileNewNoExtName

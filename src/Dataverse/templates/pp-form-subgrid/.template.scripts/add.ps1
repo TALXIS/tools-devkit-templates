@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $entityXmlPath = (Resolve-Path './__solution-declarations-root__/Entities/__entity-logical-name__/FormXml/__form-type__/{__form-id__}.xml').Path
 $rowPath = (Resolve-Path './.template.temp/subgrid.xml').Path
 
@@ -23,6 +25,4 @@ $settings.Indent = $true
 $settings.NewLineHandling = [System.Xml.NewLineHandling]::None
 $settings.OmitXmlDeclaration = $false
 
-$writer = [System.Xml.XmlWriter]::Create($entityXmlPath, $settings)
-$entityXml.Save($writer)
-$writer.Close()
+Save-TxcXml -Document $entityXml -Path $entityXmlPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

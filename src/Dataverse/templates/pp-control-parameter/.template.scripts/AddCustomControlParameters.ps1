@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $entityXmlPath = ./.template.scripts/LocateForm.ps1
 $controlDescriptionId = "controlDescriptionIdexample"
 $customControlFormFactor="customcontrolformfactorexample"
@@ -49,4 +51,4 @@ if (Test-Path $parameterPath) {
     $parametersNode.AppendChild($importedParameter) | Out-Null
 }
 
-$entityXml.Save($entityXmlPath)
+Save-TxcXml -Document $entityXml -Path $entityXmlPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

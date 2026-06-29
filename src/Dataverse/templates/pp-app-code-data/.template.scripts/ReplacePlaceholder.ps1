@@ -16,7 +16,8 @@ $content = Get-Content $FilePath -Raw
 if ($content -match [regex]::Escape($Placeholder)) 
 {
     $content = $content.Replace($Placeholder, $Replacement)
-    Set-Content -Path $FilePath -Value $content -NoNewline
+    $content = $content.Replace("`r`n", "`n").Replace("`r", "`n")
+    [System.IO.File]::WriteAllText($FilePath, $content, [System.Text.UTF8Encoding]::new($false))
 
     Write-Host "Replaced placeholder in file content."
 } 

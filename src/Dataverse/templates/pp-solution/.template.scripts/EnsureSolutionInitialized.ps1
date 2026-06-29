@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 # Run solution initialization only if key solution artifacts are missing.
 
 $requiredFiles = @(
@@ -28,7 +30,7 @@ $xml.ImportExportXml.SolutionManifest.UniqueName = $sanitized
 $xml.ImportExportXml.SolutionManifest.Managed = 2
 
 # Save the updated XML back to the file
-$xml.Save($solutionXml.FullName)
+Save-TxcXml -Document $xml -Path $solutionXml.FullName -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')
 
 if ($missing.Count -eq 0) {
     Write-Host "Solution artifacts already present (Customizations.xml, Relationships.xml, Solution.xml). Skipping InitializeSolution."

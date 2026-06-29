@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $tabId = "tabexampleid"
 $tabNumber = "tabnumberexample"
 $entityXmlPath = ./.template.scripts/LocateForm.ps1
@@ -38,4 +40,4 @@ $newComponent.SetAttribute("id", '{tabfooterexampleid}')
 
 $null = $targetTab.AppendChild($newComponent)
 
-$entityXml.Save($entityXmlPath)
+Save-TxcXml -Document $entityXml -Path $entityXmlPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

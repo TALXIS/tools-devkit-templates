@@ -19,7 +19,8 @@ function Invoke-ReplaceInFileContent
     if ($null -ne $content -and $content.Contains($Placeholder))
     {
         $content = $content.Replace($Placeholder, $Replacement)
-        Set-Content -LiteralPath $TargetPath -Value $content -NoNewline
+        $content = $content.Replace("`r`n", "`n").Replace("`r", "`n")
+        [System.IO.File]::WriteAllText($TargetPath, $content, [System.Text.UTF8Encoding]::new($false))
         Write-Host "Replaced placeholder in content: $TargetPath"
     }
 }

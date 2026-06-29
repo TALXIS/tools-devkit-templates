@@ -19,7 +19,8 @@ foreach ($file in $files) {
 
     $content = $content -replace '_exampleworkflowNoDashesid_', $guidNoDashes
 
-    Set-Content -Path $file.FullName -Value $content
+    $content = $content.Replace("`r`n", "`n").Replace("`r", "`n")
+    [System.IO.File]::WriteAllText($file.FullName, $content, [System.Text.UTF8Encoding]::new($false))
 }
 
 $filesToRename = Get-ChildItem -Path $targetDir -Recurse -File | Where-Object { $_.Name -like '*exampleworkflowuniqueidcapital*' }
@@ -32,4 +33,5 @@ foreach ($file in $filesToRename) {
 
 $filePath = ".template.scripts\WorkflowsID.txt"
 
-Set-Content -Path $filePath -Value $guid
+$guid = $guid.Replace("`r`n", "`n").Replace("`r", "`n")
+[System.IO.File]::WriteAllText($filePath, $guid, [System.Text.UTF8Encoding]::new($false))

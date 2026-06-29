@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $baseDir = "__solution-root-path__/AppModuleSiteMaps"
 
 # Try both naming conventions (with and without _managed suffix)
@@ -21,4 +23,4 @@ $modifiedXmlText = $modifiedXmlText -replace [Regex]::Escape("subareaidexample")
 
 [XML]$File = $ModifiedXmlText
 
-$File.Save($siteMapPath)
+Save-TxcXml -Document $File -Path $siteMapPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

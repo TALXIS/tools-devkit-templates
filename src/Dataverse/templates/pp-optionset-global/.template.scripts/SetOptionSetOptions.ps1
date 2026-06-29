@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $optionSetOptionXmlPath = (Resolve-Path '.template.temp/optionsetoption.xml').Path
 [xml]$optionSetOptionTemplate = Get-Content -Path $optionSetOptionXmlPath -Raw
 
@@ -52,9 +54,7 @@ $settings.NewLineHandling = [System.Xml.NewLineHandling]::None
 $settings.OmitXmlDeclaration = $false
 $settings.Encoding = [System.Text.Encoding]::UTF8
 
-$writer = [System.Xml.XmlWriter]::Create($attributeXmlPath, $settings)
-$attributeXml.Save($writer)
-$writer.Close()
+Save-TxcXml -Document $attributeXml -Path $attributeXmlPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')
 
 # Resolve the relative path to an absolute path (to support other OSes)
 $solutionPath = Resolve-Path -Path '__solution-root-path__/Other/Solution.xml'
@@ -72,4 +72,4 @@ $newComponent.SetAttribute("behavior", '0')
 $null = $rootComponents.AppendChild($newComponent)
 
 # Save the updated XML back to the file
-$File.Save($solutionPath)
+Save-TxcXml -Document $File -Path $solutionPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

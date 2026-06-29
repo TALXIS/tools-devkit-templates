@@ -28,6 +28,7 @@ else {
 $content = Get-Content $xmlPath -Raw
 if ($content -match 'PublicKeyToken=__public-key-token__') {
     $content = $content -replace '__public-key-token__', $publicKeyToken
-    $content | Set-Content $xmlPath -Force
+    $content = $content.Replace("`r`n", "`n").Replace("`r", "`n")
+    [System.IO.File]::WriteAllText($xmlPath, $content, [System.Text.UTF8Encoding]::new($false))
 }
 

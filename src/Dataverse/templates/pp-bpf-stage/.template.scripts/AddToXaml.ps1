@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $targetXamlFolderPath = (Resolve-Path '__solution-root-path__/Workflows').Path
 $stageXamlPath = (Resolve-Path '.template.temp\stage.xaml').Path
 
@@ -30,6 +32,4 @@ $settings.Indent = $true
 $settings.NewLineHandling = [System.Xml.NewLineHandling]::None
 $settings.OmitXmlDeclaration = $false
 
-$writer = [System.Xml.XmlWriter]::Create($targetXamlFile, $settings)
-$targetXml.Save($writer)
-$writer.Close()
+Save-TxcXml -Document $targetXml -Path $targetXamlFile -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

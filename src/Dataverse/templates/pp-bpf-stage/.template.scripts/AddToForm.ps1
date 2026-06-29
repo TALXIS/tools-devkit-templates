@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $targetXmlPath = (Resolve-Path '__solution-root-path__/Entities\examplebpfname\FormXml\main\{mainFormIdexample}.xml').Path
 $stageFormPath = (Resolve-Path '.template.temp\stageForm.xml').Path
 
@@ -21,6 +23,4 @@ $settings.Indent = $true
 $settings.NewLineHandling = [System.Xml.NewLineHandling]::None
 $settings.OmitXmlDeclaration = $false
 
-$writer = [System.Xml.XmlWriter]::Create($targetXmlPath, $settings)
-$targetXml.Save($writer)
-$writer.Close()
+Save-TxcXml -Document $targetXml -Path $targetXmlPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

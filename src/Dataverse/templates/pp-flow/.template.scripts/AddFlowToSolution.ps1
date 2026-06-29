@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $solutionPath = Resolve-Path -Path '__solution-root-path__/Other/Solution.xml'
 
 # Extract the workflow GUID from the generated .json.data.xml
@@ -22,4 +24,4 @@ $newComponent.SetAttribute("behavior", '0')
 
 $null = $rootComponents.AppendChild($newComponent)
 
-$File.Save($solutionPath)
+Save-TxcXml -Document $File -Path $solutionPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

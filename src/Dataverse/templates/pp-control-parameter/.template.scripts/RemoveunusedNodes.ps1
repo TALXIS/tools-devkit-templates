@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 <!--#if (ParameterType == "Custom") -->
 $XmlFilePath = ".template.temp\customcontrolparameters.xml"
 <!--#else -->
@@ -15,5 +17,5 @@ for ($i = $nodesToRemove.Count - 1; $i -ge 0; $i--) {
     $node.ParentNode.RemoveChild($node) | Out-Null
 }
     
-$xmlDoc.Save($XmlFilePath)
+Save-TxcXml -Document $xmlDoc -Path $XmlFilePath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')
     

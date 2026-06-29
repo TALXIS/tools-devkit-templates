@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $areaPath  = (Resolve-Path '.template.temp/area.xml').Path
 
 [XML]$File = Get-Content -Path $areaPath -Raw
@@ -7,4 +9,4 @@ $modifiedXmlText = $XmlText -replace [Regex]::Escape("areaidexample"), ([guid]::
 
 [XML]$File = $ModifiedXmlText
 
-$File.Save($areaPath)
+Save-TxcXml -Document $File -Path $areaPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $TabName = "stageexamplename"
 
 $entityXmlPath=(Resolve-Path './__solution-root-path__/Entities/examplebpfname/FormXml/main/{formguididexample}.xml').Path
@@ -31,6 +33,4 @@ $settings.Indent = $true
 $settings.NewLineHandling = [System.Xml.NewLineHandling]::None
 $settings.OmitXmlDeclaration = $false
 
-$writer = [System.Xml.XmlWriter]::Create($entityXmlPath, $settings)
-$entityXml.Save($writer)
-$writer.Close()
+Save-TxcXml -Document $entityXml -Path $entityXmlPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

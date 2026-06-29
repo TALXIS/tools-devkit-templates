@@ -1,4 +1,6 @@
-﻿# Resolve the relative path to an absolute path (to support other OSes)
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
+# Resolve the relative path to an absolute path (to support other OSes)
 $solutionPath = Resolve-Path -Path '__solution-root-path__/Other/Solution.xml'
 
 # Load the XML file
@@ -14,7 +16,7 @@ $newComponent.SetAttribute("behavior", '0')
 $null = $rootComponents.AppendChild($newComponent)
 
 # Save the updated XML back to the file
-$File.Save($solutionPath)
+Save-TxcXml -Document $File -Path $solutionPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')
 
 
 

@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $guidValue = "stageexampleid"
 
 $targetXamlFolderPath = (Resolve-Path '__solution-root-path__/Workflows').Path
@@ -14,7 +16,7 @@ $nextStageNode = $xml.SelectSingleNode('//x:Null[@x:Key="NextStageId"]', $nsMgr)
 if ($nextStageNode) {
     if ([string]::IsNullOrWhiteSpace($nextStageNode.InnerText)) {
         $nextStageNode.InnerText = $guidValue
-        $xml.Save($targetXamlFile)
+        Save-TxcXml -Document $xml -Path $targetXamlFile -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')
     }
 } else {
     Write-Host "Node <x:String x:Key='NextStageId'> was not found."

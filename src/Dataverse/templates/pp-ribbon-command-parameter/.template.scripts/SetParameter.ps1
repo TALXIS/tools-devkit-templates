@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $ErrorActionPreference = 'Stop'
 
 $commandDefinitionId = "__publisher-prefix__.__entity-logical-name__.Command.__button-logical-name__"
@@ -37,5 +39,5 @@ foreach ($parameter in $parameters) {
     Write-Host "Added parameter: $($parameter.Name)"
 }
 
-$ribbonXml.Save($ribbonXmlPath)
+Save-TxcXml -Document $ribbonXml -Path $ribbonXmlPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')
 Write-Host "Successfully added parameters to '$functionName' in command '$commandDefinitionId'"

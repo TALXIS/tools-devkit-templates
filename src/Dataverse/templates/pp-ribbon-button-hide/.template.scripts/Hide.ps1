@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $action = ".template.temp\customactionstohide.xml"
 $ribbonXmlPath = (Resolve-Path './__solution-root-path__/Entities/exampleentityname/RibbonDiff.xml').Path
 
@@ -16,4 +18,4 @@ foreach ($hideAction in $hideActions) {
     $customActionsNode.AppendChild($clonedAction) | Out-Null
 }
 
-$ribbonXml.Save($ribbonXmlPath)
+Save-TxcXml -Document $ribbonXml -Path $ribbonXmlPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

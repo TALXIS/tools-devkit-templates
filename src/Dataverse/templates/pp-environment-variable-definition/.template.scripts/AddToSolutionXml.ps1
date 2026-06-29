@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $ErrorActionPreference = 'Stop'
 
 # Solution.xml lives next to Other/ inside the unpacked solution root. If the project doesn't
@@ -34,4 +36,4 @@ $newComponent.SetAttribute("schemaName", $schemaName)
 $newComponent.SetAttribute("behavior", "0")
 
 $null = $rootComponents.AppendChild($newComponent)
-$file.Save($resolvedPath)
+Save-TxcXml -Document $file -Path $resolvedPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

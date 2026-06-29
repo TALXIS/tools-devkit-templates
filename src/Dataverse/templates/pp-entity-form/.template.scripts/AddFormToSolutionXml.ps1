@@ -1,4 +1,6 @@
-﻿param(
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
+param(
     [Parameter(Mandatory=$true)]
     [string]$formId
 )
@@ -22,6 +24,6 @@ $newComponent.SetAttribute("behavior", '0')
 $null = $rootComponents.AppendChild($newComponent)
 
 # Save the updated XML back to the file
-$File.Save($solutionPath)
+Save-TxcXml -Document $File -Path $solutionPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')
 
 

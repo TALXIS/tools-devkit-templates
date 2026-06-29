@@ -31,5 +31,7 @@ if (-not $ds.$noPrefixName) {
     Write-Host "Datasource '$noPrefixName' already exists, skipping."
 }
 
-$json | ConvertTo-Json -Depth 10 | Set-Content $filePath -NoNewline
+$content = $json | ConvertTo-Json -Depth 10
+$content = $content.Replace("`r`n", "`n").Replace("`r", "`n")
+[System.IO.File]::WriteAllText($filePath, $content, [System.Text.UTF8Encoding]::new($false))
 Write-Host "Updated $filePath"

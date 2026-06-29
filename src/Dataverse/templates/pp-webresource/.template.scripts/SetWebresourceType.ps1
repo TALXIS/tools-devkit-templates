@@ -29,4 +29,5 @@ switch ($extension) {
 
 $content = Get-Content -Path $dataXmlFilePath -Raw
 $content = $content -replace "wrtypeexample", $type
-Set-Content -Path $dataXmlFilePath -Value $content
+$content = $content.Replace("`r`n", "`n").Replace("`r", "`n")
+[System.IO.File]::WriteAllText($dataXmlFilePath, $content, [System.Text.UTF8Encoding]::new($false))

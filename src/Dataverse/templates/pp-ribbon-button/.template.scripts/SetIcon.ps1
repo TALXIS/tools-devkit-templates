@@ -13,7 +13,8 @@ function Replace-ButtonIcon {
 
     $content = Get-Content -Path $FilePath -Raw
     $content = $content -replace $replaseString, $iconPath
-    Set-Content -Path $FilePath -Value $content
+    $content = $content.Replace("`r`n", "`n").Replace("`r", "`n")
+    [System.IO.File]::WriteAllText($FilePath, $content, [System.Text.UTF8Encoding]::new($false))
 }
 
 if ($icon16Path -eq "icon16pathdefault") {

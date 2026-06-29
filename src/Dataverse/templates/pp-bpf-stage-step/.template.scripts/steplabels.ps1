@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $targetXmlFolderPath = (Resolve-Path '__solution-root-path__/Workflows').Path
 $steplabelsPath = (Resolve-Path '.template.temp\steplabels.xml').Path
 
@@ -19,6 +21,4 @@ $settings.Indent = $true
 $settings.NewLineHandling = [System.Xml.NewLineHandling]::None
 $settings.OmitXmlDeclaration = $false
 
-$writer = [System.Xml.XmlWriter]::Create($targetXmlFile.FullName, $settings)
-$targetXml.Save($writer)
-$writer.Close()
+Save-TxcXml -Document $targetXml -Path $targetXmlFile.FullName -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

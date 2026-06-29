@@ -1,3 +1,5 @@
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
 $ErrorActionPreference = 'Stop'
 
 # File Paths
@@ -19,7 +21,7 @@ foreach ($xmlFile in @($referencedEntityRelationshipFilePathRaw, $relationshipsF
     if (-not (Test-Path $xmlFile)) {
         [xml]$xmlDoc = New-Object System.Xml.XmlDocument
         $xmlDoc.LoadXml($emptyXmlContent)
-        $xmlDoc.Save($xmlFile)
+        Save-TxcXml -Document $xmlDoc -Path $xmlFile -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')
     }
 }
 
@@ -68,11 +70,7 @@ $settings.NewLineHandling = [System.Xml.NewLineHandling]::None
 $settings.OmitXmlDeclaration = $false
 
 # Save relationships file
-$writer = [System.Xml.XmlWriter]::Create($relationshipsFilePath, $settings)
-$relationshipsFile.Save($writer)
-$writer.Close()
+Save-TxcXml -Document $relationshipsFile -Path $relationshipsFilePath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')
 
 # Save referenced entity relationship file
-$writer = [System.Xml.XmlWriter]::Create($referencedEntityRelationshipFilePath, $settings)
-$referencedEntityRelationshipFile.Save($writer)
-$writer.Close()
+Save-TxcXml -Document $referencedEntityRelationshipFile -Path $referencedEntityRelationshipFilePath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

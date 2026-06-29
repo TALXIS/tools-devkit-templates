@@ -1,4 +1,6 @@
-﻿$ErrorActionPreference = 'Stop'
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
+$ErrorActionPreference = 'Stop'
 
 # Resolve the relative path to an absolute path (to support other OSes)
 $entityXmlPath = (Resolve-Path '__solution-root-path__/Entities/__entity-schema-name__/Entity.xml').Path
@@ -28,7 +30,4 @@ $settings.NewLineHandling = [System.Xml.NewLineHandling]::None
 $settings.OmitXmlDeclaration = $false
 
 # Save
-$writer = [System.Xml.XmlWriter]::Create($entityXmlPath, $settings)
-$entityXmlFile.Save($writer)
-
-$writer.Close()
+Save-TxcXml -Document $entityXmlFile -Path $entityXmlPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

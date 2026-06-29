@@ -1,4 +1,6 @@
-﻿# Resolve the relative path to an absolute path (to support other OSes)
+. "$PSScriptRoot/Save-TxcXml.ps1"
+
+# Resolve the relative path to an absolute path (to support other OSes)
 # Try both naming conventions (with and without _managed suffix)
 $candidatePath = '__solution-root-path__/AppModules/appexamplename/AppModule.xml'
 $candidatePathManaged = '__solution-root-path__/AppModules/appexamplename/AppModule_managed.xml'
@@ -29,4 +31,4 @@ else {
 $null = $rootComponents.AppendChild($newComponent)
 
 # Save the updated XML back to the file
-$File.Save($solutionPath)
+Save-TxcXml -Document $File -Path $solutionPath -ExpandEmptyElements @('AutoNumberFormat', 'Format', 'ExternalName', 'EntityColor', 'MobileOfflineFilters', 'IconVectorName', 'EntityHelpUrl', 'ActivityTypeMask', 'ExternalTypeName', 'RibbonTemplates', 'CustomActions')

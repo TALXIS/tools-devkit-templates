@@ -52,5 +52,6 @@ for ($i = $insertIdx; $i -lt $lines.Count; $i++) {
     $result.Add($lines[$i])
 }
 
-[System.IO.File]::WriteAllLines($FilePath, $result)
+$content = (($result -join "`n").Replace("`r`n", "`n").Replace("`r", "`n")) + "`n"
+[System.IO.File]::WriteAllText($FilePath, $content, [System.Text.UTF8Encoding]::new($false))
 Write-Host "Inserted after '$TargetString' in $FilePath"
