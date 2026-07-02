@@ -1,6 +1,5 @@
 <Project Sdk="TALXIS.DevKit.Build.Sdk/1.6.1">
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
     <LangVersion>latest</LangVersion>
     <SignAssembly>false</SignAssembly>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
