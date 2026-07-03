@@ -1,6 +1,5 @@
 <Project Sdk="TALXIS.DevKit.Build.Sdk/1.6.1">
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
     <SolutionRootPath>__solution-root-path__</SolutionRootPath>
     <ProjectType>Solution</ProjectType>
     <GeneratePluginAssembly>generateexamplepluginassembly</GeneratePluginAssembly>

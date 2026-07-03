@@ -49,7 +49,6 @@ $signingKeyLine = if ($useSigningKey) { "    <AssemblyOriginatorKeyFile>$signing
 $csprojText = @"
 <Project Sdk="TALXIS.DevKit.Build.Sdk/1.6.1">
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
     <LangVersion>latest</LangVersion>
     <SignAssembly>$signAssemblyValue</SignAssembly>
 $signingKeyLine    <AssemblyVersion>1.0.0.0</AssemblyVersion>
