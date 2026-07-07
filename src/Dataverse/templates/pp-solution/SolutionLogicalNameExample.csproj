@@ -1,4 +1,4 @@
-<Project Sdk="TALXIS.DevKit.Build.Sdk/1.6.1">
+<Project Sdk="TALXIS.DevKit.Build.Sdk/1.7.0">
   <PropertyGroup>
     <SolutionRootPath>__solution-root-path__</SolutionRootPath>
     <ProjectType>Solution</ProjectType>

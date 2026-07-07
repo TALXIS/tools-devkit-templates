@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="TALXIS.DevKit.Build.Sdk/1.6.1">
+<Project Sdk="TALXIS.DevKit.Build.Sdk/1.7.0">
   <PropertyGroup>
     <AppName>codeappexample</AppName>
     <ProjectType>CodeApp</ProjectType>
