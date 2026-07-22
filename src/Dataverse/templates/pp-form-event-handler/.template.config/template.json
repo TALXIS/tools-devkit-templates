@@ -32,13 +32,6 @@
       "replaces": "exampleentityname",
       "isRequired": false
     },
-    "SolutionRootPath": {
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "__solution-root-path__",
-      "defaultValue": ".",
-      "isRequired": false
-    },
     "FormType": {
       "type": "parameter",
       "datatype": "choice",
@@ -129,6 +122,16 @@
     }
   },
   "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetSolutionRootPath.ps1\""
+      },
+      "manualInstructions": [{ "text": "Set Solution Root Path" }],
+      "continueOnError": false,
+      "description": "Setting Solution Root Path"
+    },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
