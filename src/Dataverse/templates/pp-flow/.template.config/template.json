@@ -43,7 +43,7 @@
       "generator": "guid",
       "replaces": "__flow-workflow-id__",
       "parameters": {
-        "defaultFormat": "D"
+        "defaultFormat": "d"
       }
     },
     "TriggerOperationId": {
@@ -51,7 +51,7 @@
       "generator": "guid",
       "replaces": "__trigger-operation-id__",
       "parameters": {
-        "defaultFormat": "D"
+        "defaultFormat": "d"
       }
     },
     "FlowWorkflowIdUpper": {
