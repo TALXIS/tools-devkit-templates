@@ -11,7 +11,7 @@ $null = New-Item -ItemType Directory -Path $scriptsDir -Force
 
 $lines = @(
     foreach ($permission in $guids) {
-        "<Role id=`"$permission`" />"
+        "<Role id=`"{$($permission.Trim('{', '}'))}`" />"
     }
 )
 
