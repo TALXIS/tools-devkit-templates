@@ -3,6 +3,11 @@
 $solutionRootPath = $null
 $modelSolutionDirectory = (Resolve-Path "modelsolutionexamplepath").Path
 
+# Other/Solution.xml directly in the model solution folder means it is the solution root itself
+if (Test-Path -LiteralPath (Join-Path $modelSolutionDirectory "Other/Solution.xml") -PathType Leaf) {
+    $solutionRootPath = "."
+}
+
 $csprojFiles = @(
     Get-ChildItem `
         -LiteralPath $modelSolutionDirectory `
@@ -15,7 +20,7 @@ if ($csprojFiles.Count -gt 1) {
     throw "Multiple .csproj files found in '$modelSolutionDirectory': $fileNames"
 }
 
-if ($csprojFiles.Count -eq 1) {
+if ([string]::IsNullOrWhiteSpace($solutionRootPath) -and $csprojFiles.Count -eq 1) {
     $csprojPath = $csprojFiles[0].FullName
 
     try {

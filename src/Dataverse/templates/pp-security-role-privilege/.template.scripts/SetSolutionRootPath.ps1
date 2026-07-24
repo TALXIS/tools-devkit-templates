@@ -1,6 +1,11 @@
 $solutionRootPath = $null
 $currentDirectory = (Get-Location).Path
 
+# Other/Solution.xml directly next to the csproj means the project folder itself is the solution root
+if (Test-Path -LiteralPath (Join-Path $currentDirectory "Other/Solution.xml") -PathType Leaf) {
+    $solutionRootPath = "."
+}
+
 $csprojFiles = @(
     Get-ChildItem `
         -LiteralPath $currentDirectory `
@@ -13,7 +18,7 @@ if ($csprojFiles.Count -gt 1) {
     throw "Multiple .csproj files found in '$currentDirectory': $fileNames"
 }
 
-if ($csprojFiles.Count -eq 1) {
+if ([string]::IsNullOrWhiteSpace($solutionRootPath) -and $csprojFiles.Count -eq 1) {
     $csprojPath = $csprojFiles[0].FullName
 
     try {
