@@ -1,17 +1,11 @@
-﻿# Resolve the relative path to an absolute path (to support other OSes)
+# Resolve the relative path to an absolute path (to support other OSes)
 $solutionPath = Resolve-Path -Path '__solution-root-path__/Other/Customizations.xml'
 
-# Load the XML file
 [XML]$File = Get-Content -Path $solutionPath -Raw
-$rootComponents = $File.SelectSingleNode("//ImportExportXml")
+$importExport = $File.SelectSingleNode("//ImportExportXml")
 
-$newComponent = $File.CreateElement("AppModules")
-
-# Append the new component to the root components without writing output to console
-$null = $rootComponents.AppendChild($newComponent)
-
-# Save the updated XML back to the file
-$File.Save($solutionPath)
-
-
-
+# The node is a shard marker for SolutionPackager - it must exist exactly once
+if ($null -eq $importExport.SelectSingleNode("AppModules")) {
+    $null = $importExport.AppendChild($File.CreateElement("AppModules"))
+    $File.Save($solutionPath)
+}

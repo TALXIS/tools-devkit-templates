@@ -1,6 +1,17 @@
-$proc = Start-Process dotnet -ArgumentList "run --file .template.scripts/GenerateRolePrivileges.cs" -NoNewWindow -Wait -PassThru -RedirectStandardOutput ".template.scripts/script_output.txt" -RedirectStandardError ".template.scripts/script_error.txt"
-if ($proc.ExitCode -ne 0) {
-    $errorContent = Get-Content ".template.scripts/script_error.txt" -Raw -ErrorAction SilentlyContinue
-    Write-Error "GenerateRolePrivileges.cs failed (exit code $($proc.ExitCode)). Error: $errorContent"
-    exit 1
-}
+$ErrorActionPreference = 'Stop'
+
+$json = 'jsonarraystringwhithPrivilegeTypeandandLevel'
+
+$fixedJson = [regex]::Replace($json, '(\w+):\s*(\w+)', '"$1": "$2"')
+$permissions = @(ConvertFrom-Json -InputObject $fixedJson)
+
+$scriptsDir = if ((Split-Path -Path (Get-Location) -Leaf) -eq '.template.scripts') { (Get-Location).Path } else { Join-Path (Get-Location).Path '.template.scripts' }
+$null = New-Item -ItemType Directory -Path $scriptsDir -Force
+
+$lines = @(
+    foreach ($permission in $permissions) {
+        "<RolePrivilege name=`"prv$($permission.PrivilegeType)entityexamplename`" level=`"$($permission.Level)`" />"
+    }
+)
+
+Set-Content -Path (Join-Path $scriptsDir 'privileges.xml') -Value $lines

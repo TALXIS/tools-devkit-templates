@@ -14,14 +14,6 @@
 	},
   "preferNameDirectory": true,
   "symbols": {
-    "SolutionRootPath": {
-			"type": "parameter",
-			"datatype": "text",
-			"defaultValue": ".",
-			"replaces": "__solution-root-path__",
-			"fileRename": "__solution-root-path__",
-			"description": "Folder under the project folder where solution components will be placed. Use the folder name only, not the full path. Use '.' if you want to place components directly in the project folder."
-		},
     "AppName": {
       "type": "parameter",
       "datatype": "text",
@@ -49,6 +41,16 @@
     }
   ],
   "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetSolutionRootPath.ps1\""
+      },
+      "manualInstructions": [{ "text": "Set Solution Root Path" }],
+      "continueOnError": false,
+      "description": "Setting Solution Root Path"
+    },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {

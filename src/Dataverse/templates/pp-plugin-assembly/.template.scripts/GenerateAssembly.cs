@@ -18,8 +18,6 @@ string resolvedPluginRootPath = Path.IsPathRooted(pluginRootPath)
 string csprojPath = Directory.GetFiles(resolvedPluginRootPath, "*.csproj").FirstOrDefault();
 if (csprojPath == null) throw new Exception("csproj not found");
 string projectDirectory = Path.GetDirectoryName(csprojPath);
-string sdkPath = Path.Combine(projectDirectory, "bin", "Debug", "net462", "Microsoft.Xrm.Sdk.dll"); 
-Assembly.LoadFrom(sdkPath);
 string csprojFileName = Path.GetFileNameWithoutExtension(csprojPath);
 
 XmlDocument csprojDoc = new XmlDocument();
@@ -28,8 +26,20 @@ string assemblyName = csprojDoc.SelectNodes("//Project/PropertyGroup/AssemblyNam
 string fileVersion = csprojDoc.SelectNodes("//Project/PropertyGroup/FileVersion").Cast<XmlNode>().LastOrDefault()?.InnerText ?? "1.0.0.0";
 string xmlPath = Path.Combine(outputRoot, "__solution-root-path__", "PluginAssemblies", $"{assemblyName}.dll.data.xml");
 
-string dllPath = Path.Combine(resolvedPluginRootPath, "bin", "Debug", "net462", "publish", $"{assemblyName}.dll");
-if (!File.Exists(dllPath)) throw new FileNotFoundException("Build not found", dllPath);
+// Any configuration/TFM: newest bin/**/publish/<AssemblyName>.dll wins
+string binRoot = Path.Combine(projectDirectory, "bin");
+string dllPath = Directory.Exists(binRoot)
+    ? Directory.GetFiles(binRoot, $"{assemblyName}.dll", SearchOption.AllDirectories)
+        .Where(p => Path.GetFileName(Path.GetDirectoryName(p)) == "publish")
+        .OrderByDescending(File.GetLastWriteTimeUtc)
+        .FirstOrDefault()
+    : null;
+if (dllPath == null) throw new FileNotFoundException("Published build not found (run dotnet publish)", Path.Combine(binRoot, "**", "publish", $"{assemblyName}.dll"));
+
+string sdkPath = new[] { Path.GetDirectoryName(dllPath), Path.GetDirectoryName(Path.GetDirectoryName(dllPath)) }
+    .Select(dir => Path.Combine(dir, "Microsoft.Xrm.Sdk.dll"))
+    .FirstOrDefault(File.Exists);
+if (sdkPath != null) Assembly.LoadFrom(sdkPath);
 
 Assembly pluginAssembly = Assembly.LoadFrom(dllPath);
 byte[] token = pluginAssembly.GetName().GetPublicKeyToken();

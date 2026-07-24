@@ -26,14 +26,6 @@
   ],
   "preferNameDirectory": true,
   "symbols": {
-    "SolutionRootPath": {
-      "type": "parameter",
-      "datatype": "text",
-      "defaultValue": ".",
-      "replaces": "__solution-root-path__",
-      "fileRename": "__solution-root-path__",
-      "isRequired": false
-    },
     "FormId": {
       "type": "parameter",
       "generator": "text",
@@ -107,6 +99,16 @@
     }
   ],
   "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetSolutionRootPath.ps1\""
+      },
+      "manualInstructions": [{ "text": "Set Solution Root Path" }],
+      "continueOnError": false,
+      "description": "Setting Solution Root Path"
+    },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
