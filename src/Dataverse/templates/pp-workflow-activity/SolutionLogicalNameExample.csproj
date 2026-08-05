@@ -10,7 +10,7 @@
   <PropertyGroup>
     <Version>$(FileVersion)</Version>
     <Authors>examplepublisher</Authors>
-    <Company>NETWORG</Company>
+    <Company>exampleсompany</Company>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="9.0.2.*" PrivateAssets="All" />

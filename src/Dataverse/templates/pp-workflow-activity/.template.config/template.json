@@ -54,6 +54,21 @@
   ],
   "postActions": [
     {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/InitializePlugin.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Initialize the workflow activities project"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Initialize the workflow activities project (assembly signing setup)"
+    },
+    {
       "description": "Add generated project to .sln file",
       "manualInstructions": [
         {
@@ -66,6 +81,21 @@
       "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
       "continueOnError": false,
       "primaryOutputIndexes": "0"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        {
+          "text": "Removing template files"
+        }
+      ],
+      "continueOnError": false,
+      "description": "Removing template files"
     }
   ]
 }
