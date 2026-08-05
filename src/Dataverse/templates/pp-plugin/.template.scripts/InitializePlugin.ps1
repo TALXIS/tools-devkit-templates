@@ -65,10 +65,33 @@ $companyElement = $csproj.CreateElement("Company", $namespaceUri)
 $companyElement.InnerText = $company
 $propertyGroup.AppendChild($companyElement) | Out-Null
 
-# --- 13. Generate SNK file if it doesn't exist (cross-platform, no sn.exe needed) ---
-$snkPath = $signingKey
-if (-not (Test-Path $snkPath)) {
-    Write-Host "Generating strong name key file: $signingKey"
+# --- 13. Use the provided SNK file, or generate one when no key was passed ---
+# placeholder is split so the template engine does not substitute it here as well
+$placeholder = "signingkeyfilepath" + "example"
+$useProvidedKey = -not [string]::IsNullOrWhiteSpace($signingKey) -and $signingKey -ne $placeholder
+if ($useProvidedKey) {
+    $snkSource = $null
+    if ([System.IO.Path]::IsPathRooted($signingKey)) {
+        if (Test-Path $signingKey) { $snkSource = $signingKey }
+    } else {
+        $dir = (Get-Location).Path
+        while ($dir) {
+            $candidate = Join-Path $dir $signingKey
+            if (Test-Path $candidate) { $snkSource = $candidate; break }
+            $dir = Split-Path $dir -Parent
+        }
+    }
+    if (-not $snkSource) {
+        Write-Error "Signing key file not found: '$signingKey'. Pass a path to an existing .snk file or omit --SigningKeyFilePath to generate one."
+        exit 1
+    }
+    $snkSource = (Resolve-Path $snkSource).Path
+    $snkPath = [System.IO.Path]::GetFileName($snkSource)
+    $snkDestination = Join-Path (Get-Location) $snkPath
+    if ($snkSource -ne $snkDestination) { Copy-Item $snkSource -Destination $snkDestination -Force }
+    Write-Host "Using provided SNK file: $snkSource"
+} else {
+    Write-Host "Generating strong name key file"
     Add-Type -AssemblyName System.Security.Cryptography.Csp -ErrorAction SilentlyContinue
     $csharp = @"
 using System;
