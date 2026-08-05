@@ -14,15 +14,6 @@
 	},
   "preferNameDirectory": true,
   "symbols": {
-    "SolutionRootPath": {
-			"type": "parameter",
-			"datatype": "text",
-			"defaultValue": ".",
-			"replaces": "__solution-root-path__",
-			"fileRename": "__solution-root-path__",
-			"description": "Relative path from the project folder (.csproj) to the folder containing unpacked Dataverse solution files (Other/, Entities/, OptionSets/). Use '.' if solution files are directly in the project folder, or a subfolder name like 'Declarations'. Do not use 'Entities' or 'Other' — those are subdirectories inside the solution metadata root.",
-      "isRequired": false
-		},
     "AppLogicalName": {
       "type": "parameter",
 			"datatype": "text",
@@ -48,6 +39,16 @@
     }
   ],
   "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetSolutionRootPath.ps1\""
+      },
+      "manualInstructions": [{ "text": "Set Solution Root Path" }],
+      "continueOnError": false,
+      "description": "Setting Solution Root Path"
+    },
     {
 			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
 			"args": {
