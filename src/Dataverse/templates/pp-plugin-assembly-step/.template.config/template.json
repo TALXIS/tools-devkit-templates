@@ -183,23 +183,23 @@
           },
           {
             "condition": "(SdkMessage == 'Delete')",
-            "value": "2ebabb1b-ea3e-db11-86a7-000a3a5473e8"
+            "value": "a1bdbb1b-ea3e-db11-86a7-000a3a5473e8"
           },
           {
             "condition": "(SdkMessage == 'SetState')",
-            "value": "daeabb1b-ea3e-db11-86a7-000a3a5473e8"
+            "value": "1cbebb1b-ea3e-db11-86a7-000a3a5473e8"
           },
           {
             "condition": "(SdkMessage == 'Assign')",
-            "value": "44e5bb1b-ea3e-db11-86a7-000a3a5473e8"
+            "value": "8cbdbb1b-ea3e-db11-86a7-000a3a5473e8"
           },
           {
             "condition": "(SdkMessage == 'Retrieve')",
-            "value": "e0e5bb1b-ea3e-db11-86a7-000a3a5473e8"
+            "value": "f2bdbb1b-ea3e-db11-86a7-000a3a5473e8"
           },
           {
             "condition": "(SdkMessage == 'RetrieveMultiple')",
-            "value": "72e5bb1b-ea3e-db11-86a7-000a3a5473e8"
+            "value": "03bebb1b-ea3e-db11-86a7-000a3a5473e8"
           }
         ]
       }
