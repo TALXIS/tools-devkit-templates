@@ -4,7 +4,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.PluginTest",
   "name": "Power Platform: Plugin Test",
   "shortName": "pp-plugin-test",
-  "description": "Creates FakeXrmEasyTestBase.cs: abstract test base with _context (IXrmFakedContext) + _service (IOrganizationService), FakeXrmEasy middleware pre-configured (CRUD + message handlers + commercial license). Individual test classes extend this base in a separate test project.",
+  "description": "Creates FakeXrmEasyTestBase.cs: abstract test base with _context (IXrmFakedContext) + _service (IOrganizationService), FakeXrmEasy v3 middleware pre-configured (CRUD + message handlers + commercial license). Individual test classes extend this base in a separate test project.",
   "tags": {
     "language": "C#",
     "type": "item"
