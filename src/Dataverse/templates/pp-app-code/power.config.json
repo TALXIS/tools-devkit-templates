@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "appId": "appexampleId",
-  "appDisplayName": "appexampleDisplayName",
+  "appId": "__app-id__",
+  "appDisplayName": "__display-name__",
   "region": "prod",
   "environmentId": null,
   "description": "",
