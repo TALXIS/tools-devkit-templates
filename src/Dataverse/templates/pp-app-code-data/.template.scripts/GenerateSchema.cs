@@ -1,3 +1,4 @@
+#:property JsonSerializerIsReflectionEnabledByDefault=true
 // Usage: dotnet run --file GenerateSchema.cs -- <SolutionPath> <EntityLogicalName> [OutputPath]
 
 using System;
