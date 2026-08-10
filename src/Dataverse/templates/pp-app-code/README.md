@@ -22,4 +22,19 @@ Designed for common app scenarios, easy extensibility, and minimal setup.
 - [Tanstack Query](https://tanstack.com/query/latest) - data fetching, state management
 - [Tanstack Table](https://tanstack.com/table/latest) - interactive tables, datagrids
 - [Lucide](https://lucide.dev/) - icons
-  
+
+---
+
+## Parameters
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `DisplayName` | No | Display name shown for the app. |
+| `AppName` | Yes | Logical name of the app, without the publisher prefix (e.g. `warehousepicking`). Used as-is for the schema name, the generated `.meta.xml` file name, and the package folder when this project is referenced from a Solution project. Must be unique among all Code Apps referenced by the same solution. |
+
+Example:
+```console
+dotnet new pp-app-code `
+--output "src/CodeApps.WarehousePicking" `
+--DisplayName "Warehouse Picking" `
+--AppName "warehousepicking"
+```

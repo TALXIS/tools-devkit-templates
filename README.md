@@ -448,6 +448,23 @@ dotnet new pp-plugin-assembly-step `
 > [!TIP]  
 > You can add component schema validation to your build process using [Power Platform MSBuild targets](https://github.com/TALXIS/tools-devkit-build).
 
+### Code Apps
+Initialize a new code-based Power App project:
+```console
+dotnet new pp-app-code `
+--output "src/CodeApps.WarehousePicking" `
+--DisplayName "Warehouse Picking" `
+--AppName "warehousepicking"
+```
+
+Add a Dataverse table as a data source:
+```console
+dotnet new pp-app-code-data `
+--output "src/CodeApps.WarehousePicking" `
+--ModelSolutionPath "../Solutions.DataModel" `
+--EntityLogicalName "tom_warehouseitem"
+```
+
 ## Tools
 
 ### Power Platform: Script Library template
