@@ -399,3 +399,9 @@ FodyWeavers.xsd
 
 # Reqnroll auto-generated code-behind files
 *.feature.cs
+
+# Reqnroll local anonymous-telemetry marker (Reqnroll/userid) — always written to disk
+# on first build regardless of REQNROLL_TELEMETRY_ENABLED (that variable only gates the
+# outbound network send, not local id-file creation — confirmed against Reqnroll's own
+# AnalyticsEventProvider/AnalyticsTransmitter source), so .gitignore is the only reliable fix.
+Reqnroll/
