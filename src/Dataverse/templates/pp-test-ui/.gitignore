@@ -16,6 +16,10 @@ TestResults/
 
 # Reqnroll/SpecFlow generated files
 *.feature.cs
+# Reqnroll's local anonymous-telemetry marker (Reqnroll/userid), always written to disk on
+# first build regardless of REQNROLL_TELEMETRY_ENABLED — that variable only gates the
+# outbound network send, not local id-file creation.
+Reqnroll/
 
 # User-specific files
 *.user
