@@ -4,7 +4,7 @@
 	"identity": "TALXIS.DevKit.Templates.Dataverse.Test.UI.Selenium",
 	"name": "Power Platform: UI Test (Selenium)",
   "shortName": "pp-test-ui-selenium",
-  "description": "Creates a Reqnroll BDD UI test project: .csproj (.NET 8, TALXIS.TestKit.Bindings) + reqnroll.json (bindingAssemblies: TALXIS.TestKit.Bindings) + appsettings.json (url, browser=Chrome, 1920x1080, deleteTestData=true) + ImplicitUsings.cs + generate-mock-bindings.cs. URL format: https://{org}.crm.dynamics.com/main.aspx?appid={GUID}&pagetype=entitylist&etn={entity}&viewid={GUID}&viewType=1039. Place test data JSON files in Data/ folder for auto-created test records.",
+  "description": "Creates a Reqnroll BDD UI test project: .csproj (.NET 10, TALXIS.TestKit.Bindings) + reqnroll.json (bindingAssemblies: TALXIS.TestKit.Bindings) + appsettings.json (url, browser=Chrome, 1920x1080, deleteTestData=true) + ImplicitUsings.cs + generate-mock-bindings.cs. URL format: https://{org}.crm.dynamics.com/main.aspx?appid={GUID}&pagetype=entitylist&etn={entity}&viewid={GUID}&viewType=1039. Place test data JSON files in Data/ folder for auto-created test records.",
   "tags": {
     "language": "C#",
     "type": "project"

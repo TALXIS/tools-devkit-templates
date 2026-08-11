@@ -570,7 +570,7 @@ dotnet new pp-test-script `
 
 The template creates:
 
-1. **.NET Test Project** - A .NET 8.0 project confiured to run Jest tests via `dotnet test`
+1. **.NET Test Project** - A .NET 10.0 project confiured to run Jest tests via `dotnet test`
 2. **Jest Confiuration** - `jest.config.js` configured for jsdom environment
 3. **Packae Configuration** - `package.json` with Jest dependencies
 4. **jest-core Directory** - Reusable core library containing:

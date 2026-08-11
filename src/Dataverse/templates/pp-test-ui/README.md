@@ -4,8 +4,8 @@ This project is a generated scaffold for testing a Power Apps model-driven app w
 
 ## Prerequisites
 
-- .NET 8 SDK (LTS)
-- Playwright browser binaries — install with `pwsh bin/Debug/net8.0/playwright.ps1 install chromium` after the first `dotnet build`
+- .NET 10 SDK (LTS)
+- Playwright browser binaries — install with `pwsh bin/Debug/net10.0/playwright.ps1 install chromium` after the first `dotnet build`
 
 ## Project structure
 
@@ -45,7 +45,7 @@ Update `appsettings.json` or environment variables:
 
 ## Reporting
 
-Artifacts are written to `{AppContext.BaseDirectory}/{OutputPath}` — by default this resolves to `bin/<config>/net8.0/TestResults/`.
+Artifacts are written to `{AppContext.BaseDirectory}/{OutputPath}` — by default this resolves to `bin/<config>/net10.0/TestResults/`.
 
 To collect artifacts in a predictable project-relative directory, use:
 

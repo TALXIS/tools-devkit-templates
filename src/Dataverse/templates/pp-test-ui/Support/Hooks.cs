@@ -23,7 +23,7 @@ public sealed class Hooks
     public static async Task BeforeTestRun()
     {
         // Browser binaries must be installed before running tests.
-        // Run `pwsh bin/Debug/net8.0/playwright.ps1 install chromium` or see the README.
+        // Run `pwsh bin/Debug/net10.0/playwright.ps1 install chromium` or see the README.
 
         _playwright = await Playwright.CreateAsync();
         _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
