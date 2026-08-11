@@ -39,4 +39,35 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <!--
+    Reqnroll fires anonymous usage telemetry (and persists a random-GUID marker file,
+    Reqnroll/userid) the first time its MSBuild code-behind generator runs against this
+    project. There is no reqnroll.json / MSBuild-property equivalent for opting out —
+    Reqnroll's generator only reads the REQNROLL_TELEMETRY_ENABLED environment variable
+    (see Reqnroll/Analytics/EnvironmentReqnrollTelemetryChecker.cs upstream). Setting it
+    here, baked into the project, means every consumer of this template is opted out by
+    default regardless of how the project gets built (a lab/CI script, `dotnet build`
+    run by hand, an IDE build) — no caller has to remember to export the variable.
+    The inline task runs in-process and sets a real OS environment variable on the
+    current MSBuild process, which is inherited by the (possibly out-of-process) Reqnroll
+    generation task spawned afterward.
+  -->
+  <UsingTask
+    TaskName="DisableReqnrollTelemetryTask"
+    TaskFactory="RoslynCodeTaskFactory"
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <Task>
+      <Using Namespace="System" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+        Environment.SetEnvironmentVariable("REQNROLL_TELEMETRY_ENABLED", "0");
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <Target Name="DisableReqnrollTelemetry" BeforeTargets="ProcessReqnrollFeatureFilesInProject">
+    <DisableReqnrollTelemetryTask />
+  </Target>
 </Project>
