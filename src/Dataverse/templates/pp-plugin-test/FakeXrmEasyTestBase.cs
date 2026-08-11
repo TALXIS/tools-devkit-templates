@@ -8,7 +8,7 @@ using FakeXrmEasy.Middleware.Messages;
 using FakeXrmEasy.Abstractions.Plugins;
 using FakeXrmEasy.Plugins;
 
-namespace Plugins.Tests
+namespace __ExamplePluginTestProjectName__
 {
     public abstract class FakeXrmEasyTestBase
     {
