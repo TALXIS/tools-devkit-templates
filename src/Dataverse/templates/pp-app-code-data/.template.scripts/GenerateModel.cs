@@ -169,6 +169,13 @@ foreach (var attr in attributes)
             Optional = optional
         });
     }
+    else if (attr.Type == "lookup" && !attr.IsCustomField)
+    {
+        // Writable system lookups (e.g. transactioncurrencyid) still get an expanded
+        // {name}?: object pair generated below (Part 2) — use the _value-suffixed raw FK
+        // name here so it doesn't collide with that expanded property of the same name.
+        baseFields.Add(new BaseField { Name = $"_{attr.LogicalName}_value", TypeStr = "string", Optional = optional });
+    }
     else if (attr.Type == "owner")
     {
         // Owner adds ownerid + owneridtype
