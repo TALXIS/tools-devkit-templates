@@ -47,7 +47,7 @@ $projectName = [System.IO.Path]::GetFileNameWithoutExtension($csprojFile.Name)
 $signAssemblyValue = if ($useSigningKey) { "true" } else { "false" }
 $signingKeyLine = if ($useSigningKey) { "    <AssemblyOriginatorKeyFile>$signingKey</AssemblyOriginatorKeyFile>`n" } else { "" }
 $csprojText = @"
-<Project Sdk="TALXIS.DevKit.Build.Sdk/1.8.3">
+<Project Sdk="TALXIS.DevKit.Build.Sdk/1.8.4">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
     <SignAssembly>$signAssemblyValue</SignAssembly>

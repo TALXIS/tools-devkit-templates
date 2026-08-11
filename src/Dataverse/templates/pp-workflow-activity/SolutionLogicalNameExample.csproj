@@ -1,4 +1,4 @@
-<Project Sdk="TALXIS.DevKit.Build.Sdk/1.8.3">
+<Project Sdk="TALXIS.DevKit.Build.Sdk/1.8.4">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
     <SignAssembly>false</SignAssembly>
