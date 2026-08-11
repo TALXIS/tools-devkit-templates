@@ -1,4 +1,4 @@
-<Project Sdk="TALXIS.DevKit.Build.Sdk/1.8.1">
+<Project Sdk="TALXIS.DevKit.Build.Sdk/1.8.2">
   <PropertyGroup>
     <ProjectType>ScriptLibrary</ProjectType>
     <ScriptLibraryName>__publisher-prefix_____library-name__</ScriptLibraryName>
