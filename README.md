@@ -637,7 +637,8 @@ describe('My Form Script', () => {
 
 ### Power Platform: Plugin Test Template
 
-- FakeXrmEasy v2 documentation: `https://dynamicsvalue.github.io/fake-xrm-easy-docs/`
+- FakeXrmEasy v3 documentation: `https://dynamicsvalue.github.io/fake-xrm-easy-docs/`
+- The generated test project targets **.NET 10** (FakeXrmEasy 3.x uses the Dataverse Service Client instead of `Microsoft.CrmSdk.CoreAssemblies`). Referencing a .NET Framework plugin project from the .NET 10 test project works via asset target fallback (expect a NU1702 warning).
 
 ### What's included
 - **`FakeXrmEasyTestBase.cs`**: a base class that:
@@ -674,7 +675,7 @@ namespace Plugins.Tests
             var createdId = _service.Create(new Entity("contact"));
 
             // Assert: verify with context storage
-            var created = _context.Data["contact"][createdId];
+            var created = _context.GetEntityById("contact", createdId);
             Assert.IsNotNull(created);
         }
     }
