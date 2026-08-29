@@ -53,13 +53,13 @@
     <!--#else -->
     <ImeMode>auto</ImeMode>
     <!--#endif -->
-    <!--#if (AttributeType == "File") -->
+    <!--#if (AttributeType == "File" || IsFormulaField) -->
     <ValidForUpdateApi>0</ValidForUpdateApi>
     <!--#else -->
     <ValidForUpdateApi>1</ValidForUpdateApi>
     <!--#endif -->
     <ValidForReadApi>1</ValidForReadApi>
-    <!--#if (AttributeType == "File") -->
+    <!--#if (AttributeType == "File" || IsFormulaField) -->
     <ValidForCreateApi>0</ValidForCreateApi>
     <!--#else -->
     <ValidForCreateApi>1</ValidForCreateApi>
@@ -81,7 +81,11 @@
     <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
     <!--#endif -->
     <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+    <!--#if (IsFormulaField) -->
+    <SourceType>3</SourceType>
+    <!--#else -->
     <SourceType>0</SourceType>
+    <!--#endif -->
     <!--#if (AttributeType == "Image") -->
     <IsLogical>1</IsLogical>
     <!--#endif -->
@@ -215,4 +219,7 @@
     <Descriptions>
         <Description description="__attribute-description__" languagecode="1033" />
     </Descriptions>
+    <!--#if (IsFormulaField) -->
+    <FormulaDefinitionFileName>/Formulas/__entity-schema-name__-FormulaDefinitions.yaml</FormulaDefinitionFileName>
+    <!--#endif -->
 </attribute>
