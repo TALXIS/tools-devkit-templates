@@ -59,31 +59,16 @@
 			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
 			"args": {
 				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetFormId.ps1\"",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/ApplyScaffold.ps1\"",
 				"redirectStandardOutput": "false"
 			},
 			"manualInstructions": [
 				{
-					"text": "Setting view ID"
+					"text": "Applying the view scaffold via 'txc workspace component apply-scaffold'"
 				}
 			],
 			"continueOnError": false,
-			"description": "Setting view ID"
-		},
-		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
-				"redirectStandardOutput": "false"
-			},
-			"manualInstructions": [
-				{
-					"text": "Removing Scripts"
-				}
-			],
-			"continueOnError": false,
-			"description": "Removing Scripts"
+			"description": "Applying the view scaffold via the TALXIS CLI"
 		}
 	]
 }
