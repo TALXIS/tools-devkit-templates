@@ -78,21 +78,16 @@
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
         "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddFlowToSolution.ps1\"",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/ApplyScaffold.ps1\"",
         "redirectStandardOutput": "false"
       },
-      "description": "Add flow to Solution.xml"
-    },
-    {
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "args": {
-        "executable": "pwsh",
-        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
-        "redirectStandardOutput": "false"
-      },
-      "manualInstructions": [{ "text": "Removing template scripts" }],
+      "manualInstructions": [
+        {
+          "text": "Applying the flow scaffold via 'txc workspace component apply-scaffold'"
+        }
+      ],
       "continueOnError": false,
-      "description": "Removing template scripts"
+      "description": "Applying the flow scaffold via the TALXIS CLI"
     }
   ]
 }
