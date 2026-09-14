@@ -280,119 +280,6 @@
 			"parameters": {
 				"defaultFormat": "d"
 			}
-		},
-		
-		"1formexampleId": {
-			"type": "generated",
-			"generator": "guid",
-			"replaces": "1formexampleId",
-			"parameters": {
-				"defaultFormat": "d"
-			}
-		},
-		"2formexampleId": {
-			"type": "generated",
-			"generator": "guid",
-			"replaces": "2formexampleId",
-			"parameters": {
-				"defaultFormat": "d"
-			}
-		},
-		"3formexampleId": {
-			"type": "generated",
-			"generator": "guid",
-			"replaces": "3formexampleId",
-			"parameters": {
-				"defaultFormat": "d"
-			}
-		},
-		"4formexampleId": {
-			"type": "generated",
-			"generator": "guid",
-			"replaces": "4formexampleId",
-			"parameters": {
-				"defaultFormat": "d"
-			}
-		},
-		"5formexampleId": {
-			"type": "generated",
-			"generator": "guid",
-			"replaces": "5formexampleId",
-			"parameters": {
-				"defaultFormat": "d"
-			}
-		},
-		"6formexampleId": {
-			"type": "generated",
-			"generator": "guid",
-			"replaces": "6formexampleId",
-			"parameters": {
-				"defaultFormat": "d"
-			}
-		},
-		"7formexampleId": {
-			"type": "generated",
-			"generator": "guid",
-			"replaces": "7formexampleId",
-			"parameters": {
-				"defaultFormat": "d"
-			}
-		},
-		"8formexampleId": {
-			"type": "generated",
-			"generator": "guid",
-			"replaces": "8formexampleId",
-			"parameters": {
-				"defaultFormat": "d"
-			}
-		},
-		"9formexampleId": {
-			"type": "generated",
-			"generator": "guid",
-			"replaces": "9formexampleId",
-			"parameters": {
-				"defaultFormat": "d"
-			}
-		},
-		"10formexampleId": {
-			"type": "generated",
-			"generator": "guid",
-			"replaces": "10formexampleId",
-			"parameters": {
-				"defaultFormat": "d"
-			}
-		},
-		"11formexampleId": {
-			"type": "generated",
-			"generator": "guid",
-			"replaces": "11formexampleId",
-			"parameters": {
-				"defaultFormat": "d"
-			}
-		},
-		"12formexampleId": {
-			"type": "generated",
-			"generator": "guid",
-			"replaces": "12formexampleId",
-			"parameters": {
-				"defaultFormat": "d"
-			}
-		},
-		"13formexampleId": {
-			"type": "generated",
-			"generator": "guid",
-			"replaces": "13formexampleId",
-			"parameters": {
-				"defaultFormat": "d"
-			}
-		},
-		"14formexampleId": {
-			"type": "generated",
-			"generator": "guid",
-			"replaces": "14formexampleId",
-			"parameters": {
-				"defaultFormat": "d"
-			}
 		}
 	},
 	"postActions": [
@@ -400,63 +287,16 @@
 			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
 			"args": {
 				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetFormId.ps1\"",
+				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/ApplyScaffold.ps1\"",
 				"redirectStandardOutput": "false"
 			},
 			"manualInstructions": [
 				{
-					"text": "Setting form ID"
+					"text": "Applying the entity form scaffold via 'txc workspace component apply-scaffold'"
 				}
 			],
 			"continueOnError": false,
-			"description": "Setting form ID"
-		},
-		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-			"args": {
-				"executable": "pwsh",
-				"condition": "(FormType == 'dialog')",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddToCustomizationsXml.ps1\" ",
-				"redirectStandardOutput": "false"
-			},
-			"manualInstructions": [
-				{
-					"text": "Adding new dialog to Customizations.xml"
-				}
-			],
-			"continueOnError": false,
-			"description": "Adding new dialog to Customizations.xml"
-		},
-		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-			"condition": "(AddDialogForm)",
-			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetVariables.ps1\"",
-				"redirectStandardOutput": "false"
-			},
-			"manualInstructions": [
-				{
-					"text": "Setting variables for new form"
-				}
-			],
-			"continueOnError": false,
-			"description": "Setting variables for new form"
-		},
-		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
-				"redirectStandardOutput": "false"
-			},
-			"manualInstructions": [
-				{
-					"text": "Removing Scripts"
-				}
-			],
-			"continueOnError": false,
-			"description": "Removing Scripts"
+			"description": "Applying the entity form scaffold via the TALXIS CLI"
 		}
 	]
 }
