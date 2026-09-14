@@ -7,7 +7,8 @@
   "description": "Adds a subgrid to a form showing related entity records. Generates row > cell > control. Params: TargetEntityLogicalName, ViewId, RecordsPerPage, EnableQuickFind, EnableViewPicker, EnableChartPicker. Required: FormId, FormType(main/quick), EntityLogicalName, SubgridLabel.",
     "tags": {
         "language": "XML",
-        "type": "item"
+        "type": "item",
+        "componentType": "FormSubgrid"
     },
     "sourceName": "subgridconfig",
     "preferNameDirectory": false,
@@ -177,31 +178,16 @@
             "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
             "args": {
                 "executable": "pwsh",
-                "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/add.ps1\" ",
+                "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/ApplyScaffold.ps1\"",
                 "redirectStandardOutput": "false"
             },
             "manualInstructions": [
                 {
-                    "text": "Adding new row to form"
+                    "text": "Applying the subgrid scaffold via 'txc workspace component apply-scaffold'"
                 }
             ],
             "continueOnError": false,
-            "description": "Adding new row to form"
-        },
-        {
-            "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-            "args": {
-                "executable": "pwsh",
-                "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
-                "redirectStandardOutput": "false"
-            },
-            "manualInstructions": [
-                {
-                    "text": "Removing Scripts"
-                }
-            ],
-            "continueOnError": false,
-            "description": "Removing Scripts"
+            "description": "Applying the subgrid scaffold via the TALXIS CLI"
         }
     ]
 }
