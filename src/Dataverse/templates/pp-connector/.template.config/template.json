@@ -13,7 +13,23 @@
     "type": "project",
     "componentType": "Connector"
   },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(!TransformScript)",
+          "exclude": ["script.csx"]
+        }
+      ]
+    }
+  ],
   "symbols": {
+    "TransformScript": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include a starter script.csx custom-code file for transforming requests/responses beyond what the OpenAPI definition alone can do (https://learn.microsoft.com/en-us/connectors/custom-connectors/write-code). The build picks it up automatically once it exists - no other setting needed."
+    },
     "DisplayName": {
       "type": "parameter",
       "datatype": "text",
