@@ -5,39 +5,51 @@
   "name": "Power Platform: Custom Connector",
   "shortName": "pp-connector",
   "description": "Creates a flat Power Platform custom connector project: apiDefinition.swagger.json + apiProperties.json (ProjectType=Connector). Reference it from a Solution project to package it as a Connector solution component.",
+  "classifications": ["Dataverse", "Power Platform"],
+  "sourceName": "__project-name__",
+  "preferNameDirectory": true,
   "tags": {
     "language": "JSON",
     "type": "project",
     "componentType": "Connector"
   },
-  "sourceName": "ConnectorNameExample",
-  "sources": [
-    {
-      "exclude": [
-        "**/[Bb]in/**",
-        "**/[Oo]bj/**",
-        ".template.config/**/*"
-      ]
+  "symbols": {
+    "ConnectorName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "__connector-name__",
+      "isRequired": true,
+      "description": "Logical name of the connector, used in the Dataverse schema name (e.g. 'openfoodfacts'). Must start with a letter and contain only letters/digits."
+    },
+    "DisplayName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "__connector-display-name__",
+      "isRequired": true,
+      "description": "Display name for the connector, shown in Power Platform."
+    },
+    "Description": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "__connector-description__",
+      "description": "Description of what the connector does, shown in Power Platform."
+    },
+    "Host": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "__connector-host__",
+      "isRequired": true,
+      "description": "Hostname of the API this connector calls (the OpenAPI 'host' field), e.g. world.openfoodfacts.org."
     }
-  ],
-  "preferNameDirectory": true,
+  },
   "primaryOutputs": [
-    {
-      "path": "ConnectorNameExample.csproj"
-    }
+    { "path": "__project-name__.csproj" }
   ],
   "postActions": [
     {
       "description": "Add generated project to .sln file",
-      "manualInstructions": [
-        {
-          "text": "Add generated project to .sln file"
-        }
-      ],
-      "args": {
-        "inRoot": true
-      },
       "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
+      "args": { "inRoot": true },
       "continueOnError": false,
       "primaryOutputIndexes": "0"
     }

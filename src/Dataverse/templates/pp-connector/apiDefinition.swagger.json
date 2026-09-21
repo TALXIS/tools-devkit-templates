@@ -1,11 +1,11 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "TODO: Connector Display Name",
-    "description": "TODO: describe what this connector does.",
+    "title": "__connector-display-name__",
+    "description": "__connector-description__",
     "version": "1.0"
   },
-  "host": "TODO.example.com",
+  "host": "__connector-host__",
   "basePath": "/",
   "schemes": [
     "https"
