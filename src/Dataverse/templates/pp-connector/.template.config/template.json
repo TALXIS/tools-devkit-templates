@@ -18,15 +18,15 @@
       "type": "parameter",
       "datatype": "text",
       "replaces": "__connector-display-name__",
-      "defaultValue": "",
-      "description": "Display name for the connector, shown in Power Platform. If not set, the connector build falls back to the project's own logical name (the last dot-segment of the project name)."
+      "isRequired": true,
+      "description": "Display name for the connector - shown to makers browsing/creating connections in Power Platform. There's no good default for user-facing text like this, so it's required rather than falling back to the project's logical name."
     },
     "Description": {
       "type": "parameter",
       "datatype": "text",
       "replaces": "__connector-description__",
-      "defaultValue": "",
-      "description": "Description of what the connector does, shown in Power Platform."
+      "isRequired": true,
+      "description": "Description of what the connector does - shown to makers alongside the display name in Power Platform."
     },
     "Host": {
       "type": "parameter",
