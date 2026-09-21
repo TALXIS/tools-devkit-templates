@@ -14,24 +14,18 @@
     "componentType": "Connector"
   },
   "symbols": {
-    "ConnectorName": {
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "__connector-name__",
-      "isRequired": true,
-      "description": "Logical name of the connector, used in the Dataverse schema name (e.g. 'openfoodfacts'). Must start with a letter and contain only letters/digits."
-    },
     "DisplayName": {
       "type": "parameter",
       "datatype": "text",
       "replaces": "__connector-display-name__",
-      "isRequired": true,
-      "description": "Display name for the connector, shown in Power Platform."
+      "defaultValue": "",
+      "description": "Display name for the connector, shown in Power Platform. If not set, the connector build falls back to the project's own logical name (the last dot-segment of the project name)."
     },
     "Description": {
       "type": "parameter",
       "datatype": "text",
       "replaces": "__connector-description__",
+      "defaultValue": "",
       "description": "Description of what the connector does, shown in Power Platform."
     },
     "Host": {

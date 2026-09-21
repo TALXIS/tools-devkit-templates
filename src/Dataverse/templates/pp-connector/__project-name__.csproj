@@ -1,6 +1,5 @@
 <Project Sdk="TALXIS.DevKit.Build.Sdk/1.8.4">
   <PropertyGroup>
     <ProjectType>Connector</ProjectType>
-    <ConnectorName>__connector-name__</ConnectorName>
   </PropertyGroup>
 </Project>

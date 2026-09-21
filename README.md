@@ -470,7 +470,6 @@ Initialize a new custom connector project:
 ```console
 dotnet new pp-connector `
 --output "src/Connectors.OpenFoodFacts" `
---ConnectorName "OpenFoodFacts" `
 --DisplayName "Open Food Facts" `
 --Description "Looks up product data by barcode from the Open Food Facts database." `
 --Host "world.openfoodfacts.org"
