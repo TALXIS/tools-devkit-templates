@@ -465,6 +465,18 @@ dotnet new pp-app-code-data `
 --EntityLogicalName "tom_warehouseitem"
 ```
 
+### Connectors
+Initialize a new custom connector project:
+```console
+dotnet new pp-connector `
+--output "src/Connectors.OpenFoodFacts"
+```
+
+This scaffolds a flat project (`apiDefinition.swagger.json`, `apiProperties.json`, `ProjectType=Connector`) — fill in the OpenAPI definition and connection parameters for your connector, then reference the project from a `Solutions.*` project via `ProjectReference` to package it as a Connector solution component.
+
+> [!TIP]  
+> See [Power Platform MSBuild targets](https://github.com/TALXIS/tools-devkit-build)'s `TALXIS.DevKit.Build.Dataverse.Connector` package for details on the file layout, optional `icon.png`/`script.csx`, and how the connector is staged into a solution build.
+
 ## Tools
 
 ### Power Platform: Script Library template
