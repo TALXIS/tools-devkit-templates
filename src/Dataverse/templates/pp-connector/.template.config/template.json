@@ -5,7 +5,10 @@
   "name": "Power Platform: Custom Connector",
   "shortName": "pp-connector",
   "description": "Creates a flat Power Platform custom connector project: apiDefinition.swagger.json + apiProperties.json (ProjectType=Connector). Reference it from a Solution project to package it as a Connector solution component.",
-  "classifications": ["Dataverse", "Power Platform"],
+  "classifications": [
+    "Dataverse",
+    "Power Platform"
+  ],
   "sourceName": "__project-name__",
   "preferNameDirectory": true,
   "tags": {
@@ -18,7 +21,9 @@
       "modifiers": [
         {
           "condition": "(!TransformScript)",
-          "exclude": ["script.csx"]
+          "exclude": [
+            "script.csx"
+          ]
         }
       ]
     }
@@ -29,6 +34,59 @@
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Include a starter script.csx custom-code file for transforming requests/responses beyond what the OpenAPI definition alone can do (https://learn.microsoft.com/en-us/connectors/custom-connectors/write-code). The build picks it up automatically once it exists - no other setting needed."
+    },
+    "AuthType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "NoAuth"
+        },
+        {
+          "choice": "ApiKey"
+        },
+        {
+          "choice": "BasicAuth"
+        },
+        {
+          "choice": "OAuthGeneric"
+        },
+        {
+          "choice": "OAuthAAD"
+        }
+      ],
+      "defaultValue": "NoAuth",
+      "description": "Authentication type for apiProperties.json's connectionParameters - matches 'pac connector init --connection-template <type>' exactly (extracted from pac's own embedded templates, not reinvented)."
+    },
+    "ConnectionParametersJson": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "__connector-connection-parameters__",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(AuthType == \"NoAuth\")",
+            "value": "{}"
+          },
+          {
+            "condition": "(AuthType == \"ApiKey\")",
+            "value": "{\"api_key\":{\"type\":\"securestring\",\"uiDefinition\":{\"displayName\":\"REPLACE_ME_API_KEY_LABEL\",\"description\":\"REPLACE_ME_API_KEY_DESCRIPTION\",\"tooltip\":\"REPLACE_ME_API_KEY_TOOLTIP\",\"constraints\":{\"tabIndex\":2,\"clearText\":false,\"required\":\"true\"}}}}"
+          },
+          {
+            "condition": "(AuthType == \"BasicAuth\")",
+            "value": "{\"username\":{\"type\":\"securestring\",\"uiDefinition\":{\"displayName\":\"REPLACE_ME_USER_NAME_LABEL\",\"description\":\"REPLACE_ME_USER_NAME_DESCRIPTION\",\"tooltip\":\"REPLACE_ME_USER_NAME_TOOLTIP\",\"constraints\":{\"tabIndex\":2,\"clearText\":true,\"required\":\"true\"}}},\"password\":{\"type\":\"securestring\",\"uiDefinition\":{\"displayName\":\"REPLACE_ME_PASSWORD_LABEL\",\"description\":\"REPLACE_ME_PASSWORD_DESCRIPTION\",\"tooltip\":\"REPLACE_ME_PASSWORD_TOOLTIP\",\"constraints\":{\"tabIndex\":3,\"clearText\":false,\"required\":\"true\"}}}}"
+          },
+          {
+            "condition": "(AuthType == \"OAuthGeneric\")",
+            "value": "{\"token\":{\"type\":\"oauthSetting\",\"oAuthSettings\":{\"identityProvider\":\"oauth2\",\"clientId\":\"REPLACE_ME_CLIENT_ID\",\"scopes\":[\"REPLACE_ME_SCOPES\"],\"redirectMode\":\"Global\",\"redirectUrl\":\"https://global.consent.azure-apim.net/redirect\",\"properties\":{\"IsFirstParty\":\"False\",\"IsOnbehalfofLoginSupported\":false},\"customParameters\":{\"authorizationUrl\":{\"value\":\"REPLACE_ME_AUTHORIZATION_URL\"},\"tokenUrl\":{\"value\":\"REPLACE_ME_TOKEN_URL\"},\"refreshUrl\":{\"value\":\"REPLACE_ME_REFRESH_URL\"}}}}}"
+          },
+          {
+            "condition": "(AuthType == \"OAuthAAD\")",
+            "value": "{\"token\":{\"type\":\"oauthSetting\",\"oAuthSettings\":{\"identityProvider\":\"aad\",\"clientId\":\"REPLACE_ME_CLIENT_ID\",\"scopes\":[\"REPLACE_ME_SCOPES\"],\"redirectMode\":\"Global\",\"redirectUrl\":\"https://global.consent.azure-apim.net/redirect\",\"properties\":{\"IsFirstParty\":\"False\",\"AzureActiveDirectoryResourceId\":\"REPLACE_ME_RESOURCE_ID\",\"IsOnbehalfofLoginSupported\":true},\"customParameters\":{\"loginUri\":{\"value\":\"https://login.windows.net\"},\"tenantId\":{\"value\":\"REPLACE_ME_TENANT_ID_OR_COMMON\"},\"resourceUri\":{\"value\":\"REPLACE_ME_RESOURCE_URI\"},\"enableOnbehalfOfLogin\":{\"value\":\"false\"}}}},\"token:TenantId\":{\"type\":\"string\",\"metadata\":{\"sourceType\":\"AzureActiveDirectoryTenant\"},\"uiDefinition\":{\"constraints\":{\"required\":\"false\",\"hidden\":\"true\"}}}}"
+          }
+        ]
+      }
     },
     "DisplayName": {
       "type": "parameter",
@@ -53,13 +111,17 @@
     }
   },
   "primaryOutputs": [
-    { "path": "__project-name__.csproj" }
+    {
+      "path": "__project-name__.csproj"
+    }
   ],
   "postActions": [
     {
       "description": "Add generated project to .sln file",
       "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
-      "args": { "inRoot": true },
+      "args": {
+        "inRoot": true
+      },
       "continueOnError": false,
       "primaryOutputIndexes": "0"
     }

@@ -480,6 +480,16 @@ This scaffolds a flat project (`apiDefinition.swagger.json`, `apiProperties.json
 
 Pass `--TransformScript true` to also scaffold a starter `script.csx` (custom code for transforming requests/responses beyond what the OpenAPI definition alone can do — see [Write code in a custom connector](https://learn.microsoft.com/en-us/connectors/custom-connectors/write-code)). Omit it (or pass `false`) to leave the file out entirely; the build only wires up custom code when the file exists.
 
+`--AuthType` (`NoAuth` by default, or `ApiKey`/`BasicAuth`/`OAuthGeneric`/`OAuthAAD`) fills in `apiProperties.json`'s `connectionParameters` with the same shape `pac connector init --connection-template <type>` itself produces — including its `REPLACE_ME_*` placeholders, which you then fill in by hand (client ID, scopes, authorization/token URLs, etc., depending on the type):
+```console
+dotnet new pp-connector `
+--output "src/Connectors.SomeApiKeyProtectedApi" `
+--DisplayName "Some API" `
+--Description "..." `
+--Host "api.example.com" `
+--AuthType ApiKey
+```
+
 > [!TIP]  
 > See [Power Platform MSBuild targets](https://github.com/TALXIS/tools-devkit-build)'s `TALXIS.DevKit.Build.Dataverse.Connector` package for details on the file layout, optional `icon.png`/`script.csx`, and how the connector is staged into a solution build.
 
