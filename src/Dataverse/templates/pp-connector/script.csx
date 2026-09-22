@@ -10,15 +10,6 @@
 //   won't compile when the connector is deployed, even if it compiles locally.
 // - Execution must finish within 2 minutes; the compiled script can't exceed 1 MB.
 // - Always call this.Context.SendAsync(...) to reach the backend - never HttpClient directly.
-//
-// this.Context (IScriptContext) gives you:
-//   - Request        the incoming HttpRequestMessage - mutate it before forwarding to add/
-//                     change headers, query params, method, etc.
-//   - OperationId     which OpenAPI operation is being invoked
-//   - CorrelationId, Logger
-//   - SendAsync(request, cancellationToken)   forwards a request to the backend
-//
-// CreateJsonContent(string) is a ScriptBase helper for building a JSON response body.
 
 using System.Net.Http;
 using System.Threading.Tasks;
