@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "connectionParameters": __connector-connection-parameters__,
+    "iconBrandColor": "#007ee5",
+    "capabilities": [],
+    "policyTemplateInstances": []
+  }
+}
