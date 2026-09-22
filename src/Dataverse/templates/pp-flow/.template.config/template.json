@@ -35,6 +35,7 @@
       "type": "parameter",
       "datatype": "text",
       "replaces": "__publisher-prefix__",
+      "fileRename": "__publisher-prefix__",
       "isRequired": true,
       "description": "Publisher prefix (e.g. contoso)"
     },
