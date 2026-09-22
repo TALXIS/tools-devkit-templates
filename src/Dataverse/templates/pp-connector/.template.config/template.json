@@ -56,7 +56,7 @@
         }
       ],
       "defaultValue": "NoAuth",
-      "description": "Authentication type for apiProperties.json's connectionParameters - matches 'pac connector init --connection-template <type>' exactly (extracted from pac's own embedded templates, not reinvented)."
+      "description": "Authentication type for apiProperties.json's connectionParameters - matches 'pac connector init --connection-template <type>' exactly."
     },
     "ConnectionParametersJson": {
       "type": "generated",
@@ -93,7 +93,7 @@
       "datatype": "text",
       "replaces": "__connector-display-name__",
       "isRequired": true,
-      "description": "Display name for the connector - shown to makers browsing/creating connections in Power Platform. There's no good default for user-facing text like this, so it's required rather than falling back to the project's logical name."
+      "description": "Display name for the connector - shown to makers browsing/creating connections in Power Platform."
     },
     "Description": {
       "type": "parameter",
