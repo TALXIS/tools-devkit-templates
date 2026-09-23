@@ -2,10 +2,10 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "NETWORG",
   "identity": "TALXIS.DevKit.Templates.Dataverse.GenPage",
-  "name": "Power Platform: Generative Page",
+  "name": "Power Platform: Generative Page (GenPage)",
   "shortName": "pp-page-generative",
-  "description": "Creates a generative page project: page.tsx (React 17 + Fluent UI V9, export default GeneratedComponent) + .csproj (ProjectType=GenPage). CHAIN: Step 1 — create this project. Step 2 — add as project reference from solution. Step 3 — add sitemap subarea with PageType=genpage. Step 4 — dotnet build.",
-  "classifications": ["Dataverse", "Power Platform"],
+  "description": "Creates a GenPage project with Rollup bundling. Every *.tsx file at the project root is a page; the initial page is named after the project. Build with 'dotnet build' — the SDK discovers pages by filename, generates runtime types, bundles one ESM file per page, and wires solution-owned uxagentprojects metadata.",
+  "classifications": ["TALXIS", "Dataverse", "Power Platform", "GenPage"],
   "sourceName": "__project-name__",
   "preferNameDirectory": true,
   "tags": {
@@ -14,27 +14,12 @@
     "componentType": "GenPage"
   },
   "symbols": {
-    "Name": {
+    "SolutionName": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "__genpage-name__",
-      "isRequired": true,
-      "description": "Logical name of the generative page (used in solution schema name, e.g., 'accountdashboard')"
-    },
-    "DisplayName": {
-      "type": "parameter",
-      "datatype": "text",
-      "replaces": "__genpage-display-name__",
-      "isRequired": true,
-      "description": "Display name shown in the model-driven app sitemap navigation"
-    },
-    "PageId": {
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "__genpage-id__",
-      "parameters": {
-        "defaultFormat": "d"
-      }
+      "replaces": "__solution-name__",
+      "defaultValue": "",
+      "description": "Optional sibling solution project name. When provided, the template runs 'dotnet add ../<SolutionName>/<SolutionName>.csproj reference <this project>' after scaffold."
     }
   },
   "primaryOutputs": [
@@ -42,11 +27,30 @@
   ],
   "postActions": [
     {
-      "description": "Add generated project to .sln file",
-      "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
-      "args": { "inRoot": true },
-      "continueOnError": false,
-      "primaryOutputIndexes": "0"
+      "description": "Add GenPage project reference to the solution project when SolutionName is provided",
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddProjectReference.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Run dotnet add ../<solution-name>/<solution-name>.csproj reference <this project> if automatic wiring was skipped." }
+      ],
+      "continueOnError": false
+    },
+    {
+      "description": "Remove template scripts",
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Remove .template.scripts from the generated project." }
+      ],
+      "continueOnError": false
     }
   ]
 }
