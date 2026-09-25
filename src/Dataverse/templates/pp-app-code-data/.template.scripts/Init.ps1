@@ -13,8 +13,19 @@ if (-not (Test-Path $targetIndexTs))
     Copy-Item (Join-Path ".template.temp" "index.ts") -Destination $targetGenerated -Force
 }
 
-& (Join-Path $PSScriptRoot 'ReplacePlaceholder.ps1') -FilePath (Join-Path "src" "generated" "services" "capitalizedentitylogicalnameexamplesService.ts") -Placeholder "lowercaseentitylogicalnameexample" -Replacement $lowercasename
-& (Join-Path $PSScriptRoot 'ReplacePlaceholder.ps1') -FilePath (Join-Path "src" "generated" "services" "capitalizedentitylogicalnameexamplesService.ts") -Placeholder "capitalizedentitylogicalnameexample" -Replacement $capitalizedname
+$servicesDir = Join-Path "src" "generated" "services"
+$scaffoldedServicePath = Join-Path $servicesDir "capitalizedentitylogicalnameexamplesService.ts"
+
+& (Join-Path $PSScriptRoot 'ReplacePlaceholder.ps1') -FilePath $scaffoldedServicePath -Placeholder "lowercaseentitylogicalnameexample" -Replacement $lowercasename
+& (Join-Path $PSScriptRoot 'ReplacePlaceholder.ps1') -FilePath $scaffoldedServicePath -Placeholder "capitalizedentitylogicalnameexample" -Replacement $capitalizedname
+
+# The placeholders are substituted in the file's *contents* above, but the file keeps its
+# template name. index.ts is told to export './services/<Capitalized>sService' a few lines
+# down, so without this rename the export points at a file that does not exist - and on a
+# project that already has correctly-named services, the leftover is a second file declaring
+# the same class, which fails the TypeScript build with TS2308.
+$finalServicePath = Join-Path $servicesDir ($capitalizedname + "sService.ts")
+Move-Item -LiteralPath $scaffoldedServicePath -Destination $finalServicePath -Force
 
 $generateModelScript = Join-Path $PSScriptRoot "GenerateModel.cs"
 $generatedModelsPath = Join-Path "src" "generated" "models"
