@@ -10,7 +10,7 @@ if ($tabId -ne "unknown" -and $tabNumber -ne "unknown") {
     $targetTab = $entityXml.SelectSingleNode("//tab[@id='{$tabId}']")
     if (-not $targetTab) {
         $tabs = $entityXml.SelectNodes("//tab")
-        if ($tabs.Count -ge [int]$tabNumber) {
+        if ($tabs.Count -ge [int]$tabNumber -and [int]$tabNumber -ge 1) {
             $targetTab = $tabs[[int]$tabNumber - 1]
         }
     }
@@ -18,7 +18,7 @@ if ($tabId -ne "unknown" -and $tabNumber -ne "unknown") {
     $targetTab = $entityXml.SelectSingleNode("//tab[@id='{$tabId}']")
 } elseif ($tabNumber -ne "unknown") {
     $tabs = $entityXml.SelectNodes("//tab")
-    if ($tabs.Count -ge [int]$tabNumber) {
+    if ($tabs.Count -ge [int]$tabNumber -and [int]$tabNumber -ge 1) {
         $targetTab = $tabs[[int]$tabNumber - 1]
     }
 } else {
@@ -29,7 +29,7 @@ if ($tabId -ne "unknown" -and $tabNumber -ne "unknown") {
 }
 
 if (-not $targetTab) {
-    Write-Error "Target tab not found"
+    Write-Error "Target tab not found. TabIndex is 1-based (the first tab is 1)."
     exit 1
 }
 

@@ -5,18 +5,17 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 
 
-var json = "jsonarraystringwhithrolesids";
+// Raw string literal: the substituted value may contain quotes or braces.
+var json = """
+jsonarraystringwhithrolesids
+""";
 
 List<string> guids = new List<string>(
             json
-                .Trim('[', ']')                    
-                .Split(',', StringSplitOptions.RemoveEmptyEntries) 
+                .Trim()
+                .Trim('[', ']')
+                .Split(',', StringSplitOptions.RemoveEmptyEntries)
         );
-
-for (int i = 0; i < guids.Count; i++)
-{
-    guids[i] = guids[i].Trim();
-}
 
 string scriptsDir = Path.GetFileName(Directory.GetCurrentDirectory()) == ".template.scripts"
     ? Directory.GetCurrentDirectory()
@@ -24,10 +23,34 @@ string scriptsDir = Path.GetFileName(Directory.GetCurrentDirectory()) == ".templ
 Directory.CreateDirectory(scriptsDir);
 var filePath = Path.Combine(scriptsDir, "appaccess.xml");
 
-using (var writer = new StreamWriter(filePath))
+var lines = new List<string>();
+foreach (var raw in guids)
 {
-    foreach (var permission in guids)
+    // Accept "guid", "{guid}", and quoted variants; emit the braced form the
+    // solution XML uses everywhere else.
+    var candidate = raw.Trim().Trim('"', '\'').Trim();
+
+    if (candidate.Length == 0)
     {
-        writer.WriteLine($"<Role id=\"{permission}\" />");
+        continue;
     }
+
+    if (!Guid.TryParse(candidate, out var roleId))
+    {
+        Console.Error.WriteLine($"'{candidate}' is not a valid security role GUID.");
+        Console.Error.WriteLine("SecurityRolesIds expects a comma-separated list of role GUIDs.");
+        return 1;
+    }
+
+    lines.Add($"<Role id=\"{roleId:B}\" />");
 }
+
+if (lines.Count == 0)
+{
+    Console.Error.WriteLine("SecurityRolesIds did not contain any security role GUIDs.");
+    Console.Error.WriteLine($"Received: {json}");
+    return 1;
+}
+
+File.WriteAllLines(filePath, lines);
+return 0;
