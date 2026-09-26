@@ -1,0 +1,179 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.CanvasApp",
+  "name": "Power Platform: Canvas App",
+  "shortName": "pp-app-canvas",
+  "description": "Creates a Canvas App: <prefix>_<logicalname>_<suffix>.meta.xml + paired BackgroundImageUri (PNG) + DocumentUri (.msapp) + AdditionalUris0_identity.json. LogicalName is derived from DisplayName (lowercase, alphanumerics only). Adds a RootComponent type=300 to Solution.xml. All canvas-app GUIDs (App, Test, Host, Screen1, plus the Properties.json Id/FileID inside the .msapp) are regenerated per scaffold.",
+  "classifications": ["Dataverse", "Power Platform"],
+  "sourceName": "PpAppCanvasSource",
+  "tags": {
+    "type": "item",
+    "language": "XML",
+    "componentType": "CanvasApp"
+  },
+  "preferNameDirectory": false,
+  "symbols": {
+    "DisplayName": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Human-readable display name shown in the Power Apps maker portal. LogicalName is derived from this by lowercasing and stripping spaces / punctuation.",
+      "isRequired": true,
+      "replaces": "displaynameexample"
+    },
+    "LogicalNameAlnum": {
+      "type": "generated",
+      "generator": "regex",
+      "dataType": "string",
+      "parameters": {
+        "source": "DisplayName",
+        "steps": [
+          { "regex": "[^A-Za-z0-9]", "replacement": "" }
+        ]
+      }
+    },
+    "LogicalName": {
+      "type": "generated",
+      "generator": "casing",
+      "dataType": "string",
+      "parameters": {
+        "source": "LogicalNameAlnum",
+        "toLower": true
+      },
+      "replaces": "logicalnameexample",
+      "fileRename": "logicalnameexample"
+    },
+    "NumericSuffix": {
+      "type": "generated",
+      "generator": "random",
+      "parameters": {
+        "low": 10000,
+        "high": 99999
+      },
+      "replaces": "numericsuffixexample",
+      "fileRename": "numericsuffixexample"
+    },
+    "AppGuid": {
+      "type": "generated",
+      "generator": "guid",
+      "parameters": { "defaultFormat": "d" },
+      "replaces": "appguidexample"
+    },
+    "TestGuid": {
+      "type": "generated",
+      "generator": "guid",
+      "parameters": { "defaultFormat": "d" },
+      "replaces": "testguidexample"
+    },
+    "HostGuid": {
+      "type": "generated",
+      "generator": "guid",
+      "parameters": { "defaultFormat": "d" },
+      "replaces": "hostguidexample"
+    },
+    "Screen1Guid": {
+      "type": "generated",
+      "generator": "guid",
+      "parameters": { "defaultFormat": "d" },
+      "replaces": "screen1guidexample"
+    },
+    "TestSuffixGuid": {
+      "type": "generated",
+      "generator": "guid",
+      "parameters": { "defaultFormat": "n" }
+    },
+    "TestSuffixTrunc": {
+      "type": "generated",
+      "generator": "regex",
+      "dataType": "string",
+      "parameters": {
+        "source": "TestSuffixGuid",
+        "steps": [
+          { "regex": "^(.{16}).*$", "replacement": "$1" }
+        ]
+      }
+    },
+    "TestSuffix": {
+      "type": "generated",
+      "generator": "casing",
+      "dataType": "string",
+      "parameters": {
+        "source": "TestSuffixTrunc",
+        "toLower": false
+      },
+      "replaces": "testsuffixexample"
+    },
+    "SolutionRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "__solution-root-path__",
+      "fileRename": "__solution-root-path__",
+      "description": "Relative path from the project folder (.csproj) to the folder containing unpacked Dataverse solution files (Other/, Entities/, CanvasApps/). Use '.' if solution files are directly in the project folder, or a subfolder name like 'Declarations'. Do not use 'CanvasApps' or 'Other' — those are subdirectories inside the solution metadata root.",
+      "isRequired": false
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "copyOnly": [
+            "**/*.msapp",
+            "**/*_BackgroundImageUri"
+          ]
+        }
+      ]
+    }
+  ],
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/ReplacePublisherPrefix.ps1\""
+      },
+      "manualInstructions": [
+        { "text": "Resolving publisher prefix from Solution.xml" }
+      ],
+      "continueOnError": false,
+      "description": "Read <CustomizationPrefix> from Solution.xml and substitute it for __publisher-prefix-default-value__ in scaffolded files and filenames"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/RandomizeIds.ps1\""
+      },
+      "manualInstructions": [
+        { "text": "Randomizing GUIDs inside .msapp" }
+      ],
+      "continueOnError": false,
+      "description": "Regenerate the paired Id/FileID GUIDs inside the .msapp's Properties.json"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddCanvasAppToSolutionXml.ps1\""
+      },
+      "manualInstructions": [
+        { "text": "Adding canvas app to Solution.xml" }
+      ],
+      "continueOnError": false,
+      "description": "Append <RootComponent type=\"300\"> for this canvas app"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Removing scripts" }
+      ],
+      "continueOnError": false,
+      "description": "Cleanup"
+    }
+  ]
+}
