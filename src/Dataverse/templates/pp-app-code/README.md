@@ -8,20 +8,19 @@ Designed for common app scenarios, easy extensibility, and minimal setup.
 
 ## Highlights
 - **Modern tooling** - Vite, TypeScript, and React
-- **Out-of-box styling** - Tailwind, shadcn/ui components, and theming out of the box
+- **Out-of-box styling** - Fluent UI components, light/dark theming and toasts out of the box
 - **Batteries included** - Curated libraries pre-wired for common scenarios
 - **Standard patterns** - Industry standard patterns and practices
 - **Agent friendly** - Optimized for use with coding agents
 ---
 
 ## Pre-installed libraries
-- [Tailwind CSS](https://tailwindcss.com/) - utility-first CSS framework
-- [shadcn/ui](https://ui.shadcn.com/) - pre-installed UI components
+- [Fluent UI React v9](https://react.fluentui.dev/) - Microsoft's design system: components, theming (`FluentProvider`), styling (`makeStyles` + design tokens), toasts
 - [React Router](https://reactrouter.com/) - pages, routing
 - [Zustand](https://zustand.docs.pmnd.rs/) - state management
 - [Tanstack Query](https://tanstack.com/query/latest) - data fetching, state management
 - [Tanstack Table](https://tanstack.com/table/latest) - interactive tables, datagrids
-- [Lucide](https://lucide.dev/) - icons
+- [Fluent UI Icons](https://github.com/microsoft/fluentui-system-icons) - icons (`@fluentui/react-icons`)
 
 ---
 

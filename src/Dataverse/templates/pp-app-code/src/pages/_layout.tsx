@@ -1,17 +1,63 @@
 import { Outlet, NavLink } from "react-router-dom"
+import { makeStyles, mergeClasses, tokens } from "@fluentui/react-components"
+
+const useStyles = makeStyles({
+  root: {
+    minHeight: "100dvh",
+    display: "flex",
+    flexDirection: "column",
+  },
+  header: {
+    height: "56px",
+    display: "flex",
+    alignItems: "center",
+    borderBottom: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,
+  },
+  container: {
+    boxSizing: "border-box",
+    width: "100%",
+    maxWidth: "1280px",
+    margin: "0 auto",
+    padding: `0 ${tokens.spacingHorizontalXXL}`,
+  },
+  nav: {
+    display: "flex",
+    alignItems: "center",
+    gap: tokens.spacingHorizontalL,
+  },
+  navLink: {
+    fontSize: tokens.fontSizeBase300,
+    color: tokens.colorNeutralForeground3,
+    textDecorationLine: "none",
+    ":hover": { color: tokens.colorNeutralForeground1 },
+  },
+  navLinkActive: {
+    color: tokens.colorNeutralForeground1,
+    fontWeight: tokens.fontWeightSemibold,
+  },
+  main: {
+    flex: 1,
+    display: "flex",
+    width: "100%",
+    maxWidth: "1280px",
+    margin: "0 auto",
+  },
+})
 
 type LayoutProps = { showHeader?: boolean }
 
 export default function Layout({ showHeader = true }: LayoutProps) {
+  const styles = useStyles()
+
   return (
-    <div className="min-h-dvh flex flex-col">
+    <div className={styles.root}>
       {showHeader && (
-        <header className="h-14 border-b flex items-center">
-          <div className="mx-auto w-full max-w-7xl px-6 flex items-center justify-between">
-            <nav className="flex items-center gap-4">
+        <header className={styles.header}>
+          <div className={styles.container}>
+            <nav className={styles.nav}>
               <NavLink to="/" end
                 className={({ isActive }) =>
-                  `text-sm text-muted-foreground hover:text-foreground ${isActive ? "text-foreground font-medium" : ""}`
+                  mergeClasses(styles.navLink, isActive && styles.navLinkActive)
                 }
               >
                 Home
@@ -21,10 +67,8 @@ export default function Layout({ showHeader = true }: LayoutProps) {
         </header>
       )}
 
-      <main className="flex-1 flex">
-        <div className="flex-1 mx-auto w-full max-w-7xl">
-          <Outlet />
-        </div>
+      <main className={styles.main}>
+        <Outlet />
       </main>
     </div>
   )
