@@ -1,37 +1,37 @@
-import { Moon, Sun } from "lucide-react"
-
-import { Button } from "@/components/ui/button"
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+  Button,
+  Menu,
+  MenuItemRadio,
+  MenuList,
+  MenuPopover,
+  MenuTrigger,
+} from "@fluentui/react-components"
+import { WeatherMoonRegular, WeatherSunnyRegular } from "@fluentui/react-icons"
 import { useTheme } from "@/hooks/use-theme"
+import type { Theme } from "@/providers/theme-context"
 
 export function ModeToggle() {
-  const { setTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Menu
+      checkedValues={{ theme: [theme] }}
+      onCheckedValueChange={(_, data) => setTheme(data.checkedItems[0] as Theme)}
+    >
+      <MenuTrigger disableButtonEnhancement>
+        <Button
+          appearance="outline"
+          icon={theme === "dark" ? <WeatherMoonRegular /> : <WeatherSunnyRegular />}
+          aria-label="Toggle theme"
+        />
+      </MenuTrigger>
+      <MenuPopover>
+        <MenuList>
+          <MenuItemRadio name="theme" value="light">Light</MenuItemRadio>
+          <MenuItemRadio name="theme" value="dark">Dark</MenuItemRadio>
+          <MenuItemRadio name="theme" value="system">System</MenuItemRadio>
+        </MenuList>
+      </MenuPopover>
+    </Menu>
   )
 }
