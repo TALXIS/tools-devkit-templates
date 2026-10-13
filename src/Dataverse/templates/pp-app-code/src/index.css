@@ -4,3 +4,11 @@ body {
   margin: 0;
   min-height: 100%;
 }
+
+/* Base controls are Fluent v8: their dropdowns, suggestions and callouts render into one shared
+   layer host, created on first use. Fluent v9 dialogs and popovers portal to <body> at the same
+   z-index, so a dialog opened after that host exists would cover them; keep v8 layers on top
+   (!important: Fluent v8 sets the host's z-index inline). */
+#fluent-default-layer-host {
+  z-index: 1000001 !important;
+}
