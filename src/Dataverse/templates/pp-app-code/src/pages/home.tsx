@@ -11,6 +11,7 @@ import {
 } from "@fluentui/react-components"
 import powerAppsLogo from "/power-apps.svg"
 import reactLogo from "@/assets/react.svg"
+import { Decimal, usePcfContext } from "@talxis/base-controls"
 import { ModeToggle } from "@/components/mode-toggle"
 import { useToast } from "@/hooks/use-toast"
 
@@ -49,6 +50,12 @@ const useStyles = makeStyles({
     alignItems: "center",
     padding: tokens.spacingHorizontalXXL,
   },
+  counter: {
+    display: "flex",
+    alignItems: "center",
+    gap: tokens.spacingHorizontalS,
+    width: "240px",
+  },
   muted: {
     color: tokens.colorNeutralForeground3,
   },
@@ -61,7 +68,8 @@ const useStyles = makeStyles({
 export default function HomePage() {
   const styles = useStyles()
   const toast = useToast()
-  const [count, setCount] = useState(0)
+  const context = usePcfContext()
+  const [count, setCount] = useState<number | null>(0)
 
   return (
     <div className={styles.root}>
@@ -77,9 +85,21 @@ export default function HomePage() {
       <LargeTitle as="h1">Power + Code</LargeTitle>
 
       <Card className={styles.card}>
-        <Button appearance="outline" onClick={() => setCount((c) => c + 1)}>
-          count is {count}
-        </Button>
+        {/* A TALXIS base control: a Dataverse-style whole number field, formatted from user settings */}
+        <div className={styles.counter}>
+          <Decimal
+            context={context}
+            parameters={{ value: { raw: count, type: "Whole.None" } }}
+            onNotifyOutputChanged={(outputs) => {
+              // A parsed value arrives as a number (undefined when cleared); input the control can't
+              // parse arrives as the raw text, so it's skipped here rather than stored as the count
+              if (typeof outputs.value !== "string") setCount(outputs.value ?? null)
+            }}
+          />
+          <Button appearance="outline" onClick={() => setCount((c) => (c ?? 0) + 1)}>
+            +1
+          </Button>
+        </div>
         <Body1 className={styles.muted}>
           Edit <code>src/App.tsx</code> and save to test HMR
         </Body1>
