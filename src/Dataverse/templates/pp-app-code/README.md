@@ -9,6 +9,7 @@ Designed for common app scenarios, easy extensibility, and minimal setup.
 ## Highlights
 - **Modern tooling** - Vite, TypeScript, and React
 - **Out-of-box styling** - Fluent UI components, light/dark theming and toasts out of the box
+- **Dataverse-native controls** - TALXIS base controls (fields, lookups, grid) wired up with a PCF context
 - **Batteries included** - Curated libraries pre-wired for common scenarios
 - **Standard patterns** - Industry standard patterns and practices
 - **Agent friendly** - Optimized for use with coding agents
@@ -16,11 +17,34 @@ Designed for common app scenarios, easy extensibility, and minimal setup.
 
 ## Pre-installed libraries
 - [Fluent UI React v9](https://react.fluentui.dev/) - Microsoft's design system: components, theming (`FluentProvider`), styling (`makeStyles` + design tokens), toasts
+- [TALXIS base controls](https://github.com/TALXIS/base-controls) - Dataverse field controls (`TextField`, `Decimal`, `OptionSet`, `Lookup`, `DateTime`, ...) and the `Grid`, with formatting from user settings
 - [React Router](https://reactrouter.com/) - pages, routing
 - [Zustand](https://zustand.docs.pmnd.rs/) - state management
 - [Tanstack Query](https://tanstack.com/query/latest) - data fetching, state management
 - [Tanstack Table](https://tanstack.com/table/latest) - interactive tables, datagrids
 - [Fluent UI Icons](https://github.com/microsoft/fluentui-system-icons) - icons (`@fluentui/react-icons`)
+
+---
+
+## TALXIS base controls
+Base controls are built for the Power Apps Component Framework and read a PCF `context`. The starter's
+`ThemeProvider` wraps the app in `PcfContextProvider`, which builds one outside a PCF host and passes
+the current Fluent v9 theme as `fluentDesignLanguage`, so controls follow light/dark mode. Inside any
+page, get the context with `usePcfContext()` and pass it to a control:
+
+```tsx
+const context = usePcfContext()
+<Decimal context={context} parameters={{ value: { raw: qty, type: "Whole.None" } }}
+  onNotifyOutputChanged={(o) => typeof o.value !== "string" && setQty(o.value ?? null)} />
+```
+
+A control reports a value it can't parse as the raw text (a string), so check the type before storing it.
+
+- **React 18:** base controls (and the AG Grid behind `Grid`) support React up to 18, so the starter
+  pins React 18. The `overrides` entry in `package.json` lets base controls, which declare React
+  16/17 as their peer range, use the app's React 18.
+- **Grid licence:** `Grid` uses AG Grid Enterprise modules. Without a licence key (the `LicenseKey`
+  parameter) it runs as an AG Grid trial, with a console notice and a watermark.
 
 ---
 
