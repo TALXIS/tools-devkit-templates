@@ -1,21 +1,6 @@
 import { useNavigate } from "react-router-dom"
-import { Body1, Button, LargeTitle, makeStyles, tokens } from "@fluentui/react-components"
-
-const useStyles = makeStyles({
-  root: {
-    minHeight: "100dvh",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: tokens.spacingVerticalXL,
-    padding: tokens.spacingHorizontalXXL,
-    textAlign: "center",
-  },
-  muted: {
-    color: tokens.colorNeutralForeground3,
-  },
-})
+import { Body1, Button, LargeTitle } from "@fluentui/react-components"
+import { useStyles } from "./not-found.styles"
 
 export default function NotFoundPage() {
   const styles = useStyles()
