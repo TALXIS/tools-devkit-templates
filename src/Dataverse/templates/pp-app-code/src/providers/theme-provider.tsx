@@ -1,6 +1,7 @@
-import { createContext, useEffect, useState } from "react"
-
-export type Theme = "dark" | "light" | "system"
+import { useMemo, useState, useSyncExternalStore } from "react"
+import { FluentProvider, webDarkTheme, webLightTheme } from "@fluentui/react-components"
+import { PcfProvider } from "@/providers/pcf-provider"
+import { ThemeProviderContext, type Theme } from "@/providers/theme-context"
 
 type ThemeProviderProps = {
   children: React.ReactNode
@@ -8,45 +9,32 @@ type ThemeProviderProps = {
   storageKey?: string
 }
 
-type ThemeProviderState = {
-  theme: Theme
-  setTheme: (theme: Theme) => void
-}
+const darkQuery = window.matchMedia("(prefers-color-scheme: dark)")
 
-const initialState: ThemeProviderState = {
-  theme: "system",
-  setTheme: () => null,
+// Tracks the OS color scheme live, so "system" follows it without a reload.
+function usePrefersDark() {
+  return useSyncExternalStore(
+    (onChange) => {
+      darkQuery.addEventListener("change", onChange)
+      return () => darkQuery.removeEventListener("change", onChange)
+    },
+    () => darkQuery.matches
+  )
 }
-
-export const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
 export function ThemeProvider({
   children,
   defaultTheme = "system",
   storageKey = "app-theme",
-  ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(
     () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
   )
+  const prefersDark = usePrefersDark()
+  const isDark = theme === "dark" || (theme === "system" && prefersDark)
+  const tokenTheme = isDark ? webDarkTheme : webLightTheme
 
-  useEffect(() => {
-    const root = window.document.documentElement
-
-    root.classList.remove("light", "dark")
-
-    if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light"
-
-      root.classList.add(systemTheme)
-      return
-    }
-
-    root.classList.add(theme)
-  }, [theme])
+  const fluentDesignLanguage = useMemo(() => ({ isDarkTheme: isDark, tokenTheme }), [isDark, tokenTheme])
 
   const value = {
     theme,
@@ -57,8 +45,12 @@ export function ThemeProvider({
   }
 
   return (
-    <ThemeProviderContext.Provider {...props} value={value}>
-      {children}
+    <ThemeProviderContext.Provider value={value}>
+      <FluentProvider theme={tokenTheme} style={{ minHeight: "100dvh" }}>
+        <PcfProvider fluentDesignLanguage={fluentDesignLanguage}>
+          {children}
+        </PcfProvider>
+      </FluentProvider>
     </ThemeProviderContext.Provider>
   )
 }
