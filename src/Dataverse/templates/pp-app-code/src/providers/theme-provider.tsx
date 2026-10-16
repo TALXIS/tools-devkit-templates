@@ -1,6 +1,6 @@
 import { useMemo, useState, useSyncExternalStore } from "react"
 import { FluentProvider, webDarkTheme, webLightTheme } from "@fluentui/react-components"
-import { PcfContextProvider } from "@talxis/base-controls"
+import { PcfProvider } from "@/providers/pcf-provider"
 import { ThemeProviderContext, type Theme } from "@/providers/theme-context"
 
 type ThemeProviderProps = {
@@ -34,13 +34,7 @@ export function ThemeProvider({
   const isDark = theme === "dark" || (theme === "system" && prefersDark)
   const tokenTheme = isDark ? webDarkTheme : webLightTheme
 
-  // TALXIS base controls expect a PCF context. Outside a PCF host, PcfContextProvider builds one
-  // (formatting, user settings, ...) on top of this partial context; fluentDesignLanguage carries
-  // the current Fluent v9 theme so the controls follow light/dark mode with the rest of the app.
-  const pcfContext = useMemo(
-    () => ({ fluentDesignLanguage: { isDarkTheme: isDark, tokenTheme } }) as unknown as ComponentFramework.Context<unknown>,
-    [isDark, tokenTheme]
-  )
+  const fluentDesignLanguage = useMemo(() => ({ isDarkTheme: isDark, tokenTheme }), [isDark, tokenTheme])
 
   const value = {
     theme,
@@ -53,9 +47,9 @@ export function ThemeProvider({
   return (
     <ThemeProviderContext.Provider value={value}>
       <FluentProvider theme={tokenTheme} style={{ minHeight: "100dvh" }}>
-        <PcfContextProvider context={pcfContext}>
+        <PcfProvider fluentDesignLanguage={fluentDesignLanguage}>
           {children}
-        </PcfContextProvider>
+        </PcfProvider>
       </FluentProvider>
     </ThemeProviderContext.Provider>
   )

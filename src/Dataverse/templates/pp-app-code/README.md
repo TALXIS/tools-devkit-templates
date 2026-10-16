@@ -28,9 +28,27 @@ Designed for common app scenarios, easy extensibility, and minimal setup.
 
 ## TALXIS base controls
 Base controls are built for the Power Apps Component Framework and read a PCF `context`. The starter's
-`ThemeProvider` wraps the app in `PcfContextProvider`, which builds one outside a PCF host and passes
-the current Fluent v9 theme as `fluentDesignLanguage`, so controls follow light/dark mode. Inside any
-page, get the context with `usePcfContext()` and pass it to a control:
+`PcfProvider` (`src/providers/pcf-provider.tsx`) supplies one through `PcfContextProvider`: a context
+generated for a non-PCF host (formatting, user settings, dialogs, ...) carrying the current Fluent v9
+theme, so controls follow light/dark mode, plus two surfaces the app answers itself from
+`src/providers/pcf-host.ts`:
+
+- `utils.getEntityMetadata` - from the tables you register with `registerEntities()` (a `Lookup`
+  needs its target's metadata)
+- `navigation.openForm` - navigates to a record's page in the app, from each entity's `formPath`
+  (the router registers the navigation with `setHostNavigate`)
+
+```ts
+registerEntities({
+  logicalName: "tom_warehouseitem",
+  displayName: "Warehouse Item",
+  primaryIdAttribute: "tom_warehouseitemid",
+  primaryNameAttribute: "tom_name",
+  formPath: (id) => `/items/${id}`,
+})
+```
+
+Inside any page, get the context with `usePcfContext()` and pass it to a control:
 
 ```tsx
 const context = usePcfContext()
