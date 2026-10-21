@@ -49,4 +49,6 @@ if ($formIdPath -ne $newFilePath) {
     Write-Host "Removed old file: $formIdPath"
 }
 
+<!--#if (FormType == "dialog") -->
 .\.template.scripts\AddFormToSolutionXml.ps1 -formId $formId
+<!--#endif -->
