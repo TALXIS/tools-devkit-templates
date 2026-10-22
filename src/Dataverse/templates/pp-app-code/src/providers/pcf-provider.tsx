@@ -2,6 +2,12 @@ import { useMemo } from "react"
 import { PcfContextProvider, usePcfContext } from "@talxis/base-controls"
 import { getEntityMetadata, openForm } from "@/providers/pcf-host"
 
+type XrmWindow = Window & { Xrm?: { Utility: { getEntityMetadata: unknown } } }
+
+// Read at import, before any provider renders: the provider only creates its fallback Xrm when
+// the host page hasn't provided one
+const hostProvidesXrm = !!(window as XrmWindow).Xrm
+
 type PcfProviderProps = {
   children: React.ReactNode
   /** The current Fluent v9 theme, so controls follow light/dark mode with the rest of the app. */
@@ -40,8 +46,9 @@ function HostSurfaces({ children }: { children: React.ReactNode }) {
   // Lookup reads entity metadata from window.Xrm rather than the context; point the global
   // (base controls' own fallback Xrm, created by the provider above) at the same answer.
   // Set during render: the controls below read it in their own mount effects.
-  const xrm = (window as unknown as { Xrm?: { Utility: { getEntityMetadata: unknown } } }).Xrm
-  if (xrm) xrm.Utility.getEntityMetadata = getEntityMetadata
+  // A real Xrm the host page provided is left alone.
+  const xrm = (window as XrmWindow).Xrm
+  if (xrm && !hostProvidesXrm) xrm.Utility.getEntityMetadata = getEntityMetadata
 
   return <PcfContextProvider context={context}>{children}</PcfContextProvider>
 }
