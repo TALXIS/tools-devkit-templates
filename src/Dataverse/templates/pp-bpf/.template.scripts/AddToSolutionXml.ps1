@@ -17,13 +17,6 @@ $newComponent.SetAttribute("behavior", '0')
 
 $null = $rootComponents.AppendChild($newComponent)
 
-$newComponent = $File.CreateElement("RootComponent")
-$newComponent.SetAttribute("type", '60')
-$newComponent.SetAttribute("id", '{mainFormIdexample}')
-$newComponent.SetAttribute("behavior", '0')
-
-$null = $rootComponents.AppendChild($newComponent)
-
 $newComponent2 = $File.CreateElement("RootComponent")
 $newComponent2.SetAttribute("type", '1')
 $newComponent2.SetAttribute("schemaName", 'examplepublisher_examplebpfname')
