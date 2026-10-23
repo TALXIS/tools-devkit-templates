@@ -52,7 +52,7 @@
       "generator": "guid",
       "replaces": "__flow-workflow-id__",
       "parameters": {
-        "defaultFormat": "D"
+        "defaultFormat": "d"
       }
     },
     "TriggerOperationId": {
@@ -68,7 +68,7 @@
       "generator": "casing",
       "parameters": {
         "source": "FlowWorkflowId",
-        "toUpper": true
+        "toLower": false
       },
       "replaces": "__flow-workflow-id-upper__",
       "fileRename": "__flow-workflow-id-upper__"
