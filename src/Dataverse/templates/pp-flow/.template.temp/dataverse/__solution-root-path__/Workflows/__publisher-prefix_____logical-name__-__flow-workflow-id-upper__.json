@@ -1,0 +1,58 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "__connection-reference-logical-name__"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "__dataverse-trigger-name__": {
+          "metadata": {
+            "operationMetadataId": "__trigger-operation-id__"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": __dataverse-message__,
+              "subscriptionRequest/entityname": "__entity-logical-name__",
+//#if (FilteringAttributes != "")
+              "subscriptionRequest/scope": __dataverse-scope__,
+              "subscriptionRequest/filteringattributes": "__filtering-attributes__"
+//#else
+              "subscriptionRequest/scope": __dataverse-scope__
+//#endif
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

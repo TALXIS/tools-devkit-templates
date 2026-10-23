@@ -4,7 +4,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.Flow",
   "name": "Power Platform: Cloud Flow",
   "shortName": "pp-flow",
-  "description": "Scaffolds a Power Automate cloud flow: .json.data.xml metadata (Category=5 ModernFlow, Type=1) and .json flow definition with a manual trigger. Add connectors and actions in the flow designer.",
+  "description": "Scaffolds a Power Automate cloud flow: .json.data.xml metadata (Category=5 ModernFlow, Type=1) and .json flow definition with the selected trigger (manual button, recurrence schedule, or Dataverse row event). Add connectors and actions by editing the flow definition JSON or in the flow designer.",
   "classifications": ["Dataverse", "Power Platform"],
   "tags": {
     "language": "JSON",
@@ -17,24 +17,32 @@
       "exclude": [
         "**/[Bb]in/**",
         "**/[Oo]bj/**",
-        ".template.config/**/*"
+        ".template.config/**/*",
+        ".template.temp/**"
       ]
+    },
+    {
+      "condition": "(Trigger == \"manual\")",
+      "source": "./.template.temp/manual/",
+      "target": "./"
+    },
+    {
+      "condition": "(Trigger == \"recurrence\")",
+      "source": "./.template.temp/recurrence/",
+      "target": "./"
+    },
+    {
+      "condition": "(Trigger == \"dataverse\")",
+      "source": "./.template.temp/dataverse/",
+      "target": "./"
     }
   ],
   "symbols": {
-    "SolutionRootPath": {
-      "type": "parameter",
-      "datatype": "text",
-      "defaultValue": ".",
-      "replaces": "__solution-root-path__",
-      "fileRename": "__solution-root-path__",
-      "isRequired": false,
-      "description": "Relative path from the project folder (.csproj) to the folder containing unpacked Dataverse solution files (Other/, Entities/, OptionSets/). Use '.' if solution files are directly in the project folder, or a subfolder name like 'Declarations'. Do not use 'Entities' or 'Other' — those are subdirectories inside the solution metadata root."
-    },
     "PublisherPrefix": {
       "type": "parameter",
       "datatype": "text",
       "replaces": "__publisher-prefix__",
+      "fileRename": "__publisher-prefix__",
       "isRequired": true,
       "description": "Publisher prefix (e.g. contoso)"
     },
@@ -46,12 +54,161 @@
       "isRequired": true,
       "description": "Logical name of the flow without publisher prefix (e.g. myautomation)"
     },
+    "Trigger": {
+      "type": "parameter",
+      "datatype": "choice",
+      "description": "Trigger that starts the flow",
+      "defaultValue": "manual",
+      "choices": [
+        {
+          "choice": "manual",
+          "displayName": "Manual (button)",
+          "description": "Instant flow started manually"
+        },
+        {
+          "choice": "recurrence",
+          "displayName": "Recurrence (schedule)",
+          "description": "Scheduled flow that runs on an interval (see RecurrenceFrequency, RecurrenceInterval)"
+        },
+        {
+          "choice": "dataverse",
+          "displayName": "Dataverse row event",
+          "description": "Automated flow that runs when a Dataverse row is added, modified or deleted (see EntityLogicalName, TriggerEvent, Scope, FilteringAttributes, ConnectionReferenceLogicalName)"
+        }
+      ]
+    },
+    "RecurrenceFrequency": {
+      "type": "parameter",
+      "datatype": "choice",
+      "description": "[recurrence] How often the flow runs",
+      "defaultValue": "Day",
+      "isEnabled": "(Trigger == \"recurrence\")",
+      "replaces": "__recurrence-frequency__",
+      "choices": [
+        { "choice": "Minute" },
+        { "choice": "Hour" },
+        { "choice": "Day" },
+        { "choice": "Week" },
+        { "choice": "Month" }
+      ]
+    },
+    "RecurrenceInterval": {
+      "type": "parameter",
+      "datatype": "integer",
+      "description": "[recurrence] Number of frequency units between runs (e.g. 1)",
+      "defaultValue": "1",
+      "isEnabled": "(Trigger == \"recurrence\")",
+      "replaces": "__recurrence-interval__"
+    },
+    "EntityLogicalName": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "",
+      "description": "[dataverse] Logical name of the entity that triggers the flow, with publisher prefix (e.g. contoso_project)",
+      "isEnabled": "(Trigger == \"dataverse\")",
+      "isRequired": "(Trigger == \"dataverse\")",
+      "replaces": "__entity-logical-name__"
+    },
+    "TriggerEvent": {
+      "type": "parameter",
+      "datatype": "choice",
+      "description": "[dataverse] Row event that starts the flow",
+      "defaultValue": "create",
+      "isEnabled": "(Trigger == \"dataverse\")",
+      "choices": [
+        { "choice": "create", "description": "When a row is added" },
+        { "choice": "delete", "description": "When a row is deleted" },
+        { "choice": "update", "description": "When a row is modified" },
+        { "choice": "create-or-update", "description": "When a row is added or modified" },
+        { "choice": "create-or-delete", "description": "When a row is added or deleted" },
+        { "choice": "update-or-delete", "description": "When a row is modified or deleted" },
+        { "choice": "create-or-update-or-delete", "description": "When a row is added, modified or deleted" }
+      ]
+    },
+    "Scope": {
+      "type": "parameter",
+      "datatype": "choice",
+      "description": "[dataverse] Which rows trigger the flow, relative to the flow owner",
+      "defaultValue": "organization",
+      "isEnabled": "(Trigger == \"dataverse\")",
+      "choices": [
+        { "choice": "user", "description": "Rows owned by the flow owner" },
+        { "choice": "business-unit", "description": "Rows in the owner's business unit" },
+        { "choice": "parent-child-business-unit", "description": "Rows in the owner's business unit and its child business units" },
+        { "choice": "organization", "description": "All rows in the organization" }
+      ]
+    },
+    "FilteringAttributes": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "",
+      "description": "[dataverse] Comma-separated attribute logical names that must change to trigger the flow (only meaningful for events that include update)",
+      "isEnabled": "(Trigger == \"dataverse\")",
+      "replaces": "__filtering-attributes__"
+    },
+    "ConnectionReferenceLogicalName": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "",
+      "description": "[dataverse] Logical name of an existing Dataverse connection reference the flow runs under (e.g. contoso_sharedcommondataserviceforapps_dataverse)",
+      "isEnabled": "(Trigger == \"dataverse\")",
+      "isRequired": "(Trigger == \"dataverse\")",
+      "replaces": "__connection-reference-logical-name__"
+    },
+    "DataverseMessage": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "__dataverse-message__",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          { "condition": "(TriggerEvent == 'create')", "value": "1" },
+          { "condition": "(TriggerEvent == 'delete')", "value": "2" },
+          { "condition": "(TriggerEvent == 'update')", "value": "3" },
+          { "condition": "(TriggerEvent == 'create-or-update')", "value": "4" },
+          { "condition": "(TriggerEvent == 'create-or-delete')", "value": "5" },
+          { "condition": "(TriggerEvent == 'update-or-delete')", "value": "6" },
+          { "condition": "(TriggerEvent == 'create-or-update-or-delete')", "value": "7" }
+        ]
+      }
+    },
+    "DataverseScope": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "__dataverse-scope__",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          { "condition": "(Scope == 'user')", "value": "1" },
+          { "condition": "(Scope == 'business-unit')", "value": "2" },
+          { "condition": "(Scope == 'parent-child-business-unit')", "value": "3" },
+          { "condition": "(Scope == 'organization')", "value": "4" }
+        ]
+      }
+    },
+    "DataverseTriggerName": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "__dataverse-trigger-name__",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          { "condition": "(TriggerEvent == 'create')", "value": "When_a_row_is_added" },
+          { "condition": "(TriggerEvent == 'delete')", "value": "When_a_row_is_deleted" },
+          { "condition": "(TriggerEvent == 'update')", "value": "When_a_row_is_modified" },
+          { "condition": "(TriggerEvent == 'create-or-update')", "value": "When_a_row_is_added_or_modified" },
+          { "condition": "(TriggerEvent == 'create-or-delete')", "value": "When_a_row_is_added_or_deleted" },
+          { "condition": "(TriggerEvent == 'update-or-delete')", "value": "When_a_row_is_modified_or_deleted" },
+          { "condition": "(TriggerEvent == 'create-or-update-or-delete')", "value": "When_a_row_is_added_modified_or_deleted" }
+        ]
+      }
+    },
     "FlowWorkflowId": {
       "type": "generated",
       "generator": "guid",
       "replaces": "__flow-workflow-id__",
       "parameters": {
-        "defaultFormat": "D"
+        "defaultFormat": "d"
       }
     },
     "TriggerOperationId": {
@@ -59,7 +216,7 @@
       "generator": "guid",
       "replaces": "__trigger-operation-id__",
       "parameters": {
-        "defaultFormat": "D"
+        "defaultFormat": "d"
       }
     },
     "FlowWorkflowIdUpper": {
@@ -74,6 +231,16 @@
     }
   },
   "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetSolutionRootPath.ps1\""
+      },
+      "manualInstructions": [{ "text": "Set Solution Root Path" }],
+      "continueOnError": false,
+      "description": "Setting Solution Root Path"
+    },
     {
       "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
       "args": {
