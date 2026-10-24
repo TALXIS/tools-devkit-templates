@@ -411,7 +411,7 @@ dotnet new pp-security-role-privilege `
 ```
 
 ### Plugins
-Initialize a new plugin:
+Initialize a new plugin project:
 ```console
 dotnet new pp-plugin `
 --output "src/Plugins.Warehouse" `
@@ -421,16 +421,22 @@ dotnet new pp-plugin `
 --allow-scripts yes
 ```
 
-Add new assembly:
+Reference it from the solution that holds registrations and build. By default (`GeneratePluginAssembly` is `true` in `pp-solution`) the build registers the assembly itself, so no template is needed for it:
 ```console
-dotnet new pp-plugin-assembly-step `
---output "src/Solutions.Logic" `
---PluginProjectRootPath "..\\Plugins.Warehouse" `
---SolutionRootPath "Declarations" `
---allow-scripts yes
+dotnet add "src/Solutions.Logic" reference "src/Plugins.Warehouse"
+dotnet build "src/Solutions.Logic"
 ```
 
-Add new step to the assembly:
+Say when a plugin class runs. With a build SDK that supports it, declare the step on the class and let the build generate it (see the [Plugin package](https://github.com/TALXIS/tools-devkit-build/blob/master/src/Dataverse/Plugin/README.md)):
+```csharp
+using TALXIS.DevKit.Build.Dataverse.Plugin;
+
+[PluginStep("Update", "tom_warehousetransaction", PluginStage.PreValidation,
+    FilteringAttributes = new[] { "tom_itemid", "tom_quantity" })]
+public class ValidateWarehouseTransactionPlugin : PluginBase
+```
+
+Otherwise, or for what attributes cannot express (Power Fx step types, impersonating a specific user, secure configuration), add the step with the template, after the assembly is registered. Never for a class that already declares `[PluginStep]` for the same message, entity and stage:
 ```console
 dotnet new pp-plugin-assembly-step `
 --output "src/Solutions.Logic" `
@@ -441,7 +447,15 @@ dotnet new pp-plugin-assembly-step `
 --SdkMessage "Create" `
 --SolutionRootPath "Declarations" `
 --FilteringAttributes "{tom_itemid, tom_quantity}" `
---AssemblyId "GUID to identifying your assembly" `
+--allow-scripts yes
+```
+
+Only when the solution sets `GeneratePluginAssembly` to `false` (or once, before its first build, to fix the assembly id), register the assembly yourself. Never after a build has registered it: that adds a second root component and the next build fails.
+```console
+dotnet new pp-plugin-assembly `
+--output "src/Solutions.Logic" `
+--PluginProjectRootPath "..\\Plugins.Warehouse" `
+--SolutionRootPath "Declarations" `
 --allow-scripts yes
 ```
 
