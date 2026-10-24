@@ -1,2 +1,5 @@
-page.js
 node_modules/
+dist/
+bin/
+obj/
+RuntimeTypes.js
