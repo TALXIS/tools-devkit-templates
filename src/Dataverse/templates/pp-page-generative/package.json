@@ -1,0 +1,25 @@
+{
+  "name": "genpage-project",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c",
+    "generate-types": "pac model genpage generate-types --config genpage.config.json --output RuntimeTypes.ts",
+    "start": "npm run build -- -w"
+  },
+  "devDependencies": {
+    "@fluentui/react-components": "^9.0.0",
+    "@fluentui/react-icons": "^2.0.0",
+    "@rollup/plugin-commonjs": "^28.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-typescript": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rollup": "^4.0.0",
+    "tslib": "^2.4.0",
+    "typescript": "^5.0.0"
+  }
+}
