@@ -16,7 +16,7 @@
     <Role id="{979144c2-989b-41a5-a146-6b3ea4130e8c}" />
   </AppModuleRoleMaps>
   <LocalizedNames>
-    <LocalizedName description="appexamplename" languagecode="1033" />
+    <LocalizedName description="__display-name__" languagecode="1033" />
   </LocalizedNames>
   <appsettings>
     <appsetting settingdefinitionid.uniquename="AppChannel">

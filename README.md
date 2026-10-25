@@ -228,6 +228,7 @@ dotnet new pp-app-model `
 --output "src/Solutions.UI" `
 --PublisherPrefix "tom" `
 --LogicalName "warehouseapp" `
+--DisplayName "Warehouse Management" `
 --SolutionRootPath "Declarations" `
 --allow-scripts yes
 ```
