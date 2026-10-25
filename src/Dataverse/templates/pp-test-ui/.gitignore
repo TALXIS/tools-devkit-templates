@@ -55,3 +55,9 @@ ehthumbs.db
 Desktop.ini
 
 .playwright-mcp
+
+# Playwright auth state (saved logins; never commit)
+auth-state.json
+*.auth-state.json
+playwright-auth-state*
+.auth/
