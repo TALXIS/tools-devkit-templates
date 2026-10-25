@@ -9,6 +9,6 @@
     
   </SiteMap>
   <LocalizedNames>
-    <LocalizedName description="appexamplename" languagecode="1033" />
+    <LocalizedName description="__display-name__" languagecode="1033" />
   </LocalizedNames>
 </AppModuleSiteMap>

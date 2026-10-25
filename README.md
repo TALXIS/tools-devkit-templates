@@ -221,6 +221,20 @@ dotnet new pp-environment-variable-value `
 --allow-scripts yes
 ```
 
+### Connection references
+Declare a connection reference that cloud flows in the solution bind to:
+```console
+dotnet new pp-connection-reference `
+--output "src/Solutions.Logic" `
+--SolutionRootPath "Declarations" `
+--PublisherPrefix "tom" `
+--ConnectorName "shared_commondataserviceforapps" `
+--DisplayName "Microsoft Dataverse" `
+--allow-scripts yes
+```
+
+The reference is added to `<connectionreferences>` in `Other/Customizations.xml`. `--LogicalName` is optional and defaults to `<prefix>_<connector name without underscores>` (here `tom_sharedcommondataserviceforapps`), which is the value a flow puts into `connectionReferenceLogicalName`. Connection references aren't registered in `Solution.xml`. The connection itself lives only in the target environment, so after import the reference still has to be bound to a connection (maker portal, or by setting `connectionid` on the `connectionreference` record).
+
 ### UI
 Create a model-driven app:
 ```console
@@ -228,6 +242,7 @@ dotnet new pp-app-model `
 --output "src/Solutions.UI" `
 --PublisherPrefix "tom" `
 --LogicalName "warehouseapp" `
+--DisplayName "Warehouse Management" `
 --SolutionRootPath "Declarations" `
 --allow-scripts yes
 ```
