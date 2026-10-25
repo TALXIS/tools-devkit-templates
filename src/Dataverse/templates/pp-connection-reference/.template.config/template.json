@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.ConnectionReference",
+  "name": "Power Platform: Connection Reference",
+  "shortName": "pp-connection-reference",
+  "description": "Declares a connection reference in Other/Customizations.xml (<connectionreferences>), so cloud flows and code apps in the solution can bind to a connector by logical name instead of a concrete connection. The connection itself is environment-specific and is bound after import. Connection references are not registered as RootComponents in Solution.xml.",
+  "tags": {
+    "language": "XML",
+    "type": "item",
+    "componentType": "ConnectionReference"
+  },
+  "preferNameDirectory": false,
+  "symbols": {
+    "SolutionRootPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": ".",
+      "replaces": "__solution-root-path__",
+      "description": "Relative path from the project folder (.csproj) to the folder containing unpacked Dataverse solution files (Other/, Entities/). Use '.' if solution files are directly in the project folder, or a subfolder name like 'Declarations'."
+    },
+    "PublisherPrefix": {
+      "type": "parameter",
+      "datatype": "text",
+      "isRequired": true,
+      "replaces": "__publisher-prefix__",
+      "description": "Publisher prefix from Other/Solution.xml of the solution that introduces the connection reference (e.g., udpp)."
+    },
+    "ConnectorName": {
+      "type": "parameter",
+      "datatype": "text",
+      "isRequired": true,
+      "replaces": "__connector-name__",
+      "description": "Connector name as returned by 'txc environment connector list' (e.g., shared_commondataserviceforapps for Microsoft Dataverse, shared_teams, shared_office365)."
+    },
+    "LogicalName": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "",
+      "replaces": "__logical-name__",
+      "description": "Full logical name of the connection reference including the publisher prefix. When empty, it is derived as {PublisherPrefix}_{ConnectorName without underscores} (e.g., udpp_sharedcommondataserviceforapps). Cloud flows reference it in connectionReferences.<key>.connection.connectionReferenceLogicalName."
+    },
+    "DisplayName": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "",
+      "replaces": "__display-name__",
+      "description": "Display name shown in the maker portal. When empty, the logical name is used."
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddToCustomizationsXml.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Declaring the connection reference in Customizations.xml" }
+      ],
+      "continueOnError": false,
+      "description": "Declaring the connection reference in Customizations.xml"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [
+        { "text": "Removing Scripts" }
+      ],
+      "continueOnError": false,
+      "description": "Removing Scripts"
+    }
+  ]
+}
