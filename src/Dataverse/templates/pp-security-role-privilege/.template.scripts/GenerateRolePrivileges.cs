@@ -66,6 +66,7 @@ var knownLevels = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCas
     ["Deep"] = "Deep",
     ["ParentChild"] = "Deep",
     ["Global"] = "Global",
+    ["Organization"] = "Global",
 };
 
 string scriptsDir = Path.GetFileName(Directory.GetCurrentDirectory()) == ".template.scripts"

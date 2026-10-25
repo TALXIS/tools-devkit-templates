@@ -4,7 +4,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.SecurityRole.RolePrivilege",
   "name": "Power Platform: RolePrivilege",
   "shortName": "pp-security-role-privilege",
-  "description": "Adds privileges to an existing security role. Script-only. Generates privilege XML entries (Create/Read/Update/Delete/Assign/Share + level) injected into the target role file.",
+  "description": "Adds privileges to an existing security role. Script-only. Generates privilege XML entries (Create/Read/Write/Delete/Append/AppendTo/Assign/Share + level) injected into the target role file.",
   "classifications": ["Dataverse", "Power Platform"],
   "sourceName": "Role-Privilege",
   "tags": {
@@ -40,7 +40,7 @@
       "type": "parameter",
 			"datatype": "text",
       "replaces": "jsonarraystringwhithPrivilegeTypeandandLevel",
-      "description": "String in format: [{ PrivilegeType: ReadAccount, Level: Global }, { PrivilegeType: WriteContact, Level: User }]"
+      "description": "Privileges to add, as a JSON array: [{ PrivilegeType: Read, Level: Global }, { PrivilegeType: Write, Level: Basic }]. Keys may be quoted or unquoted and are case-insensitive; 'type' is accepted for 'PrivilegeType'. PrivilegeType is one of Create, Read, Write, Delete, Append, AppendTo, Assign, Share. Level is one of Basic (own records), Local (business unit), Deep (business unit and children), Global (organization); User, BusinessUnit, ParentChild and Organization are accepted as aliases, and None omits the privilege. The privilege name is prv<PrivilegeType><EntityLogicalName>."
     }
   },
   "sources": [
