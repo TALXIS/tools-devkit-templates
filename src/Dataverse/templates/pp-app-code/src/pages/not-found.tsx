@@ -1,14 +1,16 @@
-import { Link } from "react-router-dom"
-import { Button } from "@/components/ui/button"
+import { useNavigate } from "react-router-dom"
+import { Body1, Button, LargeTitle } from "@fluentui/react-components"
+import { useStyles } from "./not-found.styles"
 
 export default function NotFoundPage() {
+  const styles = useStyles()
+  const navigate = useNavigate()
+
   return (
-    <div className="min-h-full grid place-items-center">
-      <div className="w-full max-w-7xl px-8 text-center flex flex-col items-center space-y-6">
-        <h1 className="text-5xl leading-tight tracking-tight">404 – Not found</h1>
-        <p className="text-muted-foreground">This isn't the page you're looking for.</p>
-        <Button variant="outline"><Link to="/">Go home</Link></Button>
-      </div>
+    <div className={styles.root}>
+      <LargeTitle as="h1">404 – Not found</LargeTitle>
+      <Body1 className={styles.muted}>This isn't the page you're looking for.</Body1>
+      <Button appearance="outline" onClick={() => navigate("/")}>Go home</Button>
     </div>
   )
 }
