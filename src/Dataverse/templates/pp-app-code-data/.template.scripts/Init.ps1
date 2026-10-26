@@ -1,4 +1,6 @@
-﻿$lowercasename = "entityexamplelogicalname"
+﻿$ErrorActionPreference = 'Stop'
+
+$lowercasename = "entityexamplelogicalname"
 $capitalizedname = $lowercasename.Substring(0,1).ToUpper() + $lowercasename.Substring(1)
 $modelSolutionPath = (Resolve-Path "modelsolutionexamplepath").Path
 
@@ -14,7 +16,9 @@ if (-not (Test-Path $targetIndexTs))
 }
 
 & (Join-Path $PSScriptRoot 'ReplacePlaceholder.ps1') -FilePath (Join-Path "src" "generated" "services" "capitalizedentitylogicalnameexamplesService.ts") -Placeholder "lowercaseentitylogicalnameexample" -Replacement $lowercasename
+if ($LASTEXITCODE) { exit $LASTEXITCODE }
 & (Join-Path $PSScriptRoot 'ReplacePlaceholder.ps1') -FilePath (Join-Path "src" "generated" "services" "capitalizedentitylogicalnameexamplesService.ts") -Placeholder "capitalizedentitylogicalnameexample" -Replacement $capitalizedname
+if ($LASTEXITCODE) { exit $LASTEXITCODE }
 
 $generateModelScript = Join-Path $PSScriptRoot "GenerateModel.cs"
 $generatedModelsPath = Join-Path "src" "generated" "models"
@@ -26,11 +30,15 @@ $serviceIndexString = "export * from './services/" + $capitalizedname + "sServic
 
 $generatedIndexTs = Join-Path "src" "generated" "index.ts"
 & (Join-Path $PSScriptRoot 'InsertAfterTarget.ps1') -TargetString "// Models" -SettingString $modelIndexString -FilePath $generatedIndexTs
+if ($LASTEXITCODE) { exit $LASTEXITCODE }
 & (Join-Path $PSScriptRoot 'InsertAfterTarget.ps1') -TargetString "// Services" -SettingString $serviceIndexString -FilePath $generatedIndexTs
+if ($LASTEXITCODE) { exit $LASTEXITCODE }
 
 & (Join-Path $PSScriptRoot 'AddDataSource.ps1')
+if ($LASTEXITCODE) { exit $LASTEXITCODE }
 
 & (Join-Path $PSScriptRoot 'AddDataSourceInfo.ps1') -SolutionPath $modelSolutionPath -EntityLogicalName "entityexamplelogicalname" -FilePath (Join-Path ".power" "schemas" "appschemas" "dataSourcesInfo.ts")
+if ($LASTEXITCODE) { exit $LASTEXITCODE }
 
 $generateSchemaScript = Join-Path $PSScriptRoot "GenerateSchema.cs"
 $dataverseSchemasPath = Join-Path ".power" "schemas" "dataverse"

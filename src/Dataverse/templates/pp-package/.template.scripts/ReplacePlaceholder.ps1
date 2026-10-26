@@ -4,6 +4,8 @@ param(
     [Parameter(Mandatory)][string]$Replacement
 )
 
+$ErrorActionPreference = 'Stop'
+
 if (-not (Test-Path -LiteralPath $Path))
 {
     Write-Error "Path not found: $Path"
@@ -33,7 +35,23 @@ function Invoke-RenameIfMatches
     if ($name.Contains($Placeholder))
     {
         $newName = $name.Replace($Placeholder, $Replacement)
-        Rename-Item -LiteralPath $TargetPath -NewName $newName
+        if (Test-Path -LiteralPath $TargetPath -PathType Leaf)
+        {
+            # A file replaces an existing one on re-run; Rename-Item fails when the target
+            # exists, even with -Force, and leaves the placeholder-named file behind.
+            Move-Item -LiteralPath $TargetPath -Destination (Join-Path (Split-Path $TargetPath -Parent) $newName) -Force
+        }
+        elseif (Test-Path -LiteralPath (Join-Path (Split-Path $TargetPath -Parent) $newName))
+        {
+            # Not Move-Item for folders: onto an existing folder it would nest the source inside
+            # it. Leave both in place and say so rather than merge two folders' contents.
+            Write-Warning "Not renaming folder $name -> ${newName}: $newName already exists."
+            return
+        }
+        else
+        {
+            Rename-Item -LiteralPath $TargetPath -NewName $newName
+        }
         Write-Host "Renamed: $name -> $newName"
     }
 }
