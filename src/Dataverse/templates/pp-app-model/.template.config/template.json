@@ -30,6 +30,20 @@
       "replaces": "appexamplename",
       "fileRename": "appexamplename"
     },
+    "DisplayName": {
+      "type": "parameter",
+      "datatype": "text",
+      "description": "Display name of the app shown to users in the app list and app header (e.g., Warehouse Management). Defaults to LogicalName."
+    },
+    "DisplayNameResolved": {
+      "type": "generated",
+      "generator": "coalesce",
+      "replaces": "__display-name__",
+      "parameters": {
+        "sourceVariableName": "DisplayName",
+        "fallbackVariableName": "LogicalName"
+      }
+    },
     "SolutionRootPath": {
 			"type": "parameter",
 			"datatype": "text",

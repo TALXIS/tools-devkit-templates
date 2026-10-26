@@ -52,6 +52,7 @@
       "type": "parameter",
       "datatype": "choice",
       "isRequired": false,
+      "description": "true (default): every build registers the plugin assemblies of the referenced pp-plugin projects (PluginAssemblies/*.dll.data.xml and the root component), so pp-plugin-assembly is not needed, and with a build SDK that supports it generates steps from [PluginStep] attributes. false: you register assemblies yourself with pp-plugin-assembly, and [PluginStep] attributes are not turned into steps. Never mix the two ways in one solution.",
       "replaces": "generateexamplepluginassembly",
       "defaultValue": "true",
       "choices": [

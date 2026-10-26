@@ -4,7 +4,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.Plugin.Assembly",
   "name": "Power Platform: Plugin Assembly",
   "shortName": "pp-plugin-assembly",
-  "description": "Registers a plugin assembly in the solution. Script-only. Generates PluginAssemblies/{Name}-{GUID}/*.dll.data.xml. CHAIN: Step 2 \u2014 run in the target solution after pp-plugin. Required before pp-plugin-assembly-step.",
+  "description": "Manual registration of a plugin assembly in a solution. Script-only. Generates PluginAssemblies/{Name}-{GUID}/*.dll.data.xml. NOT needed by default: a pp-solution project with GeneratePluginAssembly=true (the default) registers every referenced plugin project on build. Use only when the solution sets GeneratePluginAssembly=false, or once before the solution's first build to fix the assembly id. Never run it after a build has registered the assembly (it adds a second type-91 root component and the next build fails), and never in a solution that declares steps with [PluginStep] attributes. CHAIN: manual path only \u2014 run in the target solution after pp-plugin. pp-plugin-assembly-step needs the registration to exist, however it was created.",
   "tags": {
     "language": "C#",
     "type": "project",

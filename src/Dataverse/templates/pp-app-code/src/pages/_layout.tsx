@@ -1,17 +1,21 @@
 import { Outlet, NavLink } from "react-router-dom"
+import { mergeClasses } from "@fluentui/react-components"
+import { useStyles } from "./_layout.styles"
 
 type LayoutProps = { showHeader?: boolean }
 
 export default function Layout({ showHeader = true }: LayoutProps) {
+  const styles = useStyles()
+
   return (
-    <div className="min-h-dvh flex flex-col">
+    <div className={styles.root}>
       {showHeader && (
-        <header className="h-14 border-b flex items-center">
-          <div className="mx-auto w-full max-w-7xl px-6 flex items-center justify-between">
-            <nav className="flex items-center gap-4">
+        <header className={styles.header}>
+          <div className={styles.container}>
+            <nav className={styles.nav}>
               <NavLink to="/" end
                 className={({ isActive }) =>
-                  `text-sm text-muted-foreground hover:text-foreground ${isActive ? "text-foreground font-medium" : ""}`
+                  mergeClasses(styles.navLink, isActive && styles.navLinkActive)
                 }
               >
                 Home
@@ -21,10 +25,8 @@ export default function Layout({ showHeader = true }: LayoutProps) {
         </header>
       )}
 
-      <main className="flex-1 flex">
-        <div className="flex-1 mx-auto w-full max-w-7xl">
-          <Outlet />
-        </div>
+      <main className={styles.main}>
+        <Outlet />
       </main>
     </div>
   )

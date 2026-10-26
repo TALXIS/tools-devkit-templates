@@ -13,7 +13,7 @@ if ($tabId -ne "unknown" -and $tabNumber -ne "unknown") {
     $targetTab = $entityXml.SelectSingleNode("//tab[@id='{$tabId}']")
     if (-not $targetTab) {
         $tabs = $entityXml.SelectNodes("//tab")
-        if ($tabs.Count -ge [int]$tabNumber) {
+        if ($tabs.Count -ge [int]$tabNumber -and [int]$tabNumber -ge 1) {
             $targetTab = $tabs[[int]$tabNumber - 1]
         }
     }
@@ -21,7 +21,7 @@ if ($tabId -ne "unknown" -and $tabNumber -ne "unknown") {
     $targetTab = $entityXml.SelectSingleNode("//tab[@id='{$tabId}']")
 } elseif ($tabNumber -ne "unknown") {
     $tabs = $entityXml.SelectNodes("//tab")
-    if ($tabs.Count -ge [int]$tabNumber) {
+    if ($tabs.Count -ge [int]$tabNumber -and [int]$tabNumber -ge 1) {
         $targetTab = $tabs[[int]$tabNumber - 1]
     }
 } else {
@@ -32,7 +32,7 @@ if ($tabId -ne "unknown" -and $tabNumber -ne "unknown") {
 }
 
 if (-not $targetTab) {
-    Write-Error "Target tab not found"
+    Write-Error "Target tab not found. TabIndex is 1-based (the first tab is 1)."
     exit 1
 }
 
@@ -61,7 +61,7 @@ $targetColumn = $null
 
 if ($columnNumber -ne "unknown") {
     $columns = $targetTab.SelectNodes('./columns/column')
-    if ($columns.Count -ge [int]$columnNumber) {
+    if ($columns.Count -ge [int]$columnNumber -and [int]$columnNumber -ge 1) {
         $targetColumn = $columns[[int]$columnNumber - 1]
     }
 } else {
@@ -72,7 +72,7 @@ if ($columnNumber -ne "unknown") {
 }
 
 if (-not $targetColumn) {
-    Write-Error "Target column not found in the selected tab"
+    Write-Error "Target column not found in the selected tab. ColumnIndex is 1-based (the first column is 1)."
     exit 1
 }
 

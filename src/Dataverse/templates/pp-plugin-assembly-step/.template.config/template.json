@@ -4,7 +4,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.Plugin.Steps",
   "name": "Power Platform: Plugin Steps",
   "shortName": "pp-plugin-assembly-step",
-  "description": "Creates SdkMessageProcessingStep XML: PluginTypeName (assembly-qualified), SdkMessageId, PrimaryEntity, Stage, Rank, EventHandlerTypeCode=4602, filtering attributes. Generates SdkMessageProcessingSteps/{GUID}.xml. CHAIN: run after pp-solution --GeneratePluginAssembly true + dotnet build. One step per plugin class per message.",
+  "description": "Manual plugin step registration: creates SdkMessageProcessingStep XML (PluginTypeName assembly-qualified, SdkMessageId, PrimaryEntity, Stage, Rank, EventHandlerTypeCode=4602, filtering attributes) as SdkMessageProcessingSteps/{GUID}.xml. Prefer [PluginStep] attributes on the plugin class when the project's build SDK supports them (using TALXIS.DevKit.Build.Dataverse.Plugin compiles): the build then generates the step. Use this template when they do not compile, or for what attributes cannot express (Power Fx step types, impersonating a specific user, secure configuration). Never for a class that already declares [PluginStep] for the same message, entity and stage: the step would run twice. CHAIN: run after the assembly is registered (after pp-solution with GeneratePluginAssembly=true has been built once). One step per plugin class per message.",
   "tags": {
     "language": "C#",
     "type": "project",

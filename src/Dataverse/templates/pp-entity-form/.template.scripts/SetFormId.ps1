@@ -3,6 +3,13 @@ $formId = "formexampleId"
 <!--#if (FormType == "dialog") -->
 $formIdNode = "//FormId"
 $formIdPath = (Resolve-Path './__solution-root-path__/Dialogs/dialogform.xml').Path
+<!--#elseif (FormType == "quickCreate") -->
+# The quick create form lives in FormXml/quick, not FormXml/quickCreate, and its
+# file is named after the FormId symbol rather than mainform.xml. Address it by
+# that exact name: the entity template may already have placed its own quick
+# form in this folder, so globbing here would pick the wrong file.
+$formIdNode = "//formid"
+$formIdPath = (Resolve-Path './__solution-root-path__/Entities/ItemFolderName/FormXml/quick/{formexampleId}.xml').Path
 <!--#else -->
 $formIdNode = "//formid"
 $formIdPath = (Resolve-Path './__solution-root-path__/Entities/ItemFolderName/FormXml/formtypeexample/mainform.xml').Path
@@ -49,4 +56,6 @@ if ($formIdPath -ne $newFilePath) {
     Write-Host "Removed old file: $formIdPath"
 }
 
+<!--#if (FormType == "dialog") -->
 .\.template.scripts\AddFormToSolutionXml.ps1 -formId $formId
+<!--#endif -->

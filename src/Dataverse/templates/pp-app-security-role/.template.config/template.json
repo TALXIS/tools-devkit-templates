@@ -4,7 +4,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.SecurityRole.Role.App",
   "name": "Power Platform: RoleApp",
   "shortName": "pp-app-security-role",
-  "description": "Assigns security role GUIDs (JSON array) to a Model-Driven App module. Use after pp-app-model and pp-security-role to grant access.",
+  "description": "Assigns security role GUIDs (JSON array) to a Model-Driven App module. Use after pp-app-model and pp-security-role to grant access. Replaces the app module's whole <AppModuleRoleMaps> element, so any role already assigned to the app, including <Everyone />, is removed and only the roles passed here can open it.",
   "classifications": ["Dataverse", "Power Platform"],
   "sourceName": "Role-App",
   "tags": {
@@ -26,15 +26,16 @@
     "AppLogicalName": {
       "type": "parameter",
 			"datatype": "text",
-			"defaultValue": ".",
+      "isRequired": true,
       "replaces": "appexamplename",
-			"description": "Logical name of the app module to which security roles will be assigned"
+			"description": "Logical name of the app module to which security roles will be assigned, including the publisher prefix (e.g., ev_evapp)"
     },
     "SecurityRolesIds": {
       "type": "parameter",
 			"datatype": "text",
+      "isRequired": true,
       "replaces": "jsonarraystringwhithrolesids",
-      "description": "Id security roles witch shoud have an access to the app: [d00e8f31-33b6-4118-96ec-d7ae6620beac, fcc6ed39-88ea-447b-9290-7f34fb5c38db]"
+      "description": "Comma-separated list of security role GUIDs that should have access to the app, in square brackets: [d00e8f31-33b6-4118-96ec-d7ae6620beac, fcc6ed39-88ea-447b-9290-7f34fb5c38db]. A role id may also be written as {guid} or quoted; all forms are written to the app module as {guid}."
     }
   },
   "sources": [
