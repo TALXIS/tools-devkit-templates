@@ -4,12 +4,20 @@ param(
     [Parameter(Mandatory)][string]$FilePath
 )
 
+$ErrorActionPreference = 'Stop'
+
 if (-not (Test-Path $FilePath)) {
     Write-Error "File not found: $FilePath"
     exit 1
 }
 
 $lines = [System.IO.File]::ReadAllLines($FilePath)
+
+# Re-running the template for a table that is already exported must not add the line twice
+if ($lines | Where-Object { $_.Trim() -eq $SettingString.Trim() }) {
+    Write-Host "Already present in ${FilePath}: $SettingString"
+    exit 0
+}
 
 # Find target line index
 $targetIdx = -1

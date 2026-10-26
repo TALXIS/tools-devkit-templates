@@ -1,3 +1,5 @@
+$ErrorActionPreference = 'Stop'
+
 $filePath = "power.config.json"
 
 $lowercasename = "entityexamplelogicalname"

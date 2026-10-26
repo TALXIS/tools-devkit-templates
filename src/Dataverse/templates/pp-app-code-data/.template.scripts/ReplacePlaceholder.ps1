@@ -4,6 +4,8 @@ param(
     [Parameter(Mandatory)][string]$Replacement
 )
 
+$ErrorActionPreference = 'Stop'
+
 if (-not (Test-Path $FilePath)) 
 {
     Write-Error "File not found: $FilePath"
@@ -32,7 +34,11 @@ if ($fileName -match [regex]::Escape($Placeholder))
 {
     $newName = $fileName.Replace($Placeholder, $Replacement)
     $newPath = Join-Path (Split-Path $FilePath -Parent) $newName
-    Rename-Item -Path $FilePath -NewName $newName
+    # Move-Item -Force, not Rename-Item: re-running the template for a table that already has
+    # its file (a service regenerated after a column was added) must replace it. Rename-Item
+    # fails when the target exists, even with -Force, and leaves the placeholder-named copy
+    # next to the stale one, a second file declaring the same class (TS2308).
+    Move-Item -LiteralPath $FilePath -Destination $newPath -Force
 
     Write-Host "Renamed file: $fileName -> $newName"
 } 
