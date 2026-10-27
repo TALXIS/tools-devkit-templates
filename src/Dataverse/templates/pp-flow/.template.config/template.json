@@ -4,7 +4,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.Flow",
   "name": "Power Platform: Cloud Flow",
   "shortName": "pp-flow",
-  "description": "Scaffolds a Power Automate cloud flow: .json.data.xml metadata (Category=5 ModernFlow, Type=1) and .json flow definition with the selected trigger (manual button, recurrence schedule, or Dataverse row event). Add connectors and actions by editing the flow definition JSON or in the flow designer.",
+  "description": "Scaffolds a Power Automate cloud flow: .json.data.xml metadata (Category=5 ModernFlow, Type=1) and .json flow definition with the selected trigger (manual button, recurrence schedule, Dataverse row event, or Power Apps V2). Add connectors and actions by editing the flow definition JSON or in the flow designer.",
   "classifications": ["Dataverse", "Power Platform"],
   "tags": {
     "language": "JSON",
@@ -34,6 +34,11 @@
     {
       "condition": "(Trigger == \"dataverse\")",
       "source": "./.template.temp/dataverse/",
+      "target": "./"
+    },
+    {
+      "condition": "(Trigger == \"powerapps\")",
+      "source": "./.template.temp/powerapps/",
       "target": "./"
     }
   ],
@@ -74,6 +79,11 @@
           "choice": "dataverse",
           "displayName": "Dataverse row event",
           "description": "Automated flow that runs when a Dataverse row is added, modified or deleted (see EntityLogicalName, TriggerEvent, Scope, FilteringAttributes, ConnectionReferenceLogicalName)"
+        },
+        {
+          "choice": "powerapps",
+          "displayName": "Power Apps (V2)",
+          "description": "Instant flow called from a canvas or code app (see pp-app-code-flow). Add trigger inputs to the trigger schema in the flow definition JSON"
         }
       ]
     },
