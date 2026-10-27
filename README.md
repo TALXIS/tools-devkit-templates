@@ -494,6 +494,16 @@ dotnet new pp-app-code-data `
 --EntityLogicalName "tom_warehouseitem"
 ```
 
+Add a cloud flow the app can call. The flow needs the Power Apps (V2) trigger. Everything is generated offline from the flow definition in the solution, the same files `pa app add flow` writes (typed model and service with `Run()`, logicflows schema, `dataSourcesInfo.ts` entry, `power.config.json` connection reference):
+```console
+dotnet new pp-app-code-flow `
+--output "src/CodeApps.WarehousePicking" `
+--FlowSolutionPath "../Solutions.Logic" `
+--FlowName "tom_restockrequest"
+```
+
+Re-run it after changing the trigger inputs or the "Respond to a PowerApp or flow" action, the generated files are rewritten in place.
+
 ### Connectors
 Initialize a new custom connector project:
 ```console
