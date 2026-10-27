@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NETWORG",
+  "identity": "TALXIS.DevKit.Templates.Dataverse.CodeApp.Flow",
+  "name": "Power Platform: Code App Flow",
+  "shortName": "pp-app-code-flow",
+  "description": "Adds a Power Apps (V2) triggered cloud flow to a code app offline, from the flow definition in solution source: typed model and service with Run(), the logicflows schema, dataSourcesInfo entry and power.config.json connection reference (same output as 'pa app add flow').",
+  "classifications": ["Dataverse", "Power Platform"],
+  "sourceName": "pp-app-code-flow",
+  "tags": {
+    "type": "item",
+    "language": "TypeScript"
+  },
+  "preferNameDirectory": true,
+  "symbols": {
+    "FlowSolutionPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "isRequired": true,
+      "replaces": "flowsolutionexamplepath",
+      "description": "Path to the solution project that contains the flow, relative to the code app folder (e.g. ../Solutions.Logic)"
+    },
+    "FlowName": {
+      "type": "parameter",
+      "datatype": "text",
+      "isRequired": true,
+      "replaces": "flowexamplename",
+      "description": "Flow file name in Workflows without the -GUID suffix (e.g. contoso_myflow for Workflows/contoso_myflow-<GUID>.json)"
+    }
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Init.ps1\""
+      },
+      "continueOnError": false,
+      "description": "Generate flow data source"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "pwsh",
+        "args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/Cleanup.ps1\"",
+        "redirectStandardOutput": "false"
+      },
+      "manualInstructions": [{ "text": "Removing Scripts" }],
+      "continueOnError": false,
+      "description": "Removing Scripts"
+    }
+  ]
+}
