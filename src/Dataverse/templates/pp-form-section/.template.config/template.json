@@ -73,7 +73,7 @@
           "choice": "False"
         }
       ],
-      "description": "Whether to add the section to the tab footer (True) or to the main tab content (False)"
+      "description": "Not supported: a tab footer holds only rows, so True exits with an error. Put footer buttons in with pp-form-row, pp-form-cell and pp-form-control using SetToTabFooter=True."
     },
     "TabId": {
       "type": "parameter",
