@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <savedqueries>
   <savedquery>
+<!--#if (ViewType == "lookup") -->
     <isquickfindquery>0</isquickfindquery>
     <isprivate>0</isprivate>
     <isdefault>0</isdefault>
     <savedqueryid>{someexampleid}</savedqueryid>
     <queryapi></queryapi>
     <layoutxml>
-      <grid name="resultset" jump="name" select="1" preview="0" icon="1">
+      <grid name="resultset" jump="examplepublisherprefix_name" select="1" preview="0" icon="1">
         <row name="result" id="exampleexistingentityid">
           <cell name="examplepublisherprefix_name" width="125" />
         </row>
@@ -26,5 +27,34 @@
     <LocalizedNames>
       <LocalizedName description="viewexamplename Lookup View" languagecode="1033" />
     </LocalizedNames>
+<!--#else -->
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{someexampleid}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="examplepublisherprefix_name" select="1" icon="1" preview="1">
+        <row name="result" id="exampleexistingentityid">
+          <cell name="examplepublisherprefix_name" width="300" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="exampleexistingentity">
+          <attribute name="exampleexistingentityid" />
+          <attribute name="examplepublisherprefix_name" />
+          <order attribute="examplepublisherprefix_name" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="viewexamplename" languagecode="1033" />
+    </LocalizedNames>
+<!--#endif -->
   </savedquery>
 </savedqueries>
