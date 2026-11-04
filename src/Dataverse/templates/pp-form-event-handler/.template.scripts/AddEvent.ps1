@@ -8,14 +8,24 @@ if (-not $eventsNode) {
 	$eventsNode = $entityXml.SelectSingleNode('//events')
 }
 
-# If formLibraries already contains the library, skip adding it
 $eventName = 'exampleeventname'
 $attributeName = 'exampleattributename'
-if ($eventname -eq "onchange") {
-	$eventNode = $eventsNode.SelectSingleNode("event[@name='$eventName']")
+
+# onchange belongs to a field and onclick to a button control: both events are
+# keyed by that id in attribute="...", as in every built-in dialog. onload and
+# onsave belong to the form and have no attribute.
+$isControlEvent = $eventName -in @('onchange', 'onclick')
+if ($isControlEvent -and ([string]::IsNullOrWhiteSpace($attributeName) -or $attributeName -eq ('example' + 'attributename'))) {
+	Write-Error "AttributeName is required for $eventName events: pass the field logical name (onchange) or the button control id (onclick)."
+	exit 1
+}
+
+# Reuse the existing event for the same form event or the same field/control
+if ($isControlEvent) {
+	$eventNode = $eventsNode.SelectSingleNode("event[@name='$eventName' and @attribute='$attributeName']")
 }
 else {
-	$eventNode = $eventsNode.SelectSingleNode("event[@name='$eventName' and @attribute='$attributeName']")
+	$eventNode = $eventsNode.SelectSingleNode("event[@name='$eventName']")
 }
 
 if (-not $eventNode ) {
@@ -23,7 +33,7 @@ if (-not $eventNode ) {
 	$eventNode.SetAttribute('name', $eventName)
 	$eventNode.SetAttribute('application', 'false')
 	$eventNode.SetAttribute('active', 'true')
-	if ($eventName -eq 'onchange') {
+	if ($isControlEvent) {
 		$eventNode.SetAttribute('attribute', $attributeName)
 	}
 

@@ -36,23 +36,12 @@ if (-not $targetTab) {
     exit 1
 }
 
-#Select tab footer
 if ($setToTabFooter -eq "True") {
-    $targetTabFooter = $targetTab.SelectSingleNode("//tabfooter[@id='{$tabFooterId}']")
-
-    if (-not $targetTabFooter) {
-        $tabFooters = $targetTab.SelectNodes("//tabfooter")
-        if ($tabFooters.Count -gt 0) {
-            $targetTabFooter = $tabFooters[$tabFooters.Count - 1]
-        }
-    }
-
-    if (-not $targetTabFooter) {
-        Write-Error "Target tab footer not found"
-        exit 1
-    }
-
-    $targetTab = $targetTabFooter
+    # A <tabfooter> holds only <rows> (FormXml XSD, and every built-in dialog
+    # footer). Columns there fail `txc workspace validate`, so
+    # refuse before the form is touched.
+    Write-Error "A tab footer can only contain rows. Add footer buttons with pp-form-row, pp-form-cell and pp-form-control using SetToTabFooter=True."
+    exit 1
 }
 
 $columnsNode = $targetTab.SelectSingleNode('./columns')
