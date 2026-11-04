@@ -34,7 +34,7 @@
     "RoleName": {
       "type": "parameter",
 			"datatype": "text",
-			"defaultValue": ".",
+			"isRequired": true,
       "replaces": "rolenameexample",
       "fileRename": "ExampleSecurityRole",
 			"description": "Name of the security role that will be displayed to users"
