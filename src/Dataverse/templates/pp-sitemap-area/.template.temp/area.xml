@@ -1,2 +1,5 @@
 <Area Id="area_areaidexample" ResourceId="SitemapDesigner.areatitleexample" DescriptionResourceId="SitemapDesigner.areatitleexample" ShowGroups="true" IntroducedVersion="7.0.0.0">
+    <Titles>
+        <Title LCID="1033" Title="areatitleexample" />
+    </Titles>
 </Area>
