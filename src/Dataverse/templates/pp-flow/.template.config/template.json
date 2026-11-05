@@ -4,7 +4,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.Flow",
   "name": "Power Platform: Cloud Flow",
   "shortName": "pp-flow",
-  "description": "Scaffolds a Power Automate cloud flow: .json.data.xml metadata (Category=5 ModernFlow, Type=1) and .json flow definition with a manual trigger. Add connectors and actions in the flow designer.",
+  "description": "Scaffolds a Power Automate cloud flow: .json.data.xml metadata (Category=5 ModernFlow, Type=1) and .json flow definition with a manual trigger. The flow is scaffolded as a draft (StateCode 0, StatusCode 1), so it imports turned off until you bind its connection references and turn it on. Pass Activated=true to scaffold it turned on (StateCode 1, StatusCode 2), e.g. for a flow without connection references. Add connectors and actions in the flow designer.",
   "classifications": ["Dataverse", "Power Platform"],
   "tags": {
     "language": "JSON",
@@ -46,6 +46,47 @@
       "fileRename": "__logical-name__",
       "isRequired": true,
       "description": "Logical name of the flow without publisher prefix (e.g. myautomation)"
+    },
+    "Activated": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "isRequired": false,
+      "description": "Scaffold the flow turned on (StateCode 1, StatusCode 2) instead of as a draft (StateCode 0, StatusCode 1). A turned-on flow with an unbound connection reference imports as on but can't run, and a recurrence flow starts running as soon as the connection is bound, so leave this false unless the flow has no connection references."
+    },
+    "FlowStateCode": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "__flow-state-code__",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(Activated)",
+            "value": "1"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      }
+    },
+    "FlowStatusCode": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "__flow-status-code__",
+      "parameters": {
+        "datatype": "string",
+        "cases": [
+          {
+            "condition": "(Activated)",
+            "value": "2"
+          },
+          {
+            "value": "1"
+          }
+        ]
+      }
     },
     "FlowWorkflowId": {
       "type": "generated",
