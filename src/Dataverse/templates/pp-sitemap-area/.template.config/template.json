@@ -4,7 +4,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.Sitemap.Area",
   "name": "Power Platform: Site Map Area",
   "shortName": "pp-sitemap-area",
-  "description": "Adds <Area> to app sitemap: Id, ResourceId, DescriptionResourceId, ShowGroups=true. Top-level navigation container. Add groups inside with pp-sitemap-group.",
+  "description": "Adds <Area> to app sitemap: Id, ResourceId, DescriptionResourceId, ShowGroups=true, Titles (LCID 1033). Top-level navigation container. Add groups inside with pp-sitemap-group.",
   "classifications": ["Dataverse", "Power Platform"],
   "sourceName": "Sitemap-Area",
   "tags": {
@@ -33,7 +33,7 @@
     "AreaTitle": {
       "type": "parameter",
       "datatype": "text",
-      "description": "Title of the area that will be created in the sitemap",
+      "description": "Title of the area that will be created in the sitemap. Shown as the area label (LCID 1033) and used by pp-sitemap-group / pp-sitemap-subarea to find the area.",
       "defaultValue": "NewTitle",
       "replaces": "areatitleexample",
       "fileRename": "areatitleexample"
