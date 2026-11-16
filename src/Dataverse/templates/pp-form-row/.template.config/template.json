@@ -113,7 +113,7 @@
       "isRequired": false,
       "defaultValue": "unknown",
       "replaces": "sectionidexample",
-      "description": "GUID of the specific section where the row will be added"
+      "description": "GUID of the specific section where the row will be added, with or without braces. Found anywhere in the form, so TabIndex and ColumnIndex are not needed"
     }
   },
   "postActions": [

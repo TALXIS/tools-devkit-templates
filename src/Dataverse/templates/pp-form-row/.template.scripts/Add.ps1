@@ -9,105 +9,112 @@ $rowPath = (Resolve-Path './.template.temp/row.xml').Path
 
 [xml]$entityXml = Get-Content -Path $entityXmlPath -Raw
 
-$targetTab = $null
+$targetSection = $null
 
-if ($tabId -ne "unknown" -and $tabNumber -ne "unknown") {
-    $targetTab = $entityXml.SelectSingleNode("//tab[@id='{$tabId}']")
-    if (-not $targetTab) {
+<!--#if (SetToTabFooter != "True") -->
+if ($sectionId -ne "unknown") {
+    # Section ids are unique per form, so search every tab and column and ignore braces and casing
+    $normalizedSectionId = $sectionId.Trim().Trim('{', '}')
+    $targetSection = $entityXml.SelectNodes('//section') |
+        Where-Object { $_.GetAttribute('id').Trim('{', '}') -ieq $normalizedSectionId } |
+        Select-Object -First 1
+
+    if (-not $targetSection -and $sectionNumber -eq "unknown") {
+        Write-Error "Target section '$sectionId' not found in the form."
+        exit 1
+    }
+}
+<!--#endif -->
+
+if (-not $targetSection) {
+    $targetTab = $null
+
+    if ($tabId -ne "unknown" -and $tabNumber -ne "unknown") {
+        $targetTab = $entityXml.SelectSingleNode("//tab[@id='{$tabId}']")
+        if (-not $targetTab) {
+            $tabs = $entityXml.SelectNodes("//tab")
+            if ($tabs.Count -ge [int]$tabNumber -and [int]$tabNumber -ge 1) {
+                $targetTab = $tabs[[int]$tabNumber - 1]
+            }
+        }
+    } elseif ($tabId -ne "unknown") {
+        $targetTab = $entityXml.SelectSingleNode("//tab[@id='{$tabId}']")
+    } elseif ($tabNumber -ne "unknown") {
         $tabs = $entityXml.SelectNodes("//tab")
         if ($tabs.Count -ge [int]$tabNumber -and [int]$tabNumber -ge 1) {
             $targetTab = $tabs[[int]$tabNumber - 1]
         }
+    } else {
+        $tabs = $entityXml.SelectNodes("//tab")
+        if ($tabs.Count -gt 0) {
+            $targetTab = $tabs[$tabs.Count - 1]
+        }
     }
-} elseif ($tabId -ne "unknown") {
-    $targetTab = $entityXml.SelectSingleNode("//tab[@id='{$tabId}']")
-} elseif ($tabNumber -ne "unknown") {
-    $tabs = $entityXml.SelectNodes("//tab")
-    if ($tabs.Count -ge [int]$tabNumber -and [int]$tabNumber -ge 1) {
-        $targetTab = $tabs[[int]$tabNumber - 1]
-    }
-} else {
-    $tabs = $entityXml.SelectNodes("//tab")
-    if ($tabs.Count -gt 0) {
-        $targetTab = $tabs[$tabs.Count - 1]
-    }
-}
 
-if (-not $targetTab) {
-    Write-Error "Target tab not found. TabIndex is 1-based (the first tab is 1)."
-    exit 1
-}
+    if (-not $targetTab) {
+        Write-Error "Target tab not found. TabIndex is 1-based (the first tab is 1)."
+        exit 1
+    }
 
 <!--#if (SetToTabFooter == "True") -->
 
-#Select tab footer
-$targetTabFooter = $null
+    #Select tab footer
+    $targetTabFooter = $null
 
-if (-not $targetTabFooter) {
-    $tabFooters = $targetTab.SelectNodes("./tabfooter")
+    if (-not $targetTabFooter) {
+        $tabFooters = $targetTab.SelectNodes("./tabfooter")
 
-    if ($tabFooters -and $tabFooters.Count -gt 0) {
-        $targetTabFooter = $tabFooters[$tabFooters.Count - 1]
+        if ($tabFooters -and $tabFooters.Count -gt 0) {
+            $targetTabFooter = $tabFooters[$tabFooters.Count - 1]
+        }
     }
-}
 
-if (-not $targetTabFooter) {
-    Write-Error "Target tab footer not found"
-    exit 1
-}
+    if (-not $targetTabFooter) {
+        Write-Error "Target tab footer not found"
+        exit 1
+    }
 
-$targetTab = $targetTabFooter
+    $targetTab = $targetTabFooter
 <!--#endif -->
 
 <!--#if (SetToTabFooter != "True") -->
-$targetColumn = $null
+    $targetColumn = $null
 
-if ($columnNumber -ne "unknown") {
-    $columns = $targetTab.SelectNodes('./columns/column')
-    if ($columns.Count -ge [int]$columnNumber -and [int]$columnNumber -ge 1) {
-        $targetColumn = $columns[[int]$columnNumber - 1]
+    if ($columnNumber -ne "unknown") {
+        $columns = $targetTab.SelectNodes('./columns/column')
+        if ($columns.Count -ge [int]$columnNumber -and [int]$columnNumber -ge 1) {
+            $targetColumn = $columns[[int]$columnNumber - 1]
+        }
+    } else {
+        $columns = $targetTab.SelectNodes('./columns/column')
+        if ($columns.Count -gt 0) {
+            $targetColumn = $columns[$columns.Count - 1]
+        }
     }
-} else {
-    $columns = $targetTab.SelectNodes('./columns/column')
-    if ($columns.Count -gt 0) {
-        $targetColumn = $columns[$columns.Count - 1]
+
+    if (-not $targetColumn) {
+        Write-Error "Target column not found in the selected tab. ColumnIndex is 1-based (the first column is 1)."
+        exit 1
     }
-}
 
-if (-not $targetColumn) {
-    Write-Error "Target column not found in the selected tab. ColumnIndex is 1-based (the first column is 1)."
-    exit 1
-}
-
-$targetSection = $null
-
-if ($sectionId -ne "unknown" -and $sectionNumber -ne "unknown") {
-    $targetSection = $targetColumn.SelectSingleNode("./sections/section[@id='{$sectionId}']")
-    if (-not $targetSection) {
+    if ($sectionNumber -ne "unknown") {
         $sections = $targetColumn.SelectNodes('./sections/section')
         if ($sections.Count -ge [int]$sectionNumber -and [int]$sectionNumber -ge 1) {
             $targetSection = $sections[[int]$sectionNumber - 1]
         }
+    } else {
+        $sections = $targetColumn.SelectNodes('./sections/section')
+        if ($sections.Count -gt 0) {
+            $targetSection = $sections[$sections.Count - 1]
+        }
     }
-} elseif ($sectionId -ne "unknown") {
-    $targetSection = $targetColumn.SelectSingleNode("./sections/section[@id='{$sectionId}']")
-} elseif ($sectionNumber -ne "unknown") {
-    $sections = $targetColumn.SelectNodes('./sections/section')
-    if ($sections.Count -ge [int]$sectionNumber -and [int]$sectionNumber -ge 1) {
-        $targetSection = $sections[[int]$sectionNumber - 1]
-    }
-} else {
-    $sections = $targetColumn.SelectNodes('./sections/section')
-    if ($sections.Count -gt 0) {
-        $targetSection = $sections[$sections.Count - 1]
-    }
-}
 
-if (-not $targetSection) {
-    Write-Error "Target section not found in the selected column. SectionIndex is 1-based (the first section is 1)."
-    exit 1
-}
+    if (-not $targetSection) {
+        Write-Error "Target section not found in the selected column. SectionIndex is 1-based (the first section is 1)."
+        exit 1
+    }
 <!--#endif -->
+}
 
 <!--#if (SetToTabFooter == "True") -->
 $targetSection = $targetTabFooter
@@ -135,3 +142,11 @@ $settings.OmitXmlDeclaration = $false
 $writer = [System.Xml.XmlWriter]::Create($entityXmlPath, $settings)
 $entityXml.Save($writer)
 $writer.Close()
+
+$rowIndex = $rowsNode.SelectNodes('./row').Count
+<!--#if (SetToTabFooter == "True") -->
+Write-Host "Added row at RowIndex $rowIndex in the tab footer."
+<!--#endif -->
+<!--#if (SetToTabFooter != "True") -->
+Write-Host "Added row at RowIndex $rowIndex in section $($targetSection.GetAttribute('id')) (use SectionId and RowIndex to target it with pp-form-cell or pp-form-control)."
+<!--#endif -->
