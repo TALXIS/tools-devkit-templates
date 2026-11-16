@@ -38,6 +38,7 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Compile Remove="scripts/**" />
   </ItemGroup>
 
 </Project>

@@ -14,19 +14,19 @@
     {
       "modifiers": [
         {
-          "condition": "(!createAppsetingsFile)",
+          "condition": "(!CreateAppsetingsFile)",
           "exclude": [
             "appsettings.json"
           ]
         },
         {
-          "condition": "(!enableCucumberSupport)",
+          "condition": "(!EnableCucumberSupport)",
           "exclude": [
             ".vscode/settings.json"
           ]
         },
         {
-          "condition": "(!enableCucumberSupport)",
+          "condition": "(!EnableCucumberSupport)",
           "exclude": [
             "scripts/generate-mock-bindings.cs"
           ]
@@ -129,7 +129,7 @@
         "cases": [
           {
             "condition": "(TestExecutionFramework == 'xunit')",
-            "value": "global using Microsoft.VisualStudio.TestTools.UnitTesting;"
+            "value": "global using Xunit;"
           },
           {
             "condition": "(TestExecutionFramework == 'mstest')",
