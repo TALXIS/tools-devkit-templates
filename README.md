@@ -235,6 +235,19 @@ dotnet new pp-connection-reference `
 
 The reference is added to `<connectionreferences>` in `Other/Customizations.xml`. `--LogicalName` is optional and defaults to `<prefix>_<connector name without underscores>` (here `tom_sharedcommondataserviceforapps`), which is the value a flow puts into `connectionReferenceLogicalName`. Connection references aren't registered in `Solution.xml`. The connection itself lives only in the target environment, so after import the reference still has to be bound to a connection (maker portal, or by setting `connectionid` on the `connectionreference` record).
 
+### Cloud flows
+Scaffold a cloud flow:
+```console
+dotnet new pp-flow `
+--output "src/Solutions.Logic" `
+--SolutionRootPath "Declarations" `
+--PublisherPrefix "tom" `
+--LogicalName "auditnotification" `
+--allow-scripts yes
+```
+
+The flow is scaffolded as a draft (`StateCode` 0, `StatusCode` 1), so it imports turned off. Bind its connection references after import, then turn it on. Pass `--Activated true` to scaffold it turned on (`StateCode` 1, `StatusCode` 2), for example when the flow has no connection references. A turned-on flow with an unbound connection reference still imports as on but can't run, and a recurrence flow starts running as soon as the connection is bound.
+
 ### UI
 Create a model-driven app:
 ```console
