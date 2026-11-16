@@ -11,7 +11,7 @@
 	  $ReqnrollNugetPackages$
 	  $additionalNugetPackages$
     $fluentAssertionsNugetPackage$
-    <PackageReference Include="TALXIS.TestKit.Bindings" Version="1.0.*" />
+    <PackageReference Include="TALXIS.TestKit.Bindings" Version="1.1.*" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.10" />
 	  <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.10" />
 	  <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="10.0.10" />
