@@ -26,7 +26,7 @@
     "CustomizationPrefix": {
       "type": "parameter",
       "datatype": "text",
-      "defaultValue": ".",
+      "isRequired": true,
       "replaces": "customizationexampleprefix",
       "fileRename": "customizationexampleprefix",
       "description": "The customization prefix for the publisher (e.g. 'contoso')."
@@ -34,7 +34,7 @@
     "ApiLogicalName": {
       "type": "parameter",
       "datatype": "text",
-      "defaultValue": ".",
+      "isRequired": true,
       "replaces": "customapiexamplename",
       "fileRename": "customapiexamplename",
       "description": "The logical name of the custom API without the prefix (e.g. 'MyCustomApi')."
@@ -42,7 +42,7 @@
     "DisplayName": {
       "type": "parameter",
       "datatype": "text",
-      "defaultValue": ".",
+      "isRequired": true,
       "replaces": "customapiexampledisplayname",
       "description": "The display name for the custom API."
     },

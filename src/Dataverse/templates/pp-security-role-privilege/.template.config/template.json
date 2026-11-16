@@ -25,20 +25,21 @@
     "EntityLogicalName": {
       "type": "parameter",
 			"datatype": "text",
-			"defaultValue": ".",
+			"isRequired": true,
       "replaces": "entityexamplename",
 			"description": "Logical name of the entity including publisher prefix (e.g., udpp_warehouseitem)"
     },
     "RoleName": {
       "type": "parameter",
 			"datatype": "text",
-			"defaultValue": "eqweqweqwe",
+			"isRequired": true,
       "replaces": "securityrolenameexample",
 			"description": "Name of the security role to which privileges will be added"
     },
     "PrivilegeTypeAndLevel": {
       "type": "parameter",
 			"datatype": "text",
+			"isRequired": true,
       "replaces": "jsonarraystringwhithPrivilegeTypeandandLevel",
       "description": "Privileges to add, as a JSON array: [{ PrivilegeType: Read, Level: Global }, { PrivilegeType: Write, Level: Basic }]. Keys may be quoted or unquoted and are case-insensitive; 'type' is accepted for 'PrivilegeType'. PrivilegeType is one of Create, Read, Write, Delete, Append, AppendTo, Assign, Share. Level is one of Basic (own records), Local (business unit), Deep (business unit and children), Global (organization); User, BusinessUnit, ParentChild and Organization are accepted as aliases, and None omits the privilege. The privilege name is prv<PrivilegeType><EntityLogicalName>."
     }
