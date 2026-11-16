@@ -4,6 +4,8 @@ param(
     [Parameter(Mandatory)][string]$FilePath
 )
 
+$ErrorActionPreference = 'Stop'
+
 # Parse Entity.xml to get EntitySetName and PrimaryKey
 $entityXmlPath = Join-Path $SolutionPath "__solution-root-path__" "Entities" $EntityLogicalName "Entity.xml"
 if (-not (Test-Path $entityXmlPath)) {
