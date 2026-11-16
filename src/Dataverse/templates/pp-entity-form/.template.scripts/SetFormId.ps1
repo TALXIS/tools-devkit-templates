@@ -46,6 +46,26 @@ if ($formGuidNode) {
     Write-Warning "formid node not found in XML"
 }
 
+<!--#if (FormType == "dialog") -->
+# Set the dialog's UniqueName here, on the document that is saved below. It used
+# to be set in a separate script that addressed the file as Dialogs\{FormId}.xml:
+# on macOS and Linux that saved a second file literally named "Dialogs\{...}.xml"
+# and left UniqueName empty in the real one, and with an unknown FormId the path
+# did not exist at all.
+$uniqueName = "dialogexampleuniquename"
+if ($uniqueName -eq "unknown") {
+    $prefix = 'ItemFolderName'.Split('_')[0]
+    $uniqueName = $prefix + "_" + ('formexamplename' -replace '[^\w]', '').ToLower() + "dialog"
+}
+$uniqueNameNode = $formXml.SelectSingleNode("//UniqueName")
+if ($uniqueNameNode) {
+    $uniqueNameNode.InnerText = $uniqueName
+    Write-Host "Updated UniqueName to: $uniqueName"
+} else {
+    Write-Warning "UniqueName node not found in XML"
+}
+<!--#endif -->
+
 # Save the updated XML to the new file
 $formXml.Save($newFilePath)
 Write-Host "Saved updated form to: $newFilePath"
@@ -57,5 +77,5 @@ if ($formIdPath -ne $newFilePath) {
 }
 
 <!--#if (FormType == "dialog") -->
-.\.template.scripts\AddFormToSolutionXml.ps1 -formId $formId
+./.template.scripts/AddFormToSolutionXml.ps1 -formId $formId
 <!--#endif -->

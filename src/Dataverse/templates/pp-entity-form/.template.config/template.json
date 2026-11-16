@@ -413,9 +413,9 @@
 		},
 		{
 			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+			"condition": "(AddDialogForm)",
 			"args": {
 				"executable": "pwsh",
-				"condition": "(FormType == 'dialog')",
 				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/AddToCustomizationsXml.ps1\" ",
 				"redirectStandardOutput": "false"
 			},
@@ -426,22 +426,6 @@
 			],
 			"continueOnError": false,
 			"description": "Adding new dialog to Customizations.xml"
-		},
-		{
-			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-			"condition": "(AddDialogForm)",
-			"args": {
-				"executable": "pwsh",
-				"args": "-noprofile -executionpolicy bypass -File \"./.template.scripts/SetVariables.ps1\"",
-				"redirectStandardOutput": "false"
-			},
-			"manualInstructions": [
-				{
-					"text": "Setting variables for new form"
-				}
-			],
-			"continueOnError": false,
-			"description": "Setting variables for new form"
 		},
 		{
 			"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
