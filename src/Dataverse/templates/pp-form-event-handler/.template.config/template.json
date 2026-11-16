@@ -53,7 +53,7 @@
           "choice": "quick"
         },
         {
-          "choice": "Dialog"
+          "choice": "dialog"
         },
         {
           "choice": "unknown"
@@ -125,7 +125,7 @@
       "datatype": "text",
       "replaces": "exampleattributename",
       "isRequired": false,
-      "description": "Enter attribute name (required for AttributeOnChange event type)"
+      "description": "Field logical name for onchange, or button control id for onclick (required for both)"
     }
   },
   "postActions": [
