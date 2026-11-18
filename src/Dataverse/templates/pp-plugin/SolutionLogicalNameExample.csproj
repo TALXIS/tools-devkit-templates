@@ -12,7 +12,7 @@
   <PropertyGroup>
     <Version>$(FileVersion)</Version>
     <Authors>examplepublisher</Authors>
-    <Company>exampleсompany</Company>
+    <Company>examplecompany</Company>
     <Description>This is a sample nuget package which contains a Dataverse plugin and its runtime dependencies like Newtonsoft.Json</Description>
   </PropertyGroup>
   <ItemGroup>

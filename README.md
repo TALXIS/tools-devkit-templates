@@ -431,10 +431,21 @@ Initialize a new plugin project:
 dotnet new pp-plugin `
 --output "src/Plugins.Warehouse" `
 --PublisherName "tomas" `
---SigningKeyFilePath "PluginKey.snk" `
 --Company "NETWORG" `
 --allow-scripts yes
 ```
+
+Without `SigningKeyFilePath` the template generates `AssemblyOriginatorKeyFile.snk` in the project. Commit it: the key is the assembly's identity, and a new key on another machine or in CI makes plugin updates stop importing cleanly. To reuse an existing key (a second plugin project, or a project recreated from scratch), pass its path; the file is copied into the project and referenced by name. A relative path is searched from the project folder upward, and a path that doesn't exist fails the scaffold:
+```console
+dotnet new pp-plugin `
+--output "src/Plugins.Inventory" `
+--PublisherName "tomas" `
+--Company "NETWORG" `
+--SigningKeyFilePath "src/Plugins.Warehouse/AssemblyOriginatorKeyFile.snk" `
+--allow-scripts yes
+```
+
+`pp-workflow-activity` takes the same parameter, but it signs the assembly only when a key is passed.
 
 Reference it from the solution that holds registrations and build. By default (`GeneratePluginAssembly` is `true` in `pp-solution`) the build registers the assembly itself, so no template is needed for it:
 ```console
