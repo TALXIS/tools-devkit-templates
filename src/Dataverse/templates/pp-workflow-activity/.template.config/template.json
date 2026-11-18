@@ -31,12 +31,12 @@
       "datatype": "text",
       "replaces": "examplepublisher",
       "isRequired": true,
-      "description": "Publisher name for the workflow activities project (used as author in PAC CLI)"
+      "description": "Publisher name for the workflow activities project (written as Authors in the csproj)"
     },
     "Company": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "exampleсompany",
+      "replaces": "examplecompany",
       "isRequired": true,
       "description": "Company name for the workflow activities project metadata"
     },
@@ -44,7 +44,7 @@
       "type": "parameter",
       "datatype": "text",
       "replaces": "signingkeyfilepathexample",
-      "description": "Path to the signing key file for assembly signing (optional)"
+      "description": "Path to an existing .snk file to sign the assembly with (copied into the project, a relative path is searched upward from the project). Omit it to build unsigned."
     }
   },
   "primaryOutputs": [

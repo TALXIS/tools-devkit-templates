@@ -30,12 +30,12 @@
       "datatype": "text",
       "replaces": "examplepublisher",
       "isRequired": true,
-      "description": "Publisher name for the plugin project (used as author in PAC CLI)"
+      "description": "Publisher name for the plugin project (written as Authors in the csproj)"
     },
     "Company": {
       "type": "parameter",
       "datatype": "text",
-      "replaces": "exampleсompany",
+      "replaces": "examplecompany",
       "isRequired": true,
       "description": "Company name for the plugin project metadata"
     },
@@ -55,7 +55,7 @@
       "datatype": "text",
       "isRequired": false,
       "replaces": "signingkeyfilepathexample",
-      "description": "Path to the signing key file for plugin assembly signing (optional)"
+      "description": "Path to an existing .snk file to reuse (copied into the project, a relative path is searched upward from the project). Omit it to generate a new key, and commit that key so the assembly identity stays the same everywhere."
     }
   },
   "primaryOutputs": [
@@ -73,11 +73,11 @@
       },
       "manualInstructions": [
         {
-          "text": "Initialize a plugin using PAC CLI"
+          "text": "Initialize the plugin project (signing key and csproj metadata)"
         }
       ],
       "continueOnError": false,
-      "description": "Initialize a plugin using PAC CLI - pac plugin init"
+      "description": "Initialize the plugin project (signing key and csproj metadata)"
     },
     {
       "description": "Add generated project to .sln file",

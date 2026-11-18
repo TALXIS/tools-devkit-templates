@@ -2,7 +2,7 @@
 $signingKey = "signingkeyfilepathexample"
 $outputDir = "../SolutionLogicalNameExample"
 $author = "examplepublisher"
-$company = "exampleсompany"
+$company = "examplecompany"
 
 # --- 1. Initialize the plugin project ---
 cd $outputDir
