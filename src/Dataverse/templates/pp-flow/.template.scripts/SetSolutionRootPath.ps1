@@ -84,7 +84,15 @@ if ([string]::IsNullOrWhiteSpace($solutionRootPath)) {
     throw "Failed to determine SolutionRootPath."
 }
 
-& (Join-Path $PSScriptRoot 'ReplacePlaceholder.ps1') `
-    -Path $currentDirectory `
-    -Placeholder "__solution-root-path__" `
-    -Replacement $solutionRootPath
+# Only the scaffolded folder and this script folder hold the placeholder. Walking the whole project skipped
+# the dot-named script folder on Linux, where PowerShell treats it as hidden.
+$scaffoldedRoot = Join-Path $currentDirectory "__solution-root-path__"
+
+foreach ($path in @($PSScriptRoot, $scaffoldedRoot)) {
+    if (-not (Test-Path -LiteralPath $path)) { continue }
+
+    & (Join-Path $PSScriptRoot 'ReplacePlaceholder.ps1') `
+        -Path $path `
+        -Placeholder "__solution-root-path__" `
+        -Replacement $solutionRootPath
+}
