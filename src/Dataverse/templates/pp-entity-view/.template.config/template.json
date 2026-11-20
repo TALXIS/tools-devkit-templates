@@ -4,7 +4,7 @@
   "identity": "TALXIS.DevKit.Templates.Dataverse.View",
   "name": "Power Platform: View",
   "shortName": "pp-entity-view",
-  "description": "Adds a SavedQuery (view) XML for an existing entity. Includes fetchxml, grid layout, column definitions. queryType=64. Use when adding a new list view to an entity.",
+  "description": "Adds a SavedQuery (view) XML for an existing entity. Includes fetchxml, grid layout, column definitions. ViewType=public (default) adds a list view usable in grids and subgrids (querytype 0); ViewType=lookup adds a lookup view (querytype 64). Use when adding a new list view to an entity.",
   "tags": {
     "language": "XML",
     "type": "item",
@@ -27,6 +27,22 @@
       "defaultValue": "Generated",
       "replaces": "viewexamplename",
       "description": "Display name of the view"
+    },
+    "ViewType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "defaultValue": "public",
+      "choices": [
+        {
+          "choice": "public",
+          "description": "List view for grids, subgrids and the view selector (querytype 0)"
+        },
+        {
+          "choice": "lookup",
+          "description": "Lookup view used by lookup columns (querytype 64, \" Lookup View\" appended to the name)"
+        }
+      ],
+      "description": "Kind of view to add"
     },
     "EntitySchemaName": {
       "type": "parameter",
